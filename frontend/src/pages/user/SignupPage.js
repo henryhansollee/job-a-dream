@@ -1,11 +1,11 @@
 import React from 'react';
 import UserTemplate from '../../components/user/UserTemplate';
-import UserForm from '../../components/user/UserFrom';
+import SignupForm from '../../containers/user/SignupForm';
 
 const SignupPage = () => {
   return (
     <UserTemplate>
-      <UserForm type="signup" />
+      <SignupForm />
     </UserTemplate>
   );
 };

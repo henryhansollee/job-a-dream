@@ -1,11 +1,12 @@
 import React from 'react';
 import UserTemplate from '../../components/user/UserTemplate';
-import UserForm from '../../components/user/UserFrom';
+import LoginForm from '../../containers/user/LoginForm';
+
 
 const LoginPage = () => {
   return (
     <UserTemplate>
-      <UserForm type="login" />
+      <LoginForm />
     </UserTemplate>
   );
 };
