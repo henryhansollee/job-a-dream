@@ -1,7 +1,13 @@
 import React from 'react';
+import UserTemplate from '../../components/user/UserTemplate';
+import UserForm from '../../components/user/UserFrom';
 
 const LoginPage = () => {
-  return <div>로그인</div>;
+  return (
+    <UserTemplate>
+      <UserForm />
+    </UserTemplate>
+  );
 };
 
 export default LoginPage;
