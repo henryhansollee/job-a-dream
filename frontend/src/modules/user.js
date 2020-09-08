@@ -7,7 +7,7 @@ import * as userAPI from '../lib/api/user';
 const CHANGE_FIELD = 'user/CHANGE_FIELD';
 const INITIALZE_FORM ='user/INITIALIZE_FORM';
 
-const [SIGNUP, SIGNUP_SUCESS, SIGNUP_FAILURE] = createRequestActionTypes(
+const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] = createRequestActionTypes(
   'user/SIGNUP',
 );
 
