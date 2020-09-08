@@ -5,7 +5,7 @@ import UserForm from '../../components/user/UserFrom';
 const LoginPage = () => {
   return (
     <UserTemplate>
-      <UserForm />
+      <UserForm type="login" />
     </UserTemplate>
   );
 };
