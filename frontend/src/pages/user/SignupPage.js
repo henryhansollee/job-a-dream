@@ -1,7 +1,13 @@
 import React from 'react';
+import UserTemplate from '../../components/user/UserTemplate';
+import UserForm from '../../components/user/UserFrom';
 
 const SignupPage = () => {
-  return <div>회원가입</div>;
+  return (
+    <UserTemplate>
+      <UserForm type="signup" />
+    </UserTemplate>
+  );
 };
 
 export default SignupPage;
