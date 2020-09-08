@@ -15,16 +15,36 @@ const textMap = {
   signup: '회원가입',
 };
 
-const UserForm = ({ type }) => {
+const UserForm = ({ type, form, onChange, onSubmit }) => {
   const text = textMap[type];
   return (
     <UserFormBlock>
       <h3>{text}</h3>
-      <form>
-        <StyledInput autoComplete="email" name="email" placeholder="이메일" />
-        <StyledInput autoComplete="new-password" name="password" placeholder="비밀번호" type="password" />
+      <form onSubmit={onSubmit}>
+        <StyledInput 
+          autoComplete="email"
+          name="email"
+          placeholder="이메일"
+          onChange={onChange}
+          value={form.email} 
+        />
+        <StyledInput
+          autoComplete="new-password"
+          name="password"
+          placeholder="비밀번호"
+          type="password"
+          onChange={onChange}
+          value={form.password}
+        />
         {type === 'signup' && (
-          <StyledInput autoComplete="new-password" name="passwordConfirm" placeholder="비밀번호 확인" type="password" />
+          <StyledInput
+            autoComplete="new-password"
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
+          />
         )}
         <Button>{text}</Button>
       </form>
