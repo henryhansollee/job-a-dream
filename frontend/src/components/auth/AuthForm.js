@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 
-const UserFormBlock = styled.div``;
+const AuthFormBlock = styled.div``;
 
 const StyledInput = styled.input``;
 
@@ -15,10 +15,10 @@ const textMap = {
   signup: '회원가입',
 };
 
-const UserForm = ({ type, form, onChange, onSubmit }) => {
+const AuthForm = ({ type, form, onChange, onSubmit }) => {
   const text = textMap[type];
   return (
-    <UserFormBlock>
+    <AuthFormBlock>
       <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         <StyledInput 
@@ -55,8 +55,8 @@ const UserForm = ({ type, form, onChange, onSubmit }) => {
           <Link to="/login">로그인</Link>
         )}
       </FormFooter>
-    </UserFormBlock>
+    </AuthFormBlock>
   );
 };
 
-export default UserForm;
+export default AuthForm;

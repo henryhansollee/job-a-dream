@@ -2,17 +2,17 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../lib/createRequestSaga';
-import * as userAPI from '../lib/api/user';
+import * as authAPI from '../lib/api/auth';
 
-const CHANGE_FIELD = 'user/CHANGE_FIELD';
-const INITIALZE_FORM ='user/INITIALIZE_FORM';
+const CHANGE_FIELD = 'auth/CHANGE_FIELD';
+const INITIALZE_FORM ='auth/INITIALIZE_FORM';
 
 const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] = createRequestActionTypes(
-  'user/SIGNUP',
+  'auth/SIGNUP',
 );
 
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes(
-  'user/login',
+  'auth/login',
 );
 
 export const changeField = createAction(
@@ -36,9 +36,9 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
   password,
 }));
 
-const signupSaga = createRequestSaga(SIGNUP, userAPI.signup);
-const loginSaga = createRequestSaga(LOGIN, userAPI.login);
-export function* userSaga() {
+const signupSaga = createRequestSaga(SIGNUP, authAPI.signup);
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
+export function* authSaga() {
   yield takeLatest(SIGNUP, signupSaga);
   yield takeLatest(LOGIN, loginSaga);
 }
@@ -53,11 +53,11 @@ const initialState = {
     email: '',
     password: '',
   },
-  user: null,
-  userError: null,
+  auth: null,
+  authError: null,
 };
 
-const user = handleActions(
+const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, draft => {
@@ -66,28 +66,28 @@ const user = handleActions(
     [INITIALZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
-      userError: null,
+      authError: null,
     }),
-    [SIGNUP_SUCCESS]: (state, { payload: user }) => ({
+    [SIGNUP_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
-      userError: null,
-      user,
+      authError: null,
+      auth,
     }),
     [SIGNUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      userError: error,
+      authError: error,
     }),
-    [LOGIN_SUCCESS]: (state, { payload: user }) => ({
+    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
-      userError: null,
-      user,
+      authError: null,
+      auth,
     }),
     [LOGIN_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      userError: error,
+      authError: error,
     }),
   },
   initialState,
 );
 
-export default user;
+export default auth;
