@@ -10,12 +10,14 @@ const StyledInput = styled.input``;
 
 const FormFooter = styled.div``;
 
+const ErrorMessage = styled.div``;
+
 const textMap = {
   login: '로그인',
   signup: '회원가입',
 };
 
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -46,6 +48,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             value={form.passwordConfirm}
           />
         )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button>{text}</Button>
       </form>
       <FormFooter>
