@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm } from '../../modules/user';
-import UserForm from '../../components/user/UserForm';
+import { changeField, initializeForm } from '../../modules/auth';
+import AuthForm from '../../components/auth/AuthForm';
 
-const SignupForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
-  const { form } = useSelector(({ user }) => ({
-    form: user.signup
+  const { form } = useSelector(({ auth }) => ({
+    form: auth.login
   }));
 
   const onChange = e => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: 'signup',
+        form: 'login',
         key: name,
         value
       })
@@ -25,14 +25,14 @@ const SignupForm = () => {
   };
 
   useEffect(() => {
-    dispatch(initializeForm('signup'));
+    dispatch(initializeForm('login'));
   }, [dispatch]);
 
   return (
-    <UserForm type="signup" form={form} onChange={onChange} onSubmit={onSubmit} />
+    <AuthForm type="login" form={form} onChange={onChange} onSubmit={onSubmit} />
   );
 };
 
-export default SignupForm;
+export default LoginForm;
 
 
