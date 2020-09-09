@@ -4,10 +4,10 @@ print(sr.__version__)
 
 r = sr.Recognizer()
 
-audio_file = sr.AudioFile('./audio_files/harvard.wav')
-
-with audio_file as file:
-    audio = r.record(file)
+# audio_file = sr.AudioFile('./audio_files/harvard.wav')
+#
+# with audio_file as file:
+#     audio = r.record(file)
 
 
 """
@@ -21,19 +21,18 @@ with mic as MIC:
 
 """
 
-"""
 # 비디오 파일에서 음성 추출
 
-# clip = mp.VideoFileClip("./audio_files/Video_name.mp4")
-# clip.audio.write_audiofile("./audio_files/Video_name.wav")
-# audio_file = sr.AudioFile('./audio_files/Video_name.wav')
+clip = mp.VideoFileClip("./audio_files/test111.mp4")
+clip.audio.write_audiofile("./audio_files/test111.wav")
+audio_file = sr.AudioFile('./audio_files/test111.wav')
 
 with audio_file as file:
     audio = r.record(file)
-"""
+
 
 try:
-    print("you said : " + r.recognize_google(audio, language='us'))
+    print("you said : " + r.recognize_google(audio, language='ko-KR'))
 except sr.UnknownValueError:
     print("Google Speech Recognition could not understand audio")
 except sr.RequestError as e:
