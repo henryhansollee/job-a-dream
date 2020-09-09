@@ -31,15 +31,24 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const Header = () => {
+const UserInfo = styled.div``;
+
+const Header = ({ user, onLogout }) => {
   return (
     <>
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">잡아드림</Link>
-          <div className="right">
-            <Button to="/login">로그인</Button>
-          </div>
+          {user ? (
+            <div className="right">
+              <UserInfo>{user.email}</UserInfo>
+              <Button onClick={onLogout}>로그아웃</Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button to="/login">로그인</Button>
+            </div>
+          )}
         </Wrapper>
       </HeaderBlock>
       <Spacer />
