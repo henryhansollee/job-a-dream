@@ -31,7 +31,7 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const UserInfo = styeld.div``;
+const UserInfo = styled.div``;
 
 const Header = ({ user }) => {
   return (
