@@ -33,7 +33,7 @@ const Spacer = styled.div`
 
 const UserInfo = styled.div``;
 
-const Header = ({ user }) => {
+const Header = ({ user, onLogout }) => {
   return (
     <>
       <HeaderBlock>
@@ -42,7 +42,7 @@ const Header = ({ user }) => {
           {user ? (
             <div className="right">
               <UserInfo>{user.email}</UserInfo>
-              <Button>로그아웃</Button>
+              <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (
             <div className="right">
