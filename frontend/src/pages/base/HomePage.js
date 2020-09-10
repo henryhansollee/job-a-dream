@@ -6,15 +6,19 @@ import AuthTemplate from '../../components/auth/AuthTemplate';
 import LoginForm from '../../containers/auth/LoginForm';
 
 const HomeSection1 = styled.div`
-  background: ${palette.gray[0]};
+  background: ${palette.cyan[0]};
 `;
 
 const HomeSection2 = styled.div`
-  background: ${palette.gray[1]};
+  background: ${palette.cyan[1]};
 `;
 
 const HomeSection3 = styled.div`
-  background: ${palette.gray[2]};
+  background: ${palette.cyan[2]};
+`;
+
+const HomeSection4 = styled.div`
+  background: ${palette.cyan[3]};
 `;
 
 const HomePage = () => {
@@ -35,7 +39,9 @@ const HomePage = () => {
               </HomeSection2>
               <HomeSection3 className="section">
               </HomeSection3>
-        </ReactFullpage.Wrapper>
+              <HomeSection4 className="section">
+              </HomeSection4>
+            </ReactFullpage.Wrapper>
       );
     }}
     />
