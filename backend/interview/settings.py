@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'rest_auth.registration', # signup
     'allauth', # signup
     'allauth.account', # signup
+    # 'allauth.socialaccount' social login 
 
     # CORS
     'corsheaders',
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -143,7 +146,46 @@ SITE_ID = 1
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ],
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+
+# 요청 받는 port 설정
+CORS_ORIGIN_WHITELIST = [
+"http://127.0.0.1:8080"
+]
+
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'POST',
+'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'access-control-request-method',
+'access-control-request-headers',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+
+JWT_AUTH = {
+'JWT_VERIFY': True,
+'JWT_VERIFY_EXPIRATION': True,
+'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+'JWT_ALLOW_REFRESH': True,
+'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
