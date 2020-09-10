@@ -1,4 +1,3 @@
-
 """Google Cloud Speech API sample application using the streaming API.
 NOTE: This module requires the dependencies `pyaudio` and `termcolor`.
 To install using pip:
@@ -20,7 +19,7 @@ from six.moves import queue
 
 # Audio recording parameters
 STREAMING_LIMIT = 240000  # 4 minutes
-SAMPLE_RATE = 16000
+SAMPLE_RATE = 44100
 CHUNK_SIZE = int(SAMPLE_RATE / 10)  # 100ms
 
 RED = '\033[0;31m'
@@ -209,7 +208,7 @@ def main():
     config = speech.types.RecognitionConfig(
         encoding=speech.enums.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=SAMPLE_RATE,
-        language_code='en-US',
+        language_code='ko-KR',
         max_alternatives=1)
     streaming_config = speech.types.StreamingRecognitionConfig(
         config=config,
