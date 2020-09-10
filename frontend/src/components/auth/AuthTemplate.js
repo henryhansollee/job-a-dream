@@ -1,21 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-// import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 
-const AuthTemplateBlock = styled.div``;
+const AuthTemplateBlock = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  /* flex로 내부 내용 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
-const AuthTemplateBox = styled.div``;
+const WhiteBox = styled.div`
+  .logo-area {
+    display: block;
+    padding-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
+  padding: 2rem;
+  width: 360px;
+  background: white;
+  border-radius: 2px;
+`;
 
 const AuthTemplate = ({ children }) => {
   return (
     <AuthTemplateBlock>
-      <AuthTemplateBox>
-        <div>
-          <Link to="/">홈</Link>
+      <WhiteBox>
+        <div className="logo-area">
+          <Link to="/">잡아드림</Link>
         </div>
         {children}
-      </AuthTemplateBox>
+      </WhiteBox>
     </AuthTemplateBlock>
   );
 };
