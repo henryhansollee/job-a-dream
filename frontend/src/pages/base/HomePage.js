@@ -2,6 +2,8 @@ import React from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
+import AuthTemplate from '../../components/auth/AuthTemplate';
+import LoginForm from '../../containers/auth/LoginForm';
 
 const HomeSection1 = styled.div`
   background: ${palette.gray[0]};
@@ -25,6 +27,9 @@ const HomePage = () => {
           return (
             <ReactFullpage.Wrapper>
               <HomeSection1 className="section">
+                <AuthTemplate>
+                <LoginForm />
+              </AuthTemplate>
               </HomeSection1>
               <HomeSection2 className="section">
               </HomeSection2>
