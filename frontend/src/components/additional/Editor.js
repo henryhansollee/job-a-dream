@@ -32,7 +32,7 @@ const QuillWrapper = styled.div`
 `;
 
 const Editor = () => {
-  const qillElement = useRef(null);
+  const quillElement = useRef(null);
   const quillInstance = useRef(null);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Editor = () => {
         ],
       },
     });
-  }), [];
+  }, []);
 
   return (
     <EditorBlcok>
