@@ -1,5 +1,5 @@
-import React, {useState, useCallback } from './react';
-import styled from './styled-components';
+import React, {useState, useCallback } from 'react';
+import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
 const TagBoxBlock = styled.div`

@@ -14,3 +14,5 @@ const InterviewCreateButtons = ({ onCancel, onPublish }) => {
     </InterviewCreateButtonsBlock>
   )
 }
+
+export default InterviewCreateButtons;
