@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # DRF
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_jwt',
 
     # rest_auth + allauth
     'rest_auth', # login, logout
@@ -144,48 +145,44 @@ AUTH_USER_MODEL = 'accounts.User'
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+    ]
+}
+
+REST_USER_JWT = True
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28)
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# 요청 받는 port 설정
-CORS_ORIGIN_WHITELIST = [
-"http://127.0.0.1:8080"
-]
+#This is required otherwise it asks for email server
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ACCOUNT_EMAIL_REQUIRED = True
+# AUTHENTICATION_METHOD = 'EMAIL'
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
-CORS_ALLOW_METHODS = [
-'DELETE',
-'GET',
-'POST',
-'PUT',
-]
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True   
+ACCOUNT_USERNAME_REQUIRED = False
 
-CORS_ALLOW_HEADERS = [
-'accept',
-'accept-encoding',
-'authorization',
-'access-control-request-method',
-'access-control-request-headers',
-'content-type',
-'dnt',
-'origin',
-'user-agent',
-'x-csrftoken',
-'x-requested-with',
-]
+#Following is added to enable registration with email instead of username
+AUTHENTICATION_BACKENDS = (
+ # Needed to login by username in Django admin, regardless of `allauth`
+ "django.contrib.auth.backends.ModelBackend",
 
-JWT_AUTH = {
-'JWT_VERIFY': True,
-'JWT_VERIFY_EXPIRATION': True,
-'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-'JWT_ALLOW_REFRESH': True,
-'JWT_AUTH_HEADER_PREFIX': 'JWT',
-}
+ # `allauth` specific authentication methods, such as login by e-mail
+ "allauth.account.auth_backends.AuthenticationBackend",
+)
