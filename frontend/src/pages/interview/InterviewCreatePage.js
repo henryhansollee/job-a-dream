@@ -1,13 +1,13 @@
 import React from 'react';
-import Editor from '../../components/interview/Editor';
 import TagBox from '../../components/interview/TagBox';
 import Responsive from '../../components/common/Responsive';
 import InterviewCreateButtons from '../../components/interview/InterviewCreateButtons';
+import EditorContainer from '../../containers/interview/EditorContainer';
 
 const InterviewCreatePage = () => {
   return (
     <Responsive>
-      <Editor />
+      <EditorContainer />
       <TagBox />
       <InterviewCreateButtons />
     </Responsive>
