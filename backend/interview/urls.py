@@ -17,4 +17,5 @@ urlpatterns = [
     path('rest-auth/signup/', include('rest_auth.registration.urls')),
 
     path('accounts/', include('accounts.urls')),
+    path('boards/', include('boards.urls')),
 ]
