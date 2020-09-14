@@ -1,15 +1,15 @@
 import React from 'react';
-import Editor from '../../components/interview/Editor';
-import TagBox from '../../components/interview/TagBox';
 import Responsive from '../../components/common/Responsive';
-import InterviewCreateButtons from '../../components/interview/InterviewCreateButtons';
+import EditorContainer from '../../containers/interview/EditorContainer';
+import TagBoxContainer from '../../containers/interview/TagBoxContainer';
+import InterviewCreateButtonsContainer from '../../containers/interview/InterviewCreateButtonsContainer';
 
 const InterviewCreatePage = () => {
   return (
     <Responsive>
-      <Editor />
-      <TagBox />
-      <InterviewCreateButtons />
+      <EditorContainer />
+      <TagBoxContainer />
+      <InterviewCreateButtonsContainer />
     </Responsive>
   );
 };
