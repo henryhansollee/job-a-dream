@@ -27,7 +27,7 @@ const InterviewCreateButtonsContainer = ({ history }) => {
   };
   useEffect(() => {
     if (ipost) {
-      const { _id, user } = post;
+      const { _id, user } = ipost;
       history.push(`/@${user.username}/${_id}`);
     }
     if (ipostError) {

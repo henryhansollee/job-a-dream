@@ -10,8 +10,8 @@ const INITIALIZE = 'icreate/INITIALIZE';
 const CHANGE_FIELD = 'icreate/CHANGE_FIELD';
 const [
   ICREATE_POST,
-  ICREATE_SUCCESS,
-  ICREATE_FAILURE,
+  ICREATE_POST_SUCCESS,
+  ICREATE_POST_FAILURE,
 ] = createRequestActionTypes('icreate/ICREATE_POST');
 
 export const initialize = createAction(INITIALIZE);
@@ -19,7 +19,7 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-export const icreatepost = createAction(ICREATE_POST, ({ title, body, tags }) => ({
+export const icreatePost = createAction(ICREATE_POST, ({ title, body, tags }) => ({
   title,
   body,
   tags,
@@ -52,7 +52,11 @@ const icreate = handleActions(
       ipost: null,
       ipostError: null,
     }),
-    [ICREATE_POST_SUCCESS]: (state, { payload: post }) => ({
+    [ICREATE_POST_SUCCESS]: (state, { payload: ipost }) => ({
+      ...state,
+      ipost,
+    }),
+    [ICREATE_POST_FAILURE]: (state, { payload: ipostError }) => ({
       ...state,
       ipostError,
     }),

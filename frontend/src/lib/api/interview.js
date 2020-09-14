@@ -1,4 +1,4 @@
 import client from './client';
 
-export const icreate = ({ title, body, tags }) =>
+export const icreatePost = ({ title, body, tags }) =>
   client.post('/icreate', { title, body, tags });
