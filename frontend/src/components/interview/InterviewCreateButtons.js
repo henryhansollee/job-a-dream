@@ -10,7 +10,7 @@ const InterviewCreateButtons = ({ onCancel, onPublish }) => {
   return (
     <InterviewCreateButtonsBlock>
       <StyledButton onClick={onPublish}>등록</StyledButton>
-      <StyledButton onClic={onCancel}>취소</StyledButton>
+      <StyledButton onClick={onCancel}>취소</StyledButton>
     </InterviewCreateButtonsBlock>
   )
 }
