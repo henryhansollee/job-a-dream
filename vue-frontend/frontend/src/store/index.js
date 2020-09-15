@@ -4,7 +4,7 @@ import axios from "axios";
 import cookies from "vue-cookies";
 import router from "../router";
 
-const BACK_URL = 'http://127.0.0.1:8080'
+const BACK_URL = "http://127.0.0.1:8080";
 
 Vue.use(Vuex);
 
@@ -14,10 +14,10 @@ export default new Vuex.Store({
     isLoggedin: false,
 
     userData: {
-      username: '',
-      email: '',
-      password: '',
-    },
+      username: "",
+      email: "",
+      password: ""
+    }
   },
 
   mutations: {
@@ -45,33 +45,32 @@ export default new Vuex.Store({
       } else {
         state.isLoggedin = false;
       }
-    },
+    }
   },
 
   actions: {
     logIn({ commit }, loginData) {
       axios
         .post(`${BACK_URL}/rest-auth/login/`, loginData)
-        .then((response) => {
-          console.log(response)
+        .then(response => {
+          console.log(response);
           commit("SET_TOKEN", response.data.authToken);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     signUp({ commit }, signupData) {
       axios
         .post(`${BACK_URL}/rest-auth/signup/`, signupData)
-        .then((response) => {
+        .then(response => {
           commit("SET_TOKEN", response.data);
           router.push("/");
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
-
+    }
   },
 
   modules: {}

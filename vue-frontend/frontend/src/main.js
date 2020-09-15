@@ -2,7 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import VueFullPage from 'vue-fullpage.js'
+import VueFullPage from "vue-fullpage.js";
+import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 Vue.use(VueFullPage);
@@ -10,5 +11,6 @@ Vue.use(VueFullPage);
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App)
 }).$mount("#app");

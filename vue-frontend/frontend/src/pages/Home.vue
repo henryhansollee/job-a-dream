@@ -4,30 +4,28 @@
       <div class="section fullpage-section1">
         <Login />
       </div>
-      <div class="section fullpage-section2">
-      </div>
-      <div class="section fullpage-section3">
-      </div>
+      <div class="section fullpage-section2"></div>
+      <div class="section fullpage-section3"></div>
     </full-page>
   </div>
 </template>
 
 <script>
-import Login from '../components/auth/Login'
+import Login from "../components/auth/Login";
 
-  export default {
-    name: "Home",
-    components: {
-      Login,
-    },
-      data() {
-        return {
-          options: {
-            afterLoad: this.afterLoad,
-          }
-        }
-      },
-    }
+export default {
+  name: "Home",
+  components: {
+    Login
+  },
+  data() {
+    return {
+      options: {
+        afterLoad: this.afterLoad
+      }
+    };
+  }
+};
 </script>
 
 <style>

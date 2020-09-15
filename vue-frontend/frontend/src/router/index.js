@@ -1,23 +1,23 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 // home
-import Home from "../pages/Home"
+import Home from "../pages/Home";
 
 // auth
-import Signup from "../pages/auth/Signup"
+import Signup from "../pages/auth/Signup";
 
 // interview
-import InterviewList from '../pages/interview/InterviewList'
-import InterviewCreate from '../pages/interview/InterviewCreate'
-import InterviewDetail from '../pages/interview/InterviewDetail'
-import InterviewUpdate from '../pages/interview/InterviewUpdate'
+import InterviewList from "../pages/interview/InterviewList";
+import InterviewCreate from "../pages/interview/InterviewCreate";
+import InterviewDetail from "../pages/interview/InterviewDetail";
+import InterviewUpdate from "../pages/interview/InterviewUpdate";
 
 // community
-import CommunityList from '../pages/community/CommunityList'
-import CommunityCreate from '../pages/community/CommunityCreate'
-import CommunityDetail from '../pages/community/CommunityDetail'
-import CommunityUpdate from '../pages/community/CommunityUpdate'
+import CommunityList from "../pages/community/CommunityList";
+import CommunityCreate from "../pages/community/CommunityCreate";
+import CommunityDetail from "../pages/community/CommunityDetail";
+import CommunityUpdate from "../pages/community/CommunityUpdate";
 
 Vue.use(VueRouter);
 
