@@ -6,6 +6,7 @@
       </div>
       <div class="section fullpage-section2"></div>
       <div class="section fullpage-section3"></div>
+      <div class="section fullpage-section4"></div>
     </full-page>
   </div>
 </template>
@@ -30,12 +31,15 @@ export default {
 
 <style>
 .fullpage-section1 {
-  background-color: cadetblue;
+  background-color: #FFB471;
 }
 .fullpage-section2 {
-  background-color: azure;
+  background-color: #EB8F90;
 }
 .fullpage-section3 {
-  background-color: antiquewhite;
+  background-color: #ADBED2;
+}
+.fullpage-section4 {
+  background-color: #12406A;
 }
 </style>
