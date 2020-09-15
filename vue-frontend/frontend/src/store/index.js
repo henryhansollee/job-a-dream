@@ -53,7 +53,7 @@ export default new Vuex.Store({
       axios
         .post(`${BACK_URL}/rest-auth/login/`, loginData)
         .then(response => {
-          console.log(response);
+          console.log(response, 'ㅁㅁㅁㅁㅁㅁㅁ');
           commit("SET_TOKEN", response.data.authToken);
         })
         .catch(err => {
