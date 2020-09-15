@@ -2,6 +2,7 @@
   <div>
     <full-page ref="fullpage" :options="options">
       <div class="section fullpage-section1">
+        <Login />
       </div>
       <div class="section fullpage-section2">
       </div>
@@ -12,7 +13,13 @@
 </template>
 
 <script>
+import Login from '../components/auth/Login'
+
   export default {
+    name: "Home",
+    components: {
+      Login,
+    },
       data() {
         return {
           options: {
