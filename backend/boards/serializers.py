@@ -16,6 +16,8 @@ class BoardSerializer(serializers.ModelSerializer):
         model = Board
         fields = [
             'id',
+            'title',
+            'content',
             'author',
             'created_at',
         ]
