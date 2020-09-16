@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { readInterview, unloadInterview } from '../../modules/interview';
 import InterviewViewer from '../../components/interview/InterviewViewer';
 import InterviewActionButtons from '../../components/interview/InterviewActionButtons';
-import { setOriginalPost } from '../../modules/interviewCreate';
+import { setOriginalInterview } from '../../modules/interviewCreate';
 import { removeInterview } from '../../lib/api/interviews';
 
 const InterviewViewerContainer = ({ match, history }) => {
@@ -29,7 +29,7 @@ const InterviewViewerContainer = ({ match, history }) => {
   }, [dispatch, interviewId]);
 
   const onEdit = () => {
-    dispatch(setOriginalPost(interview));
+    dispatch(setOriginalInterview(interview));
     history.push('/icreate');
   };
 

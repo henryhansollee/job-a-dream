@@ -5,19 +5,19 @@ import createRequestSaga, {
 import * as communitysAPI from '../lib/api/communitys';
 import { takeLatest } from 'redux-saga/effects';
 
-const INITIALIZE = 'create/INITIALIZE'; // 모든 내용 초기화
-const CHANGE_FIELD = 'create/CHANGE_FIELD'; // 특정 key 값 바꾸기
+const INITIALIZE = 'createCommunity/INITIALIZE'; // 모든 내용 초기화
+const CHANGE_FIELD = 'createCommunity/CHANGE_FIELD'; // 특정 key 값 바꾸기
 const [
   CREATE_COMMUNITY,
   CREATE_COMMUNITY_SUCCESS,
   CREATE_COMMUNITY_FAILURE,
-] = createRequestActionTypes('create/CREATE_COMMUNITY'); // 포스트 작성
-const SET_ORIGINAL_COMMUNITY = 'create/SET_ORIGINAL_COMMUNITY';
+] = createRequestActionTypes('createCommunity/CREATE_COMMUNITY'); // 포스트 작성
+const SET_ORIGINAL_COMMUNITY = 'createCommunity/SET_ORIGINAL_COMMUNITY';
 const [
   UPDATE_COMMUNITY,
   UPDATE_COMMUNITY_SUCCESS,
   UPDATE_COMMUNITY_FAILURE,
-] = createRequestActionTypes('create/UPDATE_COMMUNITY'); // 포스트 수정
+] = createRequestActionTypes('createCommunity/UPDATE_COMMUNITY'); // 포스트 수정
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
@@ -41,7 +41,7 @@ export const updateCommunity = createAction(
 );
 
 // saga 생성
-const createCommunitySaga = createRequestSaga(CREATE_COMMUNITY, communitysAPI.createCommnunity);
+const createCommunitySaga = createRequestSaga(CREATE_COMMUNITY, communitysAPI.createCommunity);
 const updateCommunitySaga = createRequestSaga(UPDATE_COMMUNITY, communitysAPI.updateCommunity);
 
 export function* communityCreateSaga() {

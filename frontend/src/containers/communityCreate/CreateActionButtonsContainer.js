@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from './react';
 import CreateActionButtons from '../../components/createCommunity/CreateActionButtons';
-import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from './react-redux';
+import { withRouter } from './react-router-dom';
 import { createCommunity, updateCommunity } from '../../modules/communityCreate';
-import { createCommunity } from '../../modules/communityCreate';
-import { updateCommunity } from '../../lib/api/communitys';
 
 const CreateActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -21,7 +19,7 @@ const CreateActionButtonsContainer = ({ history }) => {
 
   // 포스트 등록
   const onPublish = () => {
-    if (originalPostId) {
+    if (originalCommunityId) {
       dispatch(updateCommunity({ title, body, tags, id: originalCommunityId }));
       return;
     }

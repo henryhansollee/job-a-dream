@@ -1,12 +1,12 @@
 import React from 'react';
-import Pagination from '../../components/posts/Pagination';
+import Pagination from '../../components/communitys/Pagination';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import qs from 'qs';
 
 const PaginationContainer = ({ location, match }) => {
   const { lastPage, communitys, loading } = useSelector(({ communitys, loading }) => ({
-    lastPage: posts.lastPage,
+    lastPage: communitys.lastPage,
     communitys: communitys.communitys,
     loading: loading['communitys/LIST_COMMUNITYS'],
   }));

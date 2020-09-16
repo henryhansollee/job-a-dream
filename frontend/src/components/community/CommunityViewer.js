@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet-async';
 const CommunityViewerBlock = styled(Responsive)`
   margin-top: 4rem;
 `;
-const CmmunityHead = styled.div`
+const CommunityHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
   padding-bottom: 3rem;
   margin-bottom: 3rem;
