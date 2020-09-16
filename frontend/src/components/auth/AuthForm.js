@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 
+/**
+ * 회원가입 또는 로그인 폼을 보여줍니다.
+ */
+
 const AuthFormBlock = styled.div`
   h3 {
     margin: 0;
@@ -12,6 +16,9 @@ const AuthFormBlock = styled.div`
   }
 `;
 
+/**
+ * 스타일링된 input
+ */
 const StyledInput = styled.input`
   font-size: 1rem;
   border: none;
@@ -28,6 +35,9 @@ const StyledInput = styled.input`
   }
 `;
 
+/**
+ * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
+ */
 const Footer = styled.div`
   margin-top: 2rem;
   text-align: right;
@@ -49,6 +59,9 @@ const textMap = {
   signup: '회원가입'
 };
 
+/**
+ * 에러를 보여줍니다
+ */
 const ErrorMessage = styled.div`
   color: red;
   text-align: center;
@@ -62,21 +75,12 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     <AuthFormBlock>
       <h3>{text}</h3>
       <form onSubmit={onSubmit}>
-        {type === 'signup' && (
-          <StyledInput
-            autoComplete="username"
-            name="username"
-            placeholder="이름"
-            onChange={onChange}
-            value={form.username}
-          />
-        )}
         <StyledInput
-          autoComplete="email"
-          name="email"
-          placeholder="이메일"
+          autoComplete="username"
+          name="username"
+          placeholder="아이디"
           onChange={onChange}
-          value={form.email}
+          value={form.username}
         />
         <StyledInput
           autoComplete="new-password"
@@ -105,7 +109,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
         {type === 'login' ? (
           <Link to="/signup">회원가입</Link>
         ) : (
-          <Link to="/">로그인</Link>
+          <Link to="/login">로그인</Link>
         )}
       </Footer>
     </AuthFormBlock>

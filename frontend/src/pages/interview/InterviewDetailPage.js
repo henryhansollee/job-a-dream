@@ -1,7 +1,14 @@
 import React from 'react';
+import HeaderContainer from '../containers/common/HeaderContainer';
+import InterviewViewerContainer from '../containers/interview/InterviewViewerContainer';
 
 const InterviewDetailPage = () => {
-  return <div>인터뷰 상세</div>;
+  return (
+    <>
+      <HeaderContainer />
+      <InterviewViewerContainer />
+    </>
+  );
 };
 
 export default InterviewDetailPage;

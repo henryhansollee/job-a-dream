@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import AuthTemplate from '../../components/auth/AuthTemplate';
-import LoginForm from '../../containers/auth/LoginForm';
+import palette from '../lib/styles/palette';
+import AuthTemplate from '../components/auth/AuthTemplate';
+import LoginForm from '../containers/auth/LoginForm';
 
 const HomeSection1 = styled.div`
   background: ${palette.cyan[0]};

@@ -1,17 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
-import Editor from '../../components/interview/Editor';
+import Editor from '../../components/write/Editor';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initialize } from '../../modules/interview/InterviewCreate';
+import { changeField, initialize } from '../../modules/interviewCreate';
 
 const EditorContainer = () => {
   const dispatch = useDispatch();
-  const { title, body } = useSelector(({ icreate }) => ({
-    title: icreate.title,
-    body: icreate. body,
+  const { title, body } = useSelector(({ interviewCreate }) => ({
+    title: interviewCreate.title,
+    body: interviewCreate.body,
   }));
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [
     dispatch,
   ]);
+  // 언마운트될 때 초기화
   useEffect(() => {
     return () => {
       dispatch(initialize());
