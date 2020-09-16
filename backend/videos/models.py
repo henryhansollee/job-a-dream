@@ -9,16 +9,17 @@ class TimeStampModel(models.Model):
     class Meta:
         abstract = True
 
-class Video(TimeStampModel):
-    title = models.CharField(max_length=30)
-    thumbnail = models.ImageField()
-    video_file = models.FileField(blank=False, null=False)
-    tag_set = models.ManyToManyField('Tag', blank=True)
-    writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-
 class Tag(TimeStampModel):
     name = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
         return self.name
+
+class Video(TimeStampModel):
+    title = models.CharField(max_length=30)
+    thumbnail = models.ImageField()
+    video_file = models.FileField(blank=False, null=False)
+    tag_set = models.ManyToManyField(Tag, blank=True)
+    writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
