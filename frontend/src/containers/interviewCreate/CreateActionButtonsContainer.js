@@ -1,7 +1,7 @@
-import React, { useEffect } from './react';
-import CreateActionButtons from '../../components/interviewCreate/CreateActionButtons';
-import { useSelector, useDispatch } from './react-redux';
-import { withRouter } from './react-router-dom';
+import React, { useEffect } from 'react';
+import CreateActionButtons from '../../components/createInterview/CreateActionButtons';
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { createInterview, updateInterview } from '../../modules/interviewCreate';
 
 const CreateActionButtonsContainer = ({ history }) => {
@@ -13,7 +13,7 @@ const CreateActionButtonsContainer = ({ history }) => {
       tags: interviewCreate.tags,
       interview: interviewCreate.interview,
       interviewError: interviewCreate.interviewError,
-      originalInterviewId: write.originalInterviewId,
+      originalInterviewId: interviewCreate.originalInterviewId,
     }),
   );
 

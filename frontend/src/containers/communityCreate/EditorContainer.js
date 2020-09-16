@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback } from './react';
-import Editor from '../../components/communityCreate/Editor';
-import { useSelector, useDispatch } from './react-redux';
+import React, { useEffect, useCallback } from 'react'
+import Editor from '../../components/createCommunity/Editor';
+import { useSelector, useDispatch } from 'react-redux';
 import { changeField, initialize } from '../../modules/communityCreate';
 
 const EditorContainer = () => {

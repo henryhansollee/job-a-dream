@@ -1,7 +1,7 @@
-import React, { useEffect } from './react';
+import React, { useEffect } from 'react'
 import CreateActionButtons from '../../components/createCommunity/CreateActionButtons';
-import { useSelector, useDispatch } from './react-redux';
-import { withRouter } from './react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import { createCommunity, updateCommunity } from '../../modules/communityCreate';
 
 const CreateActionButtonsContainer = ({ history }) => {

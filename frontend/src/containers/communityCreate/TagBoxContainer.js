@@ -1,6 +1,6 @@
-import React from './react';
-import { useDispatch, useSelector } from './react-redux';
-import TagBox from '../../components/communityCreate/TagBox';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import TagBox from '../../components/createCommunity/TagBox';
 import { changeField } from '../../modules/communityCreate';
 
 const TagBoxContainer = () => {

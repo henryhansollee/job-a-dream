@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import Editor from '../../components/write/Editor';
+import Editor from '../../components/createInterview/Editor';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeField, initialize } from '../../modules/interviewCreate';
 
