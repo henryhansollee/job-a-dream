@@ -1,12 +1,16 @@
 import React from 'react';
-import Button from '../../components/common/Button';
+import HeaderContainer from '../../containers/common/HeaderContainer';
+import InterviewListContainer from '../../containers/interviews/InterviewListContainer';
+import PaginationContainer from '../../containers/interviews/PaginationContainer';
 
 const InterviewListPage = () => {
   return (
-    <div>
-      <Button>인터뷰 시작</Button>
-    </div>
-  )
+    <>
+      <HeaderContainer />
+      <InterviewListContainer />
+      <PaginationContainer />
+    </>
+  );
 };
 
 export default InterviewListPage;
