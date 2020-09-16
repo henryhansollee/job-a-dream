@@ -1,46 +1,45 @@
-from google.cloud import speech_v1
-from google.cloud.speech_v1 import enums
+from google.cloud import storage
+from google.cloud import speech
+from google.cloud.speech import enums
+from google.cloud.speech import types
 
-def sample_long_running_recognize(storage_uri):
-    """
-    Transcribe long audio file from Cloud Storage using asynchronous speech
-    recognition
-
-    Args:
-      storage_uri URI for audio file in Cloud Storage, e.g. gs://[BUCKET]/[FILE]
-    """
-
-    client = speech_v1.SpeechClient()
-
-    # storage_uri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw'
-
-    # Sample rate in Hertz of the audio data sent
-    sample_rate_hertz = 44100
-    enable_separate_recognition_per_channel = True
+def transcribe_gcs(gcs_uri):
+    """Asynchronously transcribes the audio file specified by the gcs_uri."""
+    client = speech.SpeechClient()
+    audio = types.RecognitionAudio(uri=gcs_uri)
     audio_channel_count = 2
-    # The language of the supplied audio
-    language_code = "ko-KR"
 
-    # Encoding of audio data sent. This sample sets this explicitly.
-    # This field is optional for FLAC and WAV audio formats.
-    encoding = enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED
-    config = {
-        "audio_channel_count": audio_channel_count,
-        "sample_rate_hertz": sample_rate_hertz,
-        "language_code": language_code,
-        "encoding": encoding,
-        # "enable_separate_recognition_per_channel": enable_separate_recognition_per_channel,
-    }
-    audio = {"uri": storage_uri}
-
+    config = types.RecognitionConfig(
+        encoding=enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED,
+        audio_channel_count= audio_channel_count,
+        sample_rate_hertz=44100,
+        language_code='ko-KR')
     operation = client.long_running_recognize(config, audio)
-
-    print(u"Waiting for operation to complete...")
+    print('Waiting for operation to complete...')
     response = operation.result()
-
+    # Each result is for a consecutive portion of the audio. Iterate through
+    # them to get the transcripts for the entire audio file.
     for result in response.results:
-        # First alternative is the most probable result
-        alternative = result.alternatives[0]
-        print(u"Transcript: {}".format(alternative.transcript))
+        print(u'Transcript: {}'.format(result.alternatives[0].transcript))
+        print('Confidence: {}'.format(result.alternatives[0].confidence))
 
-sample_long_running_recognize('gs://speech2text-store/test111.wav')
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    bucket_name = "speech2text-store"
+    source_file_name = "C:/Users/pyoun/Desktop/s03p22b107/AI/AI_code/audio_files/test111.wav"
+    destination_blob_name = "my-file"
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print(
+        "File {} uploaded to {}.".format(
+            source_file_name, destination_blob_name
+        )
+    )
+
+upload_blob("default", "the", "name")
+transcribe_gcs('gs://speech2text-store/my-file')
