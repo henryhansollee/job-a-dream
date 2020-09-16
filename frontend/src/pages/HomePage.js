@@ -25,7 +25,7 @@ const HomePage = () => {
   return (
     <>
       <ReactFullpage
-        licenseKey = {'YOUR_KEY_HERE'}
+        licenseKey = {'OPEN-SOURCE-GPLV3-LICENSE'}
         scrollingSpeed = {1000}
         render={() => {
           return (
