@@ -46,6 +46,7 @@ const LoginForm = ({ history }) => {
     if (auth) {
       console.log('로그인 성공');
       dispatch(check());
+      history.push('/ilist')
     }
   }, [auth, authError, dispatch]);
 

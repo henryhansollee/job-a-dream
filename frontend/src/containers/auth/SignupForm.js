@@ -28,8 +28,8 @@ const SignupForm = ({ history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    const { email, password, passwordConfirm } = form;
-    if ([email, password, passwordConfirm].includes('')) {
+    const { email, username, password, passwordConfirm } = form;
+    if ([email, username, password, passwordConfirm].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
     }
@@ -39,7 +39,7 @@ const SignupForm = ({ history }) => {
       dispatch(changeField({ form: 'signup', key: 'passwordConfirm', value: '' }));
       return;
     }
-    dispatch(signup({ email, password }));
+    dispatch(signup({ email, username, password }));
   };
 
   useEffect(() => {
