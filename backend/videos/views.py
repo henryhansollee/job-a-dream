@@ -3,18 +3,17 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Board
-from .serializers import BoardSerializer
-
+from .models import Video
+from .serializers import VideoSerializer
 
 @permission_classes([IsAuthenticatedOrReadOnly])
 @authentication_classes([JSONWebTokenAuthentication])
-class BoardListAPI(ListCreateAPIView):
-    queryset = Board.objects.all()
-    serializer_class = BoardSerializer
+class VideoListAPI(ListCreateAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
 
 @permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
-class BoardDetailAPI(RetrieveUpdateDestroyAPIView):
-    queryset = Board.objects.all()
-    serializer_class = BoardSerializer
+class VideoDetailAPI(RetrieveUpdateDestroyAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer

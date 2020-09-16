@@ -15,15 +15,11 @@ class Tag(TimeStampModel):
     def __str__(self):
         return self.name
 
-class Board(TimeStampModel):
+class Video(TimeStampModel):
     title = models.CharField(max_length=30)
-    content = models.TextField()
+    thumbnail = models.ImageField()
+    video_file = models.FileField(blank=False, null=False)
+    tag_set = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    image = models.ImageField()
-    tag = models.ManyToManyField(Tag, blank=True)
 
-    def __str__(self):
-        return self.content
 
-    class Meta:
-        ordering = ['-id']
