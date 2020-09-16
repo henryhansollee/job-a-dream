@@ -15,4 +15,5 @@ urlpatterns = [
 
     path('accounts/', include('accounts.urls')),
     path('boards/', include('boards.urls')),
+    path('videos/', include('videos.urls')),
 ]

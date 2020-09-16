@@ -1,24 +1,23 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import Board
+from .models import Video
 
-class WriterSerializer(serializers.ModelSerializer):
+class WriterSerialzer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
         fields = ['email']
 
-class BoardSerializer(serializers.ModelSerializer):
-    writer = WriterSerializer
-    
+class VideoSerializer(serializers.ModelSerializer):
+    writer = WriterSerialzer
+
     class Meta:
-        model = Board
+        model = Video
         fields = [
-            'id',
             'title',
-            'content',
+            'thumbnail',
+            'video_file',
             'tag_set',
-            'image',
-            'writer',
             'created_at',
+            'updated_at'
         ]
