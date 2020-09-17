@@ -2,7 +2,7 @@
   <div>
     <full-page ref="fullpage" :options="options">
       <div class="section home-section1">
-        <Login />
+        <LoginSignup />
       </div>
       <div class="section home-section2">
       </div>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Login from '../components/auth/Login'
+import LoginSignup from '../components/auth/LoginSignup'
 
 export default {
   name: "Home",
   components: {
-    Login,
+    LoginSignup,
   },
   data() {
     return {

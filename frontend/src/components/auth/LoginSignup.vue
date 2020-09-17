@@ -6,8 +6,18 @@
         <input class="m-1" type="email" placeholder="email" v-model="loginData.email">
         <input class="m-1" type="password" placeholder="password" v-model="loginData.password">
         <button class="m-1" @click="login(loginData)">로그인</button>
-        <router-link class="text-right text-dark text-decoration-none" to="/signup">회원가입</router-link>
+        <b-button v-b-modal.modal-1>회원가입</b-button>
       </div>
+    </div>
+    <div>
+      <b-modal id="modal-1" title="BootstrapVue">
+        <div>
+          <input type="text" placeholder="username" v-model="signupData.username">
+          <input type="email" placeholder="email" v-model="signupData.email">
+          <input type="password" placeholder="password1" v-model="signupData.password">
+          <button @click="signup(signupData)">회원가입</button>
+        </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -22,11 +32,16 @@ export default {
       loginData: {
         email: '',
         password: '',
+      },
+      signupData: {
+        username: '',
+        email: '',
+        password: '',
       }
     }
   },
   methods: {
-    ...mapActions(['login'])
+    ...mapActions(['login', 'signup'])
   }
 }
 </script>
