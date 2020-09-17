@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <Header />
     <Login />
     <Logout />
     <router-link to="/signup">회원가입</router-link>
@@ -10,12 +10,14 @@
 <script>
 import Login from '../components/auth/Login'
 import Logout from '../components/auth/Logout'
+import Header from '../components/Header'
 
 export default {
   name: "Home",
   components: {
     Login,
-    Logout
+    Logout,
+    Header,
   },
 }
 </script>
