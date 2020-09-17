@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     accessToken: cookies.get('accessToken'),
     interviews: [],
+    communitys: [],
   },
   getters: {
     isLoggedIn: state => !!state.accessToken,
@@ -23,7 +24,10 @@ export default new Vuex.Store({
     },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
-    }
+    },
+    SET_COMMUNITYS(state, communitys) {
+      state.communitys = communitys
+    },
   },
   actions: {
     authData({ commit }, info) {
@@ -71,6 +75,12 @@ export default new Vuex.Store({
 
     // 인터뷰 List
     getInterviews() {},
+
+    // 커뮤니티 Create
+    createCommunitys() {},
+
+    // 커뮤니티 List
+    getCommunitys() {},
   },
   modules: {
   }
