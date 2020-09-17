@@ -1,7 +1,15 @@
 <template>
   <div>
-    <Login />
-    <router-link to="/signup">회원가입</router-link>
+    <full-page ref="fullpage" :options="options">
+      <div class="section">
+        <Login />
+        <router-link to="/signup">회원가입</router-link>
+      </div>
+      <div class="section">
+        <button class="prev" @click="$refs.fullpage.api.moveSectionUp()">Prev</button>
+        Section 2
+      </div>
+    </full-page>
   </div>
 </template>
 
@@ -13,6 +21,13 @@ export default {
   components: {
     Login,
   },
+  data() {
+    return {
+      options: {
+        afterLoad: this.afterLoad,
+      }
+    }
+  }
 }
 </script>
 
