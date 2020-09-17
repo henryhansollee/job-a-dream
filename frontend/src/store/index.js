@@ -27,9 +27,10 @@ export default new Vuex.Store({
           console.log(res)
           commit('SET_TOKEN', res.data.token)
         })
-        .catch(
-          err => {console.log(err)})
+        .catch(err => {console.log(err)})
     },
+
+    // 회원가입
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
@@ -37,12 +38,24 @@ export default new Vuex.Store({
       }
       dispatch('authData', info)
     },
+
+    // 로그인
     login( { dispatch }, loginData){
       const info = {  
         data: loginData,
         location: BACKEND.ROUTES.login
       }       
       dispatch('authData', info)
+    },
+
+    // 로그아웃
+    logout({ commit }) {
+      axios.post(BACKEND.URL + BACKEND.ROUTES.logout)
+        .then( ()=> {
+          commit('SET_TOKEN', null)
+          cookies.remove('accessToken')
+        })
+        .catch(err => console.log(err))
     },
   },
   modules: {
