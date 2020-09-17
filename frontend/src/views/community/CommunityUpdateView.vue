@@ -5,8 +5,19 @@
 </template>
 
 <script>
-export default {
+import { mapState, mapActions } from 'vuex'
 
+export default {
+  name: "CommunityUpdateView",
+  computed: {
+    ...mapState(['reviews'])
+  },
+  methods: {
+    ...mapActions(['getCommunity', 'updateCommunity'])
+  },
+  created() {
+    this.getCommunity({id:this.$route.params.id})
+  }
 }
 </script>
 

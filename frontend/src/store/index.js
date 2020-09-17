@@ -76,11 +76,29 @@ export default new Vuex.Store({
     // 인터뷰 List
     getInterviews() {},
 
+    // 인터뷰 Detail
+    getInterview() {},
+
+    // 인터뷰 Update
+    updateInterview() {},
+
+    // 인터뷰 Delete
+    deleteInterview() {},
+
     // 커뮤니티 Create
     createCommunitys() {},
 
     // 커뮤니티 List
     getCommunitys() {},
+
+    // 커뮤니티 Detail
+    getCommunity() {},
+
+    // 커뮤니티 Update
+    updateCommunity() {},
+    
+    // 커뮤니티 Delete
+    deleteCommunity() {},
   },
   modules: {
   }
