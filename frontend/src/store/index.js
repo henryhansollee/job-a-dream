@@ -14,10 +14,12 @@ export default new Vuex.Store({
     interviews: [],
     communitys: [],
   },
+
   getters: {
     isLoggedIn: state => !!state.accessToken,
     config: () => ({ headers: { Authorization: `JWT ${cookies.get('accessToken')}`}}),
   },
+
   mutations: {
     SET_TOKEN(state, token) {
       state.accessToken = token
@@ -27,7 +29,7 @@ export default new Vuex.Store({
     // 이 부분 나중에 email을 id로 바꿔야 할듯...
     SET_AUTH(state, email) {
       state.authCheck = email
-      cookies.set('check', email)
+      cookies.set('authCheck', email)
     },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
@@ -36,6 +38,7 @@ export default new Vuex.Store({
       state.communitys = communitys
     },
   },
+
   actions: {
 
     // ----- AUTH -----
@@ -75,7 +78,9 @@ export default new Vuex.Store({
       axios.post(BACKEND.URL + BACKEND.ROUTES.logout)
         .then( ()=> {
           commit('SET_TOKEN', null)
+          commit('SET_AUTH', null)
           cookies.remove('accessToken')
+          cookies.remove('authCheck')
           router.push({ name: 'Home'})
         })
         .catch(err => console.log(err))
@@ -102,19 +107,44 @@ export default new Vuex.Store({
     // ----- COMMUNITY -----
 
     // Community List
-    getCommunitys() {},
+    getCommunitys() {
+      axios.get(BACKEND.URL + BACKEND.ROUTES.community)
+        .then(res => this.commit('SET_COMMUNITYS', res.data))
+        .catch(err => console.log(err))
+    },
 
     // Community Create
-    createCommunitys() {},
+    createCommunitys() {
+      axios.post(BACKEND.URL + BACKEND.ROUTES.community)
+        .then(() => {
+          router.push('/community/list')
+        })
+        .catch(err => console.log(err))
+    },
 
     // Community Detail
-    getCommunity() {},
+    getCommunity({ commit }, data) {
+      axios.get(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`)
+        .then(res => commit('SET_COMMUNITYS', res.data))
+        .catch(err => console.log(err))
+    },
 
     // Community Update
-    updateCommunity() {},
+    updateCommunity({ getters}, data) {
+      axios.put(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, data.communityData, getters.config)
+        .then(() => {
+          router.push(`/community/detail/${data.id}`)
+        })
+        .catch(err => console.log(err))
+    },
     
     // Community Delete
-    deleteCommunity() {},
+    deleteCommunity({ getters }, data) {
+      axios.delete(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, getters.config)
+        .then(() => {
+          router.push(`/community/list`)
+        })
+    },
   },
   modules: {
   }
