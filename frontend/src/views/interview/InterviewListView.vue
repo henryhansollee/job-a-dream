@@ -15,6 +15,15 @@ export default {
   components: {
     Header,
   },
+  computed: {
+    ...mapState(['interviews'])
+  },
+  methods: {
+    ...mapActions(['getInterviews']),
+  },
+  created() {
+    this.getInterviews()
+  }
 }
 </script>
 

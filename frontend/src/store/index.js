@@ -10,16 +10,20 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     accessToken: cookies.get('accessToken'),
+    interviews: [],
   },
   getters: {
     isLoggedIn: state => !!state.accessToken,
     config: () => ({ headers: { Authorization: `JWT ${cookies.get('accessToken')}`}}),
   },
   mutations: {
-    SET_TOKEN(state, token){
+    SET_TOKEN(state, token) {
       state.accessToken = token
       cookies.set('accessToken', token) 
-    }, 
+    },
+    SET_INTERVIEWS(state, interviews) {
+      state.interviews = interviews
+    }
   },
   actions: {
     authData({ commit }, info) {
@@ -63,7 +67,10 @@ export default new Vuex.Store({
     },
 
     // 인터뷰 Create
-    createInterview() {}
+    createInterview() {},
+
+    // 인터뷰 List
+    getInterviews() {},
   },
   modules: {
   }
