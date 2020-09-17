@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import cookies from 'vue-cookies'
 import axios from 'axios'
 import BACKEND from '@/api/index'
+import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -46,6 +47,7 @@ export default new Vuex.Store({
         location: BACKEND.ROUTES.login
       }       
       dispatch('authData', info)
+      router.push({ name: 'InterviewListView'})
     },
 
     // 로그아웃
@@ -54,8 +56,10 @@ export default new Vuex.Store({
         .then( ()=> {
           commit('SET_TOKEN', null)
           cookies.remove('accessToken')
+          router.push({ name: 'Home'})
         })
         .catch(err => console.log(err))
+        router.push({ name: 'Home'})
     },
   },
   modules: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <h1>InterviewCreateView</h1>
+    <h1>ProfileView</h1>
   </div>
 </template>
 
@@ -9,9 +9,11 @@
 import Header from '../../components/Header'
 
 export default {
+  name: "ProfileView",
   components: {
     Header,
   },
+
 }
 </script>
 

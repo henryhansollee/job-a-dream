@@ -5,7 +5,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 // auth
-import Signup from '../views/auth/SignupView'
+import SignupView from '../views/auth/SignupView'
+import ProfileView from '../views/auth/ProfileView'
 
 // interview
 import InterviewListView from '../views/interview/InterviewListView'
@@ -30,8 +31,13 @@ const routes = [
   // auth
   {
     path: '/signup',
-    name: 'Signup',
-    component: Signup
+    name: 'SignupView',
+    component: SignupView
+  },
+  {
+    path: '/profile',
+    name: 'ProfileView',
+    component: ProfileView
   },
 
   // interview

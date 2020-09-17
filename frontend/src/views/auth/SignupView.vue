@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <h1>SignupView</h1>
     <div>
       <input type="text" placeholder="username" v-model="signupData.username">
@@ -11,10 +12,14 @@
 </template>
 
 <script>
+import Header from '../../components/Header'
 import { mapActions } from "vuex";
 
 export default {
   name: "SignupView",
+  components: {
+    Header,
+  },
   data() {
     return {
       signupData: {

@@ -1,12 +1,17 @@
 <template>
   <div>
+    <Header />
     <h1>CommunityCreateView</h1>
   </div>
 </template>
 
 <script>
-export default {
+import Header from '../../components/Header'
 
+export default {
+  components: {
+    Header,
+  },
 }
 </script>
 
