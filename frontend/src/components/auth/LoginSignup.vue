@@ -5,7 +5,8 @@
       <div class="d-flex flex-column">
         <input class="m-1" type="email" placeholder="email" v-model="loginData.email">
         <input class="m-1" type="password" placeholder="password" v-model="loginData.password">
-        <button class="m-1" @click="login(loginData)">로그인</button>
+        <router-link v-if="isLoggedIn" to="/interview/list" class="m-1">시작하기</router-link>
+        <button v-else class="m-1" @click="login(loginData)">로그인</button>
         <b-button v-b-modal.modal-1>회원가입</b-button>
       </div>
     </div>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 
 export default {
   name: "Login",
@@ -42,6 +43,9 @@ export default {
   },
   methods: {
     ...mapActions(['login', 'signup'])
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn"])
   }
 }
 </script>

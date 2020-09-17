@@ -70,7 +70,6 @@ export default new Vuex.Store({
         location: BACKEND.ROUTES.login
       }       
       dispatch('getAuth', info)
-      router.push({ name: 'InterviewListView'})
     },
 
     // Logout
@@ -110,8 +109,8 @@ export default new Vuex.Store({
     },
 
     // Community Create
-    createCommunitys() {
-      axios.post(BACKEND.URL + BACKEND.ROUTES.community)
+    createCommunitys({ getters }, data) {
+      axios.post(BACKEND.URL + BACKEND.ROUTES.community, data.communityData, getters.config)
         .then(() => {
           router.push('/community/list')
         })
