@@ -75,16 +75,12 @@ export default new Vuex.Store({
 
     // Logout
     logout({ commit }) {
-      axios.post(BACKEND.URL + BACKEND.ROUTES.logout)
-        .then( ()=> {
-          commit('SET_TOKEN', null)
-          commit('SET_AUTH', null)
-          cookies.remove('accessToken')
-          cookies.remove('authCheck')
-          router.push({ name: 'Home'})
-        })
-        .catch(err => console.log(err))
-        router.push({ name: 'Home'})
+      commit('SET_TOKEN', null)
+      commit('SET_AUTH', null)
+      cookies.remove('accessToken')
+      cookies.remove('authCheck')
+      router.push({ name: 'Home'})
+      router.go()
     },
 
     // ----- INTERVIEW -----
