@@ -61,6 +61,9 @@ export default new Vuex.Store({
         .catch(err => console.log(err))
         router.push({ name: 'Home'})
     },
+
+    // 인터뷰 Create
+    createInterview() {}
   },
   modules: {
   }

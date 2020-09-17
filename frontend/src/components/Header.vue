@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar class="main-navbar" toggleable="lg">
       <b-navbar-brand href="/interview/list">잡아드림</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style>
-
+.main-navbar {
+  background-color: #fcbe32;
+}
 </style>
