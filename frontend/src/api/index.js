@@ -4,5 +4,7 @@ export default{
       signup: '/accounts/signup/',
       login: '/accounts/login/',
       logout: '/accounts/logout/',
+      community: '/boards/',
+      interview: '/video/'
   }
 }

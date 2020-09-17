@@ -10,11 +10,13 @@ import ProfileView from '../views/auth/ProfileView'
 // interview
 import InterviewListView from '../views/interview/InterviewListView'
 import InterviewCreateView from '../views/interview/InterviewCreateView'
+import InterviewUpdateView from '../views/interview/InterviewUpdateView'
 import InterviewDetailView from '../views/interview/InterviewDetailView'
 
 // community
 import CommunityListView from '../views/community/CommunityListView'
 import CommunityCreateView from '../views/community/CommunityCreateView'
+import CommunityUpdateView from '../views/community/CommunityUpdateView'
 import CommunityDetailView from '../views/community/CommunityDetailView'
 
 Vue.use(VueRouter)
@@ -46,7 +48,12 @@ const routes = [
     component: InterviewCreateView
   },
   {
-    path: '/interview/detail',
+    path: '/interview/detail/:id/update',
+    name: 'InterviewUdateView',
+    component: InterviewUpdateView
+  },
+  {
+    path: '/interview/detail/:id',
     name: 'InterviewDetailView',
     component: InterviewDetailView
   },
@@ -63,7 +70,12 @@ const routes = [
     component: CommunityCreateView
   },
   {
-    path: '/community/detail',
+    path: '/community/detail/:id/update',
+    name: 'CommunityUpdateView',
+    component: CommunityUpdateView
+  },
+  {
+    path: '/community/detail/:id',
     name: 'CommunityDetailView',
     component: CommunityDetailView
   },

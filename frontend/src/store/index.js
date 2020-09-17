@@ -10,17 +10,26 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     accessToken: cookies.get('accessToken'),
+    authCheck: '',
     interviews: [],
     communitys: [],
   },
+
   getters: {
     isLoggedIn: state => !!state.accessToken,
     config: () => ({ headers: { Authorization: `JWT ${cookies.get('accessToken')}`}}),
   },
+
   mutations: {
     SET_TOKEN(state, token) {
       state.accessToken = token
       cookies.set('accessToken', token) 
+    },
+
+    // 이 부분 나중에 email을 id로 바꿔야 할듯...
+    SET_AUTH(state, email) {
+      state.authCheck = email
+      cookies.set('authCheck', email)
     },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
@@ -29,58 +38,108 @@ export default new Vuex.Store({
       state.communitys = communitys
     },
   },
+
   actions: {
-    authData({ commit }, info) {
+
+    // ----- AUTH -----
+
+    // Auth
+    getAuth({ commit }, info) {
       axios.post(BACKEND.URL + info.location, info.data)
         .then(res => {
           console.log(res)
           commit('SET_TOKEN', res.data.token)
+          commit('SET_AUTH', res.data.user.email)
         })
         .catch(err => {console.log(err)})
     },
 
-    // 회원가입
+    // Signup
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
         location: BACKEND.ROUTES.signup
       }
-      dispatch('authData', info)
+      dispatch('getAuth', info)
     },
 
-    // 로그인
-    login( { dispatch }, loginData){
+    // Login
+    login({ dispatch }, loginData){
       const info = {  
         data: loginData,
         location: BACKEND.ROUTES.login
       }       
-      dispatch('authData', info)
-      router.push({ name: 'InterviewListView'})
+      dispatch('getAuth', info)
     },
 
-    // 로그아웃
+    // Logout
     logout({ commit }) {
-      axios.post(BACKEND.URL + BACKEND.ROUTES.logout)
-        .then( ()=> {
-          commit('SET_TOKEN', null)
-          cookies.remove('accessToken')
-          router.push({ name: 'Home'})
-        })
-        .catch(err => console.log(err))
-        router.push({ name: 'Home'})
+      commit('SET_TOKEN', null)
+      commit('SET_AUTH', null)
+      cookies.remove('accessToken')
+      cookies.remove('authCheck')
+      router.push({ name: 'Home'})
+      router.go()
     },
 
-    // 인터뷰 Create
-    createInterview() {},
-
-    // 인터뷰 List
+    // ----- INTERVIEW -----
+  
+    // Interview List
     getInterviews() {},
 
-    // 커뮤니티 Create
-    createCommunitys() {},
+    // Interview Create
+    createInterview() {},
 
-    // 커뮤니티 List
-    getCommunitys() {},
+    // Interview Detail
+    getInterview() {},
+
+    // Interview Update
+    updateInterview() {},
+
+    // Interview Delete
+    deleteInterview() {},
+
+    // ----- COMMUNITY -----
+
+    // Community List
+    getCommunitys() {
+      axios.get(BACKEND.URL + BACKEND.ROUTES.community)
+        .then(res => this.commit('SET_COMMUNITYS', res.data))
+        .catch(err => console.log(err))
+    },
+
+    // Community Create
+    createCommunitys({ getters }, data) {
+      axios.post(BACKEND.URL + BACKEND.ROUTES.community, data.communityData, getters.config)
+        .then(() => {
+          router.push('/community/list')
+        })
+        .catch(err => console.log(err))
+    },
+
+    // Community Detail
+    getCommunity({ commit }, data) {
+      axios.get(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`)
+        .then(res => commit('SET_COMMUNITYS', res.data))
+        .catch(err => console.log(err))
+    },
+
+    // Community Update
+    updateCommunity({ getters}, data) {
+      axios.put(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, data.communityData, getters.config)
+        .then(() => {
+          router.push(`/community/detail/${data.id}`)
+        })
+        .catch(err => console.log(err))
+    },
+    
+    // Community Delete
+    deleteCommunity({ getters }, data) {
+      axios.delete(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, getters.config)
+        .then(() => {
+          router.push(`/community/list`)
+        })
+    },
   },
   modules: {
   }
