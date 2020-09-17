@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
+import cookie from 'react-cookies'
 
 const LoginForm = ({ history }) => {
   const [error, setError] = useState(null);
@@ -47,6 +48,14 @@ const LoginForm = ({ history }) => {
     }
     if (auth) {
       console.log('로그인 성공');
+      console.log(auth)
+
+      // Backend에서 받아온 토큰 Cookie에 넣기
+      cookie.save(
+        'accessToken',
+        `${auth.token}`
+      )
+      
       dispatch(check());
     }
   }, [auth, authError, dispatch]);
