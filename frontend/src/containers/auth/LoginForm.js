@@ -56,7 +56,7 @@ const LoginForm = ({ history }) => {
         `${auth.token}`
       )
       
-      dispatch(check());
+      dispatch(check(auth.token));
     }
   }, [auth, authError, dispatch]);
 

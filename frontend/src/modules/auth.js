@@ -72,7 +72,7 @@ const auth = handleActions(
     [SIGNUP_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
-      auth: auth.user
+      auth
     }),
     // 회원가입 실패
     [SIGNUP_FAILURE]: (state, { payload: error }) => ({
@@ -83,7 +83,7 @@ const auth = handleActions(
     [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
-      auth: auth.user
+      auth
     }),
     // 로그인 실패
     [LOGIN_FAILURE]: (state, { payload: error }) => ({
