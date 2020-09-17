@@ -10,7 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     accessToken: cookies.get('accessToken'),
-    authEmail: '',
+    authCheck: '',
     interviews: [],
     communitys: [],
   },
@@ -23,9 +23,11 @@ export default new Vuex.Store({
       state.accessToken = token
       cookies.set('accessToken', token) 
     },
+
+    // 이 부분 나중에 email을 id로 바꿔야 할듯...
     SET_AUTH(state, email) {
-      state.authEmail = email
-      cookies.set('auth', email)
+      state.authCheck = email
+      cookies.set('check', email)
     },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
@@ -35,6 +37,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
+
+    // ----- AUTH -----
+
+    // Auth
     getAuth({ commit }, info) {
       axios.post(BACKEND.URL + info.location, info.data)
         .then(res => {
@@ -45,7 +51,7 @@ export default new Vuex.Store({
         .catch(err => {console.log(err)})
     },
 
-    // 회원가입
+    // Signup
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
@@ -54,7 +60,7 @@ export default new Vuex.Store({
       dispatch('getAuth', info)
     },
 
-    // 로그인
+    // Login
     login({ dispatch }, loginData){
       const info = {  
         data: loginData,
@@ -64,7 +70,7 @@ export default new Vuex.Store({
       router.push({ name: 'InterviewListView'})
     },
 
-    // 로그아웃
+    // Logout
     logout({ commit }) {
       axios.post(BACKEND.URL + BACKEND.ROUTES.logout)
         .then( ()=> {
@@ -76,34 +82,38 @@ export default new Vuex.Store({
         router.push({ name: 'Home'})
     },
 
-    // 인터뷰 List
+    // ----- INTERVIEW -----
+  
+    // Interview List
     getInterviews() {},
 
-    // 인터뷰 Create
+    // Interview Create
     createInterview() {},
 
-    // 인터뷰 Detail
+    // Interview Detail
     getInterview() {},
 
-    // 인터뷰 Update
+    // Interview Update
     updateInterview() {},
 
-    // 인터뷰 Delete
+    // Interview Delete
     deleteInterview() {},
 
-    // 커뮤니티 List
+    // ----- COMMUNITY -----
+
+    // Community List
     getCommunitys() {},
 
-    // 커뮤니티 Create
+    // Community Create
     createCommunitys() {},
 
-    // 커뮤니티 Detail
+    // Community Detail
     getCommunity() {},
 
-    // 커뮤니티 Update
+    // Community Update
     updateCommunity() {},
     
-    // 커뮤니티 Delete
+    // Community Delete
     deleteCommunity() {},
   },
   modules: {
