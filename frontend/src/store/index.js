@@ -8,11 +8,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    accessToken: cookies.get('accessToken'),
+  },
+  getters: {
+    isLoggedIn: state => !!state.accessToken,
+    config: () => ({ headers: { Authorization: `JWT ${cookies.get('accessToken')}`}}),
   },
   mutations: {
     SET_TOKEN(state, token){
-      state.authToken = token
-      cookies.set('auth-token', token) 
+      state.accessToken = token
+      cookies.set('accessToken', token) 
     }, 
   },
   actions: {
