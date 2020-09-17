@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     accessToken: cookies.get('accessToken'),
+    authEmail: '',
     interviews: [],
     communitys: [],
   },
@@ -22,6 +23,10 @@ export default new Vuex.Store({
       state.accessToken = token
       cookies.set('accessToken', token) 
     },
+    SET_AUTH(state, email) {
+      state.authEmail = email
+      cookies.set('auth', email)
+    },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
     },
@@ -30,11 +35,12 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    authData({ commit }, info) {
+    getAuth({ commit }, info) {
       axios.post(BACKEND.URL + info.location, info.data)
         .then(res => {
           console.log(res)
           commit('SET_TOKEN', res.data.token)
+          commit('SET_AUTH', res.data.user.email)
         })
         .catch(err => {console.log(err)})
     },
@@ -45,16 +51,16 @@ export default new Vuex.Store({
         data: signupData,
         location: BACKEND.ROUTES.signup
       }
-      dispatch('authData', info)
+      dispatch('getAuth', info)
     },
 
     // 로그인
-    login( { dispatch }, loginData){
+    login({ dispatch }, loginData){
       const info = {  
         data: loginData,
         location: BACKEND.ROUTES.login
       }       
-      dispatch('authData', info)
+      dispatch('getAuth', info)
       router.push({ name: 'InterviewListView'})
     },
 
@@ -70,11 +76,11 @@ export default new Vuex.Store({
         router.push({ name: 'Home'})
     },
 
-    // 인터뷰 Create
-    createInterview() {},
-
     // 인터뷰 List
     getInterviews() {},
+
+    // 인터뷰 Create
+    createInterview() {},
 
     // 인터뷰 Detail
     getInterview() {},
@@ -85,11 +91,11 @@ export default new Vuex.Store({
     // 인터뷰 Delete
     deleteInterview() {},
 
-    // 커뮤니티 Create
-    createCommunitys() {},
-
     // 커뮤니티 List
     getCommunitys() {},
+
+    // 커뮤니티 Create
+    createCommunitys() {},
 
     // 커뮤니티 Detail
     getCommunity() {},
