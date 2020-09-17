@@ -45,5 +45,3 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
-
-serviceWorker.unregister();
