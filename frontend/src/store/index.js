@@ -19,20 +19,24 @@ export default new Vuex.Store({
     authData({ commit }, info) {
       axios.post(BACKEND.URL + info.location, info.data)
         .then(res => {
-          commit('SET_TOKEN', res.data.key)
-          commit('SET_USER_ID', res.data.user)
+          console.log(res)
+          commit('SET_TOKEN', res.data.token)
         })
         .catch(
-          err => {
-            console.log(err)
-          }
-        )
+          err => {console.log(err)})
     },
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
         location: BACKEND.ROUTES.signup
       }
+      dispatch('authData', info)
+    },
+    login( { dispatch }, loginData){
+      const info = {  
+        data: loginData,
+        location: BACKEND.ROUTES.login
+      }       
       dispatch('authData', info)
     },
   },
