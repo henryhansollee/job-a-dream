@@ -1,23 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+// home
 import Home from '../views/Home.vue'
+
+// auth
+import Signup from '../views/auth/SignupView'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // home
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+
+  // auth
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
 ]
 
 const router = new VueRouter({
