@@ -1,13 +1,14 @@
 <template>
   <div>
     <full-page ref="fullpage" :options="options">
-      <div class="section">
+      <div class="section home-section1">
         <Login />
-        <router-link to="/signup">회원가입</router-link>
       </div>
-      <div class="section">
-        <button class="prev" @click="$refs.fullpage.api.moveSectionUp()">Prev</button>
-        Section 2
+      <div class="section home-section2">
+      </div>
+      <div class="section home-section3">
+      </div>
+      <div class="section home-section4">
       </div>
     </full-page>
   </div>
@@ -32,5 +33,16 @@ export default {
 </script>
 
 <style>
-
+.home-section1 {
+  background-color: #fcbe32;
+}
+.home-section2 {
+  background-color: #fffcf0;
+}
+.home-section3 {
+  background-color: #5e5e5f;
+}
+.home-section4 {
+  background-color: #a79c8e;
+}
 </style>

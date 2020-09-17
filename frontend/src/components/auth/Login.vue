@@ -5,6 +5,7 @@
       <input type="email" placeholder="email" v-model="loginData.email">
       <input type="password" placeholder="password" v-model="loginData.password">
       <button @click="login(loginData)">로그인</button>
+      <router-link to="/signup">회원가입</router-link>
     </div>
   </div>
 </template>

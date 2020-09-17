@@ -1,24 +1,7 @@
 # frontend
 
-## Project setup
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+주황: #fcbe32
+베이지: #fffcf0
+검정: #5e5e5f
+갈색: #a79c8e
