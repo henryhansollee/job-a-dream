@@ -10,7 +10,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: "CommunityUpdateView",
   computed: {
-    ...mapState(['reviews'])
+    ...mapState(['communitys'])
   },
   methods: {
     ...mapActions(['getCommunity', 'updateCommunity'])
