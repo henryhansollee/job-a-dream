@@ -2,6 +2,7 @@
   <div>
     <Header />
     <h1>InterviewDetailView</h1>
+    
   </div>
 </template>
 
