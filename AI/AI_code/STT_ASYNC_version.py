@@ -36,15 +36,14 @@ def transcribe_gcs(gcs_uri):
         word_collect[Noun] += 1
     print(ment)
     print(confidence_avg/count_sentence)
-    print(Counter(word_collect).most_common(10))
-    # data = Counter(word_collect).most_common(10)
+    data = Counter(word_collect).most_common(20)
+    print(data)
     # wordcloud로 만들기
-    # print(data)
-    # wordcloud = WordCloud(font_path='C:/Windows/Fonts/malgun.ttf', background_color='white', colormap="Accent_r",
-    #                       width=700, height=700).generate_from_frequencies(dict(data))
-    # plt.imshow(wordcloud)
-    # plt.axis('off')
-    # plt.show()
+    wordcloud = WordCloud(font_path='C:/Windows/Fonts/malgun.ttf', background_color='white', colormap="Accent_r",
+                          width=700, height=700).generate_from_frequencies(dict(data))
+    plt.imshow(wordcloud)
+    plt.axis('off')
+    plt.show()
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
@@ -65,4 +64,4 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
 
 # upload_blob("default", "the", "name")
-transcribe_gcs('gs://speech2text-store/my-file')
+transcribe_gcs('gs://speech2text-store/test123.wav')
