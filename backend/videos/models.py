@@ -17,9 +17,8 @@ class Tag(TimeStampModel):
 
 class Video(TimeStampModel):
     title = models.CharField(max_length=30)
-    thumbnail = models.ImageField()
-    video_file = models.FileField(blank=False, null=False)
-    tag_set = models.ManyToManyField(Tag, blank=True)
+    thumbnail = models.ImageField(upload_to='thumbnail', blank=True)
+    video_file = models.FileField(blank=True)
+    tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
 

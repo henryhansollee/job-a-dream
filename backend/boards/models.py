@@ -19,7 +19,7 @@ class Board(TimeStampModel):
     title = models.CharField(max_length=30)
     content = models.TextField()
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
