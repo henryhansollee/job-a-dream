@@ -34,7 +34,7 @@
 
 - Frontend: React, Redex -> Vue, Vuex
 - Backend: Spring -> Django
-- AI:
+- AI: Python (기술에 대한 자세한 내용은 하단 참조)
 - 버전관리: GitLab
 
 #### 5. 설치
@@ -80,3 +80,29 @@ $ yarn serve
 >https://ovenapp.io/view/q5WmjIhc2wktn4Z5QXGxO0OkYnKncBsF/htYl3
 
 ![image-20200918112355209](README.assets/image-20200918112355209.png)
+
+#### 8. AI 기술
+
+1. __STT__ Speech to Text (= __ASR__ Automatic Speech Recognition)
+
+- Google Cloud API에서 제공하는 Speech-To-Text를 사용하였다.
+
+  - FLOW (비동기 방식)
+
+    ```
+    # 1. 영상이 저장된 Path를 담은 요청을 Google Cloud Storage로 보내어 클라우드에 영상을 저장한다.
+    # 2. Google Cloud Storage에서는 STT 과정을 수행하여 transcript 및 confidence를 담은 정보를 응답한다.
+    # 3. 응답받은 내용을 분석하여 자연어처리를 수행하고 명사를 추출하여 시각화 자료로 응용한다.
+    ```
+
+- ESPnet을 이용한 음성인식 (진행중)
+
+  - FLOW(Traning & Test)
+
+    ```
+    # 1. AI server에 Kaldi와 espnet의 환경을 구축한다.
+    # 2. 한국어 Model인 zeroth_korean을 이용하여 음성데이터를 학습한다.
+    # 3. ...
+    ```
+
+    
