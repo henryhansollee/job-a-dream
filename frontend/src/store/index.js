@@ -25,11 +25,12 @@ export default new Vuex.Store({
       state.accessToken = token
       cookies.set('accessToken', token) 
     },
-
-    // 이 부분 나중에 email을 id로 바꿔야 할듯...
-    SET_AUTH(state, email) {
-      state.authCheck = email
-      cookies.set('authCheck', email)
+    SET_AUTH(state, id) {
+      state.authCheck = id
+      cookies.set('authCheck', id)
+    },
+    SET_USER(state, user) {
+      state.user = user
     },
     SET_INTERVIEWS(state, interviews) {
       state.interviews = interviews
@@ -40,7 +41,6 @@ export default new Vuex.Store({
   },
 
   actions: {
-
     // ----- AUTH -----
 
     // Auth
@@ -49,7 +49,8 @@ export default new Vuex.Store({
         .then(res => {
           console.log(res)
           commit('SET_TOKEN', res.data.token)
-          commit('SET_AUTH', res.data.user.email)
+          commit('SET_AUTH', res.data.user.id)
+          commit('SET_USER', res.data.user)
         })
         .catch(err => {console.log(err)})
     },
@@ -88,7 +89,14 @@ export default new Vuex.Store({
     getInterviews() {},
 
     // Interview Create
-    createInterview() {},
+    createInterview({ getters }, interviewData) {
+      console.log(interviewData)
+      axios.post(BACKEND.URL + BACKEND.ROUTES.interview, interviewData, getters.config)
+      .then(() => {
+        router.push('/interview/list/')
+      })
+      .catch(err => console.log(err))
+    },
 
     // Interview Detail
     getInterview() {},
@@ -109,8 +117,9 @@ export default new Vuex.Store({
     },
 
     // Community Create
-    createCommunitys({ getters }, data) {
-      axios.post(BACKEND.URL + BACKEND.ROUTES.community, data.communityData, getters.config)
+    createCommunity({ getters }, communityData) {
+      console.log(communityData)
+      axios.post(BACKEND.URL + BACKEND.ROUTES.community, communityData, getters.config)
         .then(() => {
           router.push('/community/list')
         })
@@ -118,14 +127,17 @@ export default new Vuex.Store({
     },
 
     // Community Detail
-    getCommunity({ commit }, data) {
-      axios.get(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`)
-        .then(res => commit('SET_COMMUNITYS', res.data))
+    getCommunity({ getters, commit }, data) {
+      axios.get(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, getters.config)
+        .then((res) => {
+          commit('SET_COMMUNITYS', res.data)
+        })
         .catch(err => console.log(err))
     },
 
     // Community Update
     updateCommunity({ getters}, data) {
+      console.log(data)
       axios.put(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, data.communityData, getters.config)
         .then(() => {
           router.push(`/community/detail/${data.id}`)
@@ -135,10 +147,13 @@ export default new Vuex.Store({
     
     // Community Delete
     deleteCommunity({ getters }, data) {
+      console.log(data)
       axios.delete(BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`, getters.config)
         .then(() => {
           router.push(`/community/list`)
+          router.go()
         })
+        .catch(err => console.log(err))
     },
   },
   modules: {
