@@ -10,14 +10,14 @@ import ProfileView from '../views/auth/ProfileView'
 // interview
 import InterviewListView from '../views/interview/InterviewListView'
 import InterviewCreateView from '../views/interview/InterviewCreateView'
-import InterviewUpdateView from '../views/interview/InterviewUpdateView'
 import InterviewDetailView from '../views/interview/InterviewDetailView'
+import InterviewUpdateView from '../views/interview/InterviewUpdateView'
 
 // community
 import CommunityListView from '../views/community/CommunityListView'
 import CommunityCreateView from '../views/community/CommunityCreateView'
-import CommunityUpdateView from '../views/community/CommunityUpdateView'
 import CommunityDetailView from '../views/community/CommunityDetailView'
+import CommunityUpdateView from '../views/community/CommunityUpdateView'
 
 Vue.use(VueRouter)
 
@@ -38,24 +38,24 @@ const routes = [
 
   // interview
   {
-    path: '/interview/list',
+    path: '/interview/list/',
     name: 'InterviewListView',
     component: InterviewListView
   },
   {
-    path: '/interview/create',
+    path: '/interview/create/',
     name: 'InterviewCreateView',
     component: InterviewCreateView
-  },
-  {
-    path: '/interview/detail/:id/update',
-    name: 'InterviewUdateView',
-    component: InterviewUpdateView
   },
   {
     path: '/interview/detail/:id',
     name: 'InterviewDetailView',
     component: InterviewDetailView
+  },
+  {
+    path: '/interview/detail/:id/update',
+    name: 'InterviewUdateView',
+    component: InterviewUpdateView
   },
 
   // community
@@ -70,14 +70,14 @@ const routes = [
     component: CommunityCreateView
   },
   {
-    path: '/community/detail/:id/update',
-    name: 'CommunityUpdateView',
-    component: CommunityUpdateView
-  },
-  {
     path: '/community/detail/:id',
     name: 'CommunityDetailView',
     component: CommunityDetailView
+  },
+  {
+    path: '/community/detail/:id/update',
+    name: 'CommunityUpdateView',
+    component: CommunityUpdateView
   },
 ]
 
