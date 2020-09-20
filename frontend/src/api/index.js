@@ -5,6 +5,6 @@ export default{
       login: '/accounts/login/',
       logout: '/accounts/logout/',
       community: '/boards/',
-      interview: '/video/'
+      interview: '/videos/'
   }
 }
