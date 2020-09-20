@@ -1,9 +1,9 @@
 <template>
-  <div class="login-block">
+  <router-link v-if="isLoggedIn" to="/interview/list/" class="m-1 btn btn-dark">시작하기</router-link>
+  <div v-else class="login-block">
     <h3 class="text-center pt-5 mb-3">로그인</h3>
     <div class="login-inner-block">
-      <router-link v-if="isLoggedIn" to="/interview/list/" class="m-1">시작하기</router-link>
-      <div v-else class="d-flex flex-column">
+      <div  class="d-flex flex-column">
         <b-form-input type="email" placeholder="이메일" v-model="loginData.email" class="mb-1" />
         <b-form-input type="password" placeholder="패스워드" v-model="loginData.password" class="mb-1" />
         <b-button variant="dark" @click="login(loginData)" class="mb-1">로그인</b-button>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div>
-      <b-modal id="modal-1" title="BootstrapVue" hide-header="true" hide-footer="true">
+      <b-modal id="modal-1" title="BootstrapVue" hide-header hide-footer>
         <div class="signup-block">
           <div class="signup-inner-block d-flex flex-column">
             <h3 class="text-center mb-3 mt-3">회원가입</h3>
