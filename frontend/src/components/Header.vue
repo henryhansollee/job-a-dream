@@ -1,7 +1,9 @@
 <template>
   <div>
     <b-navbar class="main-navbar" toggleable="lg">
-      <b-navbar-brand href="/interview/list">잡아드림</b-navbar-brand>
+      <b-navbar-brand href="/interview/list">
+        <img src="@/assets/img/navbar-logo.jpg" alt="navbar-logo" class="navbar-logo">
+      </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
@@ -29,5 +31,8 @@ export default {
 <style>
 .main-navbar {
   background-color: #fcbe32;
+}
+.navbar-logo {
+  width: 50px;
 }
 </style>
