@@ -2,11 +2,11 @@
   <div>
     <Header />
     <h1>InterviewCreateView</h1>
+    <Video />
     <div>
       <!-- 제목 -->
       <input type="text" placeholder="title" v-model="interviewData.title">
-
-      <!-- 비디오 -->
+      <input type="text" placeholder="writer" v-model="interviewData.writer">
 
       <!-- 태그 -->
       <div>
@@ -36,31 +36,35 @@
           </template>
         </b-form-tags>
       </div>
+      <button @click="createInterview(interviewData)">작성완료</button>
     </div>
   </div>
 </template>
 
 <script>
 import Header from '../../components/Header'
+import Video from '../../components/video/Video'
 import { mapActions } from 'vuex'
 
 export default {
   name: "InterviewCreateView",
   components: {
     Header,
+    Video,
   },
   data() {
     return {
       interviewData: {
         title: '',
-        tags: '',
+        writer: '',
+        update_tag: [],
       },
-      value: []
+      value: [],
     }
   },
   methods: { 
-    ...mapActions(['createInterview'])
-  }
+    ...mapActions(['createInterview']),
+  },
 }
 </script>
 
