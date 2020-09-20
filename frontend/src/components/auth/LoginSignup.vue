@@ -2,11 +2,11 @@
   <div class="login-block">
     <h3 class="text-center pt-5">Login</h3>
     <div class="inner-block">
-      <div class="d-flex flex-column">
+      <router-link v-if="isLoggedIn" to="/interview/list/" class="m-1">시작하기</router-link>
+      <div v-else class="d-flex flex-column">
         <input class="m-1" type="email" placeholder="email" v-model="loginData.email">
-        <input class="m-1" type="password" placeholder="password" v-model="loginData.password">
-        <router-link v-if="isLoggedIn" to="/interview/list" class="m-1">시작하기</router-link>
-        <button v-else class="m-1" @click="login(loginData)">로그인</button>
+        <input class="m-1" type="password" placeholder="password" v-model="loginData.password">  
+        <button  class="m-1" @click="login(loginData)">로그인</button>
         <b-button v-b-modal.modal-1>회원가입</b-button>
       </div>
     </div>
@@ -45,8 +45,8 @@ export default {
     ...mapActions(['login', 'signup'])
   },
   computed: {
-    ...mapGetters(["isLoggedIn"])
-  }
+    ...mapGetters(["isLoggedIn"]),
+  },
 }
 </script>
 
