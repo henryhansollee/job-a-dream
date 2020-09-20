@@ -2,7 +2,7 @@
   <div>
     <Header />
     <h1>InterviewListView</h1>
-    <router-link to="/interview/create">인터뷰 시작</router-link>
+    <router-link to="/interview/create/">인터뷰 시작</router-link>
   </div>
 </template>
 
