@@ -16,7 +16,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    isLoggedIn: state => !!state.accessToken,
+    isLoggedIn: state => !!state.accessToken && !!state.authCheck,
     config: () => ({ headers: { Authorization: `JWT ${cookies.get('accessToken')}`}}),
   },
 
@@ -62,6 +62,7 @@ export default new Vuex.Store({
         location: BACKEND.ROUTES.signup
       }
       dispatch('getAuth', info)
+      router.go()
     },
 
     // Login
