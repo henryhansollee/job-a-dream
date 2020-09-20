@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="isLoggedIn" to="/interview/list/" class="m-1 btn btn-dark">시작하기</router-link>
+  <router-link v-if="isLoggedIn" to="/interview/list/" class="btn btn-dark mr-5">시작하기</router-link>
   <div v-else class="login-block">
     <h3 class="text-center pt-5 mb-3">로그인</h3>
     <div class="login-inner-block">

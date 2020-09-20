@@ -1,13 +1,15 @@
 <template>
   <div>
     <Header />
-    <h1>CommunityDetailView</h1>
-    <h4>{{ communitys.title }}</h4>
-    <h4>{{ communitys.writer }}</h4>
-    <h4>{{ communitys.content }}</h4>
-    <h4>{{ communitys.update_tag }}</h4>
-    <router-link :to="`/community/detail/${communitys.id}/update`">수정</router-link>
-    <button @click="deleteCommunity({id: communitys.id})">삭제</button>
+    <div class="container mt-5">
+      <h4>제목: {{ communitys.title }}</h4>
+      <h4>글쓴이: {{ communitys.writer }}</h4>
+      <h4>내용: {{ communitys.content }}</h4>
+      <h4>태그: {{ communitys.update_tag }}</h4>
+      <router-link class="btn btn-info" :to="`/community/detail/${communitys.id}/update`">수정</router-link>
+      <button class="btn btn-danger" @click="deleteCommunity({id: communitys.id})">삭제</button>
+    </div>
+
   </div>
 </template>
 

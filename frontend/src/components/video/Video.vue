@@ -1,9 +1,9 @@
   
 <template>
   <div>
-    <div class="block" v-show="!result">
-      <h4 class="title is-4">
-        {{ timer.interval ?  `녹화중 ${formatedTime}` : '초기화' }}
+    <div class="block mt-5" v-show="!result">
+      <h4 class="title is-4 text-center mb-3">
+        {{ timer.interval ?  `녹화중 ${formatedTime}` : '시작버튼을 눌러주세요.' }}
       </h4>
       <video ref="video"></video>
     </div>
@@ -11,11 +11,11 @@
       <h4 class="title is-4">녹화된거</h4>
       <video controls :src="blobUrl"></video>
     </div>
-    <div class="field">
-        <button class="button is-danger" @click="stop" v-if="recorder && recorder.getState() === 'recording'">
+    <div class="field d-flex justify-content-center mt-5">
+        <button class="button is-danger btn btn-danger" @click="stop" v-if="recorder && recorder.getState() === 'recording'">
           녹화정지
         </button>
-        <button class="button is-primary" @click="record" v-else>
+        <button class="button is-primary btn btn-primary" @click="record" v-else>
           녹화시작
         </button>
     </div>
@@ -46,7 +46,6 @@ export default {
       let minute = Math.floor((this.timer.value - hour*3600)/60);
       let seconds = this.timer.value - (hour*3600 + minute*60);
       return [hour, minute, seconds].map(this._fillzero).join(':');
-    
     }
   },
   methods: {
