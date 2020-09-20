@@ -5,8 +5,8 @@
     <div>
       <!-- 제목 -->
       <input type="text" placeholder="title" v-model="communityData.title">
-
-      <!-- 사진 -->
+      <input type="text" placeholder="writer" v-model="communityData.writer">
+      <input type="text" placeholder="content" v-model="communityData.content">
 
       <!-- 태그 -->
       <div>
@@ -36,6 +36,7 @@
           </template>
         </b-form-tags>
       </div>
+      <button @click="createCommunity(communityData)">작성완료</button>
     </div>
   </div>
 </template>
@@ -53,13 +54,15 @@ export default {
     return {
       communityData: {
         title: '',
-        tags: '',
+        writer: '',
+        content: '',
+        update_tag: [],
       },
       value: []
     }
   },
   methods: { 
-    ...mapActions(['createInterview'])
+    ...mapActions(['createCommunity']),
   }
 }
 </script>
