@@ -9,7 +9,7 @@
           <b-form-input class="mt-2" type="text" placeholder="content" v-model="communityData.content" />
         </div>
 
-        <div class="mt-5">
+        <div class="mt-3">
           <b-form-tags v-model="value" no-outer-focus class="mb-2">
             <template v-slot="{ tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag }">
               <b-input-group class="mb-2">
