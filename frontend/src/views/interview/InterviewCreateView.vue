@@ -1,42 +1,44 @@
 <template>
   <div>
     <Header />
-    <h1>InterviewCreateView</h1>
-    <Video />
-    <div>
-      <!-- 제목 -->
-      <input type="text" placeholder="title" v-model="interviewData.title">
-      <input type="text" placeholder="writer" v-model="interviewData.writer">
-
-      <!-- 태그 -->
+    <div class="container">
+      <Video />
       <div>
-        <b-form-tags v-model="value" no-outer-focus class="mb-2">
-          <template v-slot="{ tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag }">
-            <b-input-group class="mb-2">
-              <b-form-input
-                v-bind="inputAttrs"
-                v-on="inputHandlers"
-                placeholder="New tag - Press enter to add"
-                class="form-control"
-              ></b-form-input>
-              <b-input-group-append>
-                <b-button @click="addTag()" variant="primary">Add</b-button>
-              </b-input-group-append>
-            </b-input-group>
-            <div class="d-inline-block" style="font-size: 1.5rem;">
-              <b-form-tag
-                v-for="tag in tags"
-                @remove="removeTag(tag)"
-                :key="tag"
-                :title="tag"
-                :variant="tagVariant"
-                class="mr-1"
-              >{{ tag }}</b-form-tag>
-            </div>
-          </template>
-        </b-form-tags>
+        <!-- 제목 -->
+        <div class="mt-3 mb-3">
+          <b-form-input type="text" placeholder="title" v-model="interviewData.title" />
+          <b-form-input class="mt-2" type="text" placeholder="writer" v-model="interviewData.writer" />
+        </div>
+        <!-- 태그 -->
+        <div>
+          <b-form-tags v-model="value" no-outer-focus class="mb-2">
+            <template v-slot="{ tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag }">
+              <b-input-group class="mb-2">
+                <b-form-input
+                  v-bind="inputAttrs"
+                  v-on="inputHandlers"
+                  placeholder="태그를 입력하세요."
+                  class="form-control"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-button @click="addTag()" variant="primary">추가</b-button>
+                </b-input-group-append>
+              </b-input-group>
+              <div class="d-inline-block" style="font-size: 1.5rem;">
+                <b-form-tag
+                  v-for="tag in tags"
+                  @remove="removeTag(tag)"
+                  :key="tag"
+                  :title="tag"
+                  :variant="tagVariant"
+                  class="mr-1"
+                >{{ tag }}</b-form-tag>
+              </div>
+            </template>
+          </b-form-tags>
+        </div>
+        <button class="btn btn-dark" @click="createInterview(interviewData)">작성완료</button>
       </div>
-      <button @click="createInterview(interviewData)">작성완료</button>
     </div>
   </div>
 </template>

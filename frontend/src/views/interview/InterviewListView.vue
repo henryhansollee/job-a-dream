@@ -4,7 +4,7 @@
     <div class="interview-sidebar">
       <div class="d-flex flex-column align-items-center mt-5">
         <h5>면접 보러가기</h5>
-        <router-link class="btn btn-secondary interview-start-button" to="/interview/create/">+</router-link>
+        <router-link class="btn btn-dark interview-start-button" to="/interview/create/">+</router-link>
       </div>
     </div>
   </div>
