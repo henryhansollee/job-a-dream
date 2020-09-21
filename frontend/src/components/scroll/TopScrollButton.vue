@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      visible: false
+      visible: true
     }
   },
   methods: {
@@ -18,10 +18,10 @@ export default {
           clearInterval(this.intervalId)
         }
         window.scroll(0, window.pageYOffset - 50)
-      }, 20)
+      }, 10)
     },
     scrollListener() {
-      this.visible = window.scrollY > 50
+      this.visible = window.scrollY > 0
     }
   },
   mounted() {

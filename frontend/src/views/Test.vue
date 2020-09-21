@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <bbb />
+    <TopScrollButton />
   </div>
 </template>
 
 <script>
-import bbb from '../components/scroll/TopButton'
+import TopScrollButton from '../components/scroll/TopScrollButton'
 
 export default {
   name: "Test",
   components: {
-    bbb,
+    TopScrollButton,
 
   }
 }
