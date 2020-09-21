@@ -1,19 +1,24 @@
 <template>
   <div>
+    
     <full-page ref="fullpage" :options="options">
       <div class="section home-section1">
+        <button class="next next-button1" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
         <HomeSection1 />
       </div>
       <div class="section home-section2">
+        <button class="next next-button2" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
         <HomeSection2 />
       </div>
       <div class="section home-section3">
+        <button class="next next-button3" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
         <HomeSection3 />
       </div>
       <div class="section home-section4">
         <HomeSection4 />
       </div>
     </full-page>
+    <TopScrollButton />
   </div>
 </template>
 
@@ -22,6 +27,7 @@ import HomeSection1 from '../components/home/HomeSection1'
 import HomeSection2 from '../components/home/HomeSection2'
 import HomeSection3 from '../components/home/HomeSection3'
 import HomeSection4 from '../components/home/HomeSection4'
+import TopScrollButton from '../components/scroll/TopScrollButton'
 
 export default {
   name: "Home",
@@ -30,14 +36,22 @@ export default {
     HomeSection2,
     HomeSection3,
     HomeSection4,
+    TopScrollButton,
   },
   data() {
     return {
       options: {
         afterLoad: this.afterLoad,
+        controlArrows: true,
+        scrollBar: true
       }
     }
-  }
+  },
+  methods: {
+    moveSectionDown () {
+      this.$refs.fullpage.$fullpage.moveSectionDown()
+    }
+  },
 }
 </script>
 
@@ -53,5 +67,20 @@ export default {
 }
 .home-section4 {
   background-color: #a79c8e;
+}
+.next-button1 {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+}
+.next-button2 {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+}
+.next-button3 {
+  position: absolute;
+  top: 72%;
+  left: 50%;
 }
 </style>

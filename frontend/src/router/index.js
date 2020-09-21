@@ -19,6 +19,9 @@ import CommunityCreateView from '../views/community/CommunityCreateView'
 import CommunityDetailView from '../views/community/CommunityDetailView'
 import CommunityUpdateView from '../views/community/CommunityUpdateView'
 
+// Test
+import Test from '../views/Test'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -79,6 +82,13 @@ const routes = [
     name: 'CommunityUpdateView',
     component: CommunityUpdateView
   },
+
+  // Test
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  }
 ]
 
 const router = new VueRouter({
