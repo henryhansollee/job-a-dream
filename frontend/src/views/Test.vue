@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <TopScrollButton />
+    <Editor />
   </div>
 </template>
 
 <script>
-import TopScrollButton from '../components/scroll/TopScrollButton'
+import Editor from '../components/editor/Editor'
 
 export default {
   name: "Test",
   components: {
-    TopScrollButton,
+    Editor,
 
   }
 }
