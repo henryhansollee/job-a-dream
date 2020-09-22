@@ -45,9 +45,11 @@ import draggable from "vuedraggable";
 import Vue from "vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
+
 Vue.use(Vuetify);
+
 export default {
-  name: "functional",
+  name: "DragAndDropVideos",
   display: "Functional third party",
   order: 17,
   components: {
