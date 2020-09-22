@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <Editor />
+    <DragAndDropMenus />
   </div>
 </template>
 
 <script>
-import Editor from '../components/editor/Editor'
+import DragAndDropMenus from '../components/add/DragAndDropMenus'
 
 export default {
   name: "Test",
   components: {
-    Editor,
+    DragAndDropMenus,
 
   }
 }
