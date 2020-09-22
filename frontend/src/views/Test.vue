@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <DragAndDrop />
+    <DragAndDropVideos />
   </div>
 </template>
 
 <script>
-import DragAndDrop from '../components/add/DragAndDrop'
+import DragAndDropVideos from '../components/add/DragAndDropVideos'
 
 export default {
   name: "Test",
   components: {
-    DragAndDrop,
+    DragAndDropVideos,
 
   }
 }
