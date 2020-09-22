@@ -1,4 +1,4 @@
-// module.exports = {
+module.exports = {
 //   // 개발 서버 설정
 //   devServer: {
 //       // 프록시 설정
@@ -10,4 +10,10 @@
 //           }
 //       }
 //   }
-// };
+  configureWebpack: {
+    devServer: {
+        host: 'http://j3b107.p.ssafy.io',
+        port: '8000'
+    }
+  }
+};
