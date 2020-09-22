@@ -27,7 +27,7 @@ import HomeSection1 from '../components/home/HomeSection1'
 import HomeSection2 from '../components/home/HomeSection2'
 import HomeSection3 from '../components/home/HomeSection3'
 import HomeSection4 from '../components/home/HomeSection4'
-import TopScrollButton from '../components/scroll/TopScrollButton'
+import TopScrollButton from '../components/add/TopScrollButton'
 
 export default {
   name: "Home",

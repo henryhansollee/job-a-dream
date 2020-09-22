@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Editor from '../components/editor/Editor'
+import Editor from '../components/add/Editor'
 
 export default {
   name: "Test",
