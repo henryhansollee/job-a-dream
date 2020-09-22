@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Header from '../../components/Header'
-import { mapState, mapActions } from 'vuex'
+import Header from "../../components/Header";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "InterviewDetailView",
@@ -15,17 +15,16 @@ export default {
     Header,
   },
   computed: {
-    ...mapState(['interviews'])
+    ...mapState(["interviews"]),
   },
   methods: {
-    ...mapActions(['getInterview'])
+    ...mapActions(["getInterview"]),
   },
   created() {
-    this.getInterview({id: this.$route.params.id})
-  }
-}
+    this.getInterview({ id: this.$route.params.id });
+  },
+};
 </script>
 
 <style>
-
 </style>

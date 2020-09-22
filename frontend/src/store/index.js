@@ -117,7 +117,7 @@ export default new Vuex.Store({
 
     // Interview Create
     createInterview({ getters }, interviewData) {
-      console.log(interviewData);
+      console.log(interviewData, "인터뷰 데이터");
       axios
         .post(
           BACKEND.URL + BACKEND.ROUTES.interview, // /videos/
