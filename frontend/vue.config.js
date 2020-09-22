@@ -12,8 +12,7 @@ module.exports = {
 //   }
   configureWebpack: {
     devServer: {
-        host: 'http://j3b107.p.ssafy.io',
-        port: '8000'
+      disableHostCheck: true
     }
   }
 };
