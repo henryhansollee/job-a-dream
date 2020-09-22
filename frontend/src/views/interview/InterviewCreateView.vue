@@ -6,19 +6,11 @@
       <div>
         <!-- 제목 -->
         <div class="mt-3 mb-3">
-          <b-form-input
-            type="text"
-            placeholder="title"
-            v-model="interviewData.title"
-          />
+          <b-form-input type="text" placeholder="title" v-model="interviewData.title" />
         </div>
         <!-- 태그 -->
         <div>
-          <b-form-tags
-            v-model="interviewData.update_tag"
-            no-outer-focus
-            class="mb-2"
-          >
+          <b-form-tags v-model="interviewData.update_tag" no-outer-focus class="mb-2">
             <template
               v-slot="{
                 tags,
@@ -48,15 +40,12 @@
                   :title="tag"
                   :variant="tagVariant"
                   class="mr-1"
-                  >{{ tag }}</b-form-tag
-                >
+                >{{ tag }}</b-form-tag>
               </div>
             </template>
           </b-form-tags>
         </div>
-        <button class="btn btn-dark" @click="createInterview(interviewData)">
-          작성완료
-        </button>
+        <button class="btn btn-dark" @click="createInterview(interviewData)">작성완료</button>
       </div>
     </div>
   </div>
@@ -89,6 +78,7 @@ export default {
     ...mapActions(["createInterview"]),
     getVideo(result) {
       this.interviewData.video_file = result;
+      console.log(this.interviewData.video_file);
     },
   },
 };

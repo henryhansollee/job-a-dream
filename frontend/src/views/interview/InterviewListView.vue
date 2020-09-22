@@ -11,24 +11,24 @@
 </template>
 
 <script>
-import Header from '../../components/Header'
-import { mapState, mapActions } from 'vuex'
+import Header from "../../components/Header";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  name: 'InterviewListView',
+  name: "InterviewListView",
   components: {
     Header,
   },
   computed: {
-    ...mapState(['interviews'])
+    ...mapState(["interviews"]),
   },
   methods: {
-    ...mapActions(['getInterviews']),
+    ...mapActions(["getInterviews"]),
   },
   created() {
-    this.getInterviews()
-  }
-}
+    this.getInterviews();
+  },
+};
 </script>
 
 <style>
