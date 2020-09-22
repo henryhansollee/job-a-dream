@@ -45,7 +45,10 @@
             </template>
           </b-form-tags>
         </div>
-        <button class="btn btn-dark" @click="createInterview(interviewData)">작성완료</button>
+        <div>
+          <input type="file" id="file" name="file" ref="file" />
+        </div>
+        <button class="btn btn-dark" @click="createFormData">작성완료</button>
       </div>
     </div>
   </div>
@@ -66,6 +69,7 @@ export default {
   data() {
     return {
       content: "",
+      file: "",
       interviewData: {
         title: "",
         writer: cookies.get("accessToken"),
@@ -79,6 +83,28 @@ export default {
     getVideo(result) {
       this.interviewData.video_file = result;
       console.log(this.interviewData.video_file);
+    },
+
+    createFormData() {
+      if (this.interviewData.title) {
+        var formData = new FormData();
+        formData.append("title", this.interviewData.title);
+        formData.append("writer", this.interviewData.writer);
+        formData.append("update_tag", this.interviewData.update_tag);
+        // formData.append("video_file", this.interviewData.video_file);
+        this.file = this.$refs.file.files[0];
+        console.log(this.file, "파일");
+        formData.append("video_file", this.file);
+        this.createInterview(formData);
+
+        // const reader = new FileReader();
+        // reader.addEventListener("loadend", () => {
+        //   // reader.result contains the contents of blob as a typed array
+        // });
+        // reader.readAsArrayBuffer(blob);
+      } else {
+        alert("제목을 입력하세요!");
+      }
     },
   },
 };
