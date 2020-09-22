@@ -1,5 +1,5 @@
 export default {
-  URL: "http://localhost:8080",
+  URL: process.env.VUE_APP_BACKEND,
   ROUTES: {
     signup: "/accounts/signup/",
     login: "/accounts/login/",
