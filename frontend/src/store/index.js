@@ -167,9 +167,9 @@ export default new Vuex.Store({
     // ----- COMMUNITY -----
 
     // Community List
-    getCommunitys() {
+    getCommunitys({ getters }) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.community)
+        .get(BACKEND.URL + BACKEND.ROUTES.community, getters.config)
         .then((res) => this.commit("SET_COMMUNITYS", res.data))
         .catch((err) => console.log(err));
     },

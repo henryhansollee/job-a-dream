@@ -65,6 +65,7 @@ export default {
         // console.log(this.result, "this.result");
         this.$emit("getVideo", this.result);
         this.blobUrl = window.URL.createObjectURL(this.result);
+        console.log(this.blobUrl, "url");
         clearInterval(this.timer.interval);
         this.timer.value = 0;
         this.timer.interval = null;
