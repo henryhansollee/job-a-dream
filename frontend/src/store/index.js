@@ -13,11 +13,12 @@ export default new Vuex.Store({
     authCheck: "",
     interviews: [],
     communitys: [],
-    interviewData: {
-      title: "",
-      tags: [],
-      video: "",
-    },
+    // interviewData: {
+    //   title: "",
+    //   tags: [],
+    //   video: "",
+    // },
+    interviewData: "",
   },
 
   getters: {
@@ -138,6 +139,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
+          console.log(response, "123123123");
           commit("GET_INTERVIEW", response.data);
         })
         .catch((err) => {
@@ -167,9 +169,9 @@ export default new Vuex.Store({
     // ----- COMMUNITY -----
 
     // Community List
-    getCommunitys({ getters }) {
+    getCommunitys() {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.community, getters.config)
+        .get(BACKEND.URL + BACKEND.ROUTES.community)
         .then((res) => this.commit("SET_COMMUNITYS", res.data))
         .catch((err) => console.log(err));
     },

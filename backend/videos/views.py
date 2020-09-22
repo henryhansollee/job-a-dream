@@ -28,3 +28,6 @@ class VideoListAPI(APIView):
 class VideoDetailAPI(RetrieveUpdateDestroyAPIView):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
+    print('시작')
+    print(queryset)
+    print('끝')
