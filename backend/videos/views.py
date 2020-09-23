@@ -32,4 +32,5 @@ class QuestionAPI(APIView):
 
     def get(self, request):
         serializer = QuestionSerializer(Question.objects.all(), many=True)
+        print(serializer)
         return Response(serializer.data, status=200)
