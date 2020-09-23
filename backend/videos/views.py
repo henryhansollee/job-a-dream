@@ -8,6 +8,8 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .models import Video, Question
 from .serializers import VideoSerializer, QuestionSerializer
 
+from .AI.vision.GazeTracking.example import analyze_eye_tracking
+
 
 class VideoListAPI(APIView):
 
@@ -33,3 +35,12 @@ class QuestionAPI(APIView):
     def get(self, request):
         serializer = QuestionSerializer(Question.objects.all(), many=True)
         return Response(serializer.data, status=200)
+
+class StatisticsAPI(APIView):
+
+    def get(self, request):
+        obj = Video.objects.get(id=8)
+        print(obj.video_file, 'asdfasfsdf')
+        result = analyze_eye_tracking('하하하.webm')
+        print(result)
+        return
