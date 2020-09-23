@@ -34,18 +34,4 @@ class QuestionAPI(APIView):
 
     def get(self, request):
         serializer = QuestionSerializer(Question.objects.all(), many=True)
-<<<<<<< HEAD
         return Response(serializer.data, status=200)
-
-class StatisticsAPI(APIView):
-
-    def get(self, request):
-        obj = Video.objects.get(id=8)
-        print(obj.video_file, 'asdfasfsdf')
-        result = analyze_eye_tracking('하하하.webm')
-        print(result)
-        return
-=======
-        print(serializer)
-        return Response(serializer.data, status=200)
->>>>>>> develop
