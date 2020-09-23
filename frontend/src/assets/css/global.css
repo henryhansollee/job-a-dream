@@ -52,3 +52,10 @@
 .basic-size {
   font-size: large;
 }
+.nxt-btn {
+  border: none;
+  outline: none;
+  background-color: #fcbe32;
+  border-radius: 4px;
+  font-weight: bold;
+}
