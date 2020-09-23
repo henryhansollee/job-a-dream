@@ -1,4 +1,4 @@
-numpy == 1.16.1
-opencv_python == 3.4.8.29
+numpy
+opencv_python
 cmake
-dlib == 19.16.0
+dlib 
