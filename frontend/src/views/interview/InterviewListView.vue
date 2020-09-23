@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="main-font">
     <Header />
     <div class="interview-sidebar">
-      <div class="d-flex flex-column align-items-center mt-5 mb-5">
-        <h5>면접 보러가기</h5>
+      <div class="d-flex flex-column align-items-center mb-5">
+        <h5 class="mt-5">면접 보러가기</h5>
         <router-link class="btn btn-dark interview-start-button" to="/interview/create/">+</router-link>
       </div>
       <div class="d-flex flex-column align-items-center mt-5">
