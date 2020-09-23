@@ -4,12 +4,22 @@
     <div class="interview-sidebar">
       <div class="d-flex flex-column align-items-center mb-5">
         <h5 class="mt-5">면접 보러가기</h5>
-        <router-link class="btn btn-dark interview-start-button" to="/interview/create/">+</router-link>
+        <router-link
+          class="btn btn-dark interview-start-button"
+          to="/interview/create/"
+          >+</router-link
+        >
       </div>
       <div class="d-flex flex-column align-items-center mt-5">
         <h5>질문 등록</h5>
         <!-- <button class="btn btn-dark interview-start-button" @click="getQuestions">+</button> -->
-        <b-button variant="dark" class="interview-start-button" v-b-modal.modal-scrollable>+</b-button>
+        <b-button
+          variant="dark"
+          class="interview-start-button"
+          v-b-modal.modal-scrollable
+          @click="getQuestions()"
+          >+</b-button
+        >
 
         <b-modal
           hide-footer
@@ -18,11 +28,11 @@
           class="main-font"
           scrollable
           title="질문 리스트"
-          style="font-family:Cafe24Ohsquare, cursive;"
+          style="font-family: Cafe24Ohsquare, cursive"
         >
           <div
             class="my-4 main-font"
-            style="font-size:large; margin: 0 8px;"
+            style="font-size: large; margin: 0 8px"
             v-for="i in 5"
             :key="i"
           >
@@ -35,12 +45,12 @@
           </div>
           <div
             class="my-4 main-font"
-            style="font-size:large; margin: 0 8px;"
+            style="font-size: large; margin: 0 8px"
             v-for="newQuestion in newQuestionList"
             :key="newQuestion.id"
           >
             <div class="d-flex flex-row justify-content-between">
-              <div>{{newQuestion.new}}</div>
+              <div>{{ newQuestion.new }}</div>
               <button class="basic-btn" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
@@ -61,13 +71,21 @@
               <button
                 type="button"
                 class="basic-btn"
-                style="color: gray;"
+                style="color: gray"
                 @click="addNewQuestion"
-              >추가</button>
+              >
+                추가
+              </button>
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <button class="save-btn main-font" style="font-size: 17.5px;">저장</button>
+            <button
+              class="save-btn main-font"
+              style="font-size: 17.5px"
+              @click="saveNewQuestion"
+            >
+              저장
+            </button>
           </div>
         </b-modal>
       </div>
@@ -95,7 +113,7 @@ export default {
     ...mapState(["interviews", "questions"]),
   },
   methods: {
-    ...mapActions(["getInterviews", "getQuestions"]),
+    ...mapActions(["getInterviews", "getQuestions", "postNewQuestions"]),
     addNewQuestion() {
       let date = Date.now();
       // console.log(date);
@@ -107,10 +125,14 @@ export default {
       // console.log(this.newQuestionList);
       this.newQuestion = "";
     },
+    saveNewQuestion() {
+      console.log("질문 추가하고 저장");
+      this.postNewQuestions();
+      this.getQuestions();
+    },
   },
   created() {
     this.getInterviews();
-    this.getQuestions();
   },
 };
 </script>
@@ -163,7 +185,7 @@ export default {
 }
 .save-btn {
   border: 1px solid #fcbe32;
-  outline: 1px solid #fcbe32;
+  outline: none;
   border-radius: 4px;
   background-color: #fcbe32;
   margin-right: 7px;
