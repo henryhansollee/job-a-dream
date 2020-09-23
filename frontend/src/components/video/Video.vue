@@ -1,23 +1,26 @@
-  
 <template>
   <div>
-    <div class="block mt-5" v-show="!result">
-      <h4
-        class="title is-4 text-center mb-3"
-      >{{ timer.interval ? `녹화중 ${formatedTime}` : '시작버튼을 눌러주세요.' }}</h4>
+    <div class="block mt-4" v-show="!result">
+      <h4 class="title is-4 text-center mb-3">
+        {{
+          timer.interval ? `녹화중 ${formatedTime}` : "시작버튼을 눌러주세요."
+        }}
+      </h4>
       <video ref="video"></video>
     </div>
     <div class="block" v-show="result">
       <h4 class="title is-4">녹화된거</h4>
       <video controls :src="blobUrl"></video>
     </div>
-    <div class="field d-flex justify-content-center mt-5">
+    <div class="field d-flex justify-content-center mt-4">
       <button
         class="button is-danger btn btn-danger"
         @click="stop"
         v-if="recorder && recorder.getState() === 'recording'"
-      >녹화정지</button>
-      <button class="button is-primary btn btn-primary" @click="record" v-else>녹화시작</button>
+      >
+        녹화정지
+      </button>
+      <button class="nxt-btn" @click="record" v-else>녹화시작</button>
     </div>
   </div>
 </template>
@@ -94,7 +97,7 @@ export default {
         video: true,
         audio: true,
       })
-      .then(async function (stream) {
+      .then(async function(stream) {
         self.recorder = RecordRTC(stream, {
           type: "video",
         });
