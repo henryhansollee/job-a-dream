@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <TextToSpeech />
+    <Audio />
   </div>
 </template>
 
 <script>
-import TextToSpeech from '../components/add/TextToSpeech'
+import Audio from '../components/video/Audio'
 
 export default {
   name: "Test",
   components: {
-    TextToSpeech,
+    Audio,
 
   }
 }

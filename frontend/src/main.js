@@ -7,12 +7,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueFullPage from "vue-fullpage.js";
 import "@/assets/css/global.css";
-import Vue2Tts from 'vue2-tts';
+import VueDictaphone from "vue-dictaphone";
+Vue.use(VueDictaphone);
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueFullPage);
-Vue.use(Vue2Tts);
 
 Vue.config.productionTip = false;
 
