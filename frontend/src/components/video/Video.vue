@@ -24,7 +24,7 @@
 
 <script>
 import RecordRTC from "recordrtc";
-import axios from "axios";
+// import axios from "axios";
 export default {
   name: "WebRtc",
   props: {
@@ -79,10 +79,10 @@ export default {
         //     (blobFile) =>
         //       new File([blobFile], fileName, { type: blobFile.type })
         //   );
-        const config = { responseType: "blob" };
-        axios.get(this.blobUrl, config).then((response) => {
-          new File([response.data], "test");
-        });
+        // const config = { responseType: "blob" };
+        // axios.get(this.blobUrl, config).then((response) => {
+        //   new File([response.data], "test");
+        // });
       });
     },
   },
