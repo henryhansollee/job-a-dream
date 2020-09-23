@@ -1,25 +1,35 @@
 <template>
-  <router-link v-if="isLoggedIn" to="/interview/list/" class="btn btn-dark mr-5">시작하기</router-link>
-  <div v-else class="login-block">
-    <h3 class="text-center pt-5 mb-3">로그인</h3>
+  <router-link v-if="isLoggedIn" to="/interview/list/" class="btn btn-dark main-font mr-5">시작하기</router-link>
+  <div v-else class="main-font login-block">
+    <h3 class="text-center pt-5 mb-4">로그인</h3>
     <div class="login-inner-block">
-      <div  class="d-flex flex-column">
+      <div class="d-flex flex-column">
         <b-form-input type="email" placeholder="이메일" v-model="loginData.email" class="mb-1" />
         <b-form-input type="password" placeholder="패스워드" v-model="loginData.password" class="mb-1" />
-        <b-button variant="dark" @click="login(loginData)" class="mb-1">로그인</b-button>
+        <b-button variant="dark" @click="login(loginData)" class="mb-1 mt-3">로그인</b-button>
         <b-button v-b-modal.modal-1 variant="light" class="mb-1">회원가입</b-button>
       </div>
     </div>
-    <div>
+    <div class="main-font">
       <b-modal id="modal-1" title="BootstrapVue" hide-header hide-footer>
-        <div class="signup-block">
+        <div class="signup-block main-font">
           <div class="signup-inner-block d-flex flex-column">
-            <h3 class="text-center mb-3 mt-3">회원가입</h3>
+            <h3 class="text-center main-font mb-3 mt-4">회원가입</h3>
             <div class="d-flex flex-column">
-              <b-form-input type="text" placeholder="이름" v-model="signupData.username" class="mb-1" />
+              <b-form-input
+                type="text"
+                placeholder="이름"
+                v-model="signupData.username"
+                class="mb-1"
+              />
               <b-form-input type="email" placeholder="이메일" v-model="signupData.email" class="mb-1" />
-              <b-form-input type="password" placeholder="패스워드" v-model="signupData.password" class="mb-1" />
-              <b-button variant="dark" @click="signup(signupData)" class="mb-1">회원가입</b-button>
+              <b-form-input
+                type="password"
+                placeholder="패스워드"
+                v-model="signupData.password"
+                class="mb-1"
+              />
+              <b-button variant="dark" @click="signup(signupData)" class="mb-1 mt-3">회원가입</b-button>
             </div>
           </div>
         </div>
@@ -29,30 +39,30 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Login",
   data() {
     return {
       loginData: {
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       },
       signupData: {
-        username: '',
-        email: '',
-        password: '',
-      }
-    }
+        username: "",
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
-    ...mapActions(['login', 'signup'])
+    ...mapActions(["login", "signup"]),
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
   },
-}
+};
 </script>
 
 <style>
