@@ -22,3 +22,5 @@ class Video(TimeStampModel):
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+class Question(models.Model):
+    content = models.CharField(max_length=100)
