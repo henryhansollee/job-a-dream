@@ -5,15 +5,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Video
-from .serializers import VideoSerializer
+from .models import Video, Question
+from .serializers import VideoSerializer, QuestionSerializer
 
 
 class VideoListAPI(APIView):
 
     def get(self, request):
         serializer = VideoSerializer(Video.objects.filter(writer=request.user), many=True)
-        print(serializer)
         return Response(serializer.data, status=200)
     
     def post(self, request):
@@ -28,3 +27,9 @@ class VideoListAPI(APIView):
 class VideoDetailAPI(RetrieveUpdateDestroyAPIView):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
+
+class QuestionAPI(APIView):
+
+    def get(self, request):
+        serializer = QuestionSerializer(Question.objects.all(), many=True)
+        return Response(serializer.data, status=200)
