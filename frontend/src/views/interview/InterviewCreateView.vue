@@ -1,18 +1,19 @@
 <template>
   <div>
     <Header />
-
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage="opts" ref="example">
-        <div class="page-1 page">
+        <div class="page-1 page d-flex justify-content-around mt-5">
           <div class="part-1" v-animate="{ value: 'bounceInLeft', delay: 0 }">
-            1
+            질문 리스트
           </div>
-          <button class="nxt-btn" @click="moveNext">
-            next
-          </button>
+          <div>
+            <button class="nxt-btn" @click="moveNext">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
-        <div class="page-2 page">
+        <div class="page-2 page ">
           <div v-animate="{ value: 'bounceInRight', delay: 0 }">
             <!--동영상ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ-->
             <div class="container">
@@ -27,15 +28,32 @@
               </div> -->
             </div>
           </div>
-          <button class="nxt-btn" @click="movePrev">prev</button>
-          <button class="nxt-btn" @click="moveNext">next</button>
+          <div>
+            <button class="nxt-btn" @click="movePrev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+          </div>
+
+          <div>
+            <button class="nxt-btn" @click="moveNext">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
-        <div class="page-3 page">
+        <div class="page-3 page d-flex justify-content-around ">
+          <div>
+            <button class="nxt-btn" @click="movePrev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+          </div>
           <div class="part-3" v-animate="{ value: 'bounceInLeft', delay: 0 }">
             썸네일
           </div>
-          <button class="nxt-btn" @click="movePrev">prev</button>
-          <button class="nxt-btn" @click="moveNext">next</button>
+          <div>
+            <button class="nxt-btn" @click="moveNext">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
           <!-- <p class="part-3" v-animate="{ value: 'bounceInRight', delay: 600 }">
             4
           </p>
@@ -43,7 +61,7 @@
             5
           </p> -->
         </div>
-        <div class="page-4 page">
+        <div class="page-4 page ">
           <div class="part-4" v-animate="{ value: 'bounceInRight', delay: 0 }">
             <!-- 제목 -->
             <div class="mt-3 mb-3">

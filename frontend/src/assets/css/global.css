@@ -31,7 +31,9 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
-
+* {
+  font-family: "Cafe24Ohsquare", cursive;
+}
 .main-font {
   font-family: "Cafe24Ohsquare", cursive;
   /* font-family: "Do Hyeon", sans-serif; */
