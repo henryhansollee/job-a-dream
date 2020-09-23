@@ -1,17 +1,22 @@
 <template>
   <div>
-    
     <full-page ref="fullpage" :options="options">
       <div class="section home-section1">
-        <button class="next next-button1" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
+        <button class="next next-button1" @click="$refs.fullpage.api.moveSectionDown()">
+          <i class="fas fa-chevron-down"></i>
+        </button>
         <HomeSection1 />
       </div>
       <div class="section home-section2">
-        <button class="next next-button2" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
+        <button class="next next-button2" @click="$refs.fullpage.api.moveSectionDown()">
+          <i class="fas fa-chevron-down"></i>
+        </button>
         <HomeSection2 />
       </div>
       <div class="section home-section3">
-        <button class="next next-button3" @click="$refs.fullpage.api.moveSectionDown()">Next</button>
+        <button class="next next-button3" @click="$refs.fullpage.api.moveSectionDown()">
+          <i class="fas fa-chevron-down"></i>
+        </button>
         <HomeSection3 />
       </div>
       <div class="section home-section4">
@@ -23,11 +28,11 @@
 </template>
 
 <script>
-import HomeSection1 from '../components/home/HomeSection1'
-import HomeSection2 from '../components/home/HomeSection2'
-import HomeSection3 from '../components/home/HomeSection3'
-import HomeSection4 from '../components/home/HomeSection4'
-import TopScrollButton from '../components/add/TopScrollButton'
+import HomeSection1 from "../components/home/HomeSection1";
+import HomeSection2 from "../components/home/HomeSection2";
+import HomeSection3 from "../components/home/HomeSection3";
+import HomeSection4 from "../components/home/HomeSection4";
+import TopScrollButton from "../components/add/TopScrollButton";
 
 export default {
   name: "Home",
@@ -43,16 +48,16 @@ export default {
       options: {
         afterLoad: this.afterLoad,
         controlArrows: true,
-        scrollBar: true
-      }
-    }
+        scrollBar: true,
+      },
+    };
   },
   methods: {
-    moveSectionDown () {
-      this.$refs.fullpage.$fullpage.moveSectionDown()
-    }
+    moveSectionDown() {
+      this.$refs.fullpage.$fullpage.moveSectionDown();
+    },
   },
-}
+};
 </script>
 
 <style>
@@ -67,6 +72,17 @@ export default {
 }
 .home-section4 {
   background-color: #a79c8e;
+}
+.next {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: transparent;
+}
+.next:focus {
+  border: none;
+  outline: none;
 }
 .next-button1 {
   position: absolute;
