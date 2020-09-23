@@ -8,7 +8,17 @@
       </div>
       <div class="d-flex flex-column align-items-center mt-5">
         <h5>질문 등록</h5>
-        <button class="btn btn-dark interview-start-button" @click="getQuestions">+</button>
+        <!-- <button class="btn btn-dark interview-start-button" @click="getQuestions">+</button> -->
+        <b-button variant="dark" v-b-modal.modal-scrollable>+</b-button>
+
+        <b-modal id="modal-scrollable" scrollable title="Scrollable Content">
+          <div class="my-4" v-for="i in 10" :key="i">
+            <div class="d-flex flex-row justify-content-between">
+              <div>질문 넣을 자리</div>
+              <input type="checkbox" />
+            </div>
+          </div>
+        </b-modal>
       </div>
     </div>
   </div>
