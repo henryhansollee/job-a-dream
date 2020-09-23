@@ -39,6 +39,15 @@
 .basic-btn {
   border: none;
   outline: none;
+  background-color: transparent;
+}
+.basic-btn:hover {
+  border: none;
+  outline: none;
+}
+.basic-btn:focus {
+  border: none;
+  outline: none;
 }
 .basic-size {
   font-size: large;
