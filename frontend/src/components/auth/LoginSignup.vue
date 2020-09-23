@@ -21,15 +21,16 @@
           :placeholder="email"
           v-model="loginData.email"
           class="mb-1"
-          style="height:45px;font-family: FontAwesome;"
+          style="height:45px; font-family: fontawesome, 'Do Hyeon', sans-serif;"
         />
         <b-form-input
           type="password"
           :placeholder="password"
           v-model="loginData.password"
-          class="mb-1"
-          style="height: 45px; margin-top: 1px; font-family: FontAwesome "
+          class="mb-1 main-font"
+          style="height: 45px; margin-top: 1px; font-family: fontawesome, 'Do Hyeon', sans-serif;"
         />
+
         <div style="margin-top: 5px;">
           <a href class="text-none">비밀번호를 잊어버리셨나요?</a>
         </div>
@@ -58,13 +59,21 @@
                 placeholder="이름"
                 v-model="signupData.username"
                 class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
               />
-              <b-form-input type="email" placeholder="이메일" v-model="signupData.email" class="mb-1" />
+              <b-form-input
+                type="email"
+                placeholder="이메일"
+                v-model="signupData.email"
+                class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
+              />
               <b-form-input
                 type="password"
                 placeholder="패스워드"
                 v-model="signupData.password"
                 class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
               />
               <b-button variant="dark" @click="signup(signupData)" class="mb-1 mt-3">회원가입</b-button>
             </div>
@@ -105,6 +114,13 @@ export default {
 </script>
 
 <style>
+/* #pw-input {
+  font-family: "Do Hyeon", cursive;
+}
+input[type="password"] ::placeholder {
+  font-family: "Cafe24Ohsquare", cursive;
+}  */
+
 .login-block {
   width: 45%;
   height: 25rem;
