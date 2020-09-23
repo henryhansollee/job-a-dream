@@ -168,6 +168,18 @@ export default new Vuex.Store({
         });
     },
 
+    //post New Questions
+    postNewQuestions({ getters }) {
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          getters.config
+        )
+        .then(() => {
+          router.push("/interview/list/");
+        })
+        .catch((err) => console.log(err));
+    },
     // Interview Update
     updateInterview() {},
 
