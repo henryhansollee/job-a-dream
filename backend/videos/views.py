@@ -50,6 +50,27 @@ class QuestionAPI(APIView):
     def get(self, request):
         serializer = QuestionSerializer(Question.objects.all(), many=True)
         return Response(serializer.data, status=200)
+    
+    def post(self, request):
+        serializer = QuestionSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    
+    def put(self, request, pk):
+        serializer = QuestionSerializer(Question.objects.get(pk=pk), data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        question = Question.objects.get(pk=pk)
+        question.delete()
+        return Response('삭제되었습니다.', status=204)
 
 class ResultAPI(APIView):
 
