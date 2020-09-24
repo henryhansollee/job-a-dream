@@ -25,54 +25,31 @@
 
       <!-- 스텝 2 -->
       <div>
-        <b-button v-b-toggle.collapse-1 variant="primary">Toggle Collapse</b-button>
-        <b-collapse id="collapse-1" class="mt-2">
-          <b-card>
-            <p class="card-text">Collapse contents Here</p>
-            <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
-            <b-collapse id="collapse-1-inner" class="mt-2">
-              <b-card>Hello!</b-card>
-            </b-collapse>
-          </b-card>
-        </b-collapse>
-      </div>
-
-      <div>
         <h1>Step 2</h1>
-        <b-button v-b-modal.modal-2>면접시작</b-button>
-
-        <b-modal id="modal-2" title="BootstrapVue">
+        <b-button @click="step2Show === true" v-b-toggle.collapse-1 variant="primary">면접 시작</b-button>
+        <b-collapse :visible="step2Show" id="collapse-1" class="mt-2">
+          <template>
+            <dictaphone @stop="handleRecording($event)" mime-type="audio/wav">
+              <template slot-scope="{ isRecording, startRecording, stopRecording }">
+                <button class="btn btn-info" v-if="!isRecording" @click="startRecording">면접 시작</button>
+                <button class="btn btn-danger" v-else @click="stopRecording">면접 종료</button>
+              </template>
+            </dictaphone>
+          </template>
           <div>
             <div class="block mt-4" v-show="!result">
-              <h4 class="title is-4 text-center mb-3">
-                {{
-                  timer.interval ? `녹화중 ${formatedTime}` : "시작버튼을 눌러주세요."
-                }}
-              </h4>
               <video ref="video"></video>
             </div>
-            <div class="block" v-show="result">
-              <h4 class="title is-4">녹화된거</h4>
-              <video controls :src="blobUrl"></video>
-            </div>
             <div class="field d-flex justify-content-center mt-4">
-              <button
-                class="button is-danger btn btn-danger"
-                @click="stop"
-                v-if="recorder && recorder.getState() === 'recording'"
-              >
-                녹화정지
-              </button>
-              <button class="nxt-btn" style="font-size: large;" @click="record" v-else>녹화시작</button>
             </div>
           </div>
-        </b-modal>
+        </b-collapse>
       </div>
 
       <!-- 스텝 3 -->
       <div>
         <h1>Step 3</h1>
-        <b-button  v-b-modal.modal-3>정보입력</b-button>
+        <b-button  v-b-modal.modal-3 @click="completeStep2()">정보입력</b-button>
 
         <b-modal  id="modal-3" title="BootstrapVue">
           <p class="my-4">Hello from modal!</p>
@@ -248,16 +225,19 @@ import Header from "../../components/Header";
 import { mapState, mapActions } from "vuex";
 import cookies from "vue-cookies";
 import RecordRTC from "recordrtc";
+import Dictaphone from '@/components/Dictaphone';
 
 export default {
   name: "InterviewCreateView",
   components: {
     Header,
+    Dictaphone,
   },
   data() {
     return {
       selected: '',
       step1ModalShow: false,
+      step2Show: false,
       recorder: null,
       result: null,
       blobUrl: null,
@@ -265,6 +245,7 @@ export default {
         interval: null,
         value: 0,
       },
+      audioSource: null,
 
       stepNum: 1,
       selectedQ: "",
@@ -296,9 +277,20 @@ export default {
     },
   },
   methods: {
+    handleRecording({ blob, src }) {
+      this.audioSource = src;
+      this.temp = blob
+      console.log(this.temp,'sss')
+    },
     completeStep1() {
       console.log(this.selected)
       this.step1ModalShow = false
+      this.record()
+    },
+    completeStep2() {
+      console.log(this.step2Show)
+      this.step2Show = false
+      this.stop()
     },
         _fillzero(value) {
       return value < 9 ? "0" + value : value;
