@@ -31,9 +31,6 @@ import CoverletterCreateView from '../views/coverletter/CoverletterCreateView'
 import CoverletterUpdateView from '../views/coverletter/CoverletterUpdateView'
 import CoverletterDetailView from '../views/coverletter/CoverletterDetailView'
 
-// Test
-import Test from '../views/Test'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -146,13 +143,6 @@ const routes = [
     name: 'CoverletterUpdateView',
     component: CoverletterUpdateView
   },
-
-  // Test
-  {
-    path: '/test',
-    name: 'Test',
-    component: Test
-  }
 ]
 
 const router = new VueRouter({
