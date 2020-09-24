@@ -62,3 +62,11 @@
   font-weight: bold;
   padding: 12px;
 }
+.vue-boot-input:focus {
+  border: none;
+  outline: none;
+}
+.vue-boot-input:focus ::placeholder {
+  border: none;
+  outline: none;
+}
