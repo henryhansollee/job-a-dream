@@ -61,9 +61,14 @@
           >
             <div class="d-flex flex-row justify-content-between">
               <div>{{ question.content }}</div>
-              <button class="basic-btn" style="background-color: transparent">
-                <i class="fas fa-volume-up"></i>
-              </button>
+              <div>
+                <button class="basic-btn mr-3" style="background-color: transparent">
+                  <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="basic-btn" style="background-color: transparent">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
           </div>
           <hr />
