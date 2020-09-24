@@ -58,6 +58,7 @@
   border: none;
   outline: none;
   background-color: #fcbe32;
-  border-radius: 4px;
+  border-radius: 25px;
   font-weight: bold;
+  padding: 12px;
 }

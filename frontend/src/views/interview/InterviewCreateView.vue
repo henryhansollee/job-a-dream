@@ -8,22 +8,24 @@
       data-interval="false"
     >
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active" style="vertical-align:middle;">
           <div
             class="d-block w-100 d-flex flex-column align-items-center"
-            style="border:1px solid red; background-color: purple; heigh: 100%;"
+            style="padding:50px 100px 100px 100px;"
           >
-            <div>질문 1개 선택</div>
+            <div style="font-size:xx-large">STEP 1.</div>
+            <p></p>
+            <div style="font-size:x-large">질문을 선택하세요:)</div>
             <br />
             <div>
               <div
-                style="font-size: small; margin:0 8px;border: 1px solid yellow;"
+                style="font-size: small; margin:0 8px;"
                 v-for="question in questions"
                 :key="question.id"
               >
                 <div class="d-flex flex-row justify-content-between">
-                  <div>{{ question.content }}</div>
-                  <input type="radio" name="questionBox" @click="checkQ(question.id)" />
+                  <div style="font-size:large">{{ question.content }}</div>
+                  <input type="radio" name="questionBox" @click="checkQ(question)" />
                 </div>
               </div>
             </div>
@@ -31,28 +33,37 @@
         </div>
         <div class="carousel-item">
           <div
-            class="d-block w-100 d-flex justify-content-center"
-            style="border:1px solid red; background-color: purple; height: 800px;"
+            class="d-flex flex-column align-items-center w-100"
+            style="padding:50px 100px 100px 100px;"
           >
-            <div>당신이 선택한 질문 : {{interviewData.question}}</div>
+            <div style="font-size:xx-large">STEP 2.</div>
+            <p></p>
+            <div style="font-size:x-large">이제 면접 영상을 녹화해봐요!</div>
+            <div style="font-size:x-large">질문 : {{selectedQ}}</div>
             <Video @getVideo="getVideo" />
           </div>
         </div>
         <div class="carousel-item">
           <div
-            class="d-block w-100 d-flex justify-content-center"
-            style="border:1px solid red; background-color: purple; height: 50px;"
+            class="w-100 d-flex flex-column align-items-center"
+            style="padding:50px 100px 100px 100px;"
           >
-            <div>썸넬</div>
+            <div style="font-size:xx-large">STEP 3.</div>
+            <p></p>
+            <div style="font-size:x-large">리스트에 보일 썸네일을 만드세요!</div>
           </div>
         </div>
 
         <div class="carousel-item">
           <div class="carousel-item active">
             <div
-              class="d-block w-100 d-flex justify-content-center"
-              style="border:1px solid red; background-color: green; height: 800px;"
+              class="w-100 d-flex flex-column align-items-center"
+              style="padding:50px 100px 100px 100px;"
             >
+              <div style="font-size:xx-large">STEP 4.</div>
+              <p></p>
+              <div style="font-size:x-large">마지막으로 제목, 태그를 설정해주세요:)</div>
+
               <div class="container">
                 <div>
                   <!-- 제목 -->
@@ -113,8 +124,11 @@
         href="#carouselExampleControls"
         role="button"
         data-slide="prev"
+        v-if="stepNum>1"
       >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span aria-hidden>
+          <i class="fas fa-chevron-left" style="color:black;"></i>
+        </span>
         <span class="sr-only">Previous</span>
       </a>
       <a
@@ -124,8 +138,10 @@
         data-slide="next"
         v-if="isChecked"
       >
-        <span class="carousel-control-next-icon" v-if="isChecked" aria-hidden="false"></span>
-        <span class="sr-only" style="background-color: yellow; color: white;">Next</span>
+        <span v-if="isChecked" aria-hidden="false">
+          <i class="fas fa-chevron-right" style="color:black;"></i>
+        </span>
+        <span class="sr-only" style="color: white;">Next</span>
       </a>
     </div>
   </div>
@@ -166,9 +182,9 @@ export default {
   },
   methods: {
     checkQ(question) {
-      this.selectedQ = `${question}`;
-      this.interviewData.question = question;
-      console.log(this.interviewData.question, "질문질문");
+      this.selectedQ = question.content;
+      this.interviewData.question = question.id;
+      console.log(this.interviewData.question, "질문번호");
       console.log(this.selectedQ);
       if (this.interviewData.question != null) {
         this.isChecked = true;
@@ -229,4 +245,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.glyphicon.glyphicon-chevron-right {
+  color: red !important;
+}
+.carousel-control {
+  color: red !important;
+}
+.carousel-control.right {
+  opacity: 1 !important;
+  color: red !important;
+}
+.carousel-control-prev-icon {
+  opacity: 1 !important;
+  color: red !important;
+}
+</style>
