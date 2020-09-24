@@ -17,15 +17,23 @@
             <p></p>
             <div style="font-size:x-large">질문을 선택하세요:)</div>
             <br />
-            <div>
+            <div class="mt-4" style="margin-left:50px;">
               <div
                 style="font-size: small; margin:0 8px;"
                 v-for="question in questions"
                 :key="question.id"
               >
-                <div class="d-flex flex-row justify-content-between">
-                  <div style="font-size:large">{{ question.content }}</div>
-                  <input type="radio" name="questionBox" @click="checkQ(question)" />
+                <div class="d-flex flex-row justify-content-start">
+                  <div style="font-size:large">
+                    <i class="fas fa-check" style="margin-right:15px;"></i>
+                  </div>
+                  <div style="font-size:large">
+                    <button
+                      @click="checkQ(question)"
+                      :class="{hihihi:isSelected && question.id==interviewData.question, byebye:!isSlected}"
+                    >{{ question.content }}</button>
+                  </div>
+                  <!-- <input type="radio" name="questionBox" @click="checkQ(question)" /> -->
                 </div>
               </div>
             </div>
@@ -129,9 +137,9 @@
         href="#carouselExampleControls"
         role="button"
         data-slide="next"
-        v-if="isChecked"
+        v-if="isSelected"
       >
-        <span v-if="isChecked" aria-hidden="false">
+        <span v-if="isSelected" aria-hidden="false">
           <i class="fas fa-chevron-right" style="color:black;"></i>
         </span>
         <span class="sr-only" style="color: white;">Next</span>
@@ -156,7 +164,7 @@ export default {
     return {
       stepNum: 1,
       selectedQ: "",
-      isChecked: false,
+      isSelected: false,
       content: "",
       file: "",
       interviewData: {
@@ -175,14 +183,16 @@ export default {
   },
   methods: {
     checkQ(question) {
+      console.log(this.isSelected, "체크됨?");
+
       this.selectedQ = question.content;
       this.interviewData.question = question.id;
       console.log(this.interviewData.question, "질문번호");
-      console.log(this.selectedQ);
+      console.log(this.selectedQ, "질문내용");
       if (this.interviewData.question != null) {
-        this.isChecked = true;
+        this.isSelected = true;
         this.stepNum = 2;
-        console.log(this.isChecked, "체크됨?");
+        console.log(this.isSelected, "체크됨?");
         console.log(this.stepNum, "뀨");
       }
       // if (this.isChecked) {
@@ -239,6 +249,24 @@ export default {
 </script>
 
 <style>
+.byebye {
+  border: none;
+  outline: none;
+}
+.byebye:focus {
+  border: none;
+  outline: none;
+}
+.hihihi {
+  border: none;
+  outline: none;
+  color: orange;
+}
+.hihihi:focus {
+  border: none;
+  outline: none;
+  color: orange;
+}
 .glyphicon.glyphicon-chevron-right {
   color: red !important;
 }
