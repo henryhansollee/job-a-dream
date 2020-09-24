@@ -4,9 +4,6 @@ import VueRouter from 'vue-router'
 // home
 import Home from '../views/Home.vue'
 
-// auth
-import ProfileView from '../views/auth/ProfileView'
-
 // interview
 import InterviewListView from '../views/interview/InterviewListView'
 import InterviewAboutView from '../views/interview/InterviewAboutView'
@@ -45,13 +42,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-
-  // auth
-  {
-    path: '/profile',
-    name: 'ProfileView',
-    component: ProfileView
   },
 
   // interview
