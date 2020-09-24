@@ -23,7 +23,7 @@
               >
                 <div class="d-flex flex-row justify-content-between">
                   <div>{{ question.content }}</div>
-                  <input type="radio" name="questionBox" @click="checkQ(question.content)" />
+                  <input type="radio" name="questionBox" @click="checkQ(question.id)" />
                 </div>
               </div>
             </div>
