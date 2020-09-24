@@ -19,6 +19,7 @@
     "vue-audio-recorder": "^3.0.1",
     "vue-cam-vision": "0.0.8",
     "vue-cookies": "^1.7.4",
+    "vue-dark-mode-switcher": "^0.1.8",
     "vue-dictaphone": "^2.0.0",
     "vue-fullpage.js": "^0.1.6",
     "vue-router": "^3.4.3",

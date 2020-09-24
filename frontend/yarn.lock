@@ -9091,6 +9091,11 @@ vue-cookies@^1.7.4:
   resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.7.4.tgz#d241d0a0431da0795837651d10b4d73e7c8d3e8d"
   integrity sha512-mOS5Btr8V9zvAtkmQ7/TfqJIropOx7etDAgBywPCmHjvfJl2gFbH2XgoMghleLoyyMTi5eaJss0mPN7arMoslA==
 
+vue-dark-mode-switcher@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/vue-dark-mode-switcher/-/vue-dark-mode-switcher-0.1.8.tgz#efdf1d7a5db8fd250f9a8aa0c59034da0b91a955"
+  integrity sha512-k41VJNC6bLkF73RM0zPKd6FKLV/lbv4qL1zdzcrmAx9N2vZ01r3gxBNzw0Ki2KZ+5cLsLER7/oxOehRTMuWoyg==
+
 vue-dictaphone@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/vue-dictaphone/-/vue-dictaphone-2.0.0.tgz#ed2554bb07b8e9736bc744e1647bae40d7d8af91"
