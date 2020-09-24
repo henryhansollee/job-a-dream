@@ -9,8 +9,8 @@
 
       <!-- 검색 -->
       <div class="d-flex pt-4">
-        <v-text-field class="ml-5 mr-2" :rules="rules"></v-text-field>
-        <button class="mr-5"><i class="fas fa-search"></i></button>
+        <v-text-field class="ml-4 mr-2" :rules="rules"></v-text-field>
+        <button class="mr-4"><i class="fas fa-search"></i></button>
       </div>
 
       <!-- 프로필 -->
@@ -21,10 +21,26 @@
         
         <!-- 개인정보 -->
         <div class="m-3">
-          <h6>이름: <small>henryhansollee</small></h6>
-          <h6>이메일: <small>henryhansollee@gmail.com</small></h6>
+          <small>이름: henryhansollee</small><br />
+          <small>이메일: henryhansollee@gmail.com</small>
+          <small class="m-2">오늘도 뽜이링 하쟈, 써봅니다</small>
+        </div>
+      </div>
+      
+      <!-- 메인 메뉴 -->
+      <div class="main-menu-box">
+
+        <!-- 위에 두개 -->
+        <div class="main-menu-inner d-flex">
+          <div class="main-menu-detail"></div>
+          <div class="main-menu-detail"></div>
         </div>
 
+        <!-- 밑에 두개 -->
+        <div class="main-menu-inner d-flex">
+          <div class="main-menu-detail"></div>
+          <div class="main-menu-detail"></div>
+        </div>
       </div>
 
 
@@ -220,10 +236,25 @@ export default {
   margin-right: 7px;
 }
 .profile-img {
-  margin-left: 18%;
+  margin-left: 30%;
   width: 90%;
-  max-width: 170px;
+  max-width: 120px;
   height: 90%;
-  max-height: 200px;
+  max-height: 150px;
 }
+.main-menu-box {
+  margin-left: 22%;
+  width: 150px;
+  height: 100px;
+}
+.main-menu-inner {
+  width: 150px;
+  height: 50px;
+}
+.main-menu-detail {
+  width: 75px;
+  height: 50px;
+  border: solid black
+}
+
 </style>
