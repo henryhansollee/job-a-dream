@@ -9,6 +9,9 @@ import ProfileView from '../views/auth/ProfileView'
 
 // interview
 import InterviewListView from '../views/interview/InterviewListView'
+import interviewAboutView from '../views/interview/interviewAboutView'
+import interviewStarView from '../views/interview/interviewStarView'
+import interviewResultView from '../views/interview/interviewResultView'
 import InterviewCreateView from '../views/interview/InterviewCreateView'
 import InterviewDetailView from '../views/interview/InterviewDetailView'
 import InterviewUpdateView from '../views/interview/InterviewUpdateView'
@@ -44,6 +47,21 @@ const routes = [
     path: '/interview/list/',
     name: 'InterviewListView',
     component: InterviewListView
+  },
+  {
+    path: '/interview/about/',
+    name: 'interviewAboutView',
+    component: interviewAboutView
+  },
+  {
+    path: '/interview/start/',
+    name: 'interviewStarView',
+    component: interviewStarView
+  },
+  {
+    path: '/interview/result/',
+    name: 'interviewResultView',
+    component: interviewResultView
   },
   {
     path: '/interview/create/',

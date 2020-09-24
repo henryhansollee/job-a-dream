@@ -18,22 +18,12 @@
 <script>
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import { mapState, mapActions } from "vuex";
 
 export default {
   name: "InterviewListView",
   components: {
     Header,
     Sidebar,
-  },
-  computed: {
-    ...mapState([ "interviews" ]),
-  },
-  methods: {
-    ...mapActions([ "getInterviews" ]),
-  },
-  created() {
-    this.getInterviews();
   },
 };
 </script>
