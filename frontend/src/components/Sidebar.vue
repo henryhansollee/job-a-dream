@@ -56,7 +56,7 @@
           <div class="d-flex flex-row justify-content-between">
             <div>{{ question.content }}</div>
             <div>
-              <button class="basic-btn mr-3" style="background-color: transparent">
+              <button @click="onSpeak(question.content)" class="basic-btn mr-3" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
               <button class="basic-btn" style="background-color: transparent">
@@ -112,22 +112,22 @@
       <v-list-item-group>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="text-center"><router-link class="text-dark text-decoration-none" to="/interview/about">사용방법</router-link></v-list-item-title>
+            <router-link class="text-dark text-decoration-none" to="/interview/about"><v-list-item-title class="text-center">사용방법</v-list-item-title></router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="text-center"><router-link class="text-dark text-decoration-none" to="/interview/list">전체보기</router-link></v-list-item-title>
+            <router-link class="text-dark text-decoration-none" to="/interview/list"><v-list-item-title class="text-center">전체보기</v-list-item-title></router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="text-center"><router-link class="text-dark text-decoration-none" to="/interview/star">즐겨찾기</router-link></v-list-item-title>
+            <router-link class="text-dark text-decoration-none" to="/interview/star"><v-list-item-title class="text-center">즐겨찾기</v-list-item-title></router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="text-center"><router-link class="text-dark text-decoration-none" to="/interview/result">통계분석</router-link></v-list-item-title>
+            <router-link class="text-dark text-decoration-none" to="/interview/result"><v-list-item-title class="text-center">통계분석</v-list-item-title></router-link>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -160,6 +160,11 @@ export default {
       this.questionData.content=''
       this.getQuestions()
     },
+    onSpeak(text) {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = text
+      window.speechSynthesis.speak(msg);
+    }
   },
 }
 </script>

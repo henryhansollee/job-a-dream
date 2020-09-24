@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="isLoggedIn" to="/interview/list/" class="main-font">
+  <router-link v-if="isLoggedIn" to="/interview/about/" class="main-font">
     <button class="cta">
       <span class="click">시작하기</span>
       <svg class="Svg" width="13px" height="10px" viewBox="0 0 13 10">
@@ -8,10 +8,6 @@
       </svg>
     </button>
   </router-link>
-
-  <!-- <router-link v-if="isLoggedIn" to="/interview/list/" class="btn btn-dark main-font mr-5">
-    <br />시작하기
-  </router-link>-->
   <div v-else class="main-font login-block">
     <h3 class="text-center mb-4" style="margin-top: 36px">로그인</h3>
     <div class="login-inner-block">
