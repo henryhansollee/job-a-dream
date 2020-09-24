@@ -33,26 +33,64 @@
       <div class="main-menu-box">
 
         <!-- 위에 두개 -->
-        <div class="main-menu-inner d-flex">
+        <div class="main-menu-inner d-flex mb-3">
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-1.png" alt="">
+            <small>면접보기</small>
           </div>
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-2.png" alt="">
+            <small>질문목록</small>
           </div>
         </div>
+
         <!-- 밑에 두개 -->
         <div class="main-menu-inner d-flex">
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
+            <small>이력서</small>
           </div>
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
+            <small>자기소개서</small>
           </div>
         </div>
       </div>
 
       <hr>
+      
+      <!-- 서브 메뉴 -->
+      <v-card
+          class="mx-auto"
+          max-width="300"
+          tile
+        >
+          <v-list dense>
+            <v-list-item-group v-model="item" color="primary">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>소개</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>전체보기</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>즐겨찾기</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>통계 및 분석</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-card>
+      
 
 
 
@@ -92,7 +130,7 @@
             v-for="question in questions" :key="question.id"
           >
             <div class="d-flex flex-row justify-content-between">
-              <div>{{ question }}</div>
+              <div>{{ question.content }}</div>
               <button class="basic-btn" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
@@ -160,6 +198,7 @@ export default {
     addNewQuestion() {
       this.postNewQuestions(this.questionData);
       this.questionData.content=''
+      this.getQuestions()
     },
   },
   created() {
@@ -222,10 +261,11 @@ export default {
   margin-right: 7px;
 }
 .profile-img {
+  border-radius: 10%;
   margin-left: 30%;
-  width: 90%;
+  width: 100px;
   max-width: 120px;
-  height: 90%;
+  height: 100px;
   max-height: 150px;
 }
 .main-menu-box {
@@ -233,7 +273,7 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 120px;
 }
 .main-menu-inner {
   width: 100%;
@@ -241,7 +281,8 @@ export default {
 }
 .main-menu-detail {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 50px;
 }

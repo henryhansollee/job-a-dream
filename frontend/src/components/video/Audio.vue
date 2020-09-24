@@ -7,7 +7,7 @@
     </template>
 
     <template v-else>
-      <dictaphone @stop="handleRecording($event)" @error="handleError" mime-type="audio/mp3">
+      <dictaphone @stop="handleRecording($event)" @error="handleError" mime-type="audio/wav">
         <template slot-scope="{ isRecording, startRecording, stopRecording }">
           <button v-if="!isRecording" @click="startRecording">Start recording</button>
           <button v-else @click="stopRecording">Stop recording</button>
