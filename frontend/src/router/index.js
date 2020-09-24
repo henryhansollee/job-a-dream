@@ -54,7 +54,7 @@ const routes = [
     component: interviewAboutView
   },
   {
-    path: '/interview/start/',
+    path: '/interview/star/',
     name: 'interviewStarView',
     component: interviewStarView
   },
