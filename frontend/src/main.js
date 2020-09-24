@@ -18,7 +18,6 @@ import "vuetify/dist/vuetify.min.css";
 
 Vue.use(Vuetify);
 Vue.use(VueDictaphone);
-
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueFullPage);
