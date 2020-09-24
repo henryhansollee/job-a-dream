@@ -5,9 +5,9 @@
       <!-- 스텝 1 -->
       <div>
         <h1>Step 1</h1>
-        <b-button v-b-modal.modal-1>질문선택</b-button>
+        <b-button @click="step1ModalShow = true" v-b-modal.modal-1>질문선택</b-button>
 
-        <b-modal id="modal-1" title="질문선택">
+        <b-modal :visible="step1ModalShow" hide-footer id="modal-1" title="질문선택">
           <div
             class="my-4 main-font"
             style="font-size: large; margin: 0 8px"
@@ -18,23 +18,63 @@
               <b-form-radio v-model="selected" name="some-radios" :value="question.id" />
             </div>
           </div>
+          <hr>
+          <button @click="completeStep1()" class="btn btn-primary">완료</button>
         </b-modal>
       </div>
+
       <!-- 스텝 2 -->
+      <div>
+        <b-button v-b-toggle.collapse-1 variant="primary">Toggle Collapse</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text">Collapse contents Here</p>
+            <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
+            <b-collapse id="collapse-1-inner" class="mt-2">
+              <b-card>Hello!</b-card>
+            </b-collapse>
+          </b-card>
+        </b-collapse>
+      </div>
+
       <div>
         <h1>Step 2</h1>
         <b-button v-b-modal.modal-2>면접시작</b-button>
 
         <b-modal id="modal-2" title="BootstrapVue">
-          <p class="my-4">Hello from modal!</p>
+          <div>
+            <div class="block mt-4" v-show="!result">
+              <h4 class="title is-4 text-center mb-3">
+                {{
+                  timer.interval ? `녹화중 ${formatedTime}` : "시작버튼을 눌러주세요."
+                }}
+              </h4>
+              <video ref="video"></video>
+            </div>
+            <div class="block" v-show="result">
+              <h4 class="title is-4">녹화된거</h4>
+              <video controls :src="blobUrl"></video>
+            </div>
+            <div class="field d-flex justify-content-center mt-4">
+              <button
+                class="button is-danger btn btn-danger"
+                @click="stop"
+                v-if="recorder && recorder.getState() === 'recording'"
+              >
+                녹화정지
+              </button>
+              <button class="nxt-btn" style="font-size: large;" @click="record" v-else>녹화시작</button>
+            </div>
+          </div>
         </b-modal>
       </div>
+
       <!-- 스텝 3 -->
       <div>
         <h1>Step 3</h1>
-        <b-button v-b-modal.modal-3>정보입력</b-button>
+        <b-button  v-b-modal.modal-3>정보입력</b-button>
 
-        <b-modal id="modal-3" title="BootstrapVue">
+        <b-modal  id="modal-3" title="BootstrapVue">
           <p class="my-4">Hello from modal!</p>
         </b-modal>
       </div>
@@ -103,7 +143,6 @@
             <p></p>
             <div style="font-size:x-large">이제 면접 영상을 녹화해봐요!</div>
             <div style="font-size:x-large">질문 : {{selectedQ}}</div>
-            <Video @getVideo="getVideo" />
           </div>
         </div>
         <div class="carousel-item">
@@ -206,18 +245,27 @@
 
 <script>
 import Header from "../../components/Header";
-import Video from "../../components/video/Video";
 import { mapState, mapActions } from "vuex";
 import cookies from "vue-cookies";
+import RecordRTC from "recordrtc";
 
 export default {
   name: "InterviewCreateView",
   components: {
     Header,
-    Video,
   },
   data() {
     return {
+      selected: '',
+      step1ModalShow: false,
+      recorder: null,
+      result: null,
+      blobUrl: null,
+      timer: {
+        interval: null,
+        value: 0,
+      },
+
       stepNum: 1,
       selectedQ: "",
       isSelected: false,
@@ -235,10 +283,45 @@ export default {
       },
     };
   },
+  props: {
+    msg: String,
+  },
   computed: {
     ...mapState(["questions"]),
+      formatedTime() {
+      let hour = Math.floor(this.timer.value / 3600);
+      let minute = Math.floor((this.timer.value - hour * 3600) / 60);
+      let seconds = this.timer.value - (hour * 3600 + minute * 60);
+      return [hour, minute, seconds].map(this._fillzero).join(":");
+    },
   },
   methods: {
+    completeStep1() {
+      console.log(this.selected)
+      this.step1ModalShow = false
+    },
+        _fillzero(value) {
+      return value < 9 ? "0" + value : value;
+    },
+    record() {
+      this.recorder && this.recorder.startRecording();
+      this.result = null;
+      this.blobUrl && URL.revokeObjectURL(this.blobUrl);
+      this.blobUrl = null;
+      this.timer.interval = setInterval(() => ++this.timer.value, 1000);
+    },
+    stop() {
+      this.recorder.stopRecording(() => {
+        this.result = this.recorder.getBlob();
+        this.$emit("getVideo", this.result);
+        this.blobUrl = window.URL.createObjectURL(this.result);
+        console.log(this.blobUrl, "url");
+        clearInterval(this.timer.interval);
+        this.timer.value = 0;
+        this.timer.interval = null;
+      });
+    },
+
     prevPage() {
       this.stepNum -= 1;
     },
@@ -320,6 +403,23 @@ export default {
       }
     },
   },
+  mounted() {
+    let self = this;
+    let video = self.$refs.video;
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then(async function(stream) {
+        self.recorder = RecordRTC(stream, {
+          type: "video",
+        });
+        video.srcObject = stream;
+        video.volume = 0;
+        video.play();
+      });
+  },
   created() {
     this.getQuestions();
     console.log("뽑아옴?");
@@ -370,5 +470,10 @@ export default {
 .carousel-control-prev-icon {
   opacity: 1 !important;
   color: red !important;
+}
+video {
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 2px #999;
 }
 </style>
