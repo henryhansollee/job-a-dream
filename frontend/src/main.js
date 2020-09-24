@@ -12,6 +12,11 @@ import VueFullpage from "fullpage-vue";
 
 import "@/assets/css/global.css";
 import VueDictaphone from "vue-dictaphone";
+
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+
+Vue.use(Vuetify);
 Vue.use(VueDictaphone);
 
 Vue.use(BootstrapVue);
