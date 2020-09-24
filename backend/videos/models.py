@@ -31,3 +31,7 @@ class Result(models.Model):
     sight_analysis = models.TextField(blank=True)
     accuracy = models.TextField(blank=True)
     script = models.TextField(blank=True)
+
+class SelfIntroduction(models.Model):
+    content = models.TextField()
+

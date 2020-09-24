@@ -25,20 +25,17 @@ class VideoListAPI(APIView):
         
         if serializer.is_valid():
             serializer.save(writer=request.user)
-
             result_data = request.data.dict()
-            try:
-                result_data['sight_analysis'] = str(analyze_eye_tracking(str(result_data['video_file'])))
-                result_querydict = QueryDict('', mutable=True)
-                result_querydict.update(result_data)
-                result_serializer = ResultSerializer(data=result_querydict)
+            print(str(result_data['video_file']))
+            result_data['sight_analysis'] = str(analyze_eye_tracking(str(result_data['video_file'])))
+            result_querydict = QueryDict('', mutable=True)
+            result_querydict.update(result_data)
+            result_serializer = ResultSerializer(data=result_querydict)
 
-                if result_serializer.is_valid():
-                    result_serializer.save()
-                else:
-                    return Response(result_serializer.errors, status=400)
-            except:
-                pass
+            if result_serializer.is_valid():
+                result_serializer.save()
+            else:
+                return Response(result_serializer.errors, status=400)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 

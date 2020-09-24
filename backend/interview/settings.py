@@ -193,4 +193,4 @@ AUTHENTICATION_BACKENDS = (
 
 MEDIA_URL =  '/assets/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets/videos")

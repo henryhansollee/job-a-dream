@@ -9,7 +9,7 @@ from .gaze_tracking.gaze_tracking import GazeTracking
 def analyze_eye_tracking(File_Name):
     gaze = GazeTracking()
     # webcam = cv2.VideoCapture('hohoho.mkv')
-    os.chdir('C:/Users/multicampus/Desktop/new/s03p23b107/frontend/src/assets')
+    os.chdir('C:/Users/multicampus/Desktop/new/s03p23b107/frontend/src/assets/videos')
     webcam = cv2.VideoCapture(File_Name)
     # webcam = cv2.VideoCapture('blob')
     # webcam = cv2.VideoCapture(0)
