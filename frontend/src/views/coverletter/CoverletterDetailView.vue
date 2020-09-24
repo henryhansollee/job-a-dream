@@ -6,17 +6,14 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
+import Header from "@/components/Header";
 
 export default {
   name: "CoverletterDetailView",
   components: {
     Header,
-  }
-
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
