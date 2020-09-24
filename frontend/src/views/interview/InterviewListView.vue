@@ -1,7 +1,36 @@
 <template>
   <div class="main-font">
+
+    <!-- 헤더 -->
     <Header />
+
+    <!-- 사이드바 -->
     <div class="interview-sidebar">
+
+      <!-- 검색 -->
+      <div class="d-flex pt-4">
+        <v-text-field class="ml-5 mr-2" :rules="rules"></v-text-field>
+        <button class="mr-5"><i class="fas fa-search"></i></button>
+      </div>
+
+      <!-- 프로필 -->
+      <div>
+
+        <!-- 프로필 사진 -->
+        <img class="profile-img" src="https://source.unsplash.com/random" alt="프로필 사진">
+        
+        <!-- 개인정보 -->
+        <div class="m-3">
+          <h6>이름: <small>henryhansollee</small></h6>
+          <h6>이메일: <small>henryhansollee@gmail.com</small></h6>
+        </div>
+
+      </div>
+
+
+
+
+
       <div class="d-flex flex-column align-items-center mb-5">
         <h5 class="mt-5">면접 보러가기</h5>
         <router-link
@@ -140,7 +169,7 @@ export default {
 <style>
 .interview-sidebar {
   background-color: #fffcf0;
-  width: 17%;
+  width: 25%;
   min-height: 53.3rem;
   height: 100%;
 }
@@ -189,5 +218,12 @@ export default {
   border-radius: 4px;
   background-color: #fcbe32;
   margin-right: 7px;
+}
+.profile-img {
+  margin-left: 18%;
+  width: 90%;
+  max-width: 170px;
+  height: 90%;
+  max-height: 200px;
 }
 </style>
