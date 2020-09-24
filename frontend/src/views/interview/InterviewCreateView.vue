@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+
     <div
       id="carouselExampleControls"
       class="carousel slide"
@@ -30,7 +31,7 @@
                   <div style="font-size:large">
                     <button
                       @click="checkQ(question)"
-                      :class="{hihihi:isSelected && question.id==interviewData.question, byebye:!isSlected}"
+                      :class="{'selected-question':question.id==interviewData.question, 'not-selected':question.id!=interviewData.question}"
                     >{{ question.content }}</button>
                   </div>
                   <!-- <input type="radio" name="questionBox" @click="checkQ(question)" /> -->
@@ -126,6 +127,7 @@
         role="button"
         data-slide="prev"
         v-if="stepNum>1"
+        @click="prevPage"
       >
         <span aria-hidden>
           <i class="fas fa-chevron-left" style="color:black;"></i>
@@ -137,9 +139,9 @@
         href="#carouselExampleControls"
         role="button"
         data-slide="next"
-        v-if="isSelected"
+        @click="nextPage"
       >
-        <span v-if="isSelected" aria-hidden="false">
+        <span aria-hidden="false">
           <i class="fas fa-chevron-right" style="color:black;"></i>
         </span>
         <span class="sr-only" style="color: white;">Next</span>
@@ -165,6 +167,7 @@ export default {
       stepNum: 1,
       selectedQ: "",
       isSelected: false,
+      haveVideo: false,
       content: "",
       file: "",
       interviewData: {
@@ -182,6 +185,27 @@ export default {
     ...mapState(["questions"]),
   },
   methods: {
+    prevPage() {
+      this.stepNum -= 1;
+    },
+    nextPage() {
+      this.stepNum += 1;
+    },
+    checkPage() {
+      console.log("왓냐");
+      if (this.stepNum == 1 && this.isSelected == true) {
+        console.log("됨");
+        return true;
+      } else if (this.stepNum == 2) {
+        if (this.haveVideo == true) {
+          return true;
+        }
+      } else if (this.stepNum == 3) {
+        return false;
+      } else {
+        return false;
+      }
+    },
     checkQ(question) {
       console.log(this.isSelected, "체크됨?");
 
@@ -191,9 +215,9 @@ export default {
       console.log(this.selectedQ, "질문내용");
       if (this.interviewData.question != null) {
         this.isSelected = true;
-        this.stepNum = 2;
+        // this.stepNum = 2;
         console.log(this.isSelected, "체크됨?");
-        console.log(this.stepNum, "뀨");
+        // console.log(this.stepNum, "뀨");
       }
       // if (this.isChecked) {
       //   this.isChecked = false;
@@ -215,6 +239,7 @@ export default {
     ...mapActions(["createInterview", "getQuestions"]),
     getVideo(result) {
       this.interviewData.video_file = result;
+      this.haveVideo = true;
       console.log(this.interviewData.video_file);
     },
 
@@ -245,24 +270,35 @@ export default {
     this.getQuestions();
     console.log("뽑아옴?");
   },
+  watch: {
+    isSelected() {
+      this.checkPage();
+    },
+    stepNum() {
+      this.checkPage();
+    },
+    haveVideo() {
+      this.checkPage();
+    },
+  },
 };
 </script>
 
 <style>
-.byebye {
+.not-selected {
   border: none;
   outline: none;
 }
-.byebye:focus {
+.not-selected:focus {
   border: none;
   outline: none;
 }
-.hihihi {
+.selected-question {
   border: none;
   outline: none;
   color: orange;
 }
-.hihihi:focus {
+.selected-question:focus {
   border: none;
   outline: none;
   color: orange;
