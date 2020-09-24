@@ -60,36 +60,30 @@
       <hr>
       
       <!-- 서브 메뉴 -->
-      <v-card
-          class="mx-auto"
-          max-width="300"
-          tile
-        >
-          <v-list dense>
-            <v-list-item-group v-model="item" color="primary">
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>소개</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>전체보기</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>즐겨찾기</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>통계 및 분석</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
+      <v-list dense style="background-color: #fffcf0">
+        <v-list-item-group>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>소개</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>전체보기</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>즐겨찾기</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>통계 및 분석</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
       
 
 
