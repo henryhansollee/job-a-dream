@@ -1,6 +1,60 @@
 <template>
   <div>
     <Header />
+    <div class="d-flex">
+      <!-- 스텝 1 -->
+      <div>
+        <h1>Step 1</h1>
+        <b-button v-b-modal.modal-1>질문선택</b-button>
+
+        <b-modal id="modal-1" title="질문선택">
+          <div
+            class="my-4 main-font"
+            style="font-size: large; margin: 0 8px"
+            v-for="question in questions" :key="question.id"
+          >
+            <div class="d-flex flex-row justify-content-between">
+              <div>{{ question.content }}</div>
+              <b-form-radio v-model="selected" name="some-radios" :value="question.id" />
+            </div>
+          </div>
+        </b-modal>
+      </div>
+      <!-- 스텝 2 -->
+      <div>
+        <h1>Step 2</h1>
+        <b-button v-b-modal.modal-2>면접시작</b-button>
+
+        <b-modal id="modal-2" title="BootstrapVue">
+          <p class="my-4">Hello from modal!</p>
+        </b-modal>
+      </div>
+      <!-- 스텝 3 -->
+      <div>
+        <h1>Step 3</h1>
+        <b-button v-b-modal.modal-3>정보입력</b-button>
+
+        <b-modal id="modal-3" title="BootstrapVue">
+          <p class="my-4">Hello from modal!</p>
+        </b-modal>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div
       id="carouselExampleControls"

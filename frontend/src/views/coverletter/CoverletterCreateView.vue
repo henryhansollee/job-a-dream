@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     ...mapActions([""]), //vuex에 createCvData만든거 불러오고
-    postCvData(data) {
+    postCvData() {
       console.log("여기서 호출");
       //작성완료하고
       this.cvData.subject = "";
