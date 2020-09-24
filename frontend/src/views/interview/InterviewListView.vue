@@ -58,6 +58,39 @@
       </div>
 
       <hr>
+      
+      <!-- 서브 메뉴 -->
+      <v-card
+          class="mx-auto"
+          max-width="300"
+          tile
+        >
+          <v-list dense>
+            <v-list-item-group v-model="item" color="primary">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>소개</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>전체보기</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>즐겨찾기</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>통계 및 분석</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-card>
+      
 
 
 
@@ -97,7 +130,7 @@
             v-for="question in questions" :key="question.id"
           >
             <div class="d-flex flex-row justify-content-between">
-              <div>{{ question }}</div>
+              <div>{{ question.content }}</div>
               <button class="basic-btn" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
@@ -165,6 +198,7 @@ export default {
     addNewQuestion() {
       this.postNewQuestions(this.questionData);
       this.questionData.content=''
+      this.getQuestions()
     },
   },
   created() {
@@ -227,10 +261,11 @@ export default {
   margin-right: 7px;
 }
 .profile-img {
+  border-radius: 10%;
   margin-left: 30%;
-  width: 90%;
+  width: 100px;
   max-width: 120px;
-  height: 90%;
+  height: 100px;
   max-height: 150px;
 }
 .main-menu-box {
