@@ -1,5 +1,3 @@
-<!--create refs for video and canvas, button to take photos, define canvas sizes, show photos using v-for-->
-/* eslint-disable */
 <template>
   <div id="app">
     <div>
@@ -29,14 +27,11 @@ export default {
   },
   mounted() {
     this.video = this.$refs.video;
-    // video: ElementRef;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({ video: true })
         .then((stream) => {
-          // this.video.src = window.URL.createObjectURL(stream)
           this.video.srcObject = stream;
-          // this.video.nativeElement.play();
         })
         .catch((err) => alert(`Bummer! ${err.name}.`));
     }

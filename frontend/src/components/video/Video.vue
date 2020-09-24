@@ -20,7 +20,7 @@
       >
         녹화정지
       </button>
-      <button class="nxt-btn" @click="record" v-else>녹화시작</button>
+      <button class="nxt-btn" style="font-size: large;" @click="record" v-else>녹화시작</button>
     </div>
   </div>
 </template>
