@@ -94,14 +94,14 @@
 
       <!-- 밑에 두개 --> 
       <div class="main-menu-inner d-flex">
-        <div class="main-menu-detail ml-5">
+        <router-link class="main-menu-detail ml-5 text-dark text-decoration-none" to="/resume">
           <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
           <small>이력서</small>
-        </div>
-        <div class="main-menu-detail mr-5">
+        </router-link>
+        <router-link class="main-menu-detail mr-5 text-dark text-decoration-none" to="/coverletter/list">
           <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
           <small>자기소개서</small>
-        </div>
+        </router-link>
       </div>
     </div>
     

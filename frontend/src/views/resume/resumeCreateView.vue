@@ -1,11 +1,18 @@
 <template>
   <div>
-    <h1>이력서 쓰기</h1>
+    <Header />
+    <h1>이력서 작성</h1>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header'
+
 export default {
+  name: "ResumeCreateView",
+  components: {
+    Header,
+  }
 
 }
 </script>
