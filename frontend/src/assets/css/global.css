@@ -31,7 +31,9 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
-
+* {
+  font-family: "Cafe24Ohsquare", cursive;
+}
 .main-font {
   font-family: "Cafe24Ohsquare", cursive;
   /* font-family: "Do Hyeon", sans-serif; */
@@ -39,7 +41,23 @@
 .basic-btn {
   border: none;
   outline: none;
+  background-color: transparent;
+}
+.basic-btn:hover {
+  border: none;
+  outline: none;
+}
+.basic-btn:focus {
+  border: none;
+  outline: none;
 }
 .basic-size {
   font-size: large;
+}
+.nxt-btn {
+  border: none;
+  outline: none;
+  background-color: #fcbe32;
+  border-radius: 4px;
+  font-weight: bold;
 }

@@ -1,6 +1,70 @@
 <template>
   <div>
     <Header />
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-ride="false"
+      data-interval="false"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>질문 리스트</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>영상 촬영</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>썸넬</div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="carousel-item active">
+            <div
+              class="d-block w-100 d-flex justify-content-center"
+              style="border:1px solid red; background-color: green; height: 50px;"
+            >
+              <div>제목,타이틀</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="next"
+        @click="toNext"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
     <div class="container">
       <Video @getVideo="getVideo" />
       <div>
@@ -57,7 +121,7 @@
 <script>
 import Header from "../../components/Header";
 import Video from "../../components/video/Video";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import cookies from "vue-cookies";
 
 export default {
@@ -78,8 +142,13 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState(["questions"]),
+  },
   methods: {
-    ...mapActions(["createInterview"]),
+    toNext() {},
+
+    ...mapActions(["createInterview", "getQuestions"]),
     getVideo(result) {
       this.interviewData.video_file = result;
       console.log(this.interviewData.video_file);
@@ -106,6 +175,10 @@ export default {
         alert("제목을 입력하세요!");
       }
     },
+  },
+  created() {
+    this.getQuestions();
+    console.log("뽑아옴?");
   },
 };
 </script>

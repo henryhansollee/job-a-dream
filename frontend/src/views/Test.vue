@@ -1,17 +1,17 @@
 <template>
   <div style="height: 2000px">
     <h1>TEST</h1>
-    <Capture />
+    <Audio />
   </div>
 </template>
 
 <script>
-import Capture from '../components/video/Capture'
+import Audio from '../components/video/Audio'
 
 export default {
   name: "Test",
   components: {
-    Capture,
+    Audio,
 
   }
 }

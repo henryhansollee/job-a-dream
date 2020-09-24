@@ -42,11 +42,6 @@
 
 <script>
 import draggable from "vuedraggable";
-import Vue from "vue";
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
-
-Vue.use(Vuetify);
 
 export default {
   name: "DragAndDropVideos",

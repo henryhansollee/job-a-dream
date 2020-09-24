@@ -19,6 +19,7 @@ export default new Vuex.Store({
     //   video: "",
     // },
     interviewData: "",
+    questions: [],
   },
 
   getters: {
@@ -47,6 +48,10 @@ export default new Vuex.Store({
     //인터뷰 디테일
     GET_INTERVIEW(state, interview) {
       state.interviewData = interview;
+    },
+    //질문 목록
+    GET_QUESTIONS(state, questions) {
+      state.questions = questions;
     },
     //커뮤니티 글 목록 가져오기
     SET_COMMUNITYS(state, communitys) {
@@ -147,6 +152,35 @@ export default new Vuex.Store({
         });
     },
 
+    //Get Questions
+    getQuestions({ getters, commit }) {
+      axios
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          getters.config
+        )
+        .then((response) => {
+          console.log(response, "질문 리스트");
+          commit("GET_QUESTIONS", response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    //post New Questions
+    postNewQuestions({ getters }, questionData) {
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          questionData,
+          getters.config
+        )
+        .then(() => {
+          console.log("질문 추가 성공");
+        })
+        .catch((err) => console.log(err));
+    },
     // Interview Update
     updateInterview() {},
 

@@ -12,17 +12,21 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.1",
     "core-js": "^3.6.5",
+    "fullpage-vue": "^2.1.1",
     "plugin": "^0.3.3",
     "recordrtc": "^5.6.1",
     "vue": "^2.6.12",
+    "vue-audio-recorder": "^3.0.1",
     "vue-cam-vision": "0.0.8",
     "vue-cookies": "^1.7.4",
+    "vue-dictaphone": "^2.0.0",
     "vue-fullpage.js": "^0.1.6",
     "vue-router": "^3.4.3",
     "vue-web-cam": "^1.9.0",
     "vue-webcam": "^2.0.4",
     "vue2-dragula": "^2.5.4",
     "vue2-editor": "^2.10.2",
+    "vue2-tts": "0.0.4",
     "vuedraggable": "^2.24.1",
     "vuetify": "^2.3.10",
     "vuex": "^3.5.1"
@@ -36,7 +40,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue-text-to-speech": "^1.0.6"
   },
   "eslintConfig": {
     "root": true,
