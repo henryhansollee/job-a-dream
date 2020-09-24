@@ -1,6 +1,77 @@
 <template>
   <div>
     <Header />
+    <div class="d-flex">
+      <!-- 스텝 1 -->
+      <div>
+        <h1>Step 1</h1>
+        <b-button @click="step1ModalShow = true" v-b-modal.modal-1>질문선택</b-button>
+
+        <b-modal :visible="step1ModalShow" hide-footer id="modal-1" title="질문선택">
+          <div
+            class="my-4 main-font"
+            style="font-size: large; margin: 0 8px"
+            v-for="question in questions" :key="question.id"
+          >
+            <div class="d-flex flex-row justify-content-between">
+              <div>{{ question.content }}</div>
+              <b-form-radio v-model="selected" name="some-radios" :value="question.id" />
+            </div>
+          </div>
+          <hr>
+          <button @click="completeStep1()" class="btn btn-primary">완료</button>
+        </b-modal>
+      </div>
+
+      <!-- 스텝 2 -->
+      <div>
+        <h1>Step 2</h1>
+        <b-button @click="step2Show === true" v-b-toggle.collapse-1 variant="primary">면접 시작</b-button>
+        <b-collapse :visible="step2Show" id="collapse-1" class="mt-2">
+          <template>
+            <dictaphone @stop="handleRecording($event)" mime-type="audio/wav">
+              <template slot-scope="{ isRecording, startRecording, stopRecording }">
+                <button class="btn btn-info" v-if="!isRecording" @click="startRecording">면접 시작</button>
+                <button class="btn btn-danger" v-else @click="stopRecording">면접 종료</button>
+              </template>
+            </dictaphone>
+          </template>
+          <div>
+            <div class="block mt-4" v-show="!result">
+              <video ref="video"></video>
+            </div>
+            <div class="field d-flex justify-content-center mt-4">
+            </div>
+          </div>
+        </b-collapse>
+      </div>
+
+      <!-- 스텝 3 -->
+      <div>
+        <h1>Step 3</h1>
+        <b-button  v-b-modal.modal-3 @click="completeStep2()">정보입력</b-button>
+
+        <b-modal  id="modal-3" title="BootstrapVue">
+          <p class="my-4">Hello from modal!</p>
+        </b-modal>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div
       id="carouselExampleControls"
@@ -49,7 +120,6 @@
             <p></p>
             <div style="font-size:x-large">이제 면접 영상을 녹화해봐요!</div>
             <div style="font-size:x-large">질문 : {{selectedQ}}</div>
-            <Video @getVideo="getVideo" />
           </div>
         </div>
         <div class="carousel-item">
@@ -152,18 +222,31 @@
 
 <script>
 import Header from "../../components/Header";
-import Video from "../../components/video/Video";
 import { mapState, mapActions } from "vuex";
 import cookies from "vue-cookies";
+import RecordRTC from "recordrtc";
+import Dictaphone from '@/components/Dictaphone';
 
 export default {
   name: "InterviewCreateView",
   components: {
     Header,
-    Video,
+    Dictaphone,
   },
   data() {
     return {
+      selected: '',
+      step1ModalShow: false,
+      step2Show: false,
+      recorder: null,
+      result: null,
+      blobUrl: null,
+      timer: {
+        interval: null,
+        value: 0,
+      },
+      audioSource: null,
+
       stepNum: 1,
       selectedQ: "",
       isSelected: false,
@@ -181,10 +264,56 @@ export default {
       },
     };
   },
+  props: {
+    msg: String,
+  },
   computed: {
     ...mapState(["questions"]),
+      formatedTime() {
+      let hour = Math.floor(this.timer.value / 3600);
+      let minute = Math.floor((this.timer.value - hour * 3600) / 60);
+      let seconds = this.timer.value - (hour * 3600 + minute * 60);
+      return [hour, minute, seconds].map(this._fillzero).join(":");
+    },
   },
   methods: {
+    handleRecording({ blob, src }) {
+      this.audioSource = src;
+      this.temp = blob
+      console.log(this.temp,'sss')
+    },
+    completeStep1() {
+      console.log(this.selected)
+      this.step1ModalShow = false
+      this.record()
+    },
+    completeStep2() {
+      console.log(this.step2Show)
+      this.step2Show = false
+      this.stop()
+    },
+        _fillzero(value) {
+      return value < 9 ? "0" + value : value;
+    },
+    record() {
+      this.recorder && this.recorder.startRecording();
+      this.result = null;
+      this.blobUrl && URL.revokeObjectURL(this.blobUrl);
+      this.blobUrl = null;
+      this.timer.interval = setInterval(() => ++this.timer.value, 1000);
+    },
+    stop() {
+      this.recorder.stopRecording(() => {
+        this.result = this.recorder.getBlob();
+        this.$emit("getVideo", this.result);
+        this.blobUrl = window.URL.createObjectURL(this.result);
+        console.log(this.blobUrl, "url");
+        clearInterval(this.timer.interval);
+        this.timer.value = 0;
+        this.timer.interval = null;
+      });
+    },
+
     prevPage() {
       this.stepNum -= 1;
     },
@@ -266,6 +395,23 @@ export default {
       }
     },
   },
+  mounted() {
+    let self = this;
+    let video = self.$refs.video;
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then(async function(stream) {
+        self.recorder = RecordRTC(stream, {
+          type: "video",
+        });
+        video.srcObject = stream;
+        video.volume = 0;
+        video.play();
+      });
+  },
   created() {
     this.getQuestions();
     console.log("뽑아옴?");
@@ -316,5 +462,10 @@ export default {
 .carousel-control-prev-icon {
   opacity: 1 !important;
   color: red !important;
+}
+video {
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 2px #999;
 }
 </style>
