@@ -33,21 +33,26 @@
       <div class="main-menu-box">
 
         <!-- 위에 두개 -->
-        <div class="main-menu-inner d-flex">
+        <div class="main-menu-inner d-flex mb-3">
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-1.png" alt="">
+            <small>면접보기</small>
           </div>
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-2.png" alt="">
+            <small>질문목록</small>
           </div>
         </div>
+
         <!-- 밑에 두개 -->
         <div class="main-menu-inner d-flex">
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
+            <small>이력서</small>
           </div>
           <div class="main-menu-detail">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
+            <small>자기소개서</small>
           </div>
         </div>
       </div>
@@ -233,7 +238,7 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 120px;
 }
 .main-menu-inner {
   width: 100%;
@@ -241,7 +246,8 @@ export default {
 }
 .main-menu-detail {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 50px;
 }
