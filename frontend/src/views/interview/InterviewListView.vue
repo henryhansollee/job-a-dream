@@ -26,22 +26,33 @@
           <small class="m-2">오늘도 뽜이링 하쟈, 써봅니다</small>
         </div>
       </div>
+
+      <hr>
       
       <!-- 메인 메뉴 -->
       <div class="main-menu-box">
 
         <!-- 위에 두개 -->
         <div class="main-menu-inner d-flex">
-          <div class="main-menu-detail"></div>
-          <div class="main-menu-detail"></div>
+          <div class="main-menu-detail">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-1.png" alt="">
+          </div>
+          <div class="main-menu-detail">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-2.png" alt="">
+          </div>
         </div>
-
         <!-- 밑에 두개 -->
         <div class="main-menu-inner d-flex">
-          <div class="main-menu-detail"></div>
-          <div class="main-menu-detail"></div>
+          <div class="main-menu-detail">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
+          </div>
+          <div class="main-menu-detail">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
+          </div>
         </div>
       </div>
+
+      <hr>
 
 
 
@@ -78,24 +89,10 @@
           <div
             class="my-4 main-font"
             style="font-size: large; margin: 0 8px"
-            v-for="i in 5"
-            :key="i"
+            v-for="question in questions" :key="question.id"
           >
             <div class="d-flex flex-row justify-content-between">
-              <div>질문 넣을 자리</div>
-              <button class="basic-btn" style="background-color: transparent">
-                <i class="fas fa-volume-up"></i>
-              </button>
-            </div>
-          </div>
-          <div
-            class="my-4 main-font"
-            style="font-size: large; margin: 0 8px"
-            v-for="newQuestion in newQuestionList"
-            :key="newQuestion.id"
-          >
-            <div class="d-flex flex-row justify-content-between">
-              <div>{{ newQuestion.new }}</div>
+              <div>{{ question }}</div>
               <button class="basic-btn" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
@@ -108,8 +105,8 @@
                 class="q-input"
                 placeholder="새로운 질문을 써보세요!"
                 type="text"
-                v-model="newQuestion"
-                @keypress.enter="addNewQuestion"
+                v-model="questionData.content"
+                @keypress.enter="addNewQuestion()"
               />
             </div>
             <div class="q-submit">
@@ -117,20 +114,13 @@
                 type="button"
                 class="basic-btn"
                 style="color: gray"
-                @click="addNewQuestion"
+                @click="addNewQuestion()"
               >
                 추가
               </button>
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <button
-              class="save-btn main-font"
-              style="font-size: 17.5px"
-              @click="saveNewQuestion"
-            >
-              저장
-            </button>
           </div>
         </b-modal>
       </div>
@@ -140,40 +130,36 @@
 
 <script>
 import Header from "../../components/Header";
-// import axios from "axios ";
 import { mapState, mapActions } from "vuex";
 
 export default {
   name: "InterviewListView",
   data() {
     return {
-      newQuestion: "",
-      newQuestionList: [],
+      questionData: {
+        content: '',
+      },
+      rules: [
+          value => !!value || 'Required.',
+          value => (value || '').length <= 20 || 'Max 20 characters',
+          value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      ],
     };
   },
   components: {
     Header,
   },
   computed: {
-    ...mapState(["interviews", "questions"]),
+    ...mapState([ "interviews", "questions" ]),
   },
   methods: {
-    ...mapActions(["getInterviews", "getQuestions", "postNewQuestions"]),
+    ...mapActions([ "getInterviews", "getQuestions", "postNewQuestions" ]),
     addNewQuestion() {
-      let date = Date.now();
-      // console.log(date);
-      // console.log(this.newQuestion);
-      this.newQuestionList.push({
-        id: date,
-        new: this.newQuestion,
-      });
-      // console.log(this.newQuestionList);
-      this.newQuestion = "";
-    },
-    saveNewQuestion() {
-      console.log("질문 추가하고 저장");
-      this.postNewQuestions();
-      this.getQuestions();
+      this.postNewQuestions(this.questionData);
+      this.questionData.content=''
     },
   },
   created() {
@@ -243,18 +229,25 @@ export default {
   max-height: 150px;
 }
 .main-menu-box {
-  margin-left: 22%;
-  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   height: 100px;
 }
 .main-menu-inner {
-  width: 150px;
+  width: 100%;
   height: 50px;
 }
 .main-menu-detail {
-  width: 75px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 50px;
-  border: solid black
+}
+.main-menu-img {
+  width: 45px;
+  height: 40px;
 }
 
 </style>
