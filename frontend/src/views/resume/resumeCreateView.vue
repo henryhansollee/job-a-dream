@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <h1>이력서 작성</h1>
+    <h1>이력서 작성 - 이름수정</h1>
   </div>
 </template>
 
