@@ -8,116 +8,52 @@
     <div class="interview-sidebar">
 
       <!-- 검색 -->
-      <div class="d-flex pt-4">
-        <v-text-field class="ml-4 mr-2" :rules="rules"></v-text-field>
+      <div class="d-flex pt-2">
+        <v-text-field hint="제목이나 태그를 입력해 주세요." class="ml-4 mr-2"></v-text-field>
         <button class="mr-4"><i class="fas fa-search"></i></button>
       </div>
 
       <!-- 프로필 -->
-      <div>
+      <div class="mt-2">
 
         <!-- 프로필 사진 -->
-        <img class="profile-img" src="https://source.unsplash.com/random" alt="프로필 사진">
+        <img class="profile-img" src="@/assets/temp-profile.png" alt="profile">
         
         <!-- 개인정보 -->
-        <div class="m-3">
-          <small>이름: henryhansollee</small><br />
-          <small>이메일: henryhansollee@gmail.com</small>
-          <small class="m-2">오늘도 뽜이링 하쟈, 써봅니다</small>
+        <div class="m-3 text-center">
+          <small>henryhansollee</small><br />
+          <small>소개: 오늘도 뽜이링 하쟈, 써봅니다</small><br />
         </div>
       </div>
 
-      <hr>
+      <hr class="ml-5" style="width: 70%;">
       
       <!-- 메인 메뉴 -->
       <div class="main-menu-box">
-
+        
         <!-- 위에 두개 -->
         <div class="main-menu-inner d-flex mb-3">
-          <div class="main-menu-detail">
+          <router-link class="main-menu-detail ml-5 text-dark text-decoration-none" to="/interview/create/">
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-1.png" alt="">
             <small>면접보기</small>
-          </div>
-          <div class="main-menu-detail">
+          </router-link>
+          <a
+            class="main-menu-detail mr-5 text-dark text-decoration-none"
+            v-b-modal.modal-scrollable
+            @click="getQuestions()"
+          >
             <img class="main-menu-img" src="@/assets/main-menus/main-menu-2.png" alt="">
             <small>질문목록</small>
-          </div>
-        </div>
-
-        <!-- 밑에 두개 -->
-        <div class="main-menu-inner d-flex">
-          <div class="main-menu-detail">
-            <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
-            <small>이력서</small>
-          </div>
-          <div class="main-menu-detail">
-            <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
-            <small>자기소개서</small>
-          </div>
-        </div>
-      </div>
-
-      <hr>
-      
-      <!-- 서브 메뉴 -->
-      <v-list dense style="background-color: #fffcf0">
-        <v-list-item-group>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>소개</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>전체보기</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>즐겨찾기</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>통계 및 분석</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-      
-
-
-
-
-
-      <div class="d-flex flex-column align-items-center mb-5">
-        <h5 class="mt-5">면접 보러가기</h5>
-        <router-link
-          class="btn btn-dark interview-start-button"
-          to="/interview/create/"
-          >+</router-link
-        >
-      </div>
-      <div class="d-flex flex-column align-items-center mt-5">
-        <h5>질문 등록</h5>
-        <!-- <button class="btn btn-dark interview-start-button" @click="getQuestions">+</button> -->
-        <b-button
-          variant="dark"
-          class="interview-start-button"
-          v-b-modal.modal-scrollable
-          @click="getQuestions()"
-          >+</b-button
-        >
-
-        <b-modal
-          hide-footer
-          header-class="modal-header"
-          id="modal-scrollable"
-          class="main-font"
-          scrollable
-          title="질문 리스트"
-          style="font-family: Cafe24Ohsquare, cursive"
-        >
+          </a>
+          <b-modal
+            hide-footer
+            header-class="modal-header"
+            id="modal-scrollable"
+            class="main-font"
+            scrollable
+            title="질문 리스트"
+            style="font-family: Cafe24Ohsquare, cursive"
+          >
           <div
             class="my-4 main-font"
             style="font-size: large; margin: 0 8px"
@@ -155,7 +91,52 @@
           <div class="d-flex justify-content-end">
           </div>
         </b-modal>
+        </div>
+
+        <!-- 밑에 두개 --> 
+        <div class="main-menu-inner d-flex">
+          <div class="main-menu-detail ml-5">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-3.png" alt="">
+            <small>이력서</small>
+          </div>
+          <div class="main-menu-detail mr-5">
+            <img class="main-menu-img" src="@/assets/main-menus/main-menu-4.png" alt="">
+            <small>자기소개서</small>
+          </div>
+        </div>
       </div>
+      
+      <hr class="ml-5 mb-0" style="width: 70%;">
+
+      <!-- 서브 메뉴 -->
+      <v-list dense style="background-color: #fffcf0">
+        <v-list-item-group>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-center">사용방법</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-center">전체보기</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-center">즐겨찾기</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="text-center">통계분석</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+      
+      <footer class="text-center mt-4">
+        <small ><i class="far fa-copyright"></i> 2020, Job A Dream</small>
+      </footer>
     </div>
   </div>
 </template>
@@ -171,14 +152,6 @@ export default {
       questionData: {
         content: '',
       },
-      rules: [
-          value => !!value || 'Required.',
-          value => (value || '').length <= 20 || 'Max 20 characters',
-          value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      ],
     };
   },
   components: {
@@ -204,7 +177,7 @@ export default {
 <style>
 .interview-sidebar {
   background-color: #fffcf0;
-  width: 25%;
+  width: 300px;
   min-height: 53.3rem;
   height: 100%;
 }
@@ -256,7 +229,7 @@ export default {
 }
 .profile-img {
   border-radius: 10%;
-  margin-left: 30%;
+  margin-left: 100px;
   width: 100px;
   max-width: 120px;
   height: 100px;
@@ -281,8 +254,8 @@ export default {
   height: 50px;
 }
 .main-menu-img {
-  width: 45px;
-  height: 40px;
+  width: 40px;
+  height: 35px;
 }
 
 </style>
