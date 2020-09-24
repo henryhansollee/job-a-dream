@@ -1,125 +1,127 @@
 <template>
   <div>
     <Header />
-    <div class="fullpage-container">
-      <div class="fullpage-wp" v-fullpage="opts" ref="example">
-        <div class="page-1 page d-flex justify-content-around mt-5">
-          <div class="part-1" v-animate="{ value: 'bounceInLeft', delay: 0 }">
-            질문 리스트
-          </div>
-          <div>
-            <button class="nxt-btn" @click="moveNext">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-ride="false"
+      data-interval="false"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>질문 리스트</div>
           </div>
         </div>
-        <div class="page-2 page ">
-          <div v-animate="{ value: 'bounceInRight', delay: 0 }">
-            <!--동영상ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ-->
-            <div class="container">
-              <Video @getVideo="getVideo" />
-              <!-- <div>
-                <div>
-                  <input type="file" id="file" name="file" ref="file" />
-                </div>
-                <button class="btn btn-dark" @click="createFormData">
-                  작성완료
-                </button>
-              </div> -->
-            </div>
+        <div class="carousel-item">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>영상 촬영</div>
           </div>
-          <div>
-            <button class="nxt-btn" @click="movePrev">
-              <i class="fas fa-chevron-left"></i>
-            </button>
+        </div>
+        <div class="carousel-item">
+          <div
+            class="d-block w-100 d-flex justify-content-center"
+            style="border:1px solid red; background-color: purple; height: 50px;"
+          >
+            <div>썸넬</div>
           </div>
+        </div>
 
-          <div>
-            <button class="nxt-btn" @click="moveNext">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-        <div class="page-3 page d-flex justify-content-around ">
-          <div>
-            <button class="nxt-btn" @click="movePrev">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-          </div>
-          <div class="part-3" v-animate="{ value: 'bounceInLeft', delay: 0 }">
-            썸네일
-          </div>
-          <div>
-            <button class="nxt-btn" @click="moveNext">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-          <!-- <p class="part-3" v-animate="{ value: 'bounceInRight', delay: 600 }">
-            4
-          </p>
-          <p class="part-3" v-animate="{ value: 'zoomInDown', delay: 1200 }">
-            5
-          </p> -->
-        </div>
-        <div class="page-4 page ">
-          <div class="part-4" v-animate="{ value: 'bounceInRight', delay: 0 }">
-            <!-- 제목 -->
-            <div class="mt-3 mb-3">
-              <b-form-input
-                type="text"
-                placeholder="title"
-                v-model="interviewData.title"
-              />
+        <div class="carousel-item">
+          <div class="carousel-item active">
+            <div
+              class="d-block w-100 d-flex justify-content-center"
+              style="border:1px solid red; background-color: green; height: 50px;"
+            >
+              <div>제목,타이틀</div>
             </div>
-            <!-- 태그 -->
-            <div>
-              <b-form-tags
-                v-model="interviewData.update_tag"
-                no-outer-focus
-                class="mb-2"
-              >
-                <template
-                  v-slot="{
-                    tags,
-                    inputAttrs,
-                    inputHandlers,
-                    tagVariant,
-                    addTag,
-                    removeTag,
-                  }"
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="next"
+        @click="toNext"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div class="container">
+      <Video @getVideo="getVideo" />
+      <div>
+        <!-- 제목 -->
+        <div class="mt-3 mb-3">
+          <b-form-input
+            type="text"
+            placeholder="title"
+            v-model="interviewData.title"
+          />
+        </div>
+        <!-- 태그 -->
+        <div>
+          <b-form-tags
+            v-model="interviewData.update_tag"
+            no-outer-focus
+            class="mb-2"
+          >
+            <template
+              v-slot="{
+                tags,
+                inputAttrs,
+                inputHandlers,
+                tagVariant,
+                addTag,
+                removeTag,
+              }"
+            >
+              <b-input-group class="mb-2">
+                <b-form-input
+                  v-bind="inputAttrs"
+                  v-on="inputHandlers"
+                  placeholder="태그를 입력하세요."
+                  class="form-control"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-button @click="addTag()" variant="primary">추가</b-button>
+                </b-input-group-append>
+              </b-input-group>
+              <div class="d-inline-block" style="font-size: 1.5rem">
+                <b-form-tag
+                  v-for="tag in tags"
+                  @remove="removeTag(tag)"
+                  :key="tag"
+                  :title="tag"
+                  :variant="tagVariant"
+                  class="mr-1"
+                  >{{ tag }}</b-form-tag
                 >
-                  <b-input-group class="mb-2">
-                    <b-form-input
-                      v-bind="inputAttrs"
-                      v-on="inputHandlers"
-                      placeholder="태그를 입력하세요."
-                      class="form-control"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >추가</b-button
-                      >
-                    </b-input-group-append>
-                  </b-input-group>
-                  <div class="d-inline-block" style="font-size: 1.5rem">
-                    <b-form-tag
-                      v-for="tag in tags"
-                      @remove="removeTag(tag)"
-                      :key="tag"
-                      :title="tag"
-                      :variant="tagVariant"
-                      class="mr-1"
-                      >{{ tag }}</b-form-tag
-                    >
-                  </div>
-                </template>
-              </b-form-tags>
-            </div>
-            <button class="btn btn-dark" @click="createFormData">
-              작성완료
-            </button>
-          </div>
+              </div>
+            </template>
+          </b-form-tags>
         </div>
+        <div>
+          <input type="file" id="file" name="file" ref="file" />
+        </div>
+        <button class="btn btn-dark" @click="createFormData">작성완료</button>
       </div>
     </div>
   </div>
@@ -128,7 +130,7 @@
 <script>
 import Header from "../../components/Header";
 import Video from "../../components/video/Video";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import cookies from "vue-cookies";
 
 export default {
@@ -139,19 +141,6 @@ export default {
   },
   data() {
     return {
-      opts: {
-        start: 0,
-        dir: "v",
-        duration: 100,
-        // beforeChange: function(currentSlideEl, currenIndex, nextIndex) {},
-        // afterChange: function(currentSlideEl, currenIndex) {},
-      },
-      options: {
-        afterLoad: this.afterLoad,
-        controlArrows: true,
-        scrollBar: true,
-      },
-
       content: "",
       file: "",
       interviewData: {
@@ -162,24 +151,13 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState(["questions"]),
+  },
   methods: {
-    movePrev() {
-      this.$refs.example.$fullpage.movePrev();
-    },
-    moveNext() {
-      console.log("푸킼");
-      this.$refs.example.$fullpage.moveNext(); //Move to the next page
-    },
+    toNext() {},
 
-    // down() {
-    //   console.log("ㅎㅇ");
-    //   this.$refs.fullpage.$fullpage.moveSectionDown();
-    // },
-    // moveSectionDown() {
-    //   this.$refs.fullpage.$fullpage.moveSectionDown();
-    // },
-
-    ...mapActions(["createInterview"]),
+    ...mapActions(["createInterview", "getQuestions"]),
     getVideo(result) {
       this.interviewData.video_file = result;
       console.log(this.interviewData.video_file);
@@ -188,14 +166,13 @@ export default {
     createFormData() {
       if (this.interviewData.title) {
         var formData = new FormData();
-        const file_name = Date.now();
         formData.append("title", this.interviewData.title);
         formData.append("writer", this.interviewData.writer);
         formData.append("update_tag", this.interviewData.update_tag);
-        formData.append("video_file", this.interviewData.video_file, file_name);
-        // this.file = this.$refs.file.files[0];
-        // console.log(this.file, "파일");
-        // formData.append("video_file", this.file);
+        // formData.append("video_file", this.interviewData.video_file);
+        this.file = this.$refs.file.files[0];
+        console.log(this.file, "파일");
+        formData.append("video_file", this.file);
         this.createInterview(formData);
 
         // const reader = new FileReader();
@@ -207,6 +184,10 @@ export default {
         alert("제목을 입력하세요!");
       }
     },
+  },
+  created() {
+    this.getQuestions();
+    console.log("뽑아옴?");
   },
 };
 </script>

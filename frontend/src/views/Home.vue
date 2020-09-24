@@ -2,19 +2,28 @@
   <div>
     <full-page ref="fullpage" :options="options">
       <div class="section home-section1">
-        <button class="next next-button1" @click="$refs.fullpage.api.moveSectionDown()">
+        <button
+          class="next next-button1"
+          @click="$refs.fullpage.api.moveSectionDown()"
+        >
           <i class="fas fa-chevron-down"></i>
         </button>
         <HomeSection1 />
       </div>
       <div class="section home-section2">
-        <button class="next next-button2" @click="$refs.fullpage.api.moveSectionDown()">
+        <button
+          class="next next-button2"
+          @click="$refs.fullpage.api.moveSectionDown()"
+        >
           <i class="fas fa-chevron-down"></i>
         </button>
         <HomeSection2 />
       </div>
       <div class="section home-section3">
-        <button class="next next-button3" @click="$refs.fullpage.api.moveSectionDown()">
+        <button
+          class="next next-button3"
+          @click="$refs.fullpage.api.moveSectionDown()"
+        >
           <i class="fas fa-chevron-down"></i>
         </button>
         <HomeSection3 />
