@@ -15,6 +15,9 @@ class Tag(TimeStampModel):
     def __str__(self):
         return self.name
 
+class Question(models.Model):
+    content = models.CharField(max_length=100)
+
 class Video(TimeStampModel):
     title = models.CharField(max_length=30)
     thumbnail = models.ImageField(upload_to='thumbnail', blank=True)
@@ -22,9 +25,7 @@ class Video(TimeStampModel):
     audio_file = models.FileField(blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-class Question(models.Model):
-    content = models.CharField(max_length=100)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
 class Result(models.Model):
     sight_analysis = models.TextField(blank=True)
