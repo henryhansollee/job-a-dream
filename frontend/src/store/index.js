@@ -181,6 +181,21 @@ export default new Vuex.Store({
         })
         .catch((err) => console.log(err));
     },
+
+    deleteQuestion({ getters }, question_id) {
+      axios
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.interview + `${question_id}`,
+          getters.config
+        )
+        .then(() => {
+          console.log('삭제완료')
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
     // Interview Update
     updateInterview() {},
 

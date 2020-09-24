@@ -59,7 +59,7 @@
               <button @click="onSpeak(question.content)" class="basic-btn mr-3" style="background-color: transparent">
                 <i class="fas fa-volume-up"></i>
               </button>
-              <button class="basic-btn" style="background-color: transparent">
+              <button @click="deleteQuestion(question.id)" class="basic-btn" style="background-color: transparent">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
@@ -154,7 +154,7 @@ export default {
     ...mapState([ "questions" ]),
   },
   methods: {
-    ...mapActions([ "getQuestions", "postNewQuestions" ]),
+    ...mapActions([ "getQuestions", "postNewQuestions", "deleteQuestion" ]),
     addNewQuestion() {
       this.postNewQuestions(this.questionData);
       this.questionData.content=''
