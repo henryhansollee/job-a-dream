@@ -9,7 +9,7 @@
       <Sidebar />
 
       <div>
-        
+        - 이름수정
       </div>
     </div>
   </div>

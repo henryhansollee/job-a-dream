@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <h1>자기소개서 리스트</h1>
+    <h1>자기소개서 리스트- 이름수정</h1>
   </div>
 </template>
 
