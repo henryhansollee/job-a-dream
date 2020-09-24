@@ -5,9 +5,10 @@
       <Sidebar />
 
       <!-- 이력서 -->
-      <div>
+      <div class="m-auto">
         <!-- 첫 번째 섹션 - 기본 정보 -->
         <section>
+          <hr>
           <h3>기본 정보</h3>
           <div class="d-flex">
 
@@ -52,9 +53,11 @@
 
         <!-- 두 번째 섹션 - 교육 -->
         <section>
+          <hr>
           <h3>교육</h3>
           <!-- 고등 학교 -->
           <div>
+            <h6>고등학교</h6>
             <table class="table table-bordered">
               <tbody class="">
                 <tr>
@@ -71,6 +74,7 @@
           
           <!-- 대학교 -->
           <div>
+            <h6>대학교</h6>
             <table class="table table-bordered">
               <tbody class="">
                 <tr>
@@ -81,12 +85,17 @@
                   <th scope="row">학교명</th>
                   <td>Jacob</td>
                 </tr>
+                <tr>
+                  <th scope="row">전공</th>
+                  <td>Jacob</td>
+                </tr>
               </tbody>
             </table>
           </div>
 
           <!-- 대학원 -->
           <div>
+            <h6>대학원</h6>
             <table class="table table-bordered">
               <tbody class="">
                 <tr>
@@ -95,6 +104,10 @@
                 </tr>
                 <tr>
                   <th scope="row">학교명</th>
+                  <td>Jacob</td>
+                </tr>
+                <tr>
+                  <th scope="row">전공</th>
                   <td>Jacob</td>
                 </tr>
               </tbody>
@@ -104,6 +117,7 @@
 
         <!-- 세 번째 섹션 - 자격/면허 -->
         <section>
+          <hr>
           <h3>자격/면허</h3>
             <table class="table table-bordered">
               <tbody class="">
@@ -121,6 +135,7 @@
 
         <!-- 네 번째 섹션 - 경력 사항 -->
         <section>
+          <hr>
           <h3>경력 사항</h3>
             <table class="table table-bordered">
               <tbody class="">
@@ -143,6 +158,7 @@
 
         <!-- 다섯 번째 섹션 - 기타활동 및 사회경험 -->
         <section>
+          <hr>
           <h3>기타활동 및 사회경험</h3>
           <table class="table table-bordered">
             <tbody class="">
@@ -160,6 +176,7 @@
               </tr>
             </tbody>
           </table>
+          <hr>
         </section>
       </div>
     </div>
