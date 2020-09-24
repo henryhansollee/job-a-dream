@@ -169,14 +169,15 @@ export default new Vuex.Store({
     },
 
     //post New Questions
-    postNewQuestions({ getters }) {
+    postNewQuestions({ getters }, questionData) {
       axios
         .post(
           BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          questionData,
           getters.config
         )
         .then(() => {
-          router.push("/interview/list/");
+          console.log("질문 추가 성공");
         })
         .catch((err) => console.log(err));
     },
