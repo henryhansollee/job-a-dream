@@ -1,14 +1,41 @@
 <template>
-  <v-app>
-    <router-view />
+  <v-app id="inspire">
+    <!-- 사이드바 -->
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
+      <v-list dense>
+        <v-list-item link>
+          <v-list-item-action>
+            <v-icon>아이콘</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              링크이름
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <!-- 네브바 -->
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <span class="hidden-sm-and-down">잡아드림</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <a href="#">로그아웃</a>
+    </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data() {
-
+  export default {
+    data() {
+      return {
+        drawer: null,
+      }
+    },
   }
-};
 </script>
