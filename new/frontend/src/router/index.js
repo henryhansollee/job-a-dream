@@ -27,6 +27,7 @@ import VideoDetail from '../views/video/VideoDetail'
 
 // Youtube
 import YoutubeList from '../views/youtube/YoutubeList'
+import YoutubeDetail from '../views/youtube/YoutubeDetail'
 
 Vue.use(VueRouter)
 
@@ -116,6 +117,11 @@ const routes = [
     path: '/youtube/list',
     name: 'YoutubeList',
     component: YoutubeList
+  },
+  {
+    path: '/youtube/detail/:id',
+    name: 'YoutubeDetail',
+    component: YoutubeDetail
   },
 ]
 
