@@ -15,6 +15,10 @@
           <h4>오늘도 뽜이링!</h4>
           <hr>
         </div>
+        <div>
+          <small>내 질문 목록</small>
+          <hr>
+        </div>
         <!-- 영상 분석 -->
         <v-list-item link href="/video/list">
           <v-list-item-action>
