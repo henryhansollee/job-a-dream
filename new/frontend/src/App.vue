@@ -18,7 +18,7 @@
         <!-- 영상 분석 -->
         <v-list-item link href="/video/list">
           <v-list-item-action>
-            <v-icon>아이콘</v-icon>
+            <i class="fas fa-video"></i>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
@@ -29,7 +29,7 @@
         <!-- 음성분석 -->
         <v-list-item link href="/audio/list">
           <v-list-item-action>
-            <v-icon>아이콘</v-icon>
+            <i class="fas fa-microphone"></i>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
@@ -40,7 +40,7 @@
         <!-- 자소서분석 -->
         <v-list-item link href="/coverletter/list">
           <v-list-item-action>
-            <v-icon>아이콘</v-icon>
+            <i class="fas fa-file-signature"></i>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
@@ -51,7 +51,7 @@
         <!-- 풀코스 분석 -->
         <v-list-item link href="/fullcourse/list">
           <v-list-item-action>
-            <v-icon>아이콘</v-icon>
+            <i class="fas fa-brain"></i>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
@@ -62,7 +62,7 @@
         <!-- 면접 참고 영상 -->
         <v-list-item link href="/youtube/list">
           <v-list-item-action>
-            <v-icon>아이콘</v-icon>
+            <i class="fab fa-youtube"></i>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
