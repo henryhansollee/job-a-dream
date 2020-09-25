@@ -3,7 +3,7 @@
     <!-- 사이드바 -->
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
-        
+        <!-- 프로필 -->
         <div>
           <hr>
           <img class="profile-img" src="@/assets/logo.png" alt="profile">
@@ -15,7 +15,6 @@
           <h4>오늘도 뽜이링!</h4>
           <hr>
         </div>
-        
         <!-- 영상 분석 -->
         <v-list-item link href="/video/list">
           <v-list-item-action>
@@ -72,6 +71,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <small><i class="far fa-copyright"></i> Job A Dream</small>
     </v-navigation-drawer>
     <!-- 네브바 -->
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
