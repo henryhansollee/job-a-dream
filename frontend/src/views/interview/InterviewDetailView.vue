@@ -2,12 +2,13 @@
   <div>
     <Header />
     <h1>InterviewDetailView</h1>
+    <!-- <video src="C:\Users\multicampus\Desktop\clone\s03p23b107\backend\media\blob"></video> -->
   </div>
 </template>
 
 <script>
-import Header from '../../components/Header'
-import { mapState, mapActions } from 'vuex'
+import Header from "../../components/Header";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "InterviewDetailView",
@@ -15,17 +16,16 @@ export default {
     Header,
   },
   computed: {
-    ...mapState(['interviews'])
+    ...mapState(["interviewData"]),
   },
   methods: {
-    ...mapActions(['getInterview'])
+    ...mapActions(["getInterview"]),
   },
   created() {
-    this.getInterview({id: this.$route.params.id})
-  }
-}
+    this.getInterview(this.$route.params.id);
+    console.log(this.interviewData, "데이터");
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

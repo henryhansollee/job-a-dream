@@ -1,19 +1,19 @@
 <template>
   <div class="d-flex justify-content-between align-items-center inner-box">
-    <img src="@/assets/img/home-logo.jpg" alt="home-logo" class="home-logo mr-5">
+    <img src="@/assets/img/home-logo.jpg" alt="home-logo" class="home-logo mr-5" />
     <LoginSignup class="ml-5" />
   </div>
 </template>
 
 <script>
-import LoginSignup from '../auth/LoginSignup'
+import LoginSignup from "../auth/LoginSignup";
 
 export default {
   name: "HomeSection1",
   components: {
     LoginSignup,
   },
-}
+};
 </script>
 
 <style>

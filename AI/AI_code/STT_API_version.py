@@ -1,39 +1,24 @@
-import speech_recognition as sr
-import moviepy.editor as mp
-print(sr.__version__)
+from google.cloud import speech
+import io
 
-r = sr.Recognizer()
+def transcribe_file(speech_file):
+    client = speech.SpeechClient()
 
-# audio_file = sr.AudioFile('./audio_files/harvard.wav')
-#
-# with audio_file as file:
-#     audio = r.record(file)
+    with io.open(speech_file, 'rb') as audio_file:
+        content = audio_file.read()
+    print('분석중....')
 
+    audio = {"content":content}
+    config = {
+        # "encoding":enums.RecognitionConfig.AudioEncoding.LINEAR16,
+        # "model":"command_and_search"
+        "enable_separate_recognition_per_channel":True,
+        "audio_channel_count":2,
+        "language_code":'ko-KR',
+    }
 
-"""
-# 마이크로 출력되는 음성을 텍스트 변환
+    response = client.recognize(config, audio)
+    print(response.results[0].alternatives[0].transcript)
+    print(response.results[0].alternatives[0].confidence)
 
-mic = sr.Microphone(device_index=0)
-# print(sr.Microphone.list_microphone_names())
-
-with mic as MIC:
-    audio = r.listen(MIC)
-
-"""
-
-# 비디오 파일에서 음성 추출
-
-clip = mp.VideoFileClip("./audio_files/test111.mp4")
-clip.audio.write_audiofile("./audio_files/test111.wav")
-audio_file = sr.AudioFile('./audio_files/test111.wav')
-
-with audio_file as file:
-    audio = r.record(file)
-
-
-try:
-    print("you said : " + r.recognize_google(audio, language='ko-KR'))
-except sr.UnknownValueError:
-    print("Google Speech Recognition could not understand audio")
-except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))
+transcribe_file("./audio_files/녹음.wav")

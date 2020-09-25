@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>InterviewUpdateView</h1>
+    <h1>InterviewUpdateView - 이름수정</h1>
   </div>
 </template>
 

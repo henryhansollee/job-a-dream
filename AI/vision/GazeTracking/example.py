@@ -7,8 +7,9 @@ import cv2
 from gaze_tracking import GazeTracking
 
 gaze = GazeTracking()
-# webcam = cv2.VideoCapture('gaze_test.mp4')
-webcam = cv2.VideoCapture(0)
+webcam = cv2.VideoCapture('hohoho.mkv')
+# webcam = cv2.VideoCapture('blob')
+# webcam = cv2.VideoCapture(0)
 
 # webcam으로 쓰려면 0 넣을 것.
 time_gaze_directions = [0] * 4  # blink, right, left, center,
@@ -18,15 +19,16 @@ time_gaze_directions = [0] * 4  # blink, right, left, center,
 #     'blinking': 0,
 #     'center': 0,
 # }
-time = 0
-# while True:
-while time <= 100:
-    time += 1
-    print(time)
-    # We get a new frame from the webcam
-    _, frame = webcam.read()
 
+while True: #(webcam.isOpened()):
+    # We get a new frame from the webcam
+    ret, frame = webcam.read()
+        
     # We send this frame to GazeTracking to analyze it
+    if type(frame) == type(None):
+        break
+    # if cv2.waitKey(1) & 0xFF == ord('q'):
+    #     break
     gaze.refresh(frame)
 
     frame = gaze.annotated_frame()
@@ -55,6 +57,7 @@ while time <= 100:
     cv2.putText(frame, "Right pupil: " + str(right_pupil), (90, 165), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
     cv2.imshow("Demo", frame)
+    # 동영상 보여주는 부분
 
     if cv2.waitKey(1) == 27:
         break

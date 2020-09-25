@@ -25,7 +25,6 @@ class BoardSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')
         instance = super().create(validated_data)
-        writer = self.context['request'].user
         tags = []
         for name in tag_name:
             tag, created = Tag.objects.get_or_create(name=name)
@@ -36,7 +35,6 @@ class BoardSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         tag_name = validated_data.pop('update_tag')
         instance = super().update(instance, validated_data)
-        writer = self.context['request'].user
         tags = []
         for name in tag_name:
             tag, created = Tag.objects.get_or_create(name=name)
@@ -47,3 +45,4 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         exclude = []
+        read_only_fields = ['writer']

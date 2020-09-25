@@ -5,12 +5,17 @@
       <div>
         <div class="mt-5">
           <b-form-input type="text" placeholder="title" v-model="communityData.title" />
-          <b-form-input class="mt-2" type="text" placeholder="writer" v-model="communityData.writer" />
-          <b-form-input class="mt-2" type="text" placeholder="content" v-model="communityData.content" />
+          <!-- <b-form-input class="mt-2" type="text" placeholder="writer" v-model="communityData.writer" /> -->
+          <b-form-input
+            class="mt-2"
+            type="text"
+            placeholder="content"
+            v-model="communityData.content"
+          />
         </div>
 
         <div class="mt-3">
-          <b-form-tags v-model="value" no-outer-focus class="mb-2">
+          <b-form-tags v-model="communityData.update_tag" no-outer-focus class="mb-2">
             <template v-slot="{ tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag }">
               <b-input-group class="mb-2">
                 <b-form-input
@@ -45,8 +50,9 @@
 </template>
 
 <script>
-import Header from '../../components/Header'
-import { mapActions } from 'vuex'
+import Header from "../../components/Header";
+import { mapActions } from "vuex";
+import cookies from "vue-cookies";
 
 export default {
   name: "CommunityCreateView",
@@ -56,20 +62,18 @@ export default {
   data() {
     return {
       communityData: {
-        title: '',
-        writer: '',
-        content: '',
+        title: "",
+        writer: cookies.get("accessToken"),
+        content: "",
         update_tag: [],
       },
-      value: []
-    }
+    };
   },
-  methods: { 
-    ...mapActions(['createCommunity']),
-  }
-}
+  methods: {
+    ...mapActions(["createCommunity"]),
+  },
+};
 </script>
 
 <style>
-
 </style>
