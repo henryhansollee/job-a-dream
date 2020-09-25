@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// Home
-import Home from '../views/Home.vue'
-
 // Audio
 import AudioList from '../views/audio/AudioList'
 import AudioCreate from '../views/audio/AudioCreate'
@@ -30,18 +27,11 @@ import YoutubeList from '../views/youtube/YoutubeList'
 import YoutubeDetail from '../views/youtube/YoutubeDetail'
 
 // Result
-import Result from '../views/Result'
+import Result from '../views/result/Result'
 
 Vue.use(VueRouter)
 
 const routes = [
-  // Home
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-
   // Audio
   {
     path: '/audio/list',
