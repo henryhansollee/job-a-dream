@@ -19,6 +19,7 @@
 </template>
 
 <script>
+// @ is an alias to /src
 import axios from "axios";
 import YoutubeListItem from "@/components/YoutubeListItem.vue";
 
@@ -59,9 +60,8 @@ export default {
             console.error(error);
           });
       }
+      console.log("ㅎㅇ");
     },
   },
 };
 </script>
-
-<style></style>

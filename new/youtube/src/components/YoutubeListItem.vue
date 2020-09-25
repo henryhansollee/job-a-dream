@@ -8,12 +8,8 @@
       <img :src="video.snippet.thumbnails.medium.url" alt="" class="videoImg" />
       <div class="play">
         <div
-          style="
-            border-radius: 15px;
-            background-color: green;
-            color: white;
-            padding: 10px 15px;
-          "
+          style="border-radius:15px;background-color:green; color: white; 
+          padding: 10px 15px;"
         >
           <i class="fas fa-play"></i> 재생
         </div>
