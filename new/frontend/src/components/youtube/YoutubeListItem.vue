@@ -52,3 +52,40 @@ export default {
   },
 };
 </script>
+
+<style>
+.videoImg {
+  opacity: 1;
+  display: block;
+  width: 90%;
+  height: auto;
+  transition: 0.1s ease;
+  backface-visibility: hidden;
+}
+.videoImg:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.1s;
+}
+.play-video {
+  position: relative;
+}
+.play-video:hover .videoImg {
+  opacity: 0.3;
+}
+
+.play-video:hover .play {
+  opacity: 1;
+  cursor: pointer;
+}
+.play {
+  transition: 0.3s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
