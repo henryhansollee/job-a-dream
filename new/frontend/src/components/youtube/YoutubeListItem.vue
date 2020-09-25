@@ -26,3 +26,29 @@
     <!-- </router-link> -->
   </div>
 </template>
+
+<script>
+export default {
+  name: "YoutubeListItem",
+
+  props: {
+    video: Object,
+    keyword: String,
+  },
+  computed: {
+    videoTitle() {
+      if (this.video) {
+        return this.video.snippet.title;
+      }
+      return null;
+    },
+  },
+  methods: {
+    goDetail() {
+      console.log(this.video.id.videoId, "줄거");
+      this.$emit("giveVideo", this.video.id.videoId);
+      this.$router.push({ path: `/detail` });
+    },
+  },
+};
+</script>
