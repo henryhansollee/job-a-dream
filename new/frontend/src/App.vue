@@ -7,16 +7,92 @@
         <div>
           <hr>
           <img class="profile-img" src="@/assets/logo.png" alt="profile">
-          <v-btn icon color="indigo">
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
+          <!-- 프로필 수정 모달 -->
+          <v-row justify="center">
+            <v-btn icon color="indigo" @click.stop="dialogUser = true">
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+            <v-dialog
+              v-model="dialogUser"
+              max-width="290"
+            >
+              <v-card>
+                <v-card-title class="headline">Use Google's location service?</v-card-title>
+
+                <v-card-text>
+                  Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialogUser = false"
+                  >
+                    Disagree
+                  </v-btn>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialogUser = false"
+                  >
+                    Agree
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-row>
           <h4>이한솔</h4>
           <h4>henryhansollee@gmail.com</h4>
           <h4>오늘도 뽜이링!</h4>
           <hr>
         </div>
         <div>
-          <small>내 질문 목록</small>
+          <v-row justify="center">
+            <v-btn
+              color="primary"
+              dark
+              @click.stop="dialogQuestion = true"
+            >
+              내 질문 목록
+            </v-btn>
+
+            <v-dialog
+              v-model="dialogQuestion"
+              max-width="290"
+            >
+              <v-card>
+                <v-card-title class="headline">Use Google's location service?</v-card-title>
+
+                <v-card-text>
+                  Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialogQuestion = false"
+                  >
+                    Disagree
+                  </v-btn>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialogQuestion = false"
+                  >
+                    Agree
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-row>
           <hr>
         </div>
         <!-- 영상 분석 -->
@@ -108,6 +184,8 @@
     data() {
       return {
         drawer: null,
+        dialogUser: false,
+        dialogQuestion: false,
       }
     },
   }
