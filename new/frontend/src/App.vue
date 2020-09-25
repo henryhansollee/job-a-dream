@@ -7,6 +7,9 @@
         <div>
           <hr>
           <img class="profile-img" src="@/assets/logo.png" alt="profile">
+          <v-btn icon color="indigo">
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
           <h4>이한솔</h4>
           <h4>henryhansollee@gmail.com</h4>
           <h4>오늘도 뽜이링!</h4>
