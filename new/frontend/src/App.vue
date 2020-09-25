@@ -3,6 +3,16 @@
     <!-- 사이드바 -->
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
+        
+        <div>
+          <hr>
+          <img class="profile-img" src="@/assets/logo.png" alt="profile">
+          <h4>이한솔</h4>
+          <h4>henryhansollee@gmail.com</h4>
+          <h4>오늘도 뽜이링!</h4>
+          <hr>
+        </div>
+        
         <!-- 영상 분석 -->
         <v-list-item link href="/video/list">
           <v-list-item-action>
@@ -84,3 +94,11 @@
     },
   }
 </script>
+
+<style>
+.profile-img {
+  width: 170px;
+  border: solid 1px;
+  border-radius: 50%;
+}
+</style>
