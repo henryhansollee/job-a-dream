@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>ㅎㅇ</h1>
+    <h1>음성 리스트</h1>
+    <router-link to="/audio/create">음성 분석 시작</router-link>
   </div>
 </template>
 

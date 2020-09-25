@@ -63,6 +63,17 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <!-- 통계 및 분석 -->
+        <v-list-item link href="/result">
+          <v-list-item-action>
+            <i class="fas fa-poll"></i>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              통계 및 분석
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <!-- 면접 참고 영상 -->
         <v-list-item link href="/youtube/list">
           <v-list-item-action>
