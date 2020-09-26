@@ -3,39 +3,39 @@ import VueRouter from 'vue-router'
 import store from '../store'
 
 // Audio
-import AudioList from '../views/audio/AudioList'
-import AudioCreate from '../views/audio/AudioCreate'
-import AudioDetail from '../views/audio/AudioDetail'
+import AudioList from '../views/audios/AudioList'
+import AudioCreate from '../views/audios/AudioCreate'
+import AudioDetail from '../views/audios/AudioDetail'
 
 // CoverLetter
-import CoverLetterList from '../views/coverletter/CoverLetterList'
-import CoverLetterCreate from '../views/coverletter/CoverLetterCreate'
-import CoverLetterDetail from '../views/coverletter/CoverLetterDetail'
-import CoverLetterUpdate from '../views/coverletter/CoverLetterUpdate'
+import CoverLetterList from '../views/coverletters/CoverLetterList'
+import CoverLetterCreate from '../views/coverletters/CoverLetterCreate'
+import CoverLetterDetail from '../views/coverletters/CoverLetterDetail'
+import CoverLetterUpdate from '../views/coverletters/CoverLetterUpdate'
 
 // FullCourse
-import FullCourseList from '../views/fullcourse/FullCourseList'
-import FullCourseCreate from '../views/fullcourse/FullCourseCreate'
-import FullCourseDetail from '../views/fullcourse/FullCourseDetail'
+import FullCourseList from '../views/fullcourses/FullCourseList'
+import FullCourseCreate from '../views/fullcourses/FullCourseCreate'
+import FullCourseDetail from '../views/fullcourses/FullCourseDetail'
 
 // Video
-import VideoList from '../views/video/VideoList'
-import VideoCreate from '../views/video/VideoCreate'
-import VideoDetail from '../views/video/VideoDetail'
+import VideoList from '../views/videos/VideoList'
+import VideoCreate from '../views/videos/VideoCreate'
+import VideoDetail from '../views/videos/VideoDetail'
 
 // Youtube
-import YoutubeList from '../views/youtube/YoutubeList'
-import YoutubeDetail from '../views/youtube/YoutubeDetail'
+import YoutubeList from '../views/youtubes/YoutubeList'
+import YoutubeDetail from '../views/youtubes/YoutubeDetail'
 
 // Result
-import Result from '../views/result/Result'
+import Result from '../views/results/Result'
 
 Vue.use(VueRouter)
 
 const routes = [
   // Audio
   {
-    path: '/audio/list',
+    path: '/audios/list',
     name: 'AudioList',
     component: AudioList,
     meta: {
@@ -43,7 +43,7 @@ const routes = [
     }
   },
   {
-    path: '/audio/create',
+    path: '/audios/create',
     name: 'AudioCreate',
     component: AudioCreate,
     meta: {
@@ -51,7 +51,7 @@ const routes = [
     }
   },
   {
-    path: '/audio/detail/:id',
+    path: '/audios/detail/:id',
     name: 'AudioDetail',
     component: AudioDetail,
     meta: {
@@ -61,7 +61,7 @@ const routes = [
 
   // CoverLetter
   {
-    path: '/coverletter/list',
+    path: '/coverletters/list',
     name: 'CoverLetterList',
     component: CoverLetterList,
     meta: {
@@ -69,7 +69,7 @@ const routes = [
     }
   },
   {
-    path: '/coverletter/create',
+    path: '/coverletters/create',
     name: 'CoverLetterCreate',
     component: CoverLetterCreate,
     meta: {
@@ -77,7 +77,7 @@ const routes = [
     }
   },
   {
-    path: '/coverletter/detail/:id',
+    path: '/coverletters/detail/:id',
     name: 'CoverLetterDetail',
     component: CoverLetterDetail,
     meta: {
@@ -85,7 +85,7 @@ const routes = [
     }
   },
   {
-    path: '/coverletter/detail/:id/update',
+    path: '/coverletters/detail/:id/update',
     name: 'CoverLetterUpdate',
     component: CoverLetterUpdate,
     meta: {
@@ -95,7 +95,7 @@ const routes = [
 
   // FullCourse
   {
-    path: '/fullcourse/list',
+    path: '/fullcourses/list',
     name: 'FullCourseList',
     component: FullCourseList,
     meta: {
@@ -103,7 +103,7 @@ const routes = [
     }
   },
   {
-    path: '/fullcourse/create',
+    path: '/fullcourses/create',
     name: 'FullCourseCreate',
     component: FullCourseCreate,
     meta: {
@@ -111,7 +111,7 @@ const routes = [
     }
   },
   {
-    path: '/fullcourse/detail/:id',
+    path: '/fullcourses/detail/:id',
     name: 'FullCourseDetail',
     component: FullCourseDetail,
     meta: {
@@ -121,7 +121,7 @@ const routes = [
 
   // Video
   {
-    path: '/video/list',
+    path: '/videos/list',
     name: 'VideoList',
     component: VideoList,
     meta: {
@@ -129,7 +129,7 @@ const routes = [
     }
   },
   {
-    path: '/video/create',
+    path: '/videos/create',
     name: 'VideoCreate',
     component: VideoCreate,
     meta: {
@@ -137,7 +137,7 @@ const routes = [
     }
   },
   {
-    path: '/video/detail/:id',
+    path: '/videos/detail/:id',
     name: 'VideoDetail',
     component: VideoDetail,
     meta: {
@@ -147,7 +147,7 @@ const routes = [
 
   // Youtube
   {
-    path: '/youtube/list',
+    path: '/youtubes/list',
     name: 'YoutubeList',
     component: YoutubeList,
     meta: {
@@ -155,7 +155,7 @@ const routes = [
     }
   },
   {
-    path: '/youtube/detail/:id',
+    path: '/youtubes/detail/:id',
     name: 'YoutubeDetail',
     component: YoutubeDetail,
     meta: {
@@ -165,7 +165,7 @@ const routes = [
 
   // Result
   {
-    path: '/result',
+    path: '/results',
     name: 'Result',
     component: Result,
     meta: {
