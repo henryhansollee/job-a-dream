@@ -38,13 +38,13 @@
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
         <!-- 프로필 -->
-        <div>
+        <div class="d-flex flex-column align-items-center">
           <hr>
-          <img class="profile-img" src="@/assets/logo.png" alt="profile">
+          <img class="profile-img" src="@/assets/profile/default.png" alt="profile">
           <!-- 프로필 수정 모달 -->
-          <v-row justify="center">
-            <v-btn icon color="indigo" @click.stop="dialogUser = true">
-              <v-icon>mdi-pencil</v-icon>
+          <v-row justify="center" class="align-self-end">
+            <v-btn class="mr-5" icon color="indigo" @click.stop="dialogUser = true">
+              <small>EDIT</small>
             </v-btn>
             <v-dialog
               v-model="dialogUser"
@@ -79,12 +79,14 @@
               </v-card>
             </v-dialog>
           </v-row>
-          <h4>이한솔</h4>
-          <h4>henryhansollee@gmail.com</h4>
-          <h4>오늘도 뽜이링!</h4>
-          <hr>
+          <div class="d-flex flex-column align-items-center">
+            <small>이한솔</small>
+            <small>henryhansollee@gmail.com</small>
+            <small>오늘도 뽜이링!</small>
+          </div>
         </div>
         <div>
+          <hr>
           <v-row justify="center">
             <v-btn
               color="primary"
