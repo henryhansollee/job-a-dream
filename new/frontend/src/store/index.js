@@ -307,7 +307,17 @@ export default new Vuex.Store({
         });
     },
 
-    // 자소서 분석 수정 - 해야함
+    // 자소서 분석 수정
+    updateCoverletter({ getters }, updatedCoverletterData) {
+      axios
+        .put(BACKEND.URL + BACKEND.ROUTES.coverletters + `${updatedCoverletterData.id}`, updatedCoverletterData.updatedCoverletterData, getters.config)
+        .then(() => {
+          router.push(`/coverletters/detail/${updatedCoverletterData.id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
 
     // 자소서 분석 삭제
     deleteCoverletter({ getters }, coverletter_id) {
@@ -322,7 +332,6 @@ export default new Vuex.Store({
         });
     },
     
-
     // ----- 풀코스 분석 -----
     // 풀코스 리스트
     getFullcourses({ getters, commit }) {
@@ -376,7 +385,17 @@ export default new Vuex.Store({
     },
 
     // ----- 통계 및 결과 -----
-
+    getResults({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.results, getters.config)
+        .then((response) => {
+          console.log(response, "결과");
+          commit("SET_RESULTS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   modules: {
   }
