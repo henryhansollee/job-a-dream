@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 // Audio
 import AudioList from '../views/audio/AudioList'
@@ -36,92 +37,140 @@ const routes = [
   {
     path: '/audio/list',
     name: 'AudioList',
-    component: AudioList
+    component: AudioList,
+    meta: {
+      title: '잡아드림 | 음성분석'
+    }
   },
   {
     path: '/audio/create',
     name: 'AudioCreate',
-    component: AudioCreate
+    component: AudioCreate,
+    meta: {
+      title: '잡아드림 | 음성분석 시작'
+    }
   },
   {
     path: '/audio/detail/:id',
     name: 'AudioDetail',
-    component: AudioDetail
+    component: AudioDetail,
+    meta: {
+      title: '잡아드림 | 음성분석 결과'
+    }
   },
 
   // CoverLetter
   {
     path: '/coverletter/list',
     name: 'CoverLetterList',
-    component: CoverLetterList
+    component: CoverLetterList,
+    meta: {
+      title: '잡아드림 | 자소서분석'
+    }
   },
   {
     path: '/coverletter/create',
     name: 'CoverLetterCreate',
-    component: CoverLetterCreate
+    component: CoverLetterCreate,
+    meta: {
+      title: '잡아드림 | 자소서분석 시작'
+    }
   },
   {
     path: '/coverletter/detail/:id',
     name: 'CoverLetterDetail',
-    component: CoverLetterDetail
+    component: CoverLetterDetail,
+    meta: {
+      title: '잡아드림 | 자소서분석 결과'
+    }
   },
   {
     path: '/coverletter/detail/:id/update',
     name: 'CoverLetterUpdate',
-    component: CoverLetterUpdate
+    component: CoverLetterUpdate,
+    meta: {
+      title: '잡아드림 | 자소서분석 수정'
+    }
   },
 
   // FullCourse
   {
     path: '/fullcourse/list',
     name: 'FullCourseList',
-    component: FullCourseList
+    component: FullCourseList,
+    meta: {
+      title: '잡아드림 | 풀코스분석'
+    }
   },
   {
     path: '/fullcourse/create',
     name: 'FullCourseCreate',
-    component: FullCourseCreate
+    component: FullCourseCreate,
+    meta: {
+      title: '잡아드림 | 풀코스분석 시작'
+    }
   },
   {
     path: '/fullcourse/detail/:id',
     name: 'FullCourseDetail',
-    component: FullCourseDetail
+    component: FullCourseDetail,
+    meta: {
+      title: '잡아드림 | 풀코스분석 결과'
+    }
   },
 
   // Video
   {
     path: '/video/list',
     name: 'VideoList',
-    component: VideoList
+    component: VideoList,
+    meta: {
+      title: '잡아드림 | 영상분석'
+    }
   },
   {
     path: '/video/create',
     name: 'VideoCreate',
-    component: VideoCreate
+    component: VideoCreate,
+    meta: {
+      title: '잡아드림 | 영상분석 시작'
+    }
   },
   {
     path: '/video/detail/:id',
     name: 'VideoDetail',
-    component: VideoDetail
+    component: VideoDetail,
+    meta: {
+      title: '잡아드림 | 영상분석 결과'
+    }
   },
 
   // Youtube
   {
     path: '/youtube/list',
     name: 'YoutubeList',
-    component: YoutubeList
+    component: YoutubeList,
+    meta: {
+      title: '잡아드림 | 면접 참고 영상'
+    }
   },
   {
     path: '/youtube/detail/:id',
     name: 'YoutubeDetail',
-    component: YoutubeDetail
+    component: YoutubeDetail,
+    meta: {
+      title: '잡아드림 | 면접 참고 영상 보기'
+    }
   },
 
   // Result
   {
     path: '/result',
     name: 'Result',
-    component: Result
+    component: Result,
+    meta: {
+      title: '잡아드림 | 통계 및 분석'
+    }
   },
 ]
 
@@ -130,5 +179,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || '잡아드림';
+  const isAuthenticated = store.getters.isLoggedIn;
+  if (isAuthenticated) {
+    next()
+  } else if (to.name === 'LoginView' || to.name === 'SignupView') {
+    next()
+  } else {
+    next({name: 'LoginView'})
+  }
+});
 
 export default router
