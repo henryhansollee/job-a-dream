@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center inner-box">
-    <img src="@/assets/home/home4.jpg" alt class="graph3" />
+    <img src="@/assets/homes/home4.jpg" alt class="graph3" />
     <div class="mt-5">
       <h1>풀코스분석</h1>
       <p>풀코스분석 소개</p>

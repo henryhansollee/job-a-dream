@@ -40,7 +40,7 @@
         <!-- 프로필 -->
         <div class="d-flex flex-column align-items-center">
           <hr>
-          <img class="profile-img" src="@/assets/profile/default.png" alt="profile">
+          <img class="profile-img" src="@/assets/profiles/default.png" alt="profile">
           <!-- 프로필 수정 모달 -->
           <v-row justify="center" class="align-self-end">
             <v-btn class="mr-5" icon color="indigo" v-b-modal.modal-1>
@@ -129,7 +129,7 @@
         <!-- 영상 분석 -->
         <v-list-item link href="/videos/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/video.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/video.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content >
             <v-list-item-title class="d-flex justify-content-center">
@@ -140,7 +140,7 @@
         <!-- 음성분석 -->
         <v-list-item link href="/audios/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/audio.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/audio.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -151,7 +151,7 @@
         <!-- 자소서분석 -->
         <v-list-item link href="/coverletters/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/coverletter.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/coverletter.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -162,7 +162,7 @@
         <!-- 풀코스 분석 -->
         <v-list-item link href="/fullcourses/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/fullcourse.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/fullcourse.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -173,7 +173,7 @@
         <!-- 통계 및 분석 -->
         <v-list-item link href="/results" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/result.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/result.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -184,7 +184,7 @@
         <!-- 면접 참고 영상 -->
         <v-list-item link href="/youtubes/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <img src="@/assets/menu/youtube.png" alt="" style="width: 30px;">
+            <img src="@/assets/menus/youtube.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">

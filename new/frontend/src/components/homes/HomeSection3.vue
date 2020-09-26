@@ -4,7 +4,7 @@
       <h1>음성분석</h1>
       <p>음성분석 소개</p>
     </div>
-    <img src="@/assets/home/home2.jpg" alt class="graph2 ml-5" />
+    <img src="@/assets/homes/home2.jpg" alt class="graph2 ml-5" />
   </div>
 </template>
 

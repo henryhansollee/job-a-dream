@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-between align-items-center inner-box">
-    <img src="@/assets/logo/logo-main.jpg" alt="home-logo" class="home-logo mr-5" />
+    <img src="@/assets/logos/logo-main.jpg" alt="home-logo" class="home-logo mr-5" />
     <Login class="ml-5" />
   </div>
 </template>

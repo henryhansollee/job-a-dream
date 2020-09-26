@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-between align-items-center inner-box">
-    <img src="@/assets/home/home1.jpg" alt class="graph1 mr-5" />
+    <img src="@/assets/homes/home1.jpg" alt class="graph1 mr-5" />
     <div class="ml-5">
       <h1>자소서분석</h1>
       <p>자소서분석 소개</p>

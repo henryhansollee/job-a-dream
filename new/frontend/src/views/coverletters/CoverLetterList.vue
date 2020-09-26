@@ -15,21 +15,39 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/900/300/?image=52"
-      ></b-carousel-slide>
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/900/300/?image=52"
-      ></b-carousel-slide>
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/900/300/?image=52"
-      ></b-carousel-slide>
+      <b-carousel-slide>
+        <template v-slot:img>
+          <img
+            class="d-block img-fluid w-100"
+            width="900"
+            height="300"
+            src="@/assets/carousels/coverletter-carousel.jpg"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+      <b-carousel-slide>
+        <template v-slot:img>
+          <img
+            class="d-block img-fluid w-100"
+            width="900"
+            height="300"
+            src="@/assets/carousels/coverletter-carousel.jpg"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+      <b-carousel-slide>
+        <template v-slot:img>
+          <img
+            class="d-block img-fluid w-100"
+            width="900"
+            height="300"
+            src="@/assets/carousels/coverletter-carousel.jpg"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
     </b-carousel>
     <!-- 캐러셀 -->
     <router-link to="/coverletters/create">자소서 분석 시작</router-link>
