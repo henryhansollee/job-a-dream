@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Login from "../auth/Login";
+import Login from "../auths/Login";
 
 export default {
   name: "HomeSection1",

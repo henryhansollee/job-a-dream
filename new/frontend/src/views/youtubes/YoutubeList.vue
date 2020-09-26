@@ -20,7 +20,7 @@
 
 <script>
 import axios from "axios";
-import YoutubeListItem from "@/components/youtube/YoutubeListItem.vue";
+import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
 
 const API_KEY = "AIzaSyA5sx2tkiELZ9R2oSoVdCSJDSj8jHUvqIw";
 const API_URL = "https://www.googleapis.com/youtube/v3/search";

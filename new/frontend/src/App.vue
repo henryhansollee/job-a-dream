@@ -127,7 +127,7 @@
           <hr>
         </div>
         <!-- 영상 분석 -->
-        <v-list-item link href="/video/list" class="text-decoration-none">
+        <v-list-item link href="/videos/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/video.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -138,7 +138,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- 음성분석 -->
-        <v-list-item link href="/audio/list" class="text-decoration-none">
+        <v-list-item link href="/audios/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/audio.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -149,7 +149,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- 자소서분석 -->
-        <v-list-item link href="/coverletter/list" class="text-decoration-none">
+        <v-list-item link href="/coverletters/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/coverletter.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -160,7 +160,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- 풀코스 분석 -->
-        <v-list-item link href="/fullcourse/list" class="text-decoration-none">
+        <v-list-item link href="/fullcourses/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/fullcourse.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -171,7 +171,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- 통계 및 분석 -->
-        <v-list-item link href="/result" class="text-decoration-none">
+        <v-list-item link href="/results" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/result.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -182,7 +182,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- 면접 참고 영상 -->
-        <v-list-item link href="/youtube/list" class="text-decoration-none">
+        <v-list-item link href="/youtubes/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
             <img src="@/assets/menu/youtube.png" alt="" style="width: 30px;">
           </v-list-item-action>
@@ -214,13 +214,13 @@
 
 <script>
 import { mapGetters, mapState, mapActions  } from "vuex";
-import Logout from '@/components/auth/Logout'
-import HomeSection1 from "@/components/home/HomeSection1";
-import HomeSection2 from "@/components/home/HomeSection2";
-import HomeSection3 from "@/components/home/HomeSection3";
-import HomeSection4 from "@/components/home/HomeSection4";
-import HomeSection5 from "@/components/home/HomeSection5";
-import TopScrollButton from "@/components/home/TopScrollButton";
+import Logout from '@/components/auths/Logout'
+import HomeSection1 from "@/components/homes/HomeSection1";
+import HomeSection2 from "@/components/homes/HomeSection2";
+import HomeSection3 from "@/components/homes/HomeSection3";
+import HomeSection4 from "@/components/homes/HomeSection4";
+import HomeSection5 from "@/components/homes/HomeSection5";
+import TopScrollButton from "@/components/homes/TopScrollButton";
 
   export default {
     components: {

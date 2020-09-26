@@ -14,7 +14,7 @@
 
 <script>
 // import axios from "axios";
-import YoutubeListItem from "@/components/youtube/YoutubeListItem.vue";
+import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
 
 export default {
   name: "YoutubeDetail",
