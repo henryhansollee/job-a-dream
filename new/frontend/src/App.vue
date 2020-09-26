@@ -176,7 +176,7 @@
         <span class="hidden-sm-and-down">잡아드림</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <a href="#">로그아웃</a>
+      <Logout />
     </v-app-bar>
     <v-main>
       <router-view />
@@ -187,11 +187,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-
 import Login from '@/components/auth/Login'
+import Logout from '@/components/auth/Logout'
+
   export default {
     components: {
       Login,
+      Logout,
     },
     data() {
       return {
