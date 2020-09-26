@@ -1,66 +1,68 @@
 <template>
   <div class="main-font login-block">
-    <h3 class="text-center mb-4" style="margin-top: 36px">로그인</h3>
+    <h3 class="text-center mt-5 mb-4" style="margin-top: 36px">로그인</h3>
     <div class="login-inner-block">
       <div class="d-flex flex-column">
-        <input
+        <b-form-input
           type="email"
           :placeholder="email"
           v-model="loginData.email"
-          class="mb-1"
+          class="mb-1 mt-2"
           style="height:45px; font-family: fontawesome, 'Do Hyeon', sans-serif;"
         />
-        <input
+        <b-form-input
           type="password"
           :placeholder="password"
           v-model="loginData.password"
           class="mb-1 main-font"
           style="height: 45px; margin-top: 1px; font-family: fontawesome, 'Do Hyeon', sans-serif;"
         />
-        <button
+        <b-button
           variant="dark"
           @click="login(loginData)"
           class="mb-1 mt-4"
           style="height: 45px"
-        >로그인</button>
-      <v-btn
-        color="primary"
-        dark
-        @click.stop="dialog = true"
-      >
-        회원가입
-      </v-btn>
-
-      <div class="signup-block main-font">
-        <div class="signup-inner-block d-flex flex-column">
-          <h3 class="text-center main-font mb-3 mt-4">회원가입</h3>
-          <div class="d-flex flex-column">
-            <input
-              type="text"
-              placeholder="이름"
-              v-model="signupData.username"
-              class="mb-1"
-              style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
-            />
-            <input
-              type="email"
-              placeholder="이메일"
-              v-model="signupData.email"
-              class="mb-1"
-              style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
-            />
-            <input
-              type="password"
-              placeholder="패스워드"
-              v-model="signupData.password"
-              class="mb-1"
-              style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
-            />
-            <button variant="dark" @click="signup(signupData)" class="mb-1 mt-3">회원가입</button>
-          </div>
-        </div>
+        >로그인</b-button>
+        <b-button
+          v-b-modal.modal-1
+          variant="light"
+          class="mb-1"
+          style="height: 45px; margin-top: 2px"
+        >회원가입</b-button>
       </div>
     </div>
+    <div class="main-font">
+      <b-modal id="modal-1" title="BootstrapVue" hide-header hide-footer>
+        <div class="signup-block main-font">
+          <div class="signup-inner-block d-flex flex-column">
+            <h3 class="text-center main-font mb-3 mt-4">회원가입</h3>
+            <div class="d-flex flex-column">
+              <b-form-input
+                type="text"
+                :placeholder="username"
+                v-model="signupData.username"
+                class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
+              />
+              <b-form-input
+                type="email"
+                :placeholder="email"
+                v-model="signupData.email"
+                class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
+              />
+              <b-form-input
+                type="password"
+                :placeholder="password"
+                v-model="signupData.password"
+                class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
+              />
+              <b-button variant="dark" @click="signup(signupData)" class="mb-1 mt-3">회원가입</b-button>
+            </div>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -72,6 +74,7 @@ export default {
   name: "Login",
   data() {
     return {
+      username: "\uf007" + "  이름",
       email: "\uf0e0" + "  이메일",
       password: "\uf084" + "  패스워드",
       loginData: {
@@ -83,6 +86,7 @@ export default {
         email: "",
         password: "",
       },
+      dialog: false,
     };
   },
   methods: {
@@ -95,7 +99,7 @@ export default {
 .login-block {
   width: 45%;
   height: 25rem;
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
   max-width: 500px;
   border-radius: 4px;
 }
@@ -104,7 +108,7 @@ export default {
   margin-left: 13.5%;
   width: 75%;
   height: 10rem;
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
 }
 .text-none {
   text-decoration: none;
@@ -118,13 +122,13 @@ export default {
   margin: 0;
   width: 100%;
   height: 17rem;
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
 }
 .signup-inner-block {
   margin-left: 25%;
   width: 50%;
   height: 10rem;
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
 }
 .cta {
   position: relative;

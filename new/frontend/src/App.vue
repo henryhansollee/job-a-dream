@@ -21,23 +21,30 @@
         <HomeSection3 />
       </div>
       <div class="section home-section4">
+        <button class="next next-button4" @click="$refs.fullpage.api.moveSectionDown()">
+          <i class="fas fa-chevron-down"></i>
+        </button>
         <HomeSection4 />
       </div>
+      <div class="section home-section5">
+        <HomeSection5 />
+      </div>
     </full-page>
-    </div>
+    <TopScrollButton />
+  </div>
 
   <v-app v-else id="inspire">
     <!-- 사이드바 -->
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
         <!-- 프로필 -->
-        <div>
+        <div class="d-flex flex-column align-items-center">
           <hr>
-          <img class="profile-img" src="@/assets/logo.png" alt="profile">
+          <img class="profile-img" src="@/assets/profile/default.png" alt="profile">
           <!-- 프로필 수정 모달 -->
-          <v-row justify="center">
-            <v-btn icon color="indigo" @click.stop="dialogUser = true">
-              <v-icon>mdi-pencil</v-icon>
+          <v-row justify="center" class="align-self-end">
+            <v-btn class="mr-5" icon color="indigo" @click.stop="dialogUser = true">
+              <small>EDIT</small>
             </v-btn>
             <v-dialog
               v-model="dialogUser"
@@ -72,12 +79,15 @@
               </v-card>
             </v-dialog>
           </v-row>
-          <h4>이한솔</h4>
-          <h4>henryhansollee@gmail.com</h4>
-          <h4>오늘도 뽜이링!</h4>
-          <hr>
+          <div class="d-flex flex-column align-items-center">
+            <small>이한솔</small>
+            <small>henryhansollee@gmail.com</small>
+            <hr class="mb-0">
+            <small>오늘도 뽜이링!</small>
+          </div>
         </div>
         <div>
+          <hr>
           <v-row justify="center">
             <v-btn
               color="primary"
@@ -123,73 +133,74 @@
           <hr>
         </div>
         <!-- 영상 분석 -->
-        <v-list-item link href="/video/list">
-          <v-list-item-action>
-            <i class="fas fa-video"></i>
+        <v-list-item link href="/video/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/video.png" alt="" style="width: 30px;">
           </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
+          <v-list-item-content >
+            <v-list-item-title class="d-flex justify-content-center">
               영상분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 음성분석 -->
-        <v-list-item link href="/audio/list">
-          <v-list-item-action>
-            <i class="fas fa-microphone"></i>
+        <v-list-item link href="/audio/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/audio.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               음성분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 자소서분석 -->
-        <v-list-item link href="/coverletter/list">
-          <v-list-item-action>
-            <i class="fas fa-file-signature"></i>
+        <v-list-item link href="/coverletter/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/coverletter.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               자소서분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 풀코스 분석 -->
-        <v-list-item link href="/fullcourse/list">
-          <v-list-item-action>
-            <i class="fas fa-brain"></i>
+        <v-list-item link href="/fullcourse/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/fullcourse.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               풀코스분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 통계 및 분석 -->
-        <v-list-item link href="/result">
-          <v-list-item-action>
-            <i class="fas fa-poll"></i>
+        <v-list-item link href="/result" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/result.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               통계 및 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 면접 참고 영상 -->
-        <v-list-item link href="/youtube/list">
-          <v-list-item-action>
-            <i class="fab fa-youtube"></i>
+        <v-list-item link href="/youtube/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <img src="@/assets/menu/youtube.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               면접 참고 영상
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <hr>
       </v-list>
-      <small><i class="far fa-copyright"></i> Job A Dream</small>
+      <small class="fixed-bottom text-center"><i class="far fa-copyright"></i> Job A Dream</small>
     </v-navigation-drawer>
     <!-- 네브바 -->
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
@@ -214,7 +225,8 @@ import HomeSection1 from "@/components/home/HomeSection1";
 import HomeSection2 from "@/components/home/HomeSection2";
 import HomeSection3 from "@/components/home/HomeSection3";
 import HomeSection4 from "@/components/home/HomeSection4";
-
+import HomeSection5 from "@/components/home/HomeSection5";
+import TopScrollButton from "@/components/home/TopScrollButton";
 
   export default {
     components: {
@@ -223,6 +235,8 @@ import HomeSection4 from "@/components/home/HomeSection4";
       HomeSection2,
       HomeSection3,
       HomeSection4,
+      HomeSection5,
+      TopScrollButton,
     },
     data() {
       return {
@@ -254,16 +268,19 @@ import HomeSection4 from "@/components/home/HomeSection4";
   border-radius: 50%;
 }
 .home-section1 {
-  background-color: #fcbe32;
+  background-color: #2196F3;
 }
 .home-section2 {
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
 }
 .home-section3 {
-  background-color: #5e5e5f;
+  background-color: #BBDEFB;
 }
 .home-section4 {
-  background-color: #a79c8e;
+  background-color: #90CAF9;
+}
+.home-section5 {
+  background-color: #64B5F6;
 }
 .next {
   border: none;
@@ -278,17 +295,22 @@ import HomeSection4 from "@/components/home/HomeSection4";
 }
 .next-button1 {
   position: absolute;
-  top: 22%;
+  top: 17%;
   left: 50%;
 }
 .next-button2 {
   position: absolute;
-  top: 47%;
+  top: 37%;
   left: 50%;
 }
 .next-button3 {
   position: absolute;
-  top: 72%;
+  top: 57%;
+  left: 50%;
+}
+.next-button4 {
+  position: absolute;
+  top: 77%;
   left: 50%;
 }
 </style>
