@@ -5,5 +5,11 @@ export default {
     signup: "/accounts/signup/",
     login: "/accounts/login/",
     logout: "/accounts/logout/",
+    questions: "/questions/",
+    videos: "/videos/",
+    audios: "/audios/",
+    boards: "/boards/",
+    fullcourses: "/fullcourses/",
+    results: "/results/"
   },
 };
