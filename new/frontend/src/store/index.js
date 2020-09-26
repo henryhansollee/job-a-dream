@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     accessToken: cookies.get("accessToken"),
     authCheck: "",
+    questions: [],
   },
 
   getters: {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
+    },
+    GET_QUESTIONS(state, questions) {
+      state.questions = questions;
     },
   },
 
@@ -80,6 +84,53 @@ export default new Vuex.Store({
       router.push({ name: "Home" });
       router.go();
     },
+
+    // 질문 리스트
+    getQuestions({ getters, commit }) {
+      axios
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          getters.config
+        )
+        .then((response) => {
+          console.log(response, "질문 리스트");
+          commit("GET_QUESTIONS", response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // 질문 추가
+    createQuestion({ getters }, questionData) {
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          questionData,
+          getters.config
+        )
+        .then(() => {
+          console.log("질문 추가 성공");
+        })
+        .catch((err) => console.log(err));
+    },
+    // 질문 삭제
+    deleteQuestion({ getters }, question_id) {
+      axios
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.interview + `${question_id}`,
+          getters.config
+        )
+        .then(() => {
+          console.log('삭제완료')
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    
+
+
   },
   modules: {
   }
