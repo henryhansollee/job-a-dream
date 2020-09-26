@@ -21,10 +21,17 @@
         <HomeSection3 />
       </div>
       <div class="section home-section4">
+        <button class="next next-button4" @click="$refs.fullpage.api.moveSectionDown()">
+          <i class="fas fa-chevron-down"></i>
+        </button>
         <HomeSection4 />
       </div>
+      <div class="section home-section5">
+        <HomeSection5 />
+      </div>
     </full-page>
-    </div>
+    <TopScrollButton />
+  </div>
 
   <v-app v-else id="inspire">
     <!-- 사이드바 -->
@@ -214,7 +221,8 @@ import HomeSection1 from "@/components/home/HomeSection1";
 import HomeSection2 from "@/components/home/HomeSection2";
 import HomeSection3 from "@/components/home/HomeSection3";
 import HomeSection4 from "@/components/home/HomeSection4";
-
+import HomeSection5 from "@/components/home/HomeSection5";
+import TopScrollButton from "@/components/home/TopScrollButton";
 
   export default {
     components: {
@@ -223,6 +231,8 @@ import HomeSection4 from "@/components/home/HomeSection4";
       HomeSection2,
       HomeSection3,
       HomeSection4,
+      HomeSection5,
+      TopScrollButton,
     },
     data() {
       return {
@@ -265,6 +275,9 @@ import HomeSection4 from "@/components/home/HomeSection4";
 .home-section4 {
   background-color: #90CAF9;
 }
+.home-section5 {
+  background-color: #64B5F6;
+}
 .next {
   border: none;
   outline: none;
@@ -278,17 +291,22 @@ import HomeSection4 from "@/components/home/HomeSection4";
 }
 .next-button1 {
   position: absolute;
-  top: 22%;
+  top: 17%;
   left: 50%;
 }
 .next-button2 {
   position: absolute;
-  top: 47%;
+  top: 37%;
   left: 50%;
 }
 .next-button3 {
   position: absolute;
-  top: 72%;
+  top: 57%;
+  left: 50%;
+}
+.next-button4 {
+  position: absolute;
+  top: 77%;
   left: 50%;
 }
 </style>
