@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-column">
     <!-- 캐러셀 -->
     <b-carousel
       class="mr-5 ml-5 mt-5"
@@ -50,7 +50,9 @@
       </b-carousel-slide>
     </b-carousel>
     <!-- 캐러셀 -->
-    <router-link to="/coverletters/create">자소서 분석 시작</router-link>
+    <router-link class="text-decoration-none align-self-center" to="/coverletters/create">
+      <v-btn x-large color="primary" dark>풀코스 분석 시작</v-btn>
+    </router-link>
     <!-- 리스트 -->
     <v-container>
       <v-row>
