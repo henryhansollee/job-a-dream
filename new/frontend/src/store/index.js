@@ -204,6 +204,17 @@ export default new Vuex.Store({
     },
 
     // 영상 분석 삭제
+    deleteVideo({ getters }, video_id) {
+      axios
+        .delete(BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`, getters.config)
+        .then(() => {
+          router.push(`/video/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
     // ----- 음성 분석 -----
     // 음성 리스트
@@ -245,6 +256,17 @@ export default new Vuex.Store({
     },
 
     // 음성 분석 삭제
+    deleteAudio({ getters }, audio_id) {
+      axios
+        .delete(BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`, getters.config)
+        .then(() => {
+          router.push(`/audio/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
     // ----- 자소서 분석 -----
     // 자소서 분석 리스트
@@ -285,8 +307,21 @@ export default new Vuex.Store({
         });
     },
 
-    // 자소서 분석 수정
+    // 자소서 분석 수정 - 해야함
+
     // 자소서 분석 삭제
+    deleteCoverletter({ getters }, coverletter_id) {
+      axios
+        .delete(BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`, getters.config)
+        .then(() => {
+          router.push(`/coverletter/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    
 
     // ----- 풀코스 분석 -----
     // 풀코스 리스트
@@ -328,6 +363,17 @@ export default new Vuex.Store({
     },
 
     // 풀코스 삭제
+    deleteFullcourse({ getters }, fullcourse_id) {
+      axios
+        .delete(BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`, getters.config)
+        .then(() => {
+          router.push(`/fullcourse/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
     // ----- 통계 및 결과 -----
 
