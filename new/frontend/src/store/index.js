@@ -17,6 +17,10 @@ export default new Vuex.Store({
     coverletters: [],
     fullcourses: [],
     results: [],
+    videoResult: '',
+    audioResult: '',
+    coverletterResult: '',
+    fullcourseResult: '',
   },
 
   getters: {
