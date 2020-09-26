@@ -41,6 +41,21 @@ export default new Vuex.Store({
     GET_QUESTIONS(state, questions) {
       state.questions = questions;
     },
+    GET_VIDEOS(state, videos) {
+      state.videos = videos;
+    },
+    GET_AUDIOS(state, audios) {
+      state.audios = audios;
+    },
+    GET_COVERLETTERS(state, coverletters) {
+      state.coverletters = coverletters;
+    },
+    GET_FULLCOURSES(state, fullcourses) {
+      state.fullcourses = fullcourses;      
+    },
+    GET_RESULTS(state, results) {
+      state.results = results;
+    },
   },
 
   actions: {
