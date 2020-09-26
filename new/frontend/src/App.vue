@@ -135,7 +135,7 @@
         <!-- 영상 분석 -->
         <v-list-item link href="/video/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fas fa-video m-0"></i>
+            <img src="@/assets/menu/video.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content >
             <v-list-item-title class="d-flex justify-content-center">
@@ -146,7 +146,7 @@
         <!-- 음성분석 -->
         <v-list-item link href="/audio/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fas fa-microphone m-0"></i>
+            <img src="@/assets/menu/audio.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -157,7 +157,7 @@
         <!-- 자소서분석 -->
         <v-list-item link href="/coverletter/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fas fa-file-signature m-0"></i>
+            <img src="@/assets/menu/coverletter.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -168,7 +168,7 @@
         <!-- 풀코스 분석 -->
         <v-list-item link href="/fullcourse/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fas fa-brain m-0"></i>
+            <img src="@/assets/menu/fullcourse.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -179,7 +179,7 @@
         <!-- 통계 및 분석 -->
         <v-list-item link href="/result" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fas fa-poll m-0"></i>
+            <img src="@/assets/menu/result.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
@@ -190,7 +190,7 @@
         <!-- 면접 참고 영상 -->
         <v-list-item link href="/youtube/list" class="text-decoration-none">
           <v-list-item-action class="d-flex justify-content-center m-0">
-            <i class="fab fa-youtube m-0"></i>
+            <img src="@/assets/menu/youtube.png" alt="" style="width: 30px;">
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
