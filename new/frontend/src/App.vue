@@ -254,16 +254,16 @@ import HomeSection4 from "@/components/home/HomeSection4";
   border-radius: 50%;
 }
 .home-section1 {
-  background-color: #fcbe32;
+  background-color: #2196F3;
 }
 .home-section2 {
-  background-color: #fffcf0;
+  background-color: #E3F2FD;
 }
 .home-section3 {
-  background-color: #5e5e5f;
+  background-color: #BBDEFB;
 }
 .home-section4 {
-  background-color: #a79c8e;
+  background-color: #90CAF9;
 }
 .next {
   border: none;

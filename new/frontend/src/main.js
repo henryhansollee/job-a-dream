@@ -4,9 +4,12 @@ import router from './router'
 import vuetify from './plugins/vuetify';
 import store from './store'
 import VueFullPage from 'vue-fullpage.js'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 Vue.config.productionTip = false
 Vue.use(VueFullPage);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 new Vue({
   router,
