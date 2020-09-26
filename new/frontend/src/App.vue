@@ -200,7 +200,7 @@
         </v-list-item>
         <hr>
       </v-list>
-      <small><i class="far fa-copyright"></i> Job A Dream</small>
+      <small class="fixed-bottom text-center"><i class="far fa-copyright"></i> Job A Dream</small>
     </v-navigation-drawer>
     <!-- 네브바 -->
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
