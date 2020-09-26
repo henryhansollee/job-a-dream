@@ -116,7 +116,17 @@ export default new Vuex.Store({
       router.go();
     },
 
-    // 회원정보수정 - 해야함
+    // 회원정보수정
+    updateUser({ getters }, updatedUserData) {
+      axios
+        .put(BACKEND.URL + BACKEND.ROUTES.accounts + `${updatedUserData.id}`, updatedUserData.updatedUserData, getters.config)
+        .then(() => {
+          router.push('/');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
 
     // ----- 질문 -----
     // 질문 리스트
