@@ -43,41 +43,17 @@
           <img class="profile-img" src="@/assets/profile/default.png" alt="profile">
           <!-- 프로필 수정 모달 -->
           <v-row justify="center" class="align-self-end">
-            <v-btn class="mr-5" icon color="indigo" @click.stop="dialogUser = true">
+            <v-btn class="mr-5" icon color="indigo" v-b-modal.modal-1>
               <small>EDIT</small>
             </v-btn>
-            <v-dialog v-model="dialogUser" max-width="290">
-              <v-card>
-                <v-card-title class="headline">내 정보 수정</v-card-title>
-                <v-card-text>
-                  프로필 사진
-                  <v-file-input multiple label="File input"></v-file-input>
-                  한줄 각오
-                  
-                </v-card-text>
-                
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn
-                    color="green darken-1"
-                    text
-                    @click="dialogUser = false"
-                  >
-                    취소
-                  </v-btn>
-
-                  <v-btn
-                    color="green darken-1"
-                    text
-                    @click="dialogUser = false"
-                  >
-                    등록
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <b-modal hide-footer id="modal-1" title="내 정보 수정">
+                <h6>프로필 사진</h6>
+                <v-file-input multiple label="사진 업로드"></v-file-input>
+                <h6>한줄 각오</h6>
+                <b-form-input type="text"></b-form-input>
+                <hr>
+                <v-btn style="width: 100%; background-color: black;" class="text-white">저장</v-btn>
+              </b-modal>
           </v-row>
           <div class="d-flex flex-column align-items-center">
             <small>이한솔</small>
@@ -94,7 +70,7 @@
               dark
               v-b-modal.modal-scrollable
             >
-              내 질문 목록
+              질문 목록
             </v-btn>
             <b-modal
               hide-footer
