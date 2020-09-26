@@ -46,16 +46,16 @@
             <v-btn class="mr-5" icon color="indigo" @click.stop="dialogUser = true">
               <small>EDIT</small>
             </v-btn>
-            <v-dialog
-              v-model="dialogUser"
-              max-width="290"
-            >
+            <v-dialog v-model="dialogUser" max-width="290">
               <v-card>
-                <v-card-title class="headline">Use Google's location service?</v-card-title>
-
+                <v-card-title class="headline">내 정보 수정</v-card-title>
                 <v-card-text>
-                  Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                  프로필 사진
+                  <v-file-input multiple label="File input"></v-file-input>
+                  한줄 각오
+                  
                 </v-card-text>
+                
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -65,7 +65,7 @@
                     text
                     @click="dialogUser = false"
                   >
-                    Disagree
+                    취소
                   </v-btn>
 
                   <v-btn
@@ -73,7 +73,7 @@
                     text
                     @click="dialogUser = false"
                   >
-                    Agree
+                    등록
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -92,43 +92,61 @@
             <v-btn
               color="primary"
               dark
-              @click.stop="dialogQuestion = true"
+              v-b-modal.modal-scrollable
             >
               내 질문 목록
             </v-btn>
-
-            <v-dialog
-              v-model="dialogQuestion"
-              max-width="290"
+            <b-modal
+              hide-footer
+              header-class="modal-header"
+              id="modal-scrollable"
+              class="main-font"
+              scrollable
+              title="질문 리스트"
+              style="font-family: Cafe24Ohsquare, cursive"
             >
-              <v-card>
-                <v-card-title class="headline">Use Google's location service?</v-card-title>
-
-                <v-card-text>
-                  Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn
-                    color="green darken-1"
-                    text
-                    @click="dialogQuestion = false"
+              <div
+                class="my-4 main-font"
+                style="font-size: large; margin: 0 8px"
+                v-for="question in questions" :key="question.id"
+              >
+                <div class="d-flex flex-row justify-content-between">
+                  <div>{{ question.content }}</div>
+                  <div>
+                    <button @click="onSpeak(question.content)" class="basic-btn mr-3" style="background-color: transparent">
+                      <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button @click="deleteQuestion(question.id)" class="basic-btn" style="background-color: transparent">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="q-write main-font">
+                <div class="q-text">
+                  <input
+                    class="q-input"
+                    placeholder="새로운 질문을 써보세요!"
+                    type="text"
+                    v-model="questionData.content"
+                    @keypress.enter="addQuestion()"
+                  />
+                </div>
+                <div class="q-submit">
+                  <button
+                    type="button"
+                    class="basic-btn"
+                    style="color: gray"
+                    @click="addQuestion()"
                   >
-                    Disagree
-                  </v-btn>
-
-                  <v-btn
-                    color="green darken-1"
-                    text
-                    @click="dialogQuestion = false"
-                  >
-                    Agree
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+                    추가
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+              </div>
+            </b-modal>
           </v-row>
           <hr>
         </div>
@@ -139,7 +157,7 @@
           </v-list-item-action>
           <v-list-item-content >
             <v-list-item-title class="d-flex justify-content-center">
-              영상분석
+              영상 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -150,7 +168,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
-              음성분석
+              음성 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -161,7 +179,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
-              자소서분석
+              자소서 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -172,7 +190,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="d-flex justify-content-center">
-              풀코스분석
+              풀코스 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -219,7 +237,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState, mapActions  } from "vuex";
 import Logout from '@/components/auth/Logout'
 import HomeSection1 from "@/components/home/HomeSection1";
 import HomeSection2 from "@/components/home/HomeSection2";
@@ -248,15 +266,31 @@ import TopScrollButton from "@/components/home/TopScrollButton";
           controlArrows: true,
           scrollBar: true,
         },
+      questionData: {
+        content: '',
+      },
+
       }
     },
     computed: {
-      ...mapGetters(["isLoggedIn"]),
+      ...mapGetters([ "isLoggedIn" ]),
+      ...mapState([ "questions" ]),
     },
     methods: {
+      ...mapActions([ "getQuestions", "createQuestion", "deleteQuestion" ]),
       moveSectionDown() {
         this.$refs.fullpage.$fullpage.moveSectionDown();
       },
+      addQuestion() {  
+        this.createQuestion(this.questionData);
+        this.questionData.content=''
+        this.getQuestions()
+      },
+      onSpeak(text) {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text
+        window.speechSynthesis.speak(msg);
+      }
     }
   }
 </script>
@@ -313,4 +347,45 @@ import TopScrollButton from "@/components/home/TopScrollButton";
   top: 77%;
   left: 50%;
 }
+.q-write {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  width: 100%;
+  margin: 5% auto;
+  padding: 16px 10px 10px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.q-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 4px 3px 0;
+}
+.q-text {
+  display: block;
+}
+.q-input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.q-input::placeholder {
+  font-size: 17.5px;
+}
+.q-input:focus::placeholder {
+  color: transparent;
+}
+.modal-header {
+  font-family: "Cafe24Ohsquare", cursive;
+  margin: 10px 0 0 10px;
+  color: #2196F3;
+}
+.save-btn {
+  border: 1px solid #fcbe32;
+  outline: none;
+  border-radius: 4px;
+  background-color: #fcbe32;
+  margin-right: 7px;
+}
+
 </style>
