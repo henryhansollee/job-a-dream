@@ -168,7 +168,18 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     // 영상 분석 시작
+    createVideo({ getters }, videoData) {
+      axios
+        .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
+        .then(() => {
+          router.push("/videos/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
     // 영상 분석 결과
     // 영상 분석 삭제
 
@@ -186,7 +197,19 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     // 음성 분석 시작
+    createAudio({ getters }, audioData) {
+      axios
+        .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
+        .then(() => {
+          router.push("/audios/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+
     // 음성 분석 결과
     // 음성 분석 삭제
 
@@ -204,7 +227,19 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     // 자소서 분석 시작
+    createCoverletter({ getters }, coverletterData) {
+      axios
+        .post(BACKEND.URL + BACKEND.ROUTES.coverletters, coverletterData, getters.config)
+        .then(() => {
+          router.push("/coverletters/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+
     // 자소서 분석 결과
     // 자소서 분석 수정
     // 자소서 분석 삭제
@@ -223,7 +258,19 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     // 풀코스 시작
+    createFullcourse({ getters }, fullcourseData) {
+      axios
+        .post(BACKEND.URL + BACKEND.ROUTES.fullcourses, fullcourseData, getters.config)
+        .then(() => {
+          router.push("/fullcourses/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+
     // 풀코스 결과
     // 풀코스 삭제
 
