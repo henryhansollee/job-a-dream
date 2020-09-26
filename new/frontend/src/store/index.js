@@ -12,6 +12,11 @@ export default new Vuex.Store({
     accessToken: cookies.get("accessToken"),
     authCheck: "",
     questions: [],
+    videos: [],
+    audios: [],
+    coverletters: [],
+    fullcourses: [],
+    results: [],
   },
 
   getters: {
