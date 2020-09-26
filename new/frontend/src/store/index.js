@@ -59,9 +59,9 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // ----- AUTH -----
+    // ----- 유저 -----
 
-    // Auth
+    // 유저
     getAuth({ commit }, info) {
       axios
         .post(BACKEND.URL + info.location, info.data)
@@ -76,7 +76,7 @@ export default new Vuex.Store({
         });
     },
 
-    // Signup
+    // 회원가입
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
@@ -86,7 +86,7 @@ export default new Vuex.Store({
       router.go();
     },
 
-    // Login
+    // 로그인
     login({ dispatch }, loginData) {
       const info = {
         data: loginData,
@@ -95,7 +95,7 @@ export default new Vuex.Store({
       dispatch("getAuth", info);
     },
 
-    // Logout
+    // 로그아웃
     logout({ commit }) {
       commit("SET_TOKEN", null);
       commit("SET_AUTH", null);
@@ -104,6 +104,10 @@ export default new Vuex.Store({
       router.push({ name: "Home" });
       router.go();
     },
+
+    // 회원정보수정 - 해야함
+
+    // 질문
 
     // 질문 리스트
     getQuestions({ getters, commit }) {
@@ -134,6 +138,7 @@ export default new Vuex.Store({
         })
         .catch((err) => console.log(err));
     },
+
     // 질문 삭제
     deleteQuestion({ getters }, question_id) {
       axios
@@ -149,7 +154,80 @@ export default new Vuex.Store({
         });
     },
     
+    // 영상 분석
+    
+    // 영상 리스트
+    getVideos({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.videos, getters.config)
+        .then((response) => {
+          console.log(response, "영상 리스트");
+          commit("SET_VIDEOS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // 영상 분석 시작
+    // 영상 분석 결과
+    // 영상 분석 삭제
 
+    // 음성 분석
+
+    // 음성 리스트
+    getAudios({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.audios, getters.config)
+        .then((response) => {
+          console.log(response, "음성 리스트");
+          commit("SET_AUDIOS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // 음성 분석 시작
+    // 음성 분석 결과
+    // 음성 분석 삭제
+
+    // 자소서 분석
+
+    // 자소서 분석 리스트
+    getCoverletters({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.coverletters, getters.config)
+        .then((response) => {
+          console.log(response, "자소서 리스트");
+          commit("SET_COVERLETTERS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // 자소서 분석 시작
+    // 자소서 분석 결과
+    // 자소서 분석 수정
+    // 자소서 분석 삭제
+
+    // 풀코스 분석
+
+    // 풀코스 리스트
+    getFullcourses({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.fullcourses, getters.config)
+        .then((response) => {
+          console.log(response, "풀코스 리스트");
+          commit("SET_FULLCOURSES", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // 풀코스 시작
+    // 풀코스 결과
+    // 풀코스 삭제
+
+    // 통계 및 결과
 
   },
   modules: {
