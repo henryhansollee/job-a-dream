@@ -1,6 +1,6 @@
 <template>
   <a @click="scrollTop" v-show="visible" class="bottom-right">
-    <button class="basic-btn totheTop" style="border-radius:4px;">
+    <button class="basic-btn totheTop d-flex justify-content-center align-items-center" style="border-radius:4px;">
       <i class="fas fa-arrow-up"></i>
     </button>
   </a>
@@ -38,22 +38,20 @@ export default {
 <style scoped>
 .bottom-right {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
   cursor: pointer;
 }
 .totheTop {
   position: fixed;
-  bottom: 1%;
-  right: 8%;
+  bottom: 3%;
+  right: 7%;
   cursor: pointer;
   width: 35px;
   height: 35px;
   background-color: transparent;
-  border: 0.5px solid #bbb3b3;
+  border: 0.5px solid #2196F3;
   border-radius: 20px;
   color: #1d1c1c;
-  box-shadow: 0 10px 20px -8px #b2b0b3;
+  box-shadow: 0 10px 20px -8px #2196F3;
   font-weight: 100;
   transition: all 0.3s ease;
 }
