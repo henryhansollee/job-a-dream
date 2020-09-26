@@ -60,11 +60,13 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "Login",
@@ -85,9 +87,6 @@ export default {
   },
   methods: {
     ...mapActions(["login", "signup"]),
-  },
-  computed: {
-    ...mapGetters(["isLoggedIn"]),
   },
 };
 </script>

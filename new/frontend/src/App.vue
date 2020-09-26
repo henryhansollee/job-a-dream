@@ -1,5 +1,10 @@
 <template>
-  <v-app id="inspire">
+  <div>
+    <div v-if="!isLoggedIn">
+      <Login />
+    </div>
+
+  <v-app v-else id="inspire">
     <!-- 사이드바 -->
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
@@ -177,16 +182,26 @@
       <router-view />
     </v-main>
   </v-app>
+</div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+import Login from '@/components/auth/Login'
   export default {
+    components: {
+      Login,
+    },
     data() {
       return {
         drawer: null,
         dialogUser: false,
         dialogQuestion: false,
       }
+    },
+    computed: {
+      ...mapGetters(["isLoggedIn"]),
     },
   }
 </script>
