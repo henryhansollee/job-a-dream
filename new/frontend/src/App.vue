@@ -82,6 +82,7 @@
           <div class="d-flex flex-column align-items-center">
             <small>이한솔</small>
             <small>henryhansollee@gmail.com</small>
+            <hr class="mb-0">
             <small>오늘도 뽜이링!</small>
           </div>
         </div>
@@ -132,71 +133,72 @@
           <hr>
         </div>
         <!-- 영상 분석 -->
-        <v-list-item link href="/video/list">
-          <v-list-item-action>
-            <i class="fas fa-video"></i>
+        <v-list-item link href="/video/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fas fa-video m-0"></i>
           </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
+          <v-list-item-content >
+            <v-list-item-title class="d-flex justify-content-center">
               영상분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 음성분석 -->
-        <v-list-item link href="/audio/list">
-          <v-list-item-action>
-            <i class="fas fa-microphone"></i>
+        <v-list-item link href="/audio/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fas fa-microphone m-0"></i>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               음성분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 자소서분석 -->
-        <v-list-item link href="/coverletter/list">
-          <v-list-item-action>
-            <i class="fas fa-file-signature"></i>
+        <v-list-item link href="/coverletter/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fas fa-file-signature m-0"></i>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               자소서분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 풀코스 분석 -->
-        <v-list-item link href="/fullcourse/list">
-          <v-list-item-action>
-            <i class="fas fa-brain"></i>
+        <v-list-item link href="/fullcourse/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fas fa-brain m-0"></i>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               풀코스분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 통계 및 분석 -->
-        <v-list-item link href="/result">
-          <v-list-item-action>
-            <i class="fas fa-poll"></i>
+        <v-list-item link href="/result" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fas fa-poll m-0"></i>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               통계 및 분석
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!-- 면접 참고 영상 -->
-        <v-list-item link href="/youtube/list">
-          <v-list-item-action>
-            <i class="fab fa-youtube"></i>
+        <v-list-item link href="/youtube/list" class="text-decoration-none">
+          <v-list-item-action class="d-flex justify-content-center m-0">
+            <i class="fab fa-youtube m-0"></i>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-content-center">
               면접 참고 영상
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <hr>
       </v-list>
       <small><i class="far fa-copyright"></i> Job A Dream</small>
     </v-navigation-drawer>
