@@ -378,7 +378,7 @@ import TopScrollButton from "@/components/home/TopScrollButton";
 .modal-header {
   font-family: "Cafe24Ohsquare", cursive;
   margin: 10px 0 0 10px;
-  color: #f7b315;
+  color: #2196F3;
 }
 .save-btn {
   border: 1px solid #fcbe32;
