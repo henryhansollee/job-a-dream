@@ -371,6 +371,10 @@ export default new Vuex.Store({
 
     // 풀코스 시작
     createFullcourse({ getters }, fullcourseData) {
+      console.log(fullcourseData, '풀코스 분석 Inputs')
+      for (var pair of fullcourseData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '풀코스 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.fullcourses, fullcourseData, getters.config)
         .then(() => {

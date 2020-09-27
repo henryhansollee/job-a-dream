@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>자기소개서 작성</h1>
+    <h1>자소서 분석 시작</h1>
     <!-- 항목 -->
     <input type="text" placeholder="subject" v-model="coverletterData.subject">
     <!-- 내용 -->

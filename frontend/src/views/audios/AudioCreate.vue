@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>자기소개서 작성</h1>
+    <h1>음성 분석 시작</h1>
     <!-- 항목 -->
     <input type="text" placeholder="title" v-model="audioData.title">
     <!-- 오디오 -->
@@ -51,7 +51,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "CoverletterCreate",
+  name: "AudioCreate",
   data() {
     return {
       audioData: {
