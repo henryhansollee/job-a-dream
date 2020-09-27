@@ -8,6 +8,7 @@
         <v-divider></v-divider>
         <v-stepper-step step="3">STEP 3. 정보 입력</v-stepper-step>
       </v-stepper-header>
+      <!-- 스텝 1 -->
       <v-stepper-items>
         <v-stepper-content step="1">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
@@ -15,6 +16,7 @@
           </v-card>
           <v-btn color="primary" @click="e1 = 2">다음</v-btn>
         </v-stepper-content>
+        <!-- 스텝 2 -->
         <v-stepper-content step="2">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
             <!-- 비디오 -->
@@ -39,7 +41,7 @@
           </v-card>
           <v-btn color="primary" @click="e1 = 3">다음</v-btn>
         </v-stepper-content>
-
+        <!-- 스텝 3 -->
         <v-stepper-content step="3">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
             <!-- 제목 -->
