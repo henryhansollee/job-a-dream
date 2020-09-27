@@ -21,4 +21,5 @@ urlpatterns = [
     path('videos/', include('videos.urls')),
     path('audios/', include('audios.urls')),
     path('questions/', include('questions.urls')),
+    path('fullcourses/', include('fullcourses.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
