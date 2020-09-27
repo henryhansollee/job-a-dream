@@ -194,6 +194,10 @@ export default new Vuex.Store({
 
     // 영상 분석 시작
     createVideo({ getters }, videoData) {
+      console.log(videoData, '영상 분석 Inputs')
+      for (var pair of videoData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '영상 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
         .then(() => {
