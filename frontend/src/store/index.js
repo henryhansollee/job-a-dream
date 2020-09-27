@@ -194,6 +194,10 @@ export default new Vuex.Store({
 
     // 영상 분석 시작
     createVideo({ getters }, videoData) {
+      console.log(videoData, '영상 분석 Inputs')
+      for (var pair of videoData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '영상 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
         .then(() => {
@@ -246,6 +250,10 @@ export default new Vuex.Store({
 
     // 음성 분석 시작
     createAudio({ getters }, audioData) {
+      console.log(audioData, '음성 분석 Inputs')
+      for (var pair of audioData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '음성 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
         .then(() => {
@@ -298,6 +306,7 @@ export default new Vuex.Store({
 
     // 자소서 분석 시작
     createCoverletter({ getters }, coverletterData) {
+      console.log(coverletterData, '자소서 분석 Inputs')
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.coverletters, coverletterData, getters.config)
         .then(() => {
@@ -362,6 +371,10 @@ export default new Vuex.Store({
 
     // 풀코스 시작
     createFullcourse({ getters }, fullcourseData) {
+      console.log(fullcourseData, '풀코스 분석 Inputs')
+      for (var pair of fullcourseData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '풀코스 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.fullcourses, fullcourseData, getters.config)
         .then(() => {

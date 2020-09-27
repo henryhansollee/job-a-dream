@@ -51,7 +51,7 @@
     </b-carousel>
     <!-- 캐러셀 -->
     <router-link class="text-decoration-none align-self-center" to="/coverletters/create">
-      <v-btn x-large color="primary" dark>풀코스 분석 시작</v-btn>
+      <v-btn x-large color="primary" dark>자소서 분석 시작</v-btn>
     </router-link>
     <!-- 리스트 -->
     <v-container>
