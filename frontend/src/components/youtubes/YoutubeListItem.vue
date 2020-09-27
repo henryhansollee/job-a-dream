@@ -1,33 +1,36 @@
 <template>
-  <div class="container mt-5">
-    <!-- <router-link
-      :to="`/${video.id.videoId}`"
-      style="text-decoration:none; color: black;"
-    > -->
+  <div class="container">
+    <v-card>
+      <iframe
+        width="320"
+        height="200"
+        :src="iframeUrl"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
 
-    <!-- <div class="play-video">
-      <img :src="video.snippet.thumbnails.medium.url" alt="" class="videoImg" />
-      <div class="play">
-        <div
-          style="border-radius:15px;background-color:green; color: white; 
-          padding: 10px 15px;"
-        >
-          <i class="fas fa-play"></i> 재생
+      <h5>{{ video.snippet.title }}</h5>
+      <h6>{{ video.snippet.channelTitle }}</h6>
+      <h6>{{ cutDate(video.snippet.publishedAt) }}</h6>
+    </v-card>
+
+    <!-- <div class="row">
+      <div class="col-6">
+        <iframe
+          width="300"
+          height="200"
+          :src="iframeUrl"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div>
+          <h5>{{ video.snippet.title }}</h5>
+          <h6>{{ video.snippet.channelTitle }}</h6>
         </div>
       </div>
     </div> -->
-    <iframe
-      :src="iframeUrl"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-    <div>
-      <h5>{{ video.snippet.title }}</h5>
-      <h6>{{ video.snippet.channelTitle }}</h6>
-    </div>
-
-    <!-- </router-link> -->
   </div>
 </template>
 
@@ -53,6 +56,14 @@ export default {
     },
   },
   methods: {
+    cutDate(date) {
+      let CD = date + "";
+      const year = CD.substring(0, 4) + ".";
+      const month = CD.substring(5, 7) + ".";
+      const day = CD.substring(8, 10);
+      const res = year + month + day;
+      return res;
+    },
     // goDetail() {
     //   console.log(this.video.id.videoId, "줄거");
     //   this.$emit("giveVideo", this.video.id.videoId);
