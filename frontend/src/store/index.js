@@ -17,10 +17,10 @@ export default new Vuex.Store({
     coverletters: [],
     fullcourses: [],
     results: [],
-    videoResult: '',
-    audioResult: '',
-    coverletterResult: '',
-    fullcourseResult: '',
+    videoResult: "",
+    audioResult: "",
+    coverletterResult: "",
+    fullcourseResult: "",
   },
 
   getters: {
@@ -64,7 +64,7 @@ export default new Vuex.Store({
       state.coverletterResult = coverletterResult;
     },
     GET_FULLCOURSES(state, fullcourses) {
-      state.fullcourses = fullcourses;      
+      state.fullcourses = fullcourses;
     },
     GET_FULLCOURSES_RESULT(state, fullcourseResult) {
       state.fullcourseResult = fullcourseResult;
@@ -123,25 +123,25 @@ export default new Vuex.Store({
     // 회원정보수정
     updateUser({ getters }, updatedUserData) {
       axios
-        .put(BACKEND.URL + BACKEND.ROUTES.accounts + `${updatedUserData.id}`, updatedUserData.updatedUserData, getters.config)
+        .put(
+          BACKEND.URL + BACKEND.ROUTES.accounts + `${updatedUserData.id}`,
+          updatedUserData.updatedUserData,
+          getters.config
+        )
         .then(() => {
-          router.push('/');
+          router.push("/");
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // ----- 질문 ----- URL을 나중에 question으로 바꾸기
     // 질문 리스트
     getQuestions({ getters, commit }) {
       axios
-        .get(
-          BACKEND.URL + BACKEND.ROUTES.videos + "questions",
-          getters.config
-        )
+        .get(BACKEND.URL + BACKEND.ROUTES.questions, getters.config)
         .then((response) => {
-          console.log(response.data, "질문 리스트");
           commit("GET_QUESTIONS", response.data);
         })
         .catch((err) => {
@@ -153,31 +153,36 @@ export default new Vuex.Store({
     createQuestion({ getters }, questionData) {
       axios
         .post(
-          BACKEND.URL + BACKEND.ROUTES.videos + "questions",
+          BACKEND.URL + BACKEND.ROUTES.questions,
           questionData,
           getters.config
         )
-        .then(() => {
-          console.log("질문 추가 성공");
-        })
+        .then(() => {})
         .catch((err) => console.log(err));
     },
 
     // 질문 삭제
-    deleteQuestion({ getters }, question_id) {
+    deleteQuestion({ getters, commit }, question_id) {
       axios
         .delete(
-          BACKEND.URL + BACKEND.ROUTES.videos + `${question_id}`,
+          BACKEND.URL + BACKEND.ROUTES.questions + `${question_id}`,
           getters.config
         )
         .then(() => {
-          console.log('삭제완료')
+          axios
+            .get(BACKEND.URL + BACKEND.ROUTES.questions, getters.config)
+            .then((response) => {
+              commit("GET_QUESTIONS", response.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    
+
     // ----- 영상 분석 -----
     // 영상 리스트
     getVideos({ getters, commit }) {
@@ -194,9 +199,9 @@ export default new Vuex.Store({
 
     // 영상 분석 시작
     createVideo({ getters }, videoData) {
-      console.log(videoData, '영상 분석 Inputs')
+      console.log(videoData, "영상 분석 Inputs");
       for (var pair of videoData.entries()) {
-        console.log(pair[0] + ',' + pair[1], '영상 분석 FormData 내용들');
+        console.log(pair[0] + "," + pair[1], "영상 분석 FormData 내용들");
       }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
@@ -205,13 +210,16 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // 영상 분석 결과
     getVideoResult({ getters, commit }, video_id) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`, getters.config)
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`,
+          getters.config
+        )
         .then((response) => {
           console.log(response, "영상 분석 결과");
           commit("GET_VIDEO_RESULT", response.data);
@@ -224,7 +232,10 @@ export default new Vuex.Store({
     // 영상 분석 삭제
     deleteVideo({ getters }, video_id) {
       axios
-        .delete(BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`, getters.config)
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`,
+          getters.config
+        )
         .then(() => {
           router.push(`/video/list/`);
           router.go();
@@ -250,9 +261,9 @@ export default new Vuex.Store({
 
     // 음성 분석 시작
     createAudio({ getters }, audioData) {
-      console.log(audioData, '음성 분석 Inputs')
+      console.log(audioData, "음성 분석 Inputs");
       for (var pair of audioData.entries()) {
-        console.log(pair[0] + ',' + pair[1], '음성 분석 FormData 내용들');
+        console.log(pair[0] + "," + pair[1], "음성 분석 FormData 내용들");
       }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
@@ -261,13 +272,16 @@ export default new Vuex.Store({
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // 음성 분석 결과
     getAudioResult({ getters, commit }, audio_id) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`, getters.config)
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`,
+          getters.config
+        )
         .then((response) => {
           console.log(response, "음성 분석 결과");
           commit("GET_AUDIO_RESULT", response.data);
@@ -280,7 +294,10 @@ export default new Vuex.Store({
     // 음성 분석 삭제
     deleteAudio({ getters }, audio_id) {
       axios
-        .delete(BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`, getters.config)
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`,
+          getters.config
+        )
         .then(() => {
           router.push(`/audio/list/`);
           router.go();
@@ -306,21 +323,28 @@ export default new Vuex.Store({
 
     // 자소서 분석 시작
     createCoverletter({ getters }, coverletterData) {
-      console.log(coverletterData, '자소서 분석 Inputs')
+      console.log(coverletterData, "자소서 분석 Inputs");
       axios
-        .post(BACKEND.URL + BACKEND.ROUTES.coverletters, coverletterData, getters.config)
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.coverletters,
+          coverletterData,
+          getters.config
+        )
         .then(() => {
           router.push("/coverletters/list/");
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // 자소서 분석 결과
     getCoverletterResult({ getters, commit }, coverletter_id) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`, getters.config)
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`,
+          getters.config
+        )
         .then((response) => {
           console.log(response, "자소서 분석 결과");
           commit("GET_COVERLETTER_RESULT", response.data);
@@ -333,19 +357,28 @@ export default new Vuex.Store({
     // 자소서 분석 수정
     updateCoverletter({ getters }, updatedCoverletterData) {
       axios
-        .put(BACKEND.URL + BACKEND.ROUTES.coverletters + `${updatedCoverletterData.id}`, updatedCoverletterData.updatedCoverletterData, getters.config)
+        .put(
+          BACKEND.URL +
+            BACKEND.ROUTES.coverletters +
+            `${updatedCoverletterData.id}`,
+          updatedCoverletterData.updatedCoverletterData,
+          getters.config
+        )
         .then(() => {
           router.push(`/coverletters/detail/${updatedCoverletterData.id}`);
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // 자소서 분석 삭제
     deleteCoverletter({ getters }, coverletter_id) {
       axios
-        .delete(BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`, getters.config)
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`,
+          getters.config
+        )
         .then(() => {
           router.push(`/coverletter/list/`);
           router.go();
@@ -354,7 +387,7 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    
+
     // ----- 풀코스 분석 -----
     // 풀코스 리스트
     getFullcourses({ getters, commit }) {
@@ -371,24 +404,31 @@ export default new Vuex.Store({
 
     // 풀코스 시작
     createFullcourse({ getters }, fullcourseData) {
-      console.log(fullcourseData, '풀코스 분석 Inputs')
+      console.log(fullcourseData, "풀코스 분석 Inputs");
       for (var pair of fullcourseData.entries()) {
-        console.log(pair[0] + ',' + pair[1], '풀코스 분석 FormData 내용들');
+        console.log(pair[0] + "," + pair[1], "풀코스 분석 FormData 내용들");
       }
       axios
-        .post(BACKEND.URL + BACKEND.ROUTES.fullcourses, fullcourseData, getters.config)
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses,
+          fullcourseData,
+          getters.config
+        )
         .then(() => {
           router.push("/fullcourses/list/");
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
 
     // 풀코스 결과
     getFullcourseResult({ getters, commit }, fullcourse_id) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`, getters.config)
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`,
+          getters.config
+        )
         .then((response) => {
           console.log(response, "풀코스 분석 결과");
           commit("GET_FULLCOURSE_RESULT", response.data);
@@ -401,7 +441,10 @@ export default new Vuex.Store({
     // 풀코스 삭제
     deleteFullcourse({ getters }, fullcourse_id) {
       axios
-        .delete(BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`, getters.config)
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`,
+          getters.config
+        )
         .then(() => {
           router.push(`/fullcourse/list/`);
           router.go();
@@ -425,5 +468,5 @@ export default new Vuex.Store({
     },
   },
 
-  modules: {}
-})
+  modules: {},
+});
