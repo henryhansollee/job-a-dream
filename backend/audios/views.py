@@ -23,15 +23,13 @@ class AudioListAPI(APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-    def put(self, request, pk):
-        serializer = AudioSerializer(Audio.objects.get(pk=pk), data=request.data)
+class AudioDetailAPI(APIView):
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=200)
-        return Response(serializer.errors, stauts=400)
+    def get(self, request, pk):
+        serializer = AudioSerializer(Audio.objects.get(pk=pk))
+        return Response(serializer.data, status=200)
 
     def delete(self, request, pk):
         audio = Audio.objects.get(pk=pk)
         audio.delete()
-        return Response('삭제되었습니다.', status=204)
+        return Response('삭제되었습니다.')    

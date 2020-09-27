@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'videos',
     'audios',
     'questions',
+    'fullcourses',
 ]
 
 MIDDLEWARE = [
