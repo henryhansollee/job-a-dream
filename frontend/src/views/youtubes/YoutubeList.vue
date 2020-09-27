@@ -1,18 +1,17 @@
 <template>
   <div>
-    <h3>면접 참고 영상입니다!</h3>
-    <input
+    <h3>면접 참고 영상</h3>
+    <!-- <input
       type="text"
       placeholder="search"
       v-model="keyword"
       @keypress.enter="searchVideo"
-    />
+    /> -->
     <div class="d-flex ml-5">
       <YoutubeListItem
         v-for="video in videos"
         :key="video.etag"
         :video="video"
-        :keyword="keyword"
       />
     </div>
     <infinite-loading @infinite="infiniteHandler" spinner="waveDots">

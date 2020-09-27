@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-5" @click="goDetail">
+  <div class="container mt-5">
     <!-- <router-link
       :to="`/${video.id.videoId}`"
       style="text-decoration:none; color: black;"
-    > -->
+    >
     <div class="play-video">
       <img :src="video.snippet.thumbnails.medium.url" alt="" class="videoImg" />
       <div class="play">
@@ -18,8 +18,13 @@
           <i class="fas fa-play"></i> 재생
         </div>
       </div>
-    </div>
-
+    </div> -->
+    <iframe
+      :src="iframeUrl"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
     <div>
       <h5>{{ video.snippet.title }}</h5>
     </div>
@@ -33,9 +38,11 @@ export default {
 
   props: {
     video: Object,
-    keyword: String,
   },
   computed: {
+    iframeUrl() {
+      return `http://youtube.com/embed/${this.video.id.videoId}`;
+    },
     videoTitle() {
       if (this.video) {
         return this.video.snippet.title;
@@ -43,13 +50,13 @@ export default {
       return null;
     },
   },
-  methods: {
-    goDetail() {
-      console.log(this.video.id.videoId, "줄거");
-      this.$emit("giveVideo", this.video.id.videoId);
-      this.$router.push({ path: `/detail` });
-    },
-  },
+  // methods: {
+  //   goDetail() {
+  //     console.log(this.video.id.videoId, "줄거");
+  //     this.$emit("giveVideo", this.video.id.videoId);
+  //     this.$router.push({ path: `/detail` });
+  //   },
+  // },
 };
 </script>
 
