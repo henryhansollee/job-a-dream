@@ -15,6 +15,14 @@
         :keyword="keyword"
       />
     </div>
+    <infinite-loading @infinite="infiniteHandler" spinner="waveDots">
+      <div
+        slot="no-more"
+        style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; font-family: 'Recipekorea', cursive; font-size:14.5px"
+      >
+        더이상 영상이 존재하지 않습니다!
+      </div>
+    </infinite-loading>
   </div>
 </template>
 
