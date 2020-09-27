@@ -59,7 +59,7 @@
     <!-- 리스트 -->
     <v-container>
       <v-row>
-        <v-col cols="3">
+        <v-col cols="3" v-for="video in videos" :key="video.id">
           <!-- 데이터 넣어야함 -->
           <v-card>
             <v-img
@@ -69,171 +69,20 @@
               height="200px"
             >
               <v-card-title>
-                제목
+                {{ video.title }}
               </v-card-title>
             </v-img>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-card-text>
-                #태그
+                <div v-for="tag in video.tag" :key="tag">
+                  {{ tag }}
+                </div>
+                <!-- {{ video.tag }} -->
               </v-card-text>
             </v-card-actions>
+            {{ cutDate(video.created_at) }}
           </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
         </v-col>
       </v-row>
     </v-container>
@@ -261,6 +110,16 @@ export default {
     },
     onSlideEnd() {
       this.sliding = false;
+    },
+    cutDate(date) {
+      let CD = date + "";
+      const year = CD.substring(0, 4) + ".";
+      const month = CD.substring(5, 7) + ".";
+      const day = CD.substring(8, 10);
+      const hour = CD.substring(11, 13) + ":";
+      const minute = CD.substring(14, 16) + "";
+      const res = year + month + day + hour + minute;
+      return res;
     },
   },
   created() {
