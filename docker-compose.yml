@@ -34,10 +34,20 @@ services:
       - 8080
     ports:
       - "8080:8080"
-
+  
+  nginx:
+    image: nginx:latest 
+    ports:
+      - "80:80"
+    depends_on: 
+      - back 
+          
   back:
     build: ./backend/
-    command: python manage.py runserver 0.0.0.0:8000
-    
-    ports:
-      - "8000:8000"
+    # command: python manage.py runserver 0.0.0.0:8000
+    # ports:
+      #   - "8000:8000"
+    expose:
+      - 8000
+    command: gunicorn interview.wsgi:application --bind 0.0.0.0:8000
+      
