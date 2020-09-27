@@ -314,7 +314,7 @@ export default new Vuex.Store({
         .get(BACKEND.URL + BACKEND.ROUTES.coverletters, getters.config)
         .then((response) => {
           console.log(response, "자소서 리스트");
-          commit("SET_COVERLETTERS", response.data);
+          commit("GET_COVERLETTERS", response.data);
         })
         .catch((error) => {
           console.log(error);

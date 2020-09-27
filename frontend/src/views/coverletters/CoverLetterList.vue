@@ -59,27 +59,40 @@
     <!-- 리스트 -->
     <v-container>
       <v-row>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/coverletter-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
+        <v-col
+          cols="3"
+          v-for="coverletter in coverletters"
+          :key="coverletter.id"
+        >
+          <!-- 데이터 넣음 -->
+          <router-link
+            class="text-decoration-none align-self-center"
+            :to="{
+              name: 'CoverLetterDetail',
+              params: { id: `${coverletter.id}` },
+            }"
+          >
+            <v-card>
+              <v-img
+                src="@/assets/thumbnails/coverletter-thumbnail.jpg"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="200px"
+              >
+                <v-card-title>
+                  {{ coverletter.title }}
+                </v-card-title>
+              </v-img>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-card-text>
+                  <div v-for="tag in coverletter.tag" :key="tag">
+                    #{{ tag }}
+                  </div>
+                </v-card-text>
+              </v-card-actions>
+            </v-card>
+          </router-link>
         </v-col>
       </v-row>
     </v-container>
@@ -88,6 +101,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -95,13 +110,20 @@ export default {
       sliding: null,
     };
   },
+  computed: {
+    ...mapState(["coverletters"]),
+  },
   methods: {
+    ...mapActions(["getCoverletters"]),
     onSlideStart() {
       this.sliding = true;
     },
     onSlideEnd() {
       this.sliding = false;
     },
+  },
+  created() {
+    this.getCoverletters();
   },
 };
 </script>

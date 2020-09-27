@@ -75,9 +75,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-card-text>
-                <div v-for="tag in video.tag" :key="tag">
-                  {{ tag }}
-                </div>
+                <div v-for="tag in video.tag" :key="tag">#{{ tag }}</div>
                 <!-- {{ video.tag }} -->
               </v-card-text>
             </v-card-actions>
