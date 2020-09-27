@@ -132,16 +132,16 @@ export default new Vuex.Store({
         })
     },
 
-    // ----- 질문 -----
+    // ----- 질문 ----- URL을 나중에 question으로 바꾸기
     // 질문 리스트
     getQuestions({ getters, commit }) {
       axios
         .get(
-          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          BACKEND.URL + BACKEND.ROUTES.videos + "questions",
           getters.config
         )
         .then((response) => {
-          console.log(response, "질문 리스트");
+          console.log(response.data, "질문 리스트");
           commit("GET_QUESTIONS", response.data);
         })
         .catch((err) => {
@@ -153,7 +153,7 @@ export default new Vuex.Store({
     createQuestion({ getters }, questionData) {
       axios
         .post(
-          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          BACKEND.URL + BACKEND.ROUTES.videos + "questions",
           questionData,
           getters.config
         )
@@ -167,7 +167,7 @@ export default new Vuex.Store({
     deleteQuestion({ getters }, question_id) {
       axios
         .delete(
-          BACKEND.URL + BACKEND.ROUTES.interview + `${question_id}`,
+          BACKEND.URL + BACKEND.ROUTES.videos + `${question_id}`,
           getters.config
         )
         .then(() => {
