@@ -4,6 +4,26 @@
     <h5>{{ coverletterResult.content }}</h5>
     {{ cutDate(coverletterResult.created_at) }}
     <div v-for="tag in coverletterResult.tag" :key="tag">#{{ tag }}</div>
+
+    <router-link class="text-decoration-none" to="/coverletters/list">
+      <v-btn medium color="warning" dark>목록으로</v-btn>
+    </router-link>
+    <router-link
+      class="text-decoration-none"
+      :to="{
+        name: 'CoverLetterUpdate',
+        params: { id: `${coverletterResult.id}` },
+      }"
+    >
+      <v-btn medium color="primary">수정</v-btn>
+    </router-link>
+    <v-btn
+      medium
+      color="danger"
+      dark
+      @click="deleteCoverletter(coverletterResult.id)"
+      >삭제</v-btn
+    >
   </div>
 </template>
 
@@ -18,7 +38,7 @@ export default {
     ...mapState(["coverletterResult"]),
   },
   methods: {
-    ...mapActions(["getCoverletterResult"]),
+    ...mapActions(["getCoverletterResult", "deleteCoverletter"]),
     cutDate(date) {
       let CD = date + "";
       const year = CD.substring(0, 4) + ".";
