@@ -314,7 +314,7 @@ export default new Vuex.Store({
         .get(BACKEND.URL + BACKEND.ROUTES.coverletters, getters.config)
         .then((response) => {
           console.log(response, "자소서 리스트");
-          commit("SET_COVERLETTERS", response.data);
+          commit("GET_COVERLETTERS", response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -356,12 +356,13 @@ export default new Vuex.Store({
 
     // 자소서 분석 수정
     updateCoverletter({ getters }, updatedCoverletterData) {
+      console.log(updatedCoverletterData, "1111111111111111111");
       axios
         .put(
           BACKEND.URL +
             BACKEND.ROUTES.coverletters +
             `${updatedCoverletterData.id}`,
-          updatedCoverletterData.updatedCoverletterData,
+          updatedCoverletterData,
           getters.config
         )
         .then(() => {
@@ -380,7 +381,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/coverletter/list/`);
+          router.push(`/coverletters/list/`);
           router.go();
         })
         .catch((err) => {

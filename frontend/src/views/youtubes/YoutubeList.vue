@@ -11,7 +11,7 @@
       <!-- <h4 style="margin-left:70px;">면접 참고 영상</h4> -->
       <v-container>
         <v-row>
-          <v-col cols="4" v-for="video in videos" :key="video.etag">
+          <v-col cols="4" v-for="video in youtube_videos" :key="video.etag">
             <!-- <YoutubeListItem
               v-for="video in videos"
               :key="video.etag"
@@ -70,7 +70,7 @@ export default {
     return {
       keyword: "",
       page_token: "",
-      videos: [],
+      youtube_videos: [],
     };
   },
   created() {
@@ -153,7 +153,9 @@ export default {
           setTimeout(() => {
             if (response.data.items.length) {
               console.log(response.data.items);
-              this.videos = this.videos.concat(response.data.items);
+              this.youtube_videos = this.youtube_videos.concat(
+                response.data.items
+              );
               this.page_token = response.data.nextPageToken;
               $state.loaded();
             } else {

@@ -19,7 +19,7 @@ class BoardListAPI(APIView):
 
     def get(self, request):
         serializer = BoardSerializer(Board.objects.filter(writer=request.user), many=True)
-        print(serializer)
+        print('요청옴?????')
         return Response(serializer.data, status=200)
     
     def post(self, request):
@@ -32,5 +32,6 @@ class BoardListAPI(APIView):
 @permission_classes([IsAuthenticated])
 @authentication_classes([JSONWebTokenAuthentication])
 class BoardDetailAPI(RetrieveUpdateDestroyAPIView):
+    print('요청옴?????')
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
