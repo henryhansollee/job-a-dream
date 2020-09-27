@@ -11,6 +11,6 @@ export default {
     audios: "/audios/",
     coverletters: "/boards/",
     fullcourses: "/fullcourses/",
-    results: "/results/"
+    results: "/results/",
   },
 };

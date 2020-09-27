@@ -298,6 +298,7 @@ export default new Vuex.Store({
 
     // 자소서 분석 시작
     createCoverletter({ getters }, coverletterData) {
+      console.log(coverletterData, '자소서 분석 Inputs')
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.coverletters, coverletterData, getters.config)
         .then(() => {
