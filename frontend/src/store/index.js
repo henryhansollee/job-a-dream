@@ -190,7 +190,7 @@ export default new Vuex.Store({
         .get(BACKEND.URL + BACKEND.ROUTES.videos, getters.config)
         .then((response) => {
           console.log(response, "영상 리스트");
-          commit("SET_VIDEOS", response.data);
+          commit("GET_VIDEOS", response.data);
         })
         .catch((error) => {
           console.log(error);
