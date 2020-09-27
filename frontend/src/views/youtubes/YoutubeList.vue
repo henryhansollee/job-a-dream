@@ -21,8 +21,9 @@
 <script>
 import axios from "axios";
 import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
+import InfiniteLoading from "vue-infinite-loading";
 
-const API_KEY = "AIzaSyA5sx2tkiELZ9R2oSoVdCSJDSj8jHUvqIw";
+const API_KEY = "AIzaSyCaWu_miv_fZS4-2tx4IkHq1ln6G1hKXPA";
 const API_URL = "https://www.googleapis.com/youtube/v3/search";
 
 export default {
