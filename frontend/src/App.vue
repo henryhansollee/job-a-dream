@@ -194,7 +194,8 @@
         </v-list-item>
         <hr>
       </v-list>
-      <small class="fixed-bottom text-center"><i class="far fa-copyright"></i> Job A Dream</small>
+      <v-spacer style="height: 30px;"></v-spacer>
+      <small class="ml-5 pl-5"><i class="far fa-copyright"></i> Job A Dream, 잡아드림</small>
     </v-navigation-drawer>
     <!-- 네브바 -->
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
