@@ -115,7 +115,7 @@ export default {
       let CD = date + "";
       const year = CD.substring(0, 4) + ".";
       const month = CD.substring(5, 7) + ".";
-      const day = CD.substring(8, 10);
+      const day = CD.substring(8, 10) + "  ";
       const hour = CD.substring(11, 13) + ":";
       const minute = CD.substring(14, 16) + "";
       const res = year + month + day + hour + minute;
