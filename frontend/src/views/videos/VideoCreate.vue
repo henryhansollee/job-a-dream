@@ -50,7 +50,7 @@
         </template>
       </b-form-tags>
     </div>
-    <button @click="createFormData()">완료</button>
+    <button @click="createVideoFormData()">완료</button>
   </div>
 </template>
 
@@ -89,13 +89,13 @@ export default {
   },
   methods: {
     ...mapActions([ "createVideo" ]),
-    createFormData() {
-      const formData = new FormData();
+    createVideoFormData() {
+      const videoFormData = new FormData();
       const video_file_name = Date.now();
-      formData.append('title', this.videoData.title);
-      formData.append('video_file', this.videoData.video_file, video_file_name);
-      formData.append('update_tag', this.videoData.update_tag);
-      this.createVideo(formData);
+      videoFormData.append('title', this.videoData.title);
+      videoFormData.append('video_file', this.videoData.video_file, video_file_name);
+      videoFormData.append('update_tag', this.videoData.update_tag);
+      this.createVideo(videoFormData);
     },
     _fillzero(value) { 
       return value < 9 ? '0' + value: value;

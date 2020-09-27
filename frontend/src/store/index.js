@@ -250,6 +250,10 @@ export default new Vuex.Store({
 
     // 음성 분석 시작
     createAudio({ getters }, audioData) {
+      console.log(audioData, '음성 분석 Inputs')
+      for (var pair of audioData.entries()) {
+        console.log(pair[0] + ',' + pair[1], '음성 분석 FormData 내용들');
+      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
         .then(() => {
