@@ -13,17 +13,12 @@ class TimeStampModel(models.Model):
 class Tag(TimeStampModel):
     name = models.CharField(max_length=10, unique=True)
 
-    def __str__(self):
-        return self.name
-
-class Video(TimeStampModel):
+class Audio(TimeStampModel):
     title = models.CharField(max_length=30)
-    thumbnail = models.ImageField(upload_to='video_thumbnail', blank=True)
-    video_file = models.FileField(blank=True)
+    thumbnail = models.ImageField(upload_to='audio_thumbnail', blank=True)
+    audio_file = models.FileField(blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
-class Result(models.Model):
-    sight_analysis = models.TextField(blank=True)
-    accuracy = models.TextField(blank=True)
+# result는 audio에 넣을지 따로 테이블을 뺄지 다시 생각하기!

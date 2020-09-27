@@ -19,4 +19,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('boards/', include('boards.urls')),
     path('videos/', include('videos.urls')),
+    path('audios/', include('audios.urls')),
+    path('questions/', include('questions.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
