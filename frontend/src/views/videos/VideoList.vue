@@ -23,7 +23,7 @@
             height="300"
             src="@/assets/carousels/video-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -34,7 +34,7 @@
             height="300"
             src="@/assets/carousels/video-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -45,12 +45,15 @@
             height="300"
             src="@/assets/carousels/video-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
     <!-- 캐러셀 -->
-    <router-link class="text-decoration-none align-self-center" to="/videos/create">
+    <router-link
+      class="text-decoration-none align-self-center"
+      to="/videos/create"
+    >
       <v-btn x-large color="primary" dark>영상 분석 시작</v-btn>
     </router-link>
     <!-- 리스트 -->
@@ -239,24 +242,31 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
       slide: 0,
-      sliding: null
-    }
+      sliding: null,
+    };
+  },
+  computed: {
+    ...mapState(["videos"]),
   },
   methods: {
+    ...mapActions(["getVideos"]),
     onSlideStart() {
-      this.sliding = true
+      this.sliding = true;
     },
     onSlideEnd() {
-      this.sliding = false
-    }
-  }
-}
+      this.sliding = false;
+    },
+  },
+  created() {
+    this.getVideos();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
