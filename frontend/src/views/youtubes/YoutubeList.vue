@@ -1,6 +1,5 @@
 <template>
   <div class="mt-5">
-    <div class="ml-5"><h5>면접 참고 영상</h5></div>
     <!-- <input
       type="text"
       placeholder="search"
@@ -8,12 +7,34 @@
       @keypress.enter="searchVideo"
     />
     <button @click="nextPage">more</button> -->
-    <div class="ml-5">
-      <YoutubeListItem
-        v-for="video in videos"
-        :key="video.etag"
-        :video="video"
-      />
+    <div>
+      <!-- <h4 style="margin-left:70px;">면접 참고 영상</h4> -->
+      <v-container>
+        <v-row>
+          <v-col cols="4" v-for="video in videos" :key="video.etag">
+            <!-- <YoutubeListItem
+              v-for="video in videos"
+              :key="video.etag"
+              :video="video"
+            /> -->
+
+            <v-card style="height:330px;">
+              <iframe
+                width="350"
+                height="200"
+                :src="iframeUrl(video)"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+
+              <h5>{{ video.snippet.title }}</h5>
+              <h6>{{ video.snippet.channelTitle }}</h6>
+              <h6>{{ cutDate(video.snippet.publishedAt) }}</h6>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
     <infinite-loading @infinite="infiniteHandler" spinner="waveDots">
       <div
@@ -29,18 +50,18 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
-import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
+// import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
 // import { mapState, mapActions } from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
 
-const API_KEY = "AIzaSyCaWu_miv_fZS4-2tx4IkHq1ln6G1hKXPA";
+const API_KEY = "AIzaSyDHeze5bvwX8HGupYKKOYiGVqUczUUek8c";
 const API_URL = "https://www.googleapis.com/youtube/v3/search";
 
 export default {
   name: "YoutubeList",
   components: {
     InfiniteLoading,
-    YoutubeListItem,
+    // YoutubeListItem,
   },
   // computed: {
   //   ...mapState(["videos"]),
@@ -56,6 +77,17 @@ export default {
     // this.searchVideo("면접");
   },
   methods: {
+    cutDate(date) {
+      let CD = date + "";
+      const year = CD.substring(0, 4) + ".";
+      const month = CD.substring(5, 7) + ".";
+      const day = CD.substring(8, 10);
+      const res = year + month + day;
+      return res;
+    },
+    iframeUrl(video) {
+      return `http://youtube.com/embed/${video.id.videoId}`;
+    },
     // ...mapActions([""]),
     // nextPage() {
     //   axios
