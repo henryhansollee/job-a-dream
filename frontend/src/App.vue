@@ -69,6 +69,7 @@
               color="primary"
               dark
               v-b-modal.modal-scrollable
+              @click="getQuestions()"
             >
               질문 목록
             </v-btn>
@@ -201,7 +202,8 @@
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <span class="hidden-sm-and-down">잡아드림</span>
+        <img style="width: 55px;" src="@/assets/logos/logo-sub.jpg" alt="logo-sub">
+        <span class="hidden-sm-and-down ml-2">잡아드림</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <Logout />
@@ -268,7 +270,7 @@ import TopScrollButton from "@/components/homes/TopScrollButton";
         msg.text = text
         window.speechSynthesis.speak(msg);
       }
-    }
+    },
   }
 </script>
 
