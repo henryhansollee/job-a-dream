@@ -138,7 +138,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -194,6 +194,6 @@ AUTHENTICATION_BACKENDS = (
  "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-MEDIA_URL =  '/assets/'
+MEDIA_URL =  '/assets/videos'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets/videos")
