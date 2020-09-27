@@ -37,12 +37,6 @@ class VideoSerializer(serializers.ModelSerializer):
         exclude = []
         read_only_fields = ['writer']
 
-class QuestionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Question
-        exclude = []
-
 class ResultSerializer(serializers.ModelSerializer):
 
     class Meta:

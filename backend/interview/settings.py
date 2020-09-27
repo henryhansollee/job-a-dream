@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'boards',
     'videos',
     'audios',
+    'questions',
 ]
 
 MIDDLEWARE = [
