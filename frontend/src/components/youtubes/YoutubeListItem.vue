@@ -1,41 +1,50 @@
 <template>
-  <div class="container mt-5" @click="goDetail">
+  <div class="container mt-5">
     <!-- <router-link
       :to="`/${video.id.videoId}`"
       style="text-decoration:none; color: black;"
     > -->
-    <div class="play-video">
+
+    <!-- <div class="play-video">
       <img :src="video.snippet.thumbnails.medium.url" alt="" class="videoImg" />
       <div class="play">
         <div
-          style="
-            border-radius: 15px;
-            background-color: green;
-            color: white;
-            padding: 10px 15px;
-          "
+          style="border-radius:15px;background-color:green; color: white; 
+          padding: 10px 15px;"
         >
           <i class="fas fa-play"></i> 재생
         </div>
       </div>
-    </div>
-
+    </div> -->
+    <iframe
+      :src="iframeUrl"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
     <div>
       <h5>{{ video.snippet.title }}</h5>
+      <h6>{{ video.snippet.channelTitle }}</h6>
     </div>
+
     <!-- </router-link> -->
   </div>
 </template>
 
 <script>
+// import { mapState } from "vuex";
+
 export default {
   name: "YoutubeListItem",
 
   props: {
     video: Object,
-    keyword: String,
   },
   computed: {
+    // ...mapState(["videos"]),
+    iframeUrl() {
+      return `http://youtube.com/embed/${this.video.id.videoId}`;
+    },
     videoTitle() {
       if (this.video) {
         return this.video.snippet.title;
@@ -44,11 +53,11 @@ export default {
     },
   },
   methods: {
-    goDetail() {
-      console.log(this.video.id.videoId, "줄거");
-      this.$emit("giveVideo", this.video.id.videoId);
-      this.$router.push({ path: `/detail` });
-    },
+    // goDetail() {
+    //   console.log(this.video.id.videoId, "줄거");
+    //   this.$emit("giveVideo", this.video.id.videoId);
+    //   this.$router.push({ path: `/detail` });
+    // },
   },
 };
 </script>
