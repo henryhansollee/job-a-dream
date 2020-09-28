@@ -87,7 +87,6 @@ export default new Vuex.Store({
     // ----- 유저 -----
     // 유저
     getAuth({ commit }, info) {
-      console.log(info, "로그인성공");
       axios
         .post(BACKEND.URL + info.location, info.data)
         .then((res) => {
@@ -96,6 +95,7 @@ export default new Vuex.Store({
           commit("SET_USER", res.data.user);
           // const userID = res.data.user.id;
           // dispatch("getUser", userID);
+          commit("GET_USER", res.data.user);
         })
         .catch((err) => {
           console.log(err);
