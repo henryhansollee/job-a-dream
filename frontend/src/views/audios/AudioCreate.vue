@@ -20,11 +20,11 @@
         <v-stepper-content step="2">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
             <!-- 오디오 -->
-            <vue-dictaphone @stop="handleRecording($event)" mime-type="audio/wav"
-                  v-slot="{ isRecording, startRecording, stopRecording }">
+            <dictaphone @stop="handleRecording($event)" mime-type="audio/wav"
+              v-slot="{ isRecording, startRecording, stopRecording }">
                 <button v-if="!isRecording" @click="startRecording">Start recording</button>
                 <button v-else @click="stopRecording">Stop recording</button>
-            </vue-dictaphone>
+            </dictaphone>
 
             <vue-dictaphone-spectrum-analyser/>
 
@@ -77,9 +77,13 @@
 
 <script>
 import { mapActions } from "vuex";
+import Dictaphone from '@/components/audios/Dictaphone';
 
 export default {
   name: "AudioCreate",
+  components: {
+    Dictaphone,
+  },
   data() {
     return {
       audioData: {

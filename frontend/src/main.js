@@ -9,12 +9,16 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import "@/assets/css/global.css";
 import VueDictaphone from "vue-dictaphone";
+import VueAWN from "vue-awesome-notifications"
+
+let options = {};
 
 Vue.config.productionTip = false
 Vue.use(VueFullPage);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueDictaphone);
+Vue.use(VueAWN, options);
 
 new Vue({
   router,
