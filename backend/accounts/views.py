@@ -11,12 +11,13 @@ from .models import CustomUser
 # from google.oauth2 import id_token
 # from google.auth.transport import requests
 
+class UserInfo(APIView):
+
+    def get(self, request):
+        serializer = UserSerializer(CustomUser.objects.get(pk=request.user.id))
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class UserProfile(APIView):
-
-    def get(self, request, pk):
-        serializer = UserSerializer(CustomUser.objects.get(pk=pk))
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
         serializer = UserProfileSerializer(CustomUser.objects.get(pk=pk), data=request.data)
