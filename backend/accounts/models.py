@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=20)
     email = models.EmailField(_('email address'), unique=True)
     image = models.ImageField(upload_to='profile_image', blank=True)
-    comment = models.CharField(max_length=100)
+    comment = models.CharField(max_length=100, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

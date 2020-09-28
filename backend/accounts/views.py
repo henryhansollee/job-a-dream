@@ -6,16 +6,20 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken
+from .models import CustomUser
 
 # from google.oauth2 import id_token
 # from google.auth.transport import requests
 
 
-@api_view(['GET'])
-def current_user(request):
+class UpdateProfile(APIView):
 
-    serializer = UserSerializer(request.user)
-    return Response(serializer.data)
+    def put(self, request, pk):
+        serializer = UserSerializer(CustomUser.objects.get(pk=pk), data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserList(APIView):
