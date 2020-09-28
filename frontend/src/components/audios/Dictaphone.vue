@@ -30,7 +30,8 @@ export default {
       this.mediaRecorder.start();
       setTimeout(() => {
         this.stopRecording();
-      }, 3000)
+        alert('시간이 종료되었습니다.')
+      }, 50000)
     },
     stopRecording() {
       this.isRecording = false;

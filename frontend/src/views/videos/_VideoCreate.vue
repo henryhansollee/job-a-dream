@@ -13,7 +13,11 @@
         <!-- 스텝 1 -->
         <v-stepper-content step="1">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
+    <div>
+      <vue-countdown v-on:time-expire="handleTimeExpire" :seconds="50" :start="start"></vue-countdown>
 
+      <button v-on:click="startTimer">Start timer</button>
+    </div>
           </v-card>
           <v-btn color="primary" @click="e1 = 2">다음</v-btn>
         </v-stepper-content>
@@ -42,6 +46,7 @@
       </template>
     </template>
   </div>
+
           </v-card>
           <v-btn color="primary" @click="e1 = 3">다음</v-btn>
         </v-stepper-content>
@@ -90,12 +95,14 @@
 import { mapActions } from "vuex";
 import Dictaphone from '@/components/audios/Dictaphone';
 import SpectrumAnalyser from '@/components/audios/SpectrumAnalyser';
+import VueCountdown from '@dmaksimovic/vue-countdown';
 
 export default {
   name: "AudioCreate",
   components: {
     Dictaphone,
     SpectrumAnalyser,
+    'vue-countdown': VueCountdown
   },
   data() {
     return {
@@ -107,6 +114,7 @@ export default {
       audioSource: '',
       e1: 1,
       showError: false,
+      start: false
     };
   },
   methods: {
@@ -127,6 +135,12 @@ export default {
       audioFormData.append('update_tag', this.audioData.update_tag);
       this.createAudio(audioFormData);
     },
+    handleTimeExpire () {
+      alert('Time is up!');
+    },
+    startTimer () {
+      this.start = true;
+    }
   },
 };
 </script>
