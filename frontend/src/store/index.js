@@ -259,7 +259,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/video/list/`);
+          router.push(`/videos/list/`);
           router.go();
         })
         .catch((err) => {
