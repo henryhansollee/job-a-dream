@@ -19,4 +19,7 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),
     path('api/boards/', include('boards.urls')),
     path('api/videos/', include('videos.urls')),
+    path('api/audios/', include('audios.urls')),
+    path('api/questions/', include('questions.urls')),
+    path('api/fullcourses/', include('fullcourses.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

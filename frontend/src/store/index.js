@@ -11,19 +11,20 @@ export default new Vuex.Store({
   state: {
     accessToken: cookies.get("accessToken"),
     authCheck: "",
-    interviews: [],
-    communitys: [],
-    // interviewData: {
-    //   title: "",
-    //   tags: [],
-    //   video: "",
-    // },
-    interviewData: "",
     questions: [],
+    videos: [],
+    audios: [],
+    coverletters: [],
+    fullcourses: [],
+    results: [],
+    videoResult: "",
+    audioResult: "",
+    coverletterResult: "",
+    fullcourseResult: "",
   },
 
   getters: {
-    isLoggedIn: (state) => !!state.accessToken && !!state.authCheck,
+    isLoggedIn: (state) => !!state.accessToken || !!state.authCheck,
     config: () => ({
       headers: { Authorization: `JWT ${cookies.get("accessToken")}` },
     }),
@@ -41,28 +42,41 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       state.user = user;
     },
-    //인터뷰 목록
-    SET_INTERVIEWS(state, interviews) {
-      state.interviews = interviews;
-    },
-    //인터뷰 디테일
-    GET_INTERVIEW(state, interview) {
-      state.interviewData = interview;
-    },
-    //질문 목록
     GET_QUESTIONS(state, questions) {
       state.questions = questions;
     },
-    //커뮤니티 글 목록 가져오기
-    SET_COMMUNITYS(state, communitys) {
-      state.communitys = communitys;
+    GET_VIDEOS(state, videos) {
+      state.videos = videos;
+    },
+    GET_VIDEO_RESULT(state, videoResult) {
+      state.videoResult = videoResult;
+    },
+    GET_AUDIOS(state, audios) {
+      state.audios = audios;
+    },
+    GET_AUDIO_RESULT(state, audioResult) {
+      state.audioResult = audioResult;
+    },
+    GET_COVERLETTERS(state, coverletters) {
+      state.coverletters = coverletters;
+    },
+    GET_COVERLETTER_RESULT(state, coverletterResult) {
+      state.coverletterResult = coverletterResult;
+    },
+    GET_FULLCOURSES(state, fullcourses) {
+      state.fullcourses = fullcourses;
+    },
+    GET_FULLCOURSES_RESULT(state, fullcourseResult) {
+      state.fullcourseResult = fullcourseResult;
+    },
+    GET_RESULTS(state, results) {
+      state.results = results;
     },
   },
 
   actions: {
-    // ----- AUTH -----
-
-    // Auth
+    // ----- 유저 -----
+    // 유저
     getAuth({ commit }, info) {
       axios
         .post(BACKEND.URL + info.location, info.data)
@@ -77,7 +91,7 @@ export default new Vuex.Store({
         });
     },
 
-    // Signup
+    // 회원가입
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
@@ -87,7 +101,7 @@ export default new Vuex.Store({
       router.go();
     },
 
-    // Login
+    // 로그인
     login({ dispatch }, loginData) {
       const info = {
         data: loginData,
@@ -96,7 +110,7 @@ export default new Vuex.Store({
       dispatch("getAuth", info);
     },
 
-    // Logout
+    // 로그아웃
     logout({ commit }) {
       commit("SET_TOKEN", null);
       commit("SET_AUTH", null);
@@ -106,61 +120,28 @@ export default new Vuex.Store({
       router.go();
     },
 
-    // ----- INTERVIEW -----
-
-    // Interview List
-    getInterviews({ getters, commit }) {
+    // 회원정보수정
+    updateUser({ getters }, updatedUserData) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.interview, getters.config)
-        .then((response) => {
-          console.log(response, "영상 목록");
-          commit("SET_INTERVIEWS", response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    // Interview Create
-    createInterview({ getters }, interviewData) {
-      console.log(interviewData, "인터뷰 데이터");
-      axios
-        .post(
-          BACKEND.URL + BACKEND.ROUTES.interview, // /videos/
-          interviewData,
+        .put(
+          BACKEND.URL + BACKEND.ROUTES.accounts + `${updatedUserData.id}`,
+          updatedUserData.updatedUserData,
           getters.config
         )
         .then(() => {
-          router.push("/interview/list/");
+          router.push("/");
         })
-        .catch((err) => console.log(err));
-    },
-
-    // Interview Detail
-    getInterview({ getters, commit }, video_id) {
-      axios
-        .get(
-          BACKEND.URL + BACKEND.ROUTES.interview + `${video_id}`,
-          getters.config
-        )
-        .then((response) => {
-          console.log(response, "123123123");
-          commit("GET_INTERVIEW", response.data);
-        })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error);
         });
     },
 
-    //Get Questions
+    // ----- 질문 ----- URL을 나중에 question으로 바꾸기
+    // 질문 리스트
     getQuestions({ getters, commit }) {
       axios
-        .get(
-          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
-          getters.config
-        )
+        .get(BACKEND.URL + BACKEND.ROUTES.questions, getters.config)
         .then((response) => {
-          console.log(response, "질문 리스트");
           commit("GET_QUESTIONS", response.data);
         })
         .catch((err) => {
@@ -168,120 +149,325 @@ export default new Vuex.Store({
         });
     },
 
-    //post New Questions
-    postNewQuestions({ getters }, questionData) {
+    // 질문 추가
+    createQuestion({ getters }, questionData) {
       axios
         .post(
-          BACKEND.URL + BACKEND.ROUTES.interview + "questions",
+          BACKEND.URL + BACKEND.ROUTES.questions,
           questionData,
           getters.config
         )
-        .then(() => {
-          console.log("질문 추가 성공");
-        })
+        .then(() => {})
         .catch((err) => console.log(err));
     },
 
-    deleteQuestion({ getters }, question_id) {
+    // 질문 삭제
+    deleteQuestion({ getters, commit }, question_id) {
       axios
         .delete(
-          BACKEND.URL + BACKEND.ROUTES.interview + `${question_id}`,
+          BACKEND.URL + BACKEND.ROUTES.questions + `${question_id}`,
           getters.config
         )
         .then(() => {
-          console.log('삭제완료')
+          axios
+            .get(BACKEND.URL + BACKEND.ROUTES.questions, getters.config)
+            .then((response) => {
+              commit("GET_QUESTIONS", response.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
     },
 
-    // Interview Update
-    updateInterview() {},
-
-    // Interview Delete
-    deleteInterview({ getters }, video_id) {
+    // ----- 영상 분석 -----
+    // 영상 리스트
+    getVideos({ getters, commit }) {
       axios
-        .delete(
-          BACKEND.URL + BACKEND.ROUTES.interview + `${video_id}`,
-          getters.config
-        )
-        .then(() => {
-          router.push(`/interview/list/`);
-          router.go();
+        .get(BACKEND.URL + BACKEND.ROUTES.videos, getters.config)
+        .then((response) => {
+          console.log(response, "영상 리스트");
+          commit("GET_VIDEOS", response.data);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error);
         });
     },
 
-    // ----- COMMUNITY -----
-
-    // Community List
-    getCommunitys() {
+    // 영상 분석 시작
+    createVideo({ getters }, videoData) {
+      console.log(videoData, "영상 분석 Inputs");
+      for (var pair of videoData.entries()) {
+        console.log(pair[0] + "," + pair[1], "영상 분석 FormData 내용들");
+      }
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.community)
-        .then((res) => this.commit("SET_COMMUNITYS", res.data))
-        .catch((err) => console.log(err));
-    },
-
-    // Community Create
-    createCommunity({ getters }, communityData) {
-      console.log(communityData);
-      axios
-        .post(
-          BACKEND.URL + BACKEND.ROUTES.community,
-          communityData,
-          getters.config
-        )
+        .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
         .then(() => {
-          router.push("/community/list");
+          router.push("/videos/list/");
         })
-        .catch((err) => console.log(err));
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
-    // Community Detail
-    getCommunity({ getters, commit }, data) {
+    // 영상 분석 결과
+    getVideoResult({ getters, commit }, video_id) {
       axios
         .get(
-          BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`,
+          BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`,
           getters.config
         )
-        .then((res) => {
-          commit("SET_COMMUNITYS", res.data);
+        .then((response) => {
+          console.log(response, "영상 분석 결과");
+          commit("GET_VIDEO_RESULT", response.data);
         })
-        .catch((err) => console.log(err));
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
-    // Community Update
-    updateCommunity({ getters }, data) {
-      console.log(data);
-      axios
-        .put(
-          BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`,
-          data.communityData,
-          getters.config
-        )
-        .then(() => {
-          router.push(`/community/detail/${data.id}`);
-        })
-        .catch((err) => console.log(err));
-    },
-
-    // Community Delete
-    deleteCommunity({ getters }, data) {
-      console.log(data);
+    // 영상 분석 삭제
+    deleteVideo({ getters }, video_id) {
       axios
         .delete(
-          BACKEND.URL + BACKEND.ROUTES.community + `${data.id}`,
+          BACKEND.URL + BACKEND.ROUTES.videos + `${video_id}`,
           getters.config
         )
         .then(() => {
-          router.push(`/community/list`);
+          router.push(`/video/list/`);
           router.go();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // ----- 음성 분석 -----
+    // 음성 리스트
+    getAudios({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.audios, getters.config)
+        .then((response) => {
+          console.log(response, "음성 리스트");
+          commit("SET_AUDIOS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 음성 분석 시작
+    createAudio({ getters }, audioData) {
+      console.log(audioData, "음성 분석 Inputs");
+      for (var pair of audioData.entries()) {
+        console.log(pair[0] + "," + pair[1], "음성 분석 FormData 내용들");
+      }
+      axios
+        .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
+        .then(() => {
+          router.push("/audios/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 음성 분석 결과
+    getAudioResult({ getters, commit }, audio_id) {
+      axios
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`,
+          getters.config
+        )
+        .then((response) => {
+          console.log(response, "음성 분석 결과");
+          commit("GET_AUDIO_RESULT", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 음성 분석 삭제
+    deleteAudio({ getters }, audio_id) {
+      axios
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.audios + `${audio_id}`,
+          getters.config
+        )
+        .then(() => {
+          router.push(`/audio/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // ----- 자소서 분석 -----
+    // 자소서 분석 리스트
+    getCoverletters({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.coverletters, getters.config)
+        .then((response) => {
+          console.log(response, "자소서 리스트");
+          commit("GET_COVERLETTERS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 자소서 분석 시작
+    createCoverletter({ getters }, coverletterData) {
+      console.log(coverletterData, "자소서 분석 Inputs");
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.coverletters,
+          coverletterData,
+          getters.config
+        )
+        .then(() => {
+          router.push("/coverletters/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 자소서 분석 결과
+    getCoverletterResult({ getters, commit }, coverletter_id) {
+      axios
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`,
+          getters.config
+        )
+        .then((response) => {
+          console.log(response, "자소서 분석 결과");
+          commit("GET_COVERLETTER_RESULT", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 자소서 분석 수정
+    updateCoverletter({ getters }, updatedCoverletterData) {
+      console.log(updatedCoverletterData, "1111111111111111111");
+      axios
+        .put(
+          BACKEND.URL +
+            BACKEND.ROUTES.coverletters +
+            `${updatedCoverletterData.id}`,
+          updatedCoverletterData,
+          getters.config
+        )
+        .then(() => {
+          router.push(`/coverletters/detail/${updatedCoverletterData.id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 자소서 분석 삭제
+    deleteCoverletter({ getters }, coverletter_id) {
+      axios
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.coverletters + `${coverletter_id}`,
+          getters.config
+        )
+        .then(() => {
+          router.push(`/coverletters/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // ----- 풀코스 분석 -----
+    // 풀코스 리스트
+    getFullcourses({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.fullcourses, getters.config)
+        .then((response) => {
+          console.log(response, "풀코스 리스트");
+          commit("SET_FULLCOURSES", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 풀코스 시작
+    createFullcourse({ getters }, fullcourseData) {
+      console.log(fullcourseData, "풀코스 분석 Inputs");
+      for (var pair of fullcourseData.entries()) {
+        console.log(pair[0] + "," + pair[1], "풀코스 분석 FormData 내용들");
+      }
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses,
+          fullcourseData,
+          getters.config
+        )
+        .then(() => {
+          router.push("/fullcourses/list/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 풀코스 결과
+    getFullcourseResult({ getters, commit }, fullcourse_id) {
+      axios
+        .get(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`,
+          getters.config
+        )
+        .then((response) => {
+          console.log(response, "풀코스 분석 결과");
+          commit("GET_FULLCOURSE_RESULT", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // 풀코스 삭제
+    deleteFullcourse({ getters }, fullcourse_id) {
+      axios
+        .delete(
+          BACKEND.URL + BACKEND.ROUTES.fullcourses + `${fullcourse_id}`,
+          getters.config
+        )
+        .then(() => {
+          router.push(`/fullcourse/list/`);
+          router.go();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // ----- 통계 및 결과 -----
+    getResults({ getters, commit }) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.results, getters.config)
+        .then((response) => {
+          console.log(response, "결과");
+          commit("SET_RESULTS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
+
   modules: {},
 });

@@ -8,18 +8,11 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .models import Board
 from .serializers import BoardSerializer
 
-
-# @permission_classes([IsAuthenticatedOrReadOnly])
-# @authentication_classes([JSONWebTokenAuthentication])
-# class BoardListAPI(ListCreateAPIView):
-#     queryset = Board.objects.all()
-#     serializer_class = BoardSerializer
-
 class BoardListAPI(APIView):
 
     def get(self, request):
         serializer = BoardSerializer(Board.objects.filter(writer=request.user), many=True)
-        print(serializer)
+        print('요청옴?????')
         return Response(serializer.data, status=200)
     
     def post(self, request):
@@ -29,8 +22,21 @@ class BoardListAPI(APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-@permission_classes([IsAuthenticated])
-@authentication_classes([JSONWebTokenAuthentication])
-class BoardDetailAPI(RetrieveUpdateDestroyAPIView):
-    queryset = Board.objects.all()
-    serializer_class = BoardSerializer
+class BoardDetailAPI(APIView):
+
+    def get(self, request, pk):
+        serializer = BoardSerializer(Board.objects.get(pk=pk))
+        return Response(serializer.data, status=200)
+
+    def put(self, request, pk):
+        serializer = BoardSerializer(Board.objects.get(pk=pk), data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        board = Board.objects.get(pk=pk)
+        board.delete()
+        return Response('삭제되었습니다.')
