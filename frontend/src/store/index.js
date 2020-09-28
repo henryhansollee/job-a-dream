@@ -43,9 +43,6 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      //보근오빠가 토큰줄때 유저네임,이메일 다 주면 그냥 여기서
-      //다 저장하고 이걸로 쓰면 됨.
-      console.log(state.user, "유저 정보");
     },
     GET_USER(state, userInfo) {
       state.userInfo = userInfo;
@@ -91,9 +88,8 @@ export default new Vuex.Store({
         .then((res) => {
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
-          commit("SET_USER", res.data.user); //여기서 정보 다 받을 수 있음
-          const userID = res.data.user.id;
-          dispatch("getUser", userID);
+          commit("SET_USER", res.data.user);
+          dispatch("getUser");
         })
         .catch((err) => {
           console.log(err);
@@ -101,9 +97,9 @@ export default new Vuex.Store({
     },
 
     //유저 정보 받아오기
-    getUser({ getters, commit }, ID) {
+    getUser({ getters, commit }) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.user + ID, getters.config)
+        .get(BACKEND.URL + BACKEND.ROUTES.user, getters.config)
         .then((response) => {
           commit("GET_USER", response.data);
         })
@@ -128,7 +124,6 @@ export default new Vuex.Store({
         data: loginData,
         location: BACKEND.ROUTES.login,
       };
-      console.log(loginData);
       dispatch("getAuth", info);
     },
 

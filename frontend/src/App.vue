@@ -57,13 +57,13 @@
           <div class="d-flex flex-column align-items-center">
             <hr />
             <img
-              v-if="!user.image"
+              v-if="!userInfo.image"
               class="profile-img"
               src="@/assets/profiles/default.png"
               alt="profile"
             />
             <img
-              v-if="user.image"
+              v-if="userInfo.image"
               class="profile-img"
               src="@/assets/profiles/default.png"
               alt="profile"
@@ -77,7 +77,7 @@
                 <h6>프로필 사진</h6>
                 <v-file-input multiple label="사진 업로드"></v-file-input>
                 <h6>한줄 각오</h6>
-                <b-form-input type="text" v-model="user.comment"></b-form-input>
+                <b-form-input type="text" v-model="userInfo.comment"></b-form-input>
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
@@ -87,14 +87,14 @@
               </b-modal>
             </v-row>
             <div class="d-flex flex-column align-items-center">
-              <h6>{{ user.username }}</h6>
-              <small>{{ user.email }}</small>
+              <h6>{{ userInfo.username }}</h6>
+              <small>{{ userInfo.email }}</small>
               <hr class="mb-0" />
               <div>
-                <h6 v-if="!user.comment">
-                  잡아드림이 {{ user.username }}님을 응원합니다!
+                <h6 v-if="!userInfo.comment">
+                  잡아드림이 {{ userInfo.username }}님을 응원합니다!
                 </h6>
-                <h6 v-else>{{ user.comment }}</h6>
+                <h6 v-else>{{ userInfo.comment }}</h6>
               </div>
             </div>
           </div>
@@ -303,6 +303,7 @@ import HomeSection3 from "@/components/homes/HomeSection3";
 import HomeSection4 from "@/components/homes/HomeSection4";
 import HomeSection5 from "@/components/homes/HomeSection5";
 import TopScrollButton from "@/components/homes/TopScrollButton";
+import cookies from "vue-cookies";
 
 export default {
   components: {
@@ -331,10 +332,10 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
-    ...mapState(["questions", "user", "userInfo"]),
+    ...mapState(["questions", "userInfo"]),
   },
   methods: {
-    ...mapActions(["getQuestions", "createQuestion", "deleteQuestion"]),
+    ...mapActions(["getQuestions", "createQuestion", "deleteQuestion", "getUser"]),
     moveSectionDown() {
       this.$refs.fullpage.$fullpage.moveSectionDown();
     },
@@ -347,18 +348,18 @@ export default {
       }
       this.getQuestions();
     },
-
     onSpeak(text) {
       const msg = new SpeechSynthesisUtterance();
       msg.text = text;
       window.speechSynthesis.speak(msg);
     },
-    printUser() {
-      console.log(this.userInfo, "하이하이");
-    },
   },
   created() {
-    this.printUser();
+    if (this.userInfo) {
+      this.getUser();
+    } else if (cookies.get('authCheck')) {
+      this.getUser();
+    }
   },
 };
 </script>
