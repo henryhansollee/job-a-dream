@@ -21,7 +21,6 @@ import FullCourseDetail from '../views/fullcourses/FullCourseDetail'
 // Video
 import VideoList from '../views/videos/VideoList'
 import VideoCreate from '../views/videos/VideoCreate'
-import _VideoCreate from '../views/videos/_VideoCreate'
 import VideoDetail from '../views/videos/VideoDetail'
 
 // Youtube
@@ -133,14 +132,6 @@ const routes = [
     path: '/videos/create',
     name: 'VideoCreate',
     component: VideoCreate,
-    meta: {
-      title: '잡아드림 | 영상분석 시작'
-    }
-  },
-  {
-    path: '/videos/_create',
-    name: '_VideoCreate',
-    component: _VideoCreate,
     meta: {
       title: '잡아드림 | 영상분석 시작'
     }
