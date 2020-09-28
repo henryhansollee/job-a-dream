@@ -15,12 +15,44 @@
       <v-stepper-items>
         <!-- 스텝 1 -->
         <v-stepper-content step="1">
-          <v-card class="mb-12" color="grey lighten-1" height="600px"> </v-card>
+          <!--질문 선택 공간-->
+          <v-card class="mb-12" color="grey lighten-1" height="600px">
+            <div
+              style="font-size: small; margin:0 8px;"
+              v-for="question in questions"
+              :key="question.id"
+            >
+              <div class="d-flex flex-row justify-content-start">
+                <div
+                  :class="{
+                    'selected-question': question.id == audioData.question,
+                    'not-selected': question.id != audioData.question,
+                  }"
+                  style="font-size:large"
+                >
+                  <i class="fas fa-check" style="margin-right:15px;"></i>
+                </div>
+                <div style="font-size:large">
+                  <button
+                    @click="checkQ(question)"
+                    :class="{
+                      'selected-question': question.id == audioData.question,
+                      'not-selected': question.id != audioData.question,
+                    }"
+                  >
+                    {{ question.content }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </v-card>
           <v-btn color="primary" @click="e1 = 2">다음</v-btn>
         </v-stepper-content>
+
         <!-- 스텝 2 -->
         <v-stepper-content step="2">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
+            <div>질문: {{ selectedQ }}</div>
             <!-- 오디오 -->
             <dictaphone
               @stop="handleRecording($event)"
@@ -99,7 +131,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Dictaphone from "@/components/audios/Dictaphone";
 
 export default {
@@ -113,18 +145,36 @@ export default {
         title: "",
         audio_file: "",
         update_tag: [],
+        question: "",
       },
       audioSource: "",
       e1: 1,
+      selectedQ: "",
+      isSelected: false,
     };
   },
+  computed: {
+    ...mapState(["questions"]),
+  },
   methods: {
-    ...mapActions(["createAudio"]),
+    ...mapActions(["getQuestions", "createAudio"]),
+    checkQ(question) {
+      console.log(this.isSelected, "체크됨?");
+      this.selectedQ = question.content;
+      this.audioData.question = question.id;
+      console.log(this.audioData.question, "질문번호");
+      console.log(this.selectedQ, "질문내용");
+      if (this.audioData.question) {
+        this.isSelected = true;
+        console.log(this.isSelected, "체크됨?");
+      }
+    },
     handleRecording({ blob, src }) {
       this.audioData.audio_file = blob;
       this.audioSource = src;
     },
     createAudioFormData() {
+      console.log(this.audioData, "보낼거ㅓㅓ");
       const audioFormData = new FormData();
       const audio_file_name = Date.now();
       audioFormData.append("title", this.audioData.title);
@@ -134,8 +184,13 @@ export default {
         audio_file_name
       );
       audioFormData.append("update_tag", this.audioData.update_tag);
+      audioFormData.append("question", this.audioData.question);
+
       this.createAudio(audioFormData);
     },
+  },
+  created() {
+    this.getQuestions();
   },
 };
 </script>

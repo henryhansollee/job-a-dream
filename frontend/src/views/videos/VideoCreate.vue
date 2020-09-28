@@ -253,22 +253,4 @@ video {
   margin: 0 auto;
   box-shadow: 0 4px 8px 2px #999;
 }
-.not-selected {
-  border: none;
-  outline: none;
-}
-.not-selected:focus {
-  border: none;
-  outline: none;
-}
-.selected-question {
-  border: none;
-  outline: none;
-  color: orange;
-}
-.selected-question:focus {
-  border: none;
-  outline: none;
-  color: orange;
-}
 </style>

@@ -70,3 +70,21 @@
   border: none;
   outline: none;
 }
+.not-selected {
+  border: none;
+  outline: none;
+}
+.not-selected:focus {
+  border: none;
+  outline: none;
+}
+.selected-question {
+  border: none;
+  outline: none;
+  color: orange;
+}
+.selected-question:focus {
+  border: none;
+  outline: none;
+  color: orange;
+}

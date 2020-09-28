@@ -270,7 +270,7 @@ export default new Vuex.Store({
         .get(BACKEND.URL + BACKEND.ROUTES.audios, getters.config)
         .then((response) => {
           console.log(response, "음성 리스트");
-          commit("SET_AUDIOS", response.data);
+          commit("GET_AUDIOS", response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -317,7 +317,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/audio/list/`);
+          router.push(`/audios/list/`);
           router.go();
         })
         .catch((err) => {
