@@ -65,7 +65,7 @@
             <img
               v-if="userInfo.image"
               class="profile-img"
-              src="@/assets/profiles/default.png"
+              :src="userInfo.image"
               alt="profile"
             />
             <!-- 프로필 수정 모달 -->
@@ -75,13 +75,14 @@
               </v-btn>
               <b-modal hide-footer id="modal-1" title="내 정보 수정">
                 <h6>프로필 사진</h6>
-                <v-file-input multiple label="사진 업로드"></v-file-input>
+                <v-file-input multiple label="사진 업로드" ref="updatedUserData.image"></v-file-input>
                 <h6>한줄 각오</h6>
-                <b-form-input type="text" v-model="userInfo.comment"></b-form-input>
+                <b-form-input type="text" v-model="updatedUserData.comment"></b-form-input>
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
                   class="text-white"
+                  @click="createFormData()"
                   >저장</v-btn
                 >
               </b-modal>
@@ -328,6 +329,11 @@ export default {
       questionData: {
         content: "",
       },
+      updatedUserData: {
+        id: cookies.get('authCheck'),
+        image: '',
+        comment: '',
+      },
     };
   },
   computed: {
@@ -335,7 +341,7 @@ export default {
     ...mapState(["questions", "userInfo"]),
   },
   methods: {
-    ...mapActions(["getQuestions", "createQuestion", "deleteQuestion", "getUser"]),
+    ...mapActions(["getQuestions", "createQuestion", "deleteQuestion", "getUser", "updateUser"]),
     moveSectionDown() {
       this.$refs.fullpage.$fullpage.moveSectionDown();
     },
@@ -352,6 +358,14 @@ export default {
       const msg = new SpeechSynthesisUtterance();
       msg.text = text;
       window.speechSynthesis.speak(msg);
+    },
+    createFormData() {
+      const image_name = Date.now();
+      const userFormData = new FormData();
+      userFormData.append('id', this.updatedUserData.id)
+      userFormData.append('image', this.updatedUserData.image, image_name);
+      userFormData.append('comment', this.updatedUserData.comment)
+      this.updateUser(userFormData)
     },
   },
   created() {

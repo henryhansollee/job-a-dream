@@ -139,14 +139,15 @@ export default new Vuex.Store({
 
     // 회원정보수정
     updateUser({ getters }, updatedUserData) {
+      console.log(updatedUserData)
       axios
         .put(
-          BACKEND.URL + BACKEND.ROUTES.user + `${updatedUserData.id}`,
+          BACKEND.URL + BACKEND.ROUTES.user + `${cookies.get('authCheck')}`,
           updatedUserData,
           getters.config
         )
         .then(() => {
-          router.push("/");
+          router.go();
         })
         .catch((error) => {
           console.log(error);
