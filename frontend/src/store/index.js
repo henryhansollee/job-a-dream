@@ -86,15 +86,16 @@ export default new Vuex.Store({
   actions: {
     // ----- 유저 -----
     // 유저
-    getAuth({ commit, dispatch }, info) {
+    getAuth({ commit }, info) {
+      console.log(info, "로그인성공");
       axios
         .post(BACKEND.URL + info.location, info.data)
         .then((res) => {
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
           commit("SET_USER", res.data.user);
-          const userID = res.data.user.id;
-          dispatch("getUser", userID);
+          // const userID = res.data.user.id;
+          // dispatch("getUser", userID);
         })
         .catch((err) => {
           console.log(err);
@@ -129,6 +130,7 @@ export default new Vuex.Store({
         data: loginData,
         location: BACKEND.ROUTES.login,
       };
+      console.log(loginData);
       dispatch("getAuth", info);
     },
 
