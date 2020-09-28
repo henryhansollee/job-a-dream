@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     accessToken: cookies.get("accessToken"),
     authCheck: "",
+    user: "",
     questions: [],
     videos: [],
     audios: [],
@@ -81,7 +82,7 @@ export default new Vuex.Store({
       axios
         .post(BACKEND.URL + info.location, info.data)
         .then((res) => {
-          console.log(res);
+          console.log("뀨", res);
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
           commit("SET_USER", res.data.user);
