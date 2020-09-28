@@ -101,12 +101,6 @@ export default {
   },
   methods: {
     ...mapActions(["login", "signup", "getUser"]),
-    gologin(data) {
-      console.log(this.authCheck, "전");
-      this.login(data);
-      console.log(this.authCheck, "후");
-      this.getUser(this.authCheck);
-    },
   },
 };
 </script>
