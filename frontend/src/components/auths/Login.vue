@@ -22,13 +22,15 @@
           @click="login(loginData)"
           class="mb-1 mt-4"
           style="height: 45px"
-        >로그인</b-button>
+          >로그인</b-button
+        >
         <b-button
           v-b-modal.modal-1
           variant="light"
           class="mb-1"
           style="height: 45px; margin-top: 2px"
-        >회원가입</b-button>
+          >회원가입</b-button
+        >
       </div>
     </div>
     <div class="main-font">
@@ -58,7 +60,12 @@
                 class="mb-1"
                 style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
               />
-              <b-button variant="dark" @click="signup(signupData)" class="mb-1 mt-3">회원가입</b-button>
+              <b-button
+                variant="dark"
+                @click="signup(signupData)"
+                class="mb-1 mt-3"
+                >회원가입</b-button
+              >
             </div>
           </div>
         </div>
@@ -68,7 +75,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Login",
@@ -89,8 +96,17 @@ export default {
       dialog: false,
     };
   },
+  computed: {
+    ...mapState(["authCheck"]),
+  },
   methods: {
-    ...mapActions(["login", "signup"]),
+    ...mapActions(["login", "signup", "getUser"]),
+    gologin(data) {
+      console.log(this.authCheck, "전");
+      this.login(data);
+      console.log(this.authCheck, "후");
+      this.getUser(this.authCheck);
+    },
   },
 };
 </script>
@@ -99,7 +115,7 @@ export default {
 .login-block {
   width: 45%;
   height: 25rem;
-  background-color: #E3F2FD;
+  background-color: #e3f2fd;
   max-width: 500px;
   border-radius: 4px;
 }
@@ -108,7 +124,7 @@ export default {
   margin-left: 13.5%;
   width: 75%;
   height: 10rem;
-  background-color: #E3F2FD;
+  background-color: #e3f2fd;
 }
 .text-none {
   text-decoration: none;
@@ -122,13 +138,13 @@ export default {
   margin: 0;
   width: 100%;
   height: 17rem;
-  background-color: #E3F2FD;
+  background-color: #e3f2fd;
 }
 .signup-inner-block {
   margin-left: 25%;
   width: 50%;
   height: 10rem;
-  background-color: #E3F2FD;
+  background-color: #e3f2fd;
 }
 .cta {
   position: relative;

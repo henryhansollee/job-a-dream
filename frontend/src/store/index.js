@@ -11,6 +11,8 @@ export default new Vuex.Store({
   state: {
     accessToken: cookies.get("accessToken"),
     authCheck: "",
+    user: "",
+    userInfo: "",
     questions: [],
     videos: [],
     audios: [],
@@ -41,6 +43,13 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
+      //보근오빠가 토큰줄때 유저네임,이메일 다 주면 그냥 여기서
+      //다 저장하고 이걸로 쓰면 됨.
+      console.log(state.user, "유저 정보");
+    },
+    GET_USER(state, userInfo) {
+      state.userInfo = userInfo;
+      console.log(userInfo, "겟유저유저");
     },
     GET_QUESTIONS(state, questions) {
       state.questions = questions;
@@ -77,17 +86,30 @@ export default new Vuex.Store({
   actions: {
     // ----- 유저 -----
     // 유저
-    getAuth({ commit }, info) {
+    getAuth({ commit, dispatch }, info) {
       axios
         .post(BACKEND.URL + info.location, info.data)
         .then((res) => {
-          console.log(res);
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
           commit("SET_USER", res.data.user);
+          const userID = res.data.user.id;
+          dispatch("getUser", userID);
         })
         .catch((err) => {
           console.log(err);
+        });
+    },
+
+    //유저 정보 받아오기
+    getUser({ getters, commit }, ID) {
+      axios
+        .get(BACKEND.URL + BACKEND.ROUTES.user + ID, getters.config)
+        .then((response) => {
+          commit("GET_USER", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
 
@@ -124,7 +146,7 @@ export default new Vuex.Store({
     updateUser({ getters }, updatedUserData) {
       axios
         .put(
-          BACKEND.URL + BACKEND.ROUTES.accounts + `${updatedUserData.id}`,
+          BACKEND.URL + BACKEND.ROUTES.user + `${updatedUserData.id}`,
           updatedUserData.updatedUserData,
           getters.config
         )
@@ -237,7 +259,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/video/list/`);
+          router.push(`/videos/list/`);
           router.go();
         })
         .catch((err) => {

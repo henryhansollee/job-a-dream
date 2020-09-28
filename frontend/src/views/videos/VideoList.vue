@@ -60,27 +60,35 @@
     <v-container>
       <v-row>
         <v-col cols="3" v-for="video in videos" :key="video.id">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/video-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                {{ video.title }}
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                <div v-for="tag in video.tag" :key="tag">#{{ tag }}</div>
-                <!-- {{ video.tag }} -->
-              </v-card-text>
-            </v-card-actions>
-            {{ cutDate(video.created_at) }}
-          </v-card>
+          <router-link
+            class="text-decoration-none"
+            :to="{
+              name: 'VideoDetail',
+              params: { id: `${video.id}` },
+            }"
+          >
+            <!-- 데이터 넣음 -->
+            <v-card>
+              <v-img
+                src="@/assets/thumbnails/video-thumbnail.jpg"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="200px"
+              >
+                <v-card-title>
+                  {{ video.title }}
+                </v-card-title>
+              </v-img>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-card-text>
+                  <div v-for="tag in video.tag" :key="tag">#{{ tag }}</div>
+                  <!-- {{ video.tag }} -->
+                </v-card-text>
+              </v-card-actions>
+              {{ cutDate(video.created_at) }}
+            </v-card>
+          </router-link>
         </v-col>
       </v-row>
     </v-container>
