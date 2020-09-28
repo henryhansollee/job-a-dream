@@ -1,43 +1,16 @@
-# version: "3" 
-# services: 
-#   frontend: 
-#     container_name: front 
-#     build: 
-#       context: frontend 
-#       dockerfile: front.dev.Dockerfile 
-#     expose: 
-#       - 8000 
-#     ports: 
-#       - 8000:8000
-#     volumes: 
-#       - ./frontend:/app 
-      
-#   backend: 
-#     container_name: back 
-#     build: 
-#       context: backend 
-#       dockerfile: back.dev.Dockerfile 
-#     expose: 
-#       - 3000
-#     ports: 
-#       - 3000:3000 
-#     volumes: 
-#       - ./backend:/code
-
-
 version: '3'
     
 services:  
   front:
     build: ./frontend/
-    expose:
-      - 8080
     ports:
-      - "8080:8080"
-
+      - "80:80"
+    
   back:
     build: ./backend/
-    command: python manage.py runserver 0.0.0.0:8000
-    
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8080:8080"
+    expose:
+      - "8080"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn interview.wsgi:application --bind 0.0.0.0:8080"
+      
