@@ -5,9 +5,7 @@
     <h6>{{ cutDate(videoResult.created_at) }}</h6>
     <div v-for="tag in videoResult.tag" :key="tag">#{{ tag }}</div>
 
-    <video controls>
-      <source :src="videoResult.video_file" />
-    </video>
+    <video controls :src="videoResult.video_file"></video>
     <router-link class="text-decoration-none" to="/videos/list">
       <v-btn medium color="warning" dark>목록으로</v-btn>
     </router-link>
