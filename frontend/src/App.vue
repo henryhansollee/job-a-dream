@@ -57,6 +57,13 @@
           <div class="d-flex flex-column align-items-center">
             <hr />
             <img
+              v-if="!user.image"
+              class="profile-img"
+              src="@/assets/profiles/default.png"
+              alt="profile"
+            />
+            <img
+              v-if="user.image"
               class="profile-img"
               src="@/assets/profiles/default.png"
               alt="profile"
@@ -70,7 +77,7 @@
                 <h6>프로필 사진</h6>
                 <v-file-input multiple label="사진 업로드"></v-file-input>
                 <h6>한줄 각오</h6>
-                <b-form-input type="text"></b-form-input>
+                <b-form-input type="text" v-model="user.comment"></b-form-input>
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
@@ -80,10 +87,15 @@
               </b-modal>
             </v-row>
             <div class="d-flex flex-column align-items-center">
-              <small>이한솔</small>
-              <small>henryhansollee@gmail.com</small>
+              <h6>{{ user.username }}</h6>
+              <small>{{ user.email }}</small>
               <hr class="mb-0" />
-              <small>오늘도 뽜이링!</small>
+              <div>
+                <h6 v-if="!user.comment">
+                  잡아드림이 {{ user.username }}님을 응원합니다!
+                </h6>
+                <h6 v-else>{{ user.comment }}</h6>
+              </div>
             </div>
           </div>
           <div>
@@ -319,7 +331,7 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
-    ...mapState(["questions"]),
+    ...mapState(["questions", "user", "userInfo"]),
   },
   methods: {
     ...mapActions(["getQuestions", "createQuestion", "deleteQuestion"]),
@@ -341,6 +353,12 @@ export default {
       msg.text = text;
       window.speechSynthesis.speak(msg);
     },
+    printUser() {
+      console.log(this.userInfo, "하이하이");
+    },
+  },
+  created() {
+    this.printUser();
   },
 };
 </script>

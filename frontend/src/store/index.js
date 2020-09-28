@@ -49,7 +49,6 @@ export default new Vuex.Store({
     },
     GET_USER(state, userInfo) {
       state.userInfo = userInfo;
-      console.log(userInfo, "겟유저유저");
     },
     GET_QUESTIONS(state, questions) {
       state.questions = questions;
@@ -86,16 +85,15 @@ export default new Vuex.Store({
   actions: {
     // ----- 유저 -----
     // 유저
-    getAuth({ commit }, info) {
-      console.log(info, "로그인성공");
+    getAuth({ commit, dispatch }, info) {
       axios
         .post(BACKEND.URL + info.location, info.data)
         .then((res) => {
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
-          commit("SET_USER", res.data.user);
-          // const userID = res.data.user.id;
-          // dispatch("getUser", userID);
+          commit("SET_USER", res.data.user); //여기서 정보 다 받을 수 있음
+          const userID = res.data.user.id;
+          dispatch("getUser", userID);
         })
         .catch((err) => {
           console.log(err);
@@ -149,7 +147,7 @@ export default new Vuex.Store({
       axios
         .put(
           BACKEND.URL + BACKEND.ROUTES.user + `${updatedUserData.id}`,
-          updatedUserData.updatedUserData,
+          updatedUserData,
           getters.config
         )
         .then(() => {
