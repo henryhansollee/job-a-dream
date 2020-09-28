@@ -1,6 +1,7 @@
 <template>
   <div>
     <h4>{{ coverletterResult.title }}</h4>
+    <h5>{{ coverletterResult.subject }}</h5>
     <h5>{{ coverletterResult.content }}</h5>
     {{ cutDate(coverletterResult.created_at) }}
     <div v-for="tag in coverletterResult.tag" :key="tag">#{{ tag }}</div>

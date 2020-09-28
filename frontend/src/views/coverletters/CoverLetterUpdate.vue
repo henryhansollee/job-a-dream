@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{ coverletterResult }} -->
     <input
       type="text"
       id="title"
@@ -10,11 +11,55 @@
     <input
       type="text"
       id="title"
-      v-model="coverletterResult.content"
-      placeholder=" 제목을 입력하세요"
+      v-model="coverletterResult.subject"
+      placeholder=" 주제를 입력하세요"
     />
     <br />
-    <!-- {{ cutDate(coverletterResult.created_at) }} -->
+    <input
+      type="text"
+      id="title"
+      v-model="coverletterResult.content"
+      placeholder=" 내용을 입력하세요"
+    />
+    <br />
+    <!-- 태그 -->
+    <div>
+      <b-form-tags v-model="coverletterResult.tag" no-outer-focus class="mb-2">
+        <template
+          v-slot="{
+            tags,
+            inputAttrs,
+            inputHandlers,
+            tagVariant,
+            addTag,
+            removeTag,
+          }"
+        >
+          <b-input-group class="mb-2">
+            <b-form-input
+              v-bind="inputAttrs"
+              v-on="inputHandlers"
+              placeholder="New tag - Press enter to add"
+              class="form-control"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button @click="addTag()" variant="primary">Add</b-button>
+            </b-input-group-append>
+          </b-input-group>
+          <div class="d-inline-block" style="font-size: 1.5rem;">
+            <b-form-tag
+              v-for="tag in tags"
+              @remove="removeTag(tag)"
+              :key="tag"
+              :title="tag"
+              :variant="tagVariant"
+              class="mr-1"
+              >{{ tag }}</b-form-tag
+            >
+          </div>
+        </template>
+      </b-form-tags>
+    </div>
     <!-- <div v-for="tag in coverletterResult.tag" :key="tag">#{{ tag }}</div> -->
     <v-btn medium color="primary" dark @click="updateCV()">수정완료</v-btn>
   </div>
@@ -26,12 +71,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      updatedCoverletterData: {
-        id: "",
-        image: "",
-        tag: "",
-        title: "",
-      },
+      // updatedCoverletterData: {
+      // },
     };
   },
   computed: {
@@ -39,31 +80,21 @@ export default {
   },
   methods: {
     ...mapActions(["getCoverletterResult", "updateCoverletter"]),
-    cutDate(date) {
-      let CD = date + "";
-      const year = CD.substring(0, 4) + ".";
-      const month = CD.substring(5, 7) + ".";
-      const day = CD.substring(8, 10) + "  ";
-      const hour = CD.substring(11, 13) + ":";
-      const minute = CD.substring(14, 16) + "";
-      const res = year + month + day + hour + minute;
-      return res;
-    },
     updateCV() {
-      let updatedCVData = this.coverletterResult;
+      let updatedCVData = {
+        id: this.coverletterResult.id,
+        title: this.coverletterResult.title,
+        subject: this.coverletterResult.subject,
+        content: this.coverletterResult.content,
+        update_tag: this.coverletterResult.tag,
+      };
+
       this.updateCoverletter(updatedCVData);
     },
   },
   created() {
     this.getCoverletterResult(this.$route.params.id);
-    // console.log(this.updatedCoverletterData, "전");
-    // console.log(this.coverletterResult, "가져온거");
-    this.updatedCoverletterData.id = this.coverletterResult.id;
-    this.updatedCoverletterData.image = this.coverletterResult.image;
-    this.updatedCoverletterData.tag = this.coverletterResult.tag;
-    this.updatedCoverletterData.title = this.coverletterResult.title;
     // this.updatedCoverletterData = this.coverletterResult;
-    // console.log(this.updatedCoverletterData, "후");
   },
 };
 </script>
