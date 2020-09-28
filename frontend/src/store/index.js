@@ -321,7 +321,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/audio/list/`);
+          router.push(`/audios/list/`);
           router.go();
         })
         .catch((err) => {
