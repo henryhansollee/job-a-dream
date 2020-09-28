@@ -102,12 +102,11 @@ export default new Vuex.Store({
     },
 
     //유저 정보 받아오기
-    getUser({ getters, commit }, userID) {
+    getUser({ getters, commit }, ID) {
       axios
-        .get(BACKEND.URL + BACKEND.ROUTES.user + userID, getters.config)
+        .get(BACKEND.URL + BACKEND.ROUTES.user + ID, getters.config)
         .then((response) => {
           commit("GET_USER", response.data);
-          router.push("/");
         })
         .catch((error) => {
           console.log(error);
