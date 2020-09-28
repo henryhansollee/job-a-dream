@@ -28,6 +28,9 @@ export default {
     startRecording() {
       this.isRecording = true;
       this.mediaRecorder.start();
+      setTimeout(() => {
+        this.stopRecording();
+      }, 3000)
     },
     stopRecording() {
       this.isRecording = false;
