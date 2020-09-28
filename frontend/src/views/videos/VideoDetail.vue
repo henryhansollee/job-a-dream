@@ -1,6 +1,7 @@
 <template>
   <div>
     <h4>{{ videoResult.title }}</h4>
+    <!--질문 뽑아와야 됨-->
     <h5>{{ videoResult.question }}</h5>
     <h6>{{ cutDate(videoResult.created_at) }}</h6>
     <div v-for="tag in videoResult.tag" :key="tag">#{{ tag }}</div>

@@ -23,7 +23,7 @@
             height="300"
             src="@/assets/carousels/audio-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -34,7 +34,7 @@
             height="300"
             src="@/assets/carousels/audio-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -45,12 +45,15 @@
             height="300"
             src="@/assets/carousels/audio-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
     <!-- 캐러셀 -->
-    <router-link class="text-decoration-none align-self-center" to="/audios/create">
+    <router-link
+      class="text-decoration-none align-self-center"
+      to="/audios/create"
+    >
       <v-btn x-large color="primary" dark>음성 분석 시작</v-btn>
     </router-link>
     <!-- 리스트 -->
@@ -243,20 +246,18 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: null
-    }
+      sliding: null,
+    };
   },
   methods: {
     onSlideStart() {
-      this.sliding = true
+      this.sliding = true;
     },
     onSlideEnd() {
-      this.sliding = false
-    }
-  }
-}
+      this.sliding = false;
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
