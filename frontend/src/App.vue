@@ -360,10 +360,9 @@ export default {
       window.speechSynthesis.speak(msg);
     },
     createFormData() {
-      const image_name = Date.now();
       const userFormData = new FormData();
       userFormData.append('id', this.updatedUserData.id)
-      userFormData.append('image', this.updatedUserData.image, image_name);
+      userFormData.append('image', this.updatedUserData.image);
       userFormData.append('comment', this.updatedUserData.comment)
       this.updateUser(userFormData)
     },
