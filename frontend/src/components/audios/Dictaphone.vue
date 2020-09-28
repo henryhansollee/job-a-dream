@@ -28,10 +28,11 @@ export default {
     startRecording() {
       this.isRecording = true;
       this.mediaRecorder.start();
+      this.$awn.tip('50초 동안 답변을 말해주세요 :)', {durations: {tip: 50000}})
       setTimeout(() => {
         this.stopRecording();
-        alert('시간이 종료되었습니다.')
-      }, 50000)
+        this.$awn.info('시간이 종료되었습니다.', {durations: {info: 3000}})
+      }, 50000);
     },
     stopRecording() {
       this.isRecording = false;
@@ -71,3 +72,7 @@ export default {
   },
 };
 </script>
+
+<style>
+@import '~vue-awesome-notifications/dist/styles/style.css';
+</style>

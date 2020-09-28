@@ -15,6 +15,7 @@
     "core-js": "^3.6.5",
     "recordrtc": "^5.6.1",
     "vue": "^2.6.12",
+    "vue-awesome-notifications": "^3.1.1",
     "vue-cookies": "^1.7.4",
     "vue-dictaphone": "^2.0.0",
     "vue-fullpage.js": "^0.1.6",

@@ -21,7 +21,7 @@
           <v-card class="mb-12" color="grey lighten-1" height="600px">
             <!-- 오디오 -->
             <dictaphone @stop="handleRecording($event)" mime-type="audio/wav"
-                  v-slot="{ isRecording, startRecording, stopRecording }">
+              v-slot="{ isRecording, startRecording, stopRecording }">
                 <button v-if="!isRecording" @click="startRecording">Start recording</button>
                 <button v-else @click="stopRecording">Stop recording</button>
             </dictaphone>
@@ -30,11 +30,6 @@
 
             <div v-if="audioSource">
               <audio :src="audioSource" controls></audio>
-            </div>
-            <div>
-              <vue-countdown v-on:time-expire="handleTimeExpire" :seconds="50" :start="start"></vue-countdown>
-
-              <button v-on:click="startTimer">Start timer</button>
             </div>
           </v-card>
           <v-btn color="primary" @click="e1 = 3">다음</v-btn>
@@ -83,13 +78,11 @@
 <script>
 import { mapActions } from "vuex";
 import Dictaphone from '@/components/audios/Dictaphone';
-import VueCountdown from '@dmaksimovic/vue-countdown';
 
 export default {
   name: "AudioCreate",
   components: {
     Dictaphone,
-    'vue-countdown': VueCountdown
   },
   data() {
     return {
@@ -100,7 +93,6 @@ export default {
       },
       audioSource: '',
       e1: 1,
-      start: false
     };
   },
   methods: {
@@ -117,12 +109,6 @@ export default {
       audioFormData.append('update_tag', this.audioData.update_tag);
       this.createAudio(audioFormData);
     },
-    handleTimeExpire () {
-      alert('Time is up!');
-    },
-    startTimer () {
-      this.start = true;
-    }
   },
 };
 </script>

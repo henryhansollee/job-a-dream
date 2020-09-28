@@ -46,11 +46,11 @@
               </button>
             </div>
             <!-- 오디오 -->
-            <vue-dictaphone @stop="handleRecording($event)" mime-type="audio/wav"
+            <dictaphone @stop="handleRecording($event)" mime-type="audio/wav"
                 v-slot="{ isRecording, startRecording, stopRecording }">
               <button v-if="!isRecording" @click="startRecording">음성 분석 시작</button>
               <button v-else @click="stopRecording">음성 분석 완료</button>
-            </vue-dictaphone>
+            </dictaphone>
           </v-card>
           <v-btn color="primary" @click="e1 = 4">다음</v-btn>
         </v-stepper-content>
@@ -97,9 +97,13 @@
 <script>
 import { mapActions } from "vuex";
 import RecordRTC  from "recordrtc";
+import Dictaphone from '@/components/audios/Dictaphone';
 
 export default {
   name: "FullcourseCreate",
+  components: {
+    Dictaphone,
+  },
   data() {
     return {
       fullcourseData: {
