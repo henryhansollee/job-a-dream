@@ -3,12 +3,6 @@ from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from .models import Board, Tag
 
-class WriterSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = get_user_model()
-        fields = ['email']
-
 class TagSerializer(serializers.ModelSerializer):
     
     class Meta:

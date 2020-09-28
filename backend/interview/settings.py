@@ -148,6 +148,8 @@ STATIC_URL = '/static/'
 
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -194,6 +196,6 @@ AUTHENTICATION_BACKENDS = (
  "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-MEDIA_URL =  '/assets/videos'
+MEDIA_URL =  '/assets/videos/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets/videos")
