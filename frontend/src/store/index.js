@@ -92,10 +92,9 @@ export default new Vuex.Store({
         .then((res) => {
           commit("SET_TOKEN", res.data.token);
           commit("SET_AUTH", res.data.user.id);
-          commit("SET_USER", res.data.user);
+          commit("SET_USER", res.data.user); //여기서 정보 다 받을 수 있음
           // const userID = res.data.user.id;
           // dispatch("getUser", userID);
-          commit("GET_USER", res.data.user);
         })
         .catch((err) => {
           console.log(err);

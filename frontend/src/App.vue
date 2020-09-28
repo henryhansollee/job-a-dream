@@ -80,8 +80,8 @@
               </b-modal>
             </v-row>
             <div class="d-flex flex-column align-items-center">
-              <small>이한솔</small>
-              <small>henryhansollee@gmail.com</small>
+              <small>{{ user.username }}</small>
+              <small>{{ user.email }}</small>
               <hr class="mb-0" />
               <small>오늘도 뽜이링!</small>
             </div>
@@ -319,7 +319,7 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
-    ...mapState(["questions"]),
+    ...mapState(["questions", "user"]),
   },
   methods: {
     ...mapActions(["getQuestions", "createQuestion", "deleteQuestion"]),
