@@ -68,31 +68,36 @@
               params: { id: `${audio.id}` },
             }"
           >
-            <v-card>
-              <v-img
-                src="@/assets/thumbnails/audio-thumbnail.jpg"
-                class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="200px"
+            <v-hover v-slot:default="{ hover }" close-delay="30">
+              <v-card
+                :elevation="hover ? 11 : 8"
+                :class="{ 'on-hover': hover }"
               >
-                <v-card-title>
-                  {{ audio.title }}
-                </v-card-title>
-              </v-img>
-              <div class="mt-1" style="padding:0 0 5px 10px;">
-                <v-card-actions
-                  v-for="tag in cutTag(audio.tag)"
-                  :key="tag"
-                  class="mt-1"
-                  style="padding:0; display:inline;"
+                <v-img
+                  src="@/assets/thumbnails/audio-thumbnail.jpg"
+                  class="white--text align-end"
+                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                  height="200px"
                 >
-                  {{ tag }} </v-card-actions
-                ><br />
-                <div class="mt-1 mb-1" style="color:gray;">
-                  {{ cutDate(audio.created_at) }}
+                  <v-card-title>
+                    {{ audio.title }}
+                  </v-card-title>
+                </v-img>
+                <div class="mt-1" style="padding:0 0 5px 10px;">
+                  <v-card-actions
+                    v-for="tag in cutTag(audio.tag)"
+                    :key="tag"
+                    class="mt-1"
+                    style="padding:0; display:inline;"
+                  >
+                    {{ tag }} </v-card-actions
+                  ><br />
+                  <div class="mt-1 mb-1" style="color:gray;">
+                    {{ cutDate(audio.created_at) }}
+                  </div>
                 </div>
-              </div>
-            </v-card>
+              </v-card>
+            </v-hover>
           </router-link>
         </v-col>
       </v-row>
