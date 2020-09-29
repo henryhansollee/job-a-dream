@@ -11,7 +11,7 @@ class TimeStampModel(models.Model):
         abstract = True
 
 class Tag(TimeStampModel):
-    name = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -20,8 +20,8 @@ class FullCourse(TimeStampModel):
     title = models.CharField(max_length=30)
     subject = models.CharField(max_length=100)
     content = models.TextField()
-    video_file = models.FileField(blank=True)
-    audio_file = models.FileField(blank=True)
+    video_file = models.FileField(upload_to='videos', blank=True)
+    audio_file = models.FileField(upload_to='audios', blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

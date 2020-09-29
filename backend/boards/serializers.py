@@ -13,7 +13,7 @@ class BoardSerializer(serializers.ModelSerializer):
     # writer = WriterSerializer
     tag = serializers.SlugRelatedField(many=True, slug_field='name', read_only=True)
     update_tag = serializers.ListField(
-        child=serializers.CharField(max_length=10), write_only=True
+        child=serializers.CharField(max_length=100), write_only=True
     )
 
     def create(self, validated_data):
