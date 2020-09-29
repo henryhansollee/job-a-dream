@@ -90,6 +90,7 @@ export default new Vuex.Store({
           commit("SET_AUTH", res.data.user.id);
           commit("SET_USER", res.data.user);
           dispatch("getUser");
+          router.push('/about')
         })
         .catch((err) => {
           console.log(err);
