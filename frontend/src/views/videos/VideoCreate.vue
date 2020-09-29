@@ -2,92 +2,78 @@
   <div class="m-5">
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1"
-          >STEP 1. 질문 선택</v-stepper-step
-        >
+        <v-stepper-step :complete="e1 > 1" step="1">STEP 1. 질문 선택</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="e1 > 2" step="2"
-          >STEP 2. 영상 촬영</v-stepper-step
-        >
+        <v-stepper-step :complete="e1 > 2" step="2">STEP 2. 영상 촬영</v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step step="3">STEP 3. 정보 입력</v-stepper-step>
       </v-stepper-header>
-
-      <!-- 스텝 1 -->
       <v-stepper-items>
         <v-stepper-content step="1">
-          <!--질문 선택 공간-->
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <div
-              style="font-size: small; margin:0 8px;"
-              v-for="question in questions"
-              :key="question.id"
-            >
-              <div class="d-flex flex-row justify-content-start">
-                <div
-                  :class="{
-                    'selected-question': question.id == videoData.question,
-                    'not-selected': question.id != videoData.question,
-                  }"
-                  style="font-size:large"
+          <h3 class="text-center m-4">질문을 선택해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <v-list flat>
+              <v-list-item-group color="primary">
+                <v-list-item 
+                  v-for="question in questions"
+                  :key="question.id"
+                  @click="checkQ(question)"
                 >
-                  <i class="fas fa-check" style="margin-right:15px;"></i>
-                </div>
-                <div style="font-size:large">
-                  <button
-                    @click="checkQ(question)"
-                    :class="{
-                      'selected-question': question.id == videoData.question,
-                      'not-selected': question.id != videoData.question,
-                    }"
-                  >
-                    {{ question.content }}
-                  </button>
-                </div>
-                <!-- <input type="radio" name="questionBox" @click="checkQ(question)" /> -->
-              </div>
-            </div>
+                  <v-list-item-icon>
+                    <i class="fas fa-check" style="margin-right:15px;"></i>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{ question.content }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
           </v-card>
-          <v-btn color="primary" @click="e1 = 2">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+          </div>
         </v-stepper-content>
-
-        <!-- 스텝 2 -->
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <div>질문: {{ selectedQ }}</div>
-            <!-- 비디오 -->
-            <div class="block" v-show="!result">
-              <h4 class="title is-4">
-                {{ timer.interval ? `녹화중 ${formatedTime}` : "준비" }}
-              </h4>
-              <video ref="video"></video>
+          <h3 class="text-center mt-4">영상을 촬영하세요.</h3>
+          <div class="d-flex w-50 m-auto">
+            <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
+            <button
+              @click="onSpeak(selectedQ)"
+              class="basic-btn mr-3"
+              style="background-color: transparent"
+            >
+              <i class="fas fa-volume-up"></i>
+            </button>
+          </div>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <div class="block d-flex flex-column align-items-center" v-show="!result">
+              <div class="field">
+              <button class="btn btn-secondary m-3" @click="stop" v-if="recorder && recorder.getState() === 'recording'">녹화종료</button>
+              <button class="btn btn-danger m-2 mt-4" @click="record" v-else>녹화시작</button>
             </div>
-            <div class="block" v-show="result">
-              <h4 class="title is-4">녹화종료</h4>
-              <video controls :src="blobUrl"></video>
+              <h6 class="text-center">
+                {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
+              </h6>
+              <video v-if="(!this.result)" class="mb-4" ref="video"></video>
             </div>
-            <div class="field">
-              <button
-                class="button is-danger"
-                @click="stop"
-                v-if="recorder && recorder.getState() === 'recording'"
-              >
-                종료
-              </button>
-              <button class="button is-primary" @click="record" v-else>
-                시작
-              </button>
+            <div class="block pb-4" v-show="result">
+              <video  controls :src="blobUrl"></video>
             </div>
           </v-card>
-          <v-btn color="primary" @click="e1 = 3">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
+          </div>
         </v-stepper-content>
-        <!-- 스텝 3 -->
         <v-stepper-content step="3">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <!-- 제목 -->
-            <input type="text" placeholder="title" v-model="videoData.title" />
-            <!-- 태그 -->
-            <div>
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="videoData.title"></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+            <label class="mt-5">태그</label>
+            <div class="w-50">
               <b-form-tags
                 v-model="videoData.update_tag"
                 no-outer-focus
@@ -107,12 +93,12 @@
                     <b-form-input
                       v-bind="inputAttrs"
                       v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
+                      placeholder="태그를 추가해주세요."
                       class="form-control"
                     ></b-form-input>
                     <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
+                      <b-button @click="addTag()" variant="secondary"
+                        >추가</b-button
                       >
                     </b-input-group-append>
                   </b-input-group>
@@ -124,14 +110,18 @@
                       :title="tag"
                       :variant="tagVariant"
                       class="mr-1"
+                      style="font-family: 'Cute Font', cursive;"
                       >{{ tag }}</b-form-tag
                     >
                   </div>
                 </template>
               </b-form-tags>
             </div>
+            </div>
           </v-card>
-          <v-btn color="primary" @click="createVideoFormData()">완료</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -222,6 +212,11 @@ export default {
         this.timer.interval = null;
         this.videoData.video_file = this.result;
       });
+    },
+    onSpeak(text) {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      window.speechSynthesis.speak(msg);
     },
   },
   mounted() {
