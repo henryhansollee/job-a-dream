@@ -51,11 +51,11 @@
         v-model="drawer"
         :clipped="$vuetify.breakpoint.lgAndUp"
         app
+        permanent
       >
-        <v-list dense>
+        <v-list dense class="mt-1" style="padding-bottom:0;">
           <!-- 프로필 -->
           <div class="d-flex flex-column align-items-center">
-            <hr />
             <img
               v-if="!userInfo.image"
               class="profile-img"
@@ -70,14 +70,21 @@
             />
             <!-- 프로필 수정 모달 -->
             <v-row justify="center" class="align-self-end">
-              <v-btn class="mr-5" icon color="indigo" v-b-modal.modal-1>
+              <v-btn class="mr-5 " icon color="indigo" v-b-modal.modal-1>
                 <small>EDIT</small>
               </v-btn>
               <b-modal hide-footer id="modal-1" title="내 정보 수정">
                 <h6>프로필 사진</h6>
-                <v-file-input multiple label="사진 업로드" ref="updatedUserData.image"></v-file-input>
+                <v-file-input
+                  multiple
+                  label="사진 업로드"
+                  ref="updatedUserData.image"
+                ></v-file-input>
                 <h6>한줄 각오</h6>
-                <b-form-input type="text" v-model="updatedUserData.comment"></b-form-input>
+                <b-form-input
+                  type="text"
+                  v-model="updatedUserData.comment"
+                ></b-form-input>
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
@@ -88,11 +95,13 @@
               </b-modal>
             </v-row>
             <div class="d-flex flex-column align-items-center">
-              <h6>{{ userInfo.username }}</h6>
+              <h6 style="margin:0 0 3px 0; padding:0;">
+                {{ userInfo.username }}
+              </h6>
               <small>{{ userInfo.email }}</small>
-              <hr class="mb-0" />
-              <div>
-                <h6 v-if="!userInfo.comment">
+              <!-- <hr class="mb-0" /> -->
+              <div style="margin:5px 0 10px 0;">
+                <h6 v-if="!userInfo.comment" style="margin:0;">
                   잡아드림이 {{ userInfo.username }}님을 응원합니다!
                 </h6>
                 <h6 v-else>{{ userInfo.comment }}</h6>
@@ -100,7 +109,7 @@
             </div>
           </div>
           <div>
-            <hr />
+            <hr style="margin:5px 0 15px 0;" />
             <v-row justify="center">
               <v-btn
                 color="primary"
@@ -178,7 +187,10 @@
               <img src="@/assets/menus/video.png" alt="" style="width: 30px;" />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 영상 분석
               </v-list-item-title>
             </v-list-item-content>
@@ -189,7 +201,10 @@
               <img src="@/assets/menus/audio.png" alt="" style="width: 30px;" />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 음성 분석
               </v-list-item-title>
             </v-list-item-content>
@@ -208,7 +223,10 @@
               />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 자소서 분석
               </v-list-item-title>
             </v-list-item-content>
@@ -227,7 +245,10 @@
               />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 풀코스 분석
               </v-list-item-title>
             </v-list-item-content>
@@ -242,7 +263,10 @@
               />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 통계 및 분석
               </v-list-item-title>
             </v-list-item-content>
@@ -257,14 +281,17 @@
               />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="d-flex justify-content-center">
+              <v-list-item-title
+                class="d-flex justify-content-center"
+                style="font-size:15px;"
+              >
                 면접 참고 영상
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <hr />
+          <hr style="margin-bottom:0;" />
         </v-list>
-        <v-spacer style="height: 30px;"></v-spacer>
+        <v-spacer style="height: 15px;"></v-spacer>
         <small class="ml-5 pl-5"
           ><i class="far fa-copyright"></i> Job A Dream, 잡아드림</small
         >
@@ -276,7 +303,7 @@
         color="blue darken-3"
         dark
       >
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
           <img
             style="width: 55px;"
@@ -330,9 +357,9 @@ export default {
         content: "",
       },
       updatedUserData: {
-        id: cookies.get('authCheck'),
-        image: '',
-        comment: '',
+        id: cookies.get("authCheck"),
+        image: "",
+        comment: "",
       },
     };
   },
@@ -341,7 +368,13 @@ export default {
     ...mapState(["questions", "userInfo"]),
   },
   methods: {
-    ...mapActions(["getQuestions", "createQuestion", "deleteQuestion", "getUser", "updateUser"]),
+    ...mapActions([
+      "getQuestions",
+      "createQuestion",
+      "deleteQuestion",
+      "getUser",
+      "updateUser",
+    ]),
     moveSectionDown() {
       this.$refs.fullpage.$fullpage.moveSectionDown();
     },
@@ -361,16 +394,16 @@ export default {
     },
     createFormData() {
       const userFormData = new FormData();
-      userFormData.append('id', this.updatedUserData.id)
-      userFormData.append('image', this.updatedUserData.image);
-      userFormData.append('comment', this.updatedUserData.comment)
-      this.updateUser(userFormData)
+      userFormData.append("id", this.updatedUserData.id);
+      userFormData.append("image", this.updatedUserData.image);
+      userFormData.append("comment", this.updatedUserData.comment);
+      this.updateUser(userFormData);
     },
   },
   created() {
     if (this.userInfo) {
       this.getUser();
-    } else if (cookies.get('authCheck')) {
+    } else if (cookies.get("authCheck")) {
       this.getUser();
     }
   },
