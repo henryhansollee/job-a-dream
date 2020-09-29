@@ -71,6 +71,7 @@
               <v-card
                 :elevation="hover ? 11 : 8"
                 :class="{ 'on-hover': hover }"
+                style="transition:.3s;"
               >
                 <v-img
                   src="@/assets/thumbnails/video-thumbnail.jpg"
