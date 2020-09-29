@@ -1,19 +1,18 @@
 <template>
   <div>
     <h4>{{ videoResult.title }}</h4>
-    <!--질문 뽑아와야 됨-->
-    <h5>{{ videoResult.question }}</h5>
-    <h6>{{ cutDate(videoResult.created_at) }}</h6>
-    <div v-for="tag in videoResult.tag" :key="tag">#{{ tag }}</div>
-
-    <video controls :src="videoResult.video_file"></video>
-    <router-link class="text-decoration-none" to="/videos/list">
-      <v-btn medium color="warning" dark>목록으로</v-btn>
-    </router-link>
-
     <v-btn medium color="danger" dark @click="deleteVideo(videoResult.id)"
       >삭제</v-btn
     >
+    <h6>{{ cutDate(videoResult.created_at) }}</h6>
+    <!--질문 뽑아와야 됨-->
+    <h5>{{ videoResult.question }}</h5>
+
+    <video controls :src="videoResult.video_file"></video>
+    <div v-for="tag in videoResult.tag" :key="tag">#{{ tag }}</div>
+    <router-link class="text-decoration-none" to="/videos/list">
+      <v-btn medium color="warning" dark>목록으로</v-btn>
+    </router-link>
   </div>
 </template>
 
