@@ -25,8 +25,9 @@ export default {
     },
   },
   methods: {
-    startRecording() {
+    startRecording(text) {
       this.isRecording = true;
+      this.onSpeak(text)
       this.mediaRecorder.start();
       this.$awn.tip('50초 동안 답변을 말해주세요 :)', {durations: {tip: 50000}})
       setTimeout(() => {
@@ -40,6 +41,11 @@ export default {
     },
     deleteRecording() {
       this.audioBlob = null;
+    },
+    onSpeak(text) {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      window.speechSynthesis.speak(msg);
     },
   },
   watch: {
