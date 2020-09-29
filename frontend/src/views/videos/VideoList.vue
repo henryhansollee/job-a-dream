@@ -57,7 +57,7 @@
       <v-btn x-large color="primary" dark>영상 분석 시작</v-btn>
     </router-link>
     <!-- 리스트 -->
-    <v-container>
+    <v-container class="mt-5">
       <v-row>
         <v-col cols="3" v-for="video in videos" :key="video.id">
           <router-link
@@ -79,14 +79,16 @@
                   {{ video.title }}
                 </v-card-title>
               </v-img>
-              <v-card-actions>
-                <v-spacer v-for="tag in video.tag" :key="tag">
-                  #{{ tag }}</v-spacer
+              <div style="padding-left:10px;">
+                <v-card-actions
+                  v-for="tag in cutTag(video.tag)"
+                  :key="tag"
+                  style="padding:0; display:inline;"
                 >
-                <v-card-text>
-                  {{ cutDate(video.created_at) }}
-                </v-card-text>
-              </v-card-actions>
+                  {{ tag }} </v-card-actions
+                ><br />
+                {{ cutDate(video.created_at) }}
+              </div>
             </v-card>
           </router-link>
         </v-col>
@@ -124,6 +126,15 @@ export default {
       const day = CD.substring(8, 10) + "  ";
       const res = year + month + day;
       return res;
+    },
+    cutTag(tags) {
+      let result = [];
+      let arr = tags[0].split(",");
+      for (let tag of arr) {
+        let res = "#" + tag;
+        result.push(res);
+      }
+      return result;
     },
   },
   created() {
