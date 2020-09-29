@@ -30,6 +30,9 @@ import YoutubeDetail from '../views/youtubes/YoutubeDetail'
 // Result
 import Result from '../views/results/Result'
 
+// About
+import About from '../views/About'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -170,6 +173,16 @@ const routes = [
     component: Result,
     meta: {
       title: '잡아드림 | 통계 및 분석'
+    }
+  },
+
+  // About
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+    meta: {
+      title: '잡아드림'
     }
   },
 ]
