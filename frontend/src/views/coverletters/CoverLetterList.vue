@@ -83,14 +83,16 @@
                   {{ coverletter.title }}
                 </v-card-title>
               </v-img>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-card-text>
-                  <div v-for="tag in coverletter.tag" :key="tag">
-                    #{{ tag }}
-                  </div>
-                </v-card-text>
-              </v-card-actions>
+              <div style="padding-left:10px;">
+                <v-card-actions
+                  v-for="tag in cutTag(coverletter.tag)"
+                  :key="tag"
+                  style="padding:0; display:inline;"
+                >
+                  {{ tag }} </v-card-actions
+                ><br />
+                {{ cutDate(coverletter.created_at) }}
+              </div>
             </v-card>
           </router-link>
         </v-col>
@@ -120,6 +122,23 @@ export default {
     },
     onSlideEnd() {
       this.sliding = false;
+    },
+    cutDate(date) {
+      let CD = date + "";
+      const year = CD.substring(0, 4) + ".";
+      const month = CD.substring(5, 7) + ".";
+      const day = CD.substring(8, 10) + "  ";
+      const res = year + month + day;
+      return res;
+    },
+    cutTag(tags) {
+      let result = [];
+      let arr = tags[0].split(",");
+      for (let tag of arr) {
+        let res = "#" + tag;
+        result.push(res);
+      }
+      return result;
     },
   },
   created() {
