@@ -34,8 +34,6 @@
             <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
           </div>
         </v-stepper-content>
-
-        <!-- 스텝 2 -->
         <v-stepper-content step="2">
           <h3 class="text-center mt-4">음성을 녹음하세요.</h3>
           <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
@@ -46,27 +44,29 @@
               mime-type="audio/wav"
               v-slot="{ isRecording, startRecording, stopRecording }"
             >
-              <button class="btn btn-danger" v-if="!isRecording" @click="startRecording">
-                녹음시작
-              </button>
+              <button class="btn btn-danger" v-if="!isRecording" @click="startRecording">녹음시작</button>
               <button class="btn btn-secondary" v-else @click="stopRecording">녹음종료</button>
             </dictaphone>
-
             <vue-dictaphone-spectrum-analyser />
-
             <div v-if="audioSource">
               <audio :src="audioSource" controls></audio>
             </div>
           </v-card>
-          <v-btn color="primary" @click="e1 = 3">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn v-if="audioData.audio_file" class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
+          </div>
         </v-stepper-content>
-        <!-- 스텝 3 -->
         <v-stepper-content step="3">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <!-- 제목 -->
-            <input type="text" placeholder="title" v-model="audioData.title" />
-            <!-- 태그 -->
-            <div>
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="audioData.title"></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+            <label class="mt-5">태그</label>
+            <div class="w-50">
               <b-form-tags
                 v-model="audioData.update_tag"
                 no-outer-focus
@@ -86,13 +86,11 @@
                     <b-form-input
                       v-bind="inputAttrs"
                       v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
+                      placeholder="태그를 추가해주세요."
                       class="form-control"
                     ></b-form-input>
                     <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
-                      >
+                      <b-button @click="addTag()" variant="secondary">추가</b-button>
                     </b-input-group-append>
                   </b-input-group>
                   <div class="d-inline-block" style="font-size: 1.5rem;">
@@ -103,14 +101,19 @@
                       :title="tag"
                       :variant="tagVariant"
                       class="mr-1"
+                      style="font-family: 'Cute Font', cursive;"
                       >{{ tag }}</b-form-tag
                     >
                   </div>
                 </template>
               </b-form-tags>
             </div>
+            </div>
           </v-card>
-          <v-btn color="primary" @click="createAudioFormData()">완료</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn v-if="audioData.title && audioData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createAudioFormData()">완료</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>완료</v-btn>
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
