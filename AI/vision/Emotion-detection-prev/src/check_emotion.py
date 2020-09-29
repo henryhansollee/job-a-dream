@@ -17,30 +17,30 @@ ap.add_argument("--mode",help="train/display")
 mode = ap.parse_args().mode
 
 # Define data generators
-train_dir = 'data/train'
-val_dir = 'data/test'
+# train_dir = 'data/train'
+# val_dir = 'data/test'
 
 num_train = 28709
 num_val = 7178
 batch_size = 64
 num_epoch = 50
 
-train_datagen = ImageDataGenerator(rescale=1./255)
-val_datagen = ImageDataGenerator(rescale=1./255)
+# train_datagen = ImageDataGenerator(rescale=1./255)
+# val_datagen = ImageDataGenerator(rescale=1./255)
 
-train_generator = train_datagen.flow_from_directory(
-        train_dir,
-        target_size=(48,48),
-        batch_size=batch_size,
-        color_mode="grayscale",
-        class_mode='categorical')
+# train_generator = train_datagen.flow_from_directory(
+#         train_dir,
+#         target_size=(48,48),
+#         batch_size=batch_size,
+#         color_mode="grayscale",
+#         class_mode='categorical')
 
-validation_generator = val_datagen.flow_from_directory(
-        val_dir,
-        target_size=(48,48),
-        batch_size=batch_size,
-        color_mode="grayscale",
-        class_mode='categorical')
+# validation_generator = val_datagen.flow_from_directory(
+#         val_dir,
+#         target_size=(48,48),
+#         batch_size=batch_size,
+#         color_mode="grayscale",
+#         class_mode='categorical')
 
 # Create the model
 model = Sequential()
@@ -69,7 +69,7 @@ def get_emotion(File_Name):
 
     emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
     emotion_dict_result = {"Angry": 0, "Disgusted": 0, "Fearful": 0, "Happy": 0, "Neutral": 0, "Sad": 0, "Surprised": 0}
-    cap = cv2.VideoCapture('test.webm')
+    cap = cv2.VideoCapture(File_Name)
     
     while True:
         # Find haar cascade to draw bounding box around face
