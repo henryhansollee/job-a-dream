@@ -33,36 +33,27 @@
             <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
           </div>
         </v-stepper-content>
-
-        <!-- 스텝 2 -->
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <div>질문: {{ selectedQ }}</div>
-            <!-- 비디오 -->
-            <div class="block" v-show="!result">
-              <h4 class="title is-4">
-                {{ timer.interval ? `녹화중 ${formatedTime}` : "준비" }}
-              </h4>
-              <video ref="video"></video>
+          <h3 class="text-center mt-4">영상을 촬영하세요.</h3>
+          <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <div class="block d-flex flex-column align-items-center" v-show="!result">
+              <div class="field">
+              <button class="btn btn-secondary m-3" @click="stop" v-if="recorder && recorder.getState() === 'recording'">녹화종료</button>
+              <button class="btn btn-danger m-2 mt-4" @click="record" v-else>녹화시작</button>
             </div>
-            <div class="block" v-show="result">
-              <h4 class="title is-4">녹화종료</h4>
-              <video controls :src="blobUrl"></video>
+              <h6 class="text-center">
+                {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
+              </h6>
+              <video v-if="(!this.result)" class="mb-4" ref="video"></video>
             </div>
-            <div class="field">
-              <button
-                class="button is-danger"
-                @click="stop"
-                v-if="recorder && recorder.getState() === 'recording'"
-              >
-                종료
-              </button>
-              <button class="button is-primary" @click="record" v-else>
-                시작
-              </button>
+            <div class="block pb-4" v-show="result">
+              <video  controls :src="blobUrl"></video>
             </div>
           </v-card>
-          <v-btn color="primary" @click="e1 = 3">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
+          </div>
         </v-stepper-content>
         <!-- 스텝 3 -->
         <v-stepper-content step="3">
