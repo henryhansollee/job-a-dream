@@ -2,41 +2,50 @@
   <div class="p-5" style="">
     <div class="d-flex flex-row" style="">
       <video controls :src="videoResult.video_file"></video>
-      <div class="ml-5" style="padding-top:3px;width:100%;">
-        <div class="d-flex justify-content-between">
-          <h4>{{ videoResult.title }}</h4>
-          <div class="dropdown dropleft mr-5">
-            <button type="button" class="comment-btn" data-toggle="dropdown">
-              <i class="fas fa-ellipsis-v"></i>
-            </button>
-            <div class="dropdown-menu">
-              <a
-                class="dropdown-item"
-                style="color:black;"
-                @click="deleteVideo(videoResult.id)"
-                >삭제</a
-              >
+      <div
+        class="ml-5 d-flex flex-column justify-content-between"
+        style="padding-top:3px;width:100%;"
+      >
+        <div style="">
+          <div class="d-flex justify-content-between">
+            <h4>{{ videoResult.title }}</h4>
+            <div class="dropdown dropleft mr-5">
+              <button type="button" class="comment-btn" data-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a
+                  class="dropdown-item"
+                  style="color:black;"
+                  @click="deleteVideo(videoResult.id)"
+                  >삭제</a
+                >
+              </div>
             </div>
           </div>
+          <h6 style="color:gray;font-size:14.5px;">
+            {{ cutDate(videoResult.created_at) }}
+          </h6>
+          <!--질문 뽑아와야 됨-->
+          <h5 class="mt-5" style="font-size:x-large;">
+            질문: {{ videoResult.question }}
+          </h5>
+          <div
+            v-for="tag in cutTag(videoResult.tag)"
+            :key="tag"
+            style="display:inline; font-size:large;"
+          >
+            {{ tag }}
+          </div>
+          <br />
         </div>
-        <h6 style="color:gray;font-size:14.5px;">
-          {{ cutDate(videoResult.created_at) }}
-        </h6>
-        <!--질문 뽑아와야 됨-->
-        <h5 class="mt-5" style="font-size:x-large;">
-          질문: {{ videoResult.question }}
-        </h5>
-        <div
-          v-for="tag in cutTag(videoResult.tag)"
-          :key="tag"
-          style="display:inline; font-size:large;"
-        >
-          {{ tag }}
+        <div class="mr-5" style="">
+          <div class="d-flex justify-content-end">
+            <router-link class="text-decoration-none" to="/videos/list">
+              <v-btn medium color="warning" dark>목록으로</v-btn>
+            </router-link>
+          </div>
         </div>
-        <br />
-        <router-link class="text-decoration-none" to="/videos/list">
-          <v-btn medium color="warning" dark>목록으로</v-btn>
-        </router-link>
       </div>
     </div>
   </div>
