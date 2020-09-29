@@ -30,24 +30,26 @@
             </v-list>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+            <v-btn v-if="isSelected" class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
           </div>
         </v-stepper-content>
 
         <!-- 스텝 2 -->
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <div>질문: {{ selectedQ }}</div>
-            <!-- 오디오 -->
+          <h3 class="text-center mt-4">음성을 녹음하세요.</h3>
+          <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
+          <v-card class="mx-auto d-flex flex-column align-items-center" max-width="700" min-height="300" tile>
             <dictaphone
+            class="mt-5"
               @stop="handleRecording($event)"
               mime-type="audio/wav"
               v-slot="{ isRecording, startRecording, stopRecording }"
             >
-              <button v-if="!isRecording" @click="startRecording">
-                Start recording
+              <button class="btn btn-danger" v-if="!isRecording" @click="startRecording">
+                녹음시작
               </button>
-              <button v-else @click="stopRecording">Stop recording</button>
+              <button class="btn btn-secondary" v-else @click="stopRecording">녹음종료</button>
             </dictaphone>
 
             <vue-dictaphone-spectrum-analyser />

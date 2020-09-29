@@ -90,9 +90,7 @@
                       class="form-control"
                     ></b-form-input>
                     <b-input-group-append>
-                      <b-button @click="addTag()" variant="secondary"
-                        >추가</b-button
-                      >
+                      <b-button @click="addTag()" variant="secondary">추가</b-button>
                     </b-input-group-append>
                   </b-input-group>
                   <div class="d-inline-block" style="font-size: 1.5rem;">
@@ -163,14 +161,10 @@ export default {
   methods: {
     ...mapActions(["getQuestions", "createVideo"]),
     checkQ(question) {
-      console.log(this.isSelected, "체크됨?");
       this.selectedQ = question.content;
       this.videoData.question = question.id;
-      console.log(this.videoData.question, "질문번호");
-      console.log(this.selectedQ, "질문내용");
       if (this.videoData.question) {
         this.isSelected = true;
-        console.log(this.isSelected, "체크됨?");
       }
     },
     createVideoFormData() {
@@ -184,7 +178,6 @@ export default {
       );
       videoFormData.append("update_tag", this.videoData.update_tag);
       videoFormData.append("question", this.videoData.question);
-      console.log(this.videoData, "보낼거ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ");
       this.createVideo(videoFormData);
     },
     _fillzero(value) {
