@@ -67,29 +67,36 @@
               params: { id: `${video.id}` },
             }"
           >
-            <!-- 데이터 넣음 -->
-            <v-card>
-              <v-img
-                src="@/assets/thumbnails/video-thumbnail.jpg"
-                class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="200px"
+            <v-hover v-slot:default="{ hover }" close-delay="30">
+              <v-card
+                :elevation="hover ? 11 : 8"
+                :class="{ 'on-hover': hover }"
               >
-                <v-card-title>
-                  {{ video.title }}
-                </v-card-title>
-              </v-img>
-              <div style="padding-left:10px;">
-                <v-card-actions
-                  v-for="tag in cutTag(video.tag)"
-                  :key="tag"
-                  style="padding:0; display:inline;"
+                <v-img
+                  src="@/assets/thumbnails/video-thumbnail.jpg"
+                  class="white--text align-end"
+                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                  height="200px"
                 >
-                  {{ tag }} </v-card-actions
-                ><br />
-                {{ cutDate(video.created_at) }}
-              </div>
-            </v-card>
+                  <v-card-title>
+                    {{ video.title }}
+                  </v-card-title>
+                </v-img>
+                <div class="mt-1" style="padding:0 0 5px 10px;">
+                  <v-card-actions
+                    v-for="tag in cutTag(video.tag)"
+                    :key="tag"
+                    class="mt-1"
+                    style="padding:0; display:inline;"
+                  >
+                    {{ tag }} </v-card-actions
+                  ><br />
+                  <div class="mt-1 mb-1" style="color:gray;">
+                    {{ cutDate(video.created_at) }}
+                  </div>
+                </div>
+              </v-card>
+            </v-hover>
           </router-link>
         </v-col>
       </v-row>
