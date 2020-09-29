@@ -7,7 +7,7 @@
       <div style="">
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
-          <div class="dropdown dropleft mr-5">
+          <div class="dropdown dropleft mr-5 pr-5">
             <button type="button" class="comment-btn" data-toggle="dropdown">
               <i class="fas fa-ellipsis-v"></i>
             </button>
@@ -36,19 +36,23 @@
           {{ tag }}
         </div>
         <p />
-        <audio controls :src="audioResult.audio_file"></audio>
+        <audio
+          style="border:3px solid yellow; width:70%; margin-left:100px; "
+          controls
+          :src="audioResult.audio_file"
+        ></audio>
       </div>
-      <div style="width:800px; height:250px; border:3px solid red;">
+      <div class="mt-5" style="width:90%; height:250px; border:3px solid red;">
         대본 들어갈 공간
       </div>
       <div
-        class="d-flex flex-row justify-content-between"
-        style="width:800px; height:250px; border:3px solid blue;"
+        class="d-flex flex-row justify-content-around mt-4"
+        style="width:90%; height:250px; border:3px solid blue;"
       >
-        <div style="width:400px; height:250px; border:3px solid green;">
+        <div style="width:48%; height:250px; border:3px solid green;">
           워드 클라우드
         </div>
-        <div style="width:400px; height:250px; border:3px solid orange;">
+        <div style="width:48%; height:250px; border:3px solid orange;">
           발음 정확도
         </div>
       </div>
