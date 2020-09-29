@@ -57,11 +57,17 @@
         </v-stepper-content>
         <!-- 스텝 3 -->
         <v-stepper-content step="3">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
             <!-- 제목 -->
-            <input type="text" placeholder="title" v-model="videoData.title" />
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="videoData.title"></b-form-input>
+            </div>
             <!-- 태그 -->
-            <div>
+            <div class="w-100 d-flex flex-column align-items-center">
+            <label class="mt-5">태그</label>
+            <div class="w-50">
               <b-form-tags
                 v-model="videoData.update_tag"
                 no-outer-focus
@@ -81,12 +87,12 @@
                     <b-form-input
                       v-bind="inputAttrs"
                       v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
+                      placeholder="태그를 추가해주세요."
                       class="form-control"
                     ></b-form-input>
                     <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
+                      <b-button @click="addTag()" variant="secondary"
+                        >추가</b-button
                       >
                     </b-input-group-append>
                   </b-input-group>
@@ -98,14 +104,18 @@
                       :title="tag"
                       :variant="tagVariant"
                       class="mr-1"
+                      style="font-family: 'Cute Font', cursive;"
                       >{{ tag }}</b-form-tag
                     >
                   </div>
                 </template>
               </b-form-tags>
             </div>
+            </div>
           </v-card>
-          <v-btn color="primary" @click="createVideoFormData()">완료</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
