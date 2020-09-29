@@ -10,7 +10,7 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .models import Video, Result
 from .serializers import VideoSerializer, ResultSerializer
 
-from .AI.vision.GazeTracking.example import analyze_eye_tracking
+# from .AI.vision.GazeTracking.example import analyze_eye_tracking
 from django.http.request import QueryDict
 
 
