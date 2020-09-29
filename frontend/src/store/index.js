@@ -139,10 +139,10 @@ export default new Vuex.Store({
 
     // 회원정보수정
     updateUser({ getters }, updatedUserData) {
-      console.log(updatedUserData)
+      console.log(updatedUserData);
       axios
         .put(
-          BACKEND.URL + BACKEND.ROUTES.user + `${cookies.get('authCheck')}`,
+          BACKEND.URL + BACKEND.ROUTES.user + `${cookies.get("authCheck")}`,
           updatedUserData,
           getters.config
         )
@@ -484,6 +484,17 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    // 태그 분리 및 # 추가 작업
+    EditTag(tags) {
+      let result = [];
+      let arr = tags[0].split(",");
+      for (let tag of arr) {
+        let res = "#" + tag;
+        result.push(res);
+      }
+      return result;
     },
   },
 
