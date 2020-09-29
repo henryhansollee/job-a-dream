@@ -2,49 +2,37 @@
   <div class="m-5">
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1"
-          >STEP 1. 질문 선택</v-stepper-step
-        >
+        <v-stepper-step :complete="e1 > 1" step="1">STEP 1. 질문 선택</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step :complete="e1 > 2" step="2"
-          >STEP 2. 음성 녹음</v-stepper-step
-        >
+        <v-stepper-step :complete="e1 > 2" step="2">STEP 2. 음성 녹음</v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step step="3">STEP 3. 정보 입력</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <!-- 스텝 1 -->
         <v-stepper-content step="1">
-          <!--질문 선택 공간-->
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <div
-              style="font-size: small; margin:0 8px;"
-              v-for="question in questions"
-              :key="question.id"
-            >
-              <div class="d-flex flex-row justify-content-start">
-                <div
+        <v-card class="mx-auto" max-width="700" tile>
+            <v-list flat>
+              <v-subheader>질문을 선택해주세요.</v-subheader>
+              <v-list-item-group color="primary">
+                <v-list-item 
+                  v-for="question in questions"
+                  :key="question.id"
+                  @click="checkQ(question)"
                   :class="{
                     'selected-question': question.id == audioData.question,
                     'not-selected': question.id != audioData.question,
                   }"
-                  style="font-size:large"
                 >
-                  <i class="fas fa-check" style="margin-right:15px;"></i>
-                </div>
-                <div style="font-size:large">
-                  <button
-                    @click="checkQ(question)"
-                    :class="{
-                      'selected-question': question.id == audioData.question,
-                      'not-selected': question.id != audioData.question,
-                    }"
-                  >
-                    {{ question.content }}
-                  </button>
-                </div>
-              </div>
-            </div>
+                  <v-list-item-icon>
+                    <i class="fas fa-check" style="margin-right:15px;"></i>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{ question.content }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
           </v-card>
           <v-btn color="primary" @click="e1 = 2">다음</v-btn>
         </v-stepper-content>
