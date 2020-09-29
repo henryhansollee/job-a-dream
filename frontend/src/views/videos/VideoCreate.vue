@@ -30,21 +30,13 @@
             </v-list>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+            <v-btn v-if="isSelected" class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
           </div>
         </v-stepper-content>
         <v-stepper-content step="2">
           <h3 class="text-center mt-4">영상을 촬영하세요.</h3>
-          <div class="d-flex w-50 m-auto">
-            <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
-            <button
-              @click="onSpeak(selectedQ)"
-              class="basic-btn mr-3"
-              style="background-color: transparent"
-            >
-              <i class="fas fa-volume-up"></i>
-            </button>
-          </div>
+          <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
           <v-card class="mx-auto" max-width="700" min-height="300" tile>
             <div class="block d-flex flex-column align-items-center" v-show="!result">
               <div class="field">
@@ -54,14 +46,15 @@
               <h6 class="text-center">
                 {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
               </h6>
-              <video v-if="(!this.result)" class="mb-4" ref="video"></video>
+              <video v-if="(!this.result)" class="mb-4 w-75" ref="video"></video>
             </div>
             <div class="block pb-4" v-show="result">
-              <video  controls :src="blobUrl"></video>
+              <video class="w-75"  controls :src="blobUrl"></video>
             </div>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
+            <v-btn v-if="videoData.video_file" class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
           </div>
         </v-stepper-content>
         <v-stepper-content step="3">
@@ -120,7 +113,8 @@
             </div>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
+            <v-btn v-if="videoData.title & videoData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>완료</v-btn>
           </div>
         </v-stepper-content>
       </v-stepper-items>
@@ -202,6 +196,7 @@ export default {
       this.blobUrl && URL.revokeObjectURL(this.blobUrl);
       this.blobUrl = null;
       this.timer.interval = setInterval(() => ++this.timer.value, 1000);
+      this.onSpeak(this.selectedQ)
     },
     stop() {
       this.recorder.stopRecording(() => {
