@@ -113,7 +113,7 @@
             </div>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn v-if="videoData.title & videoData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
+            <v-btn v-if="videoData.title && videoData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
             <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>완료</v-btn>
           </div>
         </v-stepper-content>
