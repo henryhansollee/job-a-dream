@@ -44,7 +44,7 @@
               mime-type="audio/wav"
               v-slot="{ isRecording, startRecording, stopRecording }"
             >
-              <button class="btn btn-danger" v-if="!isRecording" @click="startRecording">녹음시작</button>
+              <button class="btn btn-danger" v-if="!isRecording" @click="startRecording(selectedQ)">녹음시작</button>
               <button class="btn btn-secondary" v-else @click="stopRecording">녹음종료</button>
             </dictaphone>
             <vue-dictaphone-spectrum-analyser />
