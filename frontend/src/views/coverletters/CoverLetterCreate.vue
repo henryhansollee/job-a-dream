@@ -7,7 +7,6 @@
         <v-stepper-step step="2">STEP 2. 정보 입력</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
-        <!--자소서 subject 입력-->
         <v-stepper-content step="1">
           <h3 class="text-center m-4">자기소개서를 입력해주세요.</h3>
           <v-card class="mx-auto" max-width="700" min-height="300" tile>
@@ -25,17 +24,16 @@
             <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
           </div>
         </v-stepper-content>
-
-        <!--제목,태그 입력-->
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <input
-              type="text"
-              placeholder="title"
-              v-model="coverletterData.title"
-            />
-            <!-- 태그 -->
-            <div>
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="coverletterData.title"></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+            <label class="mt-5">태그</label>
+            <div class="w-50">
               <b-form-tags
                 v-model="coverletterData.update_tag"
                 no-outer-focus
@@ -55,13 +53,11 @@
                     <b-form-input
                       v-bind="inputAttrs"
                       v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
+                      placeholder="태그를 추가해주세요."
                       class="form-control"
                     ></b-form-input>
                     <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
-                      >
+                      <b-button @click="addTag()" variant="secondary">추가</b-button>
                     </b-input-group-append>
                   </b-input-group>
                   <div class="d-inline-block" style="font-size: 1.5rem;">
@@ -72,16 +68,19 @@
                       :title="tag"
                       :variant="tagVariant"
                       class="mr-1"
+                      style="font-family: 'Cute Font', cursive;"
                       >{{ tag }}</b-form-tag
                     >
                   </div>
                 </template>
               </b-form-tags>
             </div>
+            </div>
           </v-card>
-          <v-btn color="primary" @click="createCoverletter(coverletterData)"
-            >완료</v-btn
-          >
+          <div class="w-100 d-flex flex-column">
+            <v-btn v-if="coverletterData.title && coverletterData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createCoverletter(coverletterData)">완료</v-btn> 
+            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>완료</v-btn>
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
