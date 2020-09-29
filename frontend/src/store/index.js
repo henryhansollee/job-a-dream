@@ -23,6 +23,7 @@ export default new Vuex.Store({
     audioResult: "",
     coverletterResult: "",
     fullcourseResult: "",
+    tags: "",
   },
 
   getters: {
@@ -76,6 +77,9 @@ export default new Vuex.Store({
     },
     GET_RESULTS(state, results) {
       state.results = results;
+    },
+    EDIT_TAGS(state, tags) {
+      state.tags = tags;
     },
   },
 
@@ -487,14 +491,15 @@ export default new Vuex.Store({
     },
 
     // 태그 분리 및 # 추가 작업
-    EditTag(tags) {
+    EditTag({ commit }, tags) {
+      console.log(tags, "태그목록");
       let result = [];
       let arr = tags[0].split(",");
       for (let tag of arr) {
         let res = "#" + tag;
         result.push(res);
       }
-      return result;
+      commit("EDIT_TAGS", result);
     },
   },
 
