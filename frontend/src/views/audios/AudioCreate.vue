@@ -9,20 +9,15 @@
         <v-stepper-step step="3">STEP 3. 정보 입력</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
-        <!-- 스텝 1 -->
         <v-stepper-content step="1">
-        <v-card class="mx-auto" max-width="700" tile>
+          <h3 class="text-center m-4">질문을 선택해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
             <v-list flat>
-              <v-subheader>질문을 선택해주세요.</v-subheader>
               <v-list-item-group color="primary">
                 <v-list-item 
                   v-for="question in questions"
                   :key="question.id"
                   @click="checkQ(question)"
-                  :class="{
-                    'selected-question': question.id == audioData.question,
-                    'not-selected': question.id != audioData.question,
-                  }"
                 >
                   <v-list-item-icon>
                     <i class="fas fa-check" style="margin-right:15px;"></i>
@@ -34,7 +29,9 @@
               </v-list-item-group>
             </v-list>
           </v-card>
-          <v-btn color="primary" @click="e1 = 2">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
+          </div>
         </v-stepper-content>
 
         <!-- 스텝 2 -->
@@ -147,14 +144,10 @@ export default {
   methods: {
     ...mapActions(["getQuestions", "createAudio"]),
     checkQ(question) {
-      console.log(this.isSelected, "체크됨?");
       this.selectedQ = question.content;
       this.audioData.question = question.id;
-      console.log(this.audioData.question, "질문번호");
-      console.log(this.selectedQ, "질문내용");
       if (this.audioData.question) {
         this.isSelected = true;
-        console.log(this.isSelected, "체크됨?");
       }
     },
     handleRecording({ blob, src }) {
