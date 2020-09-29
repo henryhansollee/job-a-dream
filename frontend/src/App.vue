@@ -304,7 +304,7 @@
         dark
       >
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
-        <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <v-toolbar-title style="width: 300px" class="m-0 p-0">
           <img
             style="width: 55px;"
             src="@/assets/logos/logo-sub.jpg"
