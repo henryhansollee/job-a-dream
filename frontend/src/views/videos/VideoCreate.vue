@@ -35,7 +35,16 @@
         </v-stepper-content>
         <v-stepper-content step="2">
           <h3 class="text-center mt-4">영상을 촬영하세요.</h3>
-          <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
+          <div class="d-flex w-50 m-auto">
+            <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
+            <button
+              @click="onSpeak(selectedQ)"
+              class="basic-btn mr-3"
+              style="background-color: transparent"
+            >
+              <i class="fas fa-volume-up"></i>
+            </button>
+          </div>
           <v-card class="mx-auto" max-width="700" min-height="300" tile>
             <div class="block d-flex flex-column align-items-center" v-show="!result">
               <div class="field">
@@ -55,16 +64,13 @@
             <v-btn class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
           </div>
         </v-stepper-content>
-        <!-- 스텝 3 -->
         <v-stepper-content step="3">
           <h3 class="text-center m-4">정보를 입력해주세요.</h3>
           <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
-            <!-- 제목 -->
             <div class="w-100 d-flex flex-column align-items-center">
               <label for="input-with-list" class="mt-5">제목</label>
               <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="videoData.title"></b-form-input>
             </div>
-            <!-- 태그 -->
             <div class="w-100 d-flex flex-column align-items-center">
             <label class="mt-5">태그</label>
             <div class="w-50">
@@ -206,6 +212,11 @@ export default {
         this.timer.interval = null;
         this.videoData.video_file = this.result;
       });
+    },
+    onSpeak(text) {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      window.speechSynthesis.speak(msg);
     },
   },
   mounted() {
