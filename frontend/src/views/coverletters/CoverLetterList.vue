@@ -83,15 +83,18 @@
                   {{ coverletter.title }}
                 </v-card-title>
               </v-img>
-              <div style="padding-left:10px;">
+              <div class="mt-1" style="padding:0 0 5px 10px;">
                 <v-card-actions
                   v-for="tag in cutTag(coverletter.tag)"
                   :key="tag"
+                  class="mt-1"
                   style="padding:0; display:inline;"
                 >
                   {{ tag }} </v-card-actions
                 ><br />
-                {{ cutDate(coverletter.created_at) }}
+                <div class="mt-1 mb-1" style="color:gray;">
+                  {{ cutDate(coverletter.created_at) }}
+                </div>
               </div>
             </v-card>
           </router-link>
