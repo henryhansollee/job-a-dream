@@ -161,6 +161,7 @@
                   </div>
                 </div>
                 <hr />
+
                 <div class="q-write main-font">
                   <div class="q-text">
                     <input
@@ -182,7 +183,16 @@
                     </button>
                   </div>
                 </div>
-                <div class="d-flex justify-content-end"></div>
+
+                <div class="d-flex justify-content-end">
+                  <b-button
+                    class="basic-btn"
+                    style="width:15%; color:red;"
+                    block
+                    @click="$bvModal.hide('modal-scrollable')"
+                    >닫기</b-button
+                  >
+                </div>
               </b-modal>
             </v-row>
             <hr />

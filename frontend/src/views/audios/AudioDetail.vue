@@ -41,7 +41,7 @@
         </div>
         <div class="d-flex justify-content-center ml-5" style="width:80%;">
           <audio
-            class="mt-5 ml-5"
+            class="mt-5 ml-5 basic-btn"
             style="width:70%; "
             controls
             :src="audioResult.audio_file"
