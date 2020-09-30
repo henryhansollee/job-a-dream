@@ -1,29 +1,54 @@
 <template>
-  <div>
+  <div class="p-5" style="">
     <!-- {{ coverletterResult }} -->
+    <label for="cvletter-title" style="font-size:large;color:gray"
+      >제목:
+    </label>
     <input
       type="text"
-      id="title"
+      id="cvletter-title"
       v-model="coverletterResult.title"
       placeholder=" 제목을 입력하세요"
+      class="ml-1"
+      style="border:2px solid gray; border-radius:4px;font-size:22.5px;"
     />
-    <br />
-    <input
-      type="text"
-      id="title"
-      v-model="coverletterResult.subject"
-      placeholder=" 주제를 입력하세요"
-    />
-    <br />
-    <input
-      type="text"
-      id="title"
-      v-model="coverletterResult.content"
-      placeholder=" 내용을 입력하세요"
-    />
-    <br />
+    <div class="mt-5 p-1" style="border:3px solid blue;border-radius:5px;">
+      <div style="">
+        <label
+          for="cvletter-subject"
+          class="m-0"
+          style="font-size:18px;color:gray"
+          >자소서 항목 </label
+        ><br />
+        <input
+          type="text"
+          id="cvletter-subject"
+          v-model="coverletterResult.subject"
+          placeholder=" 자소서 항목을 입력하세요"
+          class="w-100"
+          style="border:2px solid gray; border-radius:4px;font-size:22.5px;
+          "
+        />
+      </div>
+      <div class="mt-3">
+        <label
+          for="cvletter-content"
+          class="m-0"
+          style="font-size:18px;color:gray;"
+          >자소서 내용 </label
+        ><br />
+        <input
+          type="text"
+          id="cvletter-content"
+          v-model="coverletterResult.content"
+          placeholder=" 내용을 입력하세요"
+          class="w-100"
+          style="border:2px solid gray; border-radius:4px;font-size:22.5px;"
+        />
+      </div>
+    </div>
     <!-- 태그 -->
-    <div>
+    <div class="mt-5" style="border:3px solid orange; width:50%;">
       <b-form-tags v-model="coverletterResult.tag" no-outer-focus class="mb-2">
         <template
           v-slot="{
@@ -62,6 +87,7 @@
     </div>
     <!-- <div v-for="tag in coverletterResult.tag" :key="tag">#{{ tag }}</div> -->
     <v-btn medium color="primary" dark @click="updateCV()">수정완료</v-btn>
+    <v-btn medium color="primary" dark>취소</v-btn>
   </div>
 </template>
 
