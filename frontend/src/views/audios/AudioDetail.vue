@@ -64,7 +64,9 @@
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none mr-5" to="/audios/list">
-          <v-btn class="mr-5 " medium color="warning" dark>목록으로</v-btn>
+          <v-btn class="mr-5 basic-btn" medium color="warning" dark
+            >목록으로</v-btn
+          >
         </router-link>
       </div>
     </div>

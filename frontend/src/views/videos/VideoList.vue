@@ -54,7 +54,9 @@
       class="text-decoration-none align-self-center"
       to="/videos/create"
     >
-      <v-btn x-large color="primary" dark>영상 분석 시작</v-btn>
+      <v-btn class="basic-btn" x-large color="primary" dark
+        >영상 분석 시작</v-btn
+      >
     </router-link>
     <!-- 리스트 -->
     <v-container class="mt-5">

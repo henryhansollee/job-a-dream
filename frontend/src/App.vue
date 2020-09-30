@@ -70,7 +70,12 @@
             />
             <!-- 프로필 수정 모달 -->
             <v-row justify="center" class="align-self-end">
-              <v-btn class="mr-5 " icon color="indigo" v-b-modal.modal-1>
+              <v-btn
+                class="mr-5 basic-btn"
+                icon
+                color="indigo"
+                v-b-modal.modal-1
+              >
                 <small>EDIT</small>
               </v-btn>
               <b-modal hide-footer id="modal-1" title="내 정보 수정">
@@ -88,7 +93,7 @@
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
-                  class="text-white"
+                  class="text-white basic-btn"
                   @click="createFormData()"
                   >저장</v-btn
                 >
@@ -112,6 +117,7 @@
             <hr style="margin:5px 0 15px 0;" />
             <v-row justify="center">
               <v-btn
+                class="basic-btn"
                 color="primary"
                 dark
                 v-b-modal.modal-scrollable
