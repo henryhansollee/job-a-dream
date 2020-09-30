@@ -8,11 +8,7 @@
         <div class="d-flex justify-content-between">
           <h4>{{ coverletterResult.title }}</h4>
           <div class="dropdown dropleft mr-5 pr-5">
-            <button
-              type="button"
-              class="comment-btn mr-5"
-              data-toggle="dropdown"
-            >
+            <button type="button" class=" mr-5" data-toggle="dropdown">
               <i class="fas fa-ellipsis-v mr-5"></i>
             </button>
             <div class="dropdown-menu">
