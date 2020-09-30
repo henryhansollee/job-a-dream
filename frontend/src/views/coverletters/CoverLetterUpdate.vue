@@ -93,9 +93,21 @@
         </b-form-tags>
       </div>
     </div>
-    <!-- <div v-for="tag in coverletterResult.tag" :key="tag">#{{ tag }}</div> -->
-    <v-btn medium color="primary" dark @click="updateCV()">수정완료</v-btn>
-    <v-btn medium color="primary" dark>취소</v-btn>
+    <div class="d-flex justify-content-center mt-5 ml-5" style="width:90%;">
+      <v-btn class="mr-1" medium color="primary" dark @click="updateCV()"
+        >수정완료</v-btn
+      >
+      <!-- <router-link
+      :to="{
+        name: 'CoverLetterDetail',
+        params: { id: `${coverletterResult.id}` },
+      }"
+      ><v-btn medium color="primary" dark>취소</v-btn></router-link
+    > -->
+      <router-link class="text-decoration-none ml-1" to="/coverletters/list">
+        <v-btn medium color="warning" dark>목록으로</v-btn>
+      </router-link>
+    </div>
   </div>
 </template>
 
