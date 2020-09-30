@@ -94,7 +94,12 @@
       </div>
     </div>
     <div class="d-flex justify-content-center mt-5 ml-5" style="width:90%;">
-      <v-btn class="mr-1" medium color="primary" dark @click="updateCV()"
+      <v-btn
+        class="mr-1 basic-btn"
+        medium
+        color="primary"
+        dark
+        @click="updateCV()"
         >수정완료</v-btn
       >
       <!-- <router-link
@@ -105,7 +110,7 @@
       ><v-btn medium color="primary" dark>취소</v-btn></router-link
     > -->
       <router-link class="text-decoration-none ml-1" to="/coverletters/list">
-        <v-btn medium color="warning" dark>목록으로</v-btn>
+        <v-btn class="basic-btn" medium color="warning" dark>목록으로</v-btn>
       </router-link>
     </div>
   </div>

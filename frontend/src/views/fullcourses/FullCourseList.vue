@@ -23,7 +23,7 @@
             height="300"
             src="@/assets/carousels/fullcourse-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -34,7 +34,7 @@
             height="300"
             src="@/assets/carousels/fullcourse-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
       <b-carousel-slide>
@@ -45,13 +45,18 @@
             height="300"
             src="@/assets/carousels/fullcourse-carousel.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
     <!-- 캐러셀 -->
-    <router-link class="text-decoration-none align-self-center" to="/fullcourses/create">
-      <v-btn x-large color="primary" dark>풀코스 분석 시작</v-btn>
+    <router-link
+      class="text-decoration-none align-self-center"
+      to="/fullcourses/create"
+    >
+      <v-btn class="basic-btn" x-large color="primary" dark
+        >풀코스 분석 시작</v-btn
+      >
     </router-link>
     <!-- 리스트 -->
     <v-container>
@@ -243,20 +248,18 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: null
-    }
+      sliding: null,
+    };
   },
   methods: {
     onSlideStart() {
-      this.sliding = true
+      this.sliding = true;
     },
     onSlideEnd() {
-      this.sliding = false
-    }
-  }
-}
+      this.sliding = false;
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
