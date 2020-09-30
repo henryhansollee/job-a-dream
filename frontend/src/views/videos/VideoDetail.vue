@@ -9,8 +9,8 @@
         <div style="">
           <div class="d-flex justify-content-between">
             <h4>{{ videoResult.title }}</h4>
-            <div class="dropdown dropleft mr-5">
-              <button type="button" class="comment-btn" data-toggle="dropdown">
+            <div class="dropdown dropleft mr-5 pr-5">
+              <button type="button" class="mr-5 pr-5" data-toggle="dropdown">
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu">

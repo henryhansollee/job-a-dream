@@ -10,24 +10,23 @@
           <div class="dropdown dropleft mr-5 pr-5">
             <button
               type="button"
-              class="comment-btn mr-5"
+              class=" mr-5 basic-btn"
               data-toggle="dropdown"
             >
               <i class="fas fa-ellipsis-v mr-5"></i>
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item">
-                <router-link
-                  class="text-decoration-none"
-                  style="color:black;"
-                  :to="{
-                    name: 'CoverLetterUpdate',
-                    params: { id: `${coverletterResult.id}` },
-                  }"
-                >
-                  수정
-                </router-link></a
+              <router-link
+                class="dropdown-item text-decoration-none"
+                style="color:black;"
+                :to="{
+                  name: 'CoverLetterUpdate',
+                  params: { id: `${coverletterResult.id}` },
+                }"
               >
+                수정
+              </router-link>
+
               <a
                 class="dropdown-item"
                 style="color:black;"
