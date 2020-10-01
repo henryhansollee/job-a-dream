@@ -141,64 +141,89 @@
           <v-btn class="basic-btn" color="primary" @click="e1 = 4">다음</v-btn>
         </v-stepper-content>
         <v-stepper-content step="4">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <!-- 제목 -->
-            <input
-              type="text"
-              placeholder="title"
-              v-model="fullcourseData.title"
-            />
-            <!-- 태그 -->
-            <div>
-              <b-form-tags
-                v-model="fullcourseData.update_tag"
-                no-outer-focus
-                class="mb-2"
-              >
-                <template
-                  v-slot="{
-                    tags,
-                    inputAttrs,
-                    inputHandlers,
-                    tagVariant,
-                    addTag,
-                    removeTag,
-                  }"
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card
+            class="mx-auto d-flex flex-column justify-content-center"
+            max-width="700"
+            min-height="300"
+            tile
+          >
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input
+                class="w-50"
+                list="input-list"
+                id="input-with-list"
+                type="text"
+                placeholder="제목을 입력해주세요."
+                v-model="fullcourseData.title"
+              ></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label class="mt-5">태그</label>
+              <div class="w-50">
+                <b-form-tags
+                  v-model="fullcourseData.update_tag"
+                  no-outer-focus
+                  class="mb-2"
                 >
-                  <b-input-group class="mb-2">
-                    <b-form-input
-                      v-bind="inputAttrs"
-                      v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
-                      class="form-control"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
+                  <template
+                    v-slot="{
+                      tags,
+                      inputAttrs,
+                      inputHandlers,
+                      tagVariant,
+                      addTag,
+                      removeTag,
+                    }"
+                  >
+                    <b-input-group class="mb-2">
+                      <b-form-input
+                        v-bind="inputAttrs"
+                        v-on="inputHandlers"
+                        placeholder="태그를 추가해주세요."
+                        class="form-control"
+                      ></b-form-input>
+                      <b-input-group-append>
+                        <b-button @click="addTag()" variant="secondary"
+                          >추가</b-button
+                        >
+                      </b-input-group-append>
+                    </b-input-group>
+                    <div class="d-inline-block" style="font-size: 1.5rem;">
+                      <b-form-tag
+                        v-for="tag in tags"
+                        @remove="removeTag(tag)"
+                        :key="tag"
+                        :title="tag"
+                        :variant="tagVariant"
+                        class="mr-1"
+                        style="font-family: 'Cute Font', cursive;"
+                        >{{ tag }}</b-form-tag
                       >
-                    </b-input-group-append>
-                  </b-input-group>
-                  <div class="d-inline-block" style="font-size: 1.5rem;">
-                    <b-form-tag
-                      v-for="tag in tags"
-                      @remove="removeTag(tag)"
-                      :key="tag"
-                      :title="tag"
-                      :variant="tagVariant"
-                      class="mr-1"
-                      >{{ tag }}</b-form-tag
-                    >
-                  </div>
-                </template>
-              </b-form-tags>
+                    </div>
+                  </template>
+                </b-form-tags>
+              </div>
             </div>
           </v-card>
-          <v-btn
-            class="basic-btn"
-            color="primary"
-            @click="createFullcourseFormData()"
-            >완료</v-btn
-          >
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="fullcourseData.title && fullcourseData.update_tag"
+              class="basic-btn align-self-center m-4 w-25 text-white"
+              color="cyan"
+              @click="createFullcourseFormData()"
+              >완료</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >완료</v-btn
+            >
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -278,6 +303,7 @@ export default {
         audio_file_name
       );
       fullcourseFormData.append("update_tag", this.fullcourseData.update_tag);
+      fullcourseFormData.append("question", this.fullcourseData.question);
       this.createFullcourse(fullcourseFormData);
     },
     _fillzero(value) {
