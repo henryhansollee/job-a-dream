@@ -11,8 +11,8 @@ services:
     
   back:
     build: ./backend/
-    ports:
-      - "8080:8080"
+    # ports:
+    #   - "8080:8080"
     expose:
       - "8080"
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn interview.wsgi:application --bind 0.0.0.0:8080"
