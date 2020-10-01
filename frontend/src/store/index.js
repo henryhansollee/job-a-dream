@@ -72,7 +72,7 @@ export default new Vuex.Store({
     GET_FULLCOURSES(state, fullcourses) {
       state.fullcourses = fullcourses;
     },
-    GET_FULLCOURSES_RESULT(state, fullcourseResult) {
+    GET_FULLCOURSE_RESULT(state, fullcourseResult) {
       state.fullcourseResult = fullcourseResult;
     },
     GET_RESULTS(state, results) {
@@ -94,7 +94,7 @@ export default new Vuex.Store({
           commit("SET_AUTH", res.data.user.id);
           commit("SET_USER", res.data.user);
           dispatch("getUser");
-          router.push('/about')
+          router.push("/about");
         })
         .catch((err) => {
           console.log(err);
@@ -419,7 +419,7 @@ export default new Vuex.Store({
         .get(BACKEND.URL + BACKEND.ROUTES.fullcourses, getters.config)
         .then((response) => {
           console.log(response, "풀코스 리스트");
-          commit("SET_FULLCOURSES", response.data);
+          commit("GET_FULLCOURSES", response.data);
         })
         .catch((error) => {
           console.log(error);
