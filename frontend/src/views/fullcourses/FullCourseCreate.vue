@@ -18,23 +18,88 @@
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <input
-              type="text"
-              placeholder="subject"
-              v-model="fullcourseData.subject"
-            />
-            <input
-              type="text"
-              placeholder="content"
-              v-model="fullcourseData.content"
-            />
+          <h3 class="text-center m-4">자기소개서를 입력해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list1" class="mt-5">항목</label>
+              <b-form-input
+                class="w-50"
+                list="input-list1"
+                id="input-with-list"
+                type="text"
+                placeholder="항목을 입력해주세요."
+                v-model="fullcourseData.subject"
+              ></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list2" class="mt-5">내용</label>
+              <b-form-textarea
+                class="w-50"
+                list="input-list2"
+                id="input-with-list"
+                type="text"
+                placeholder="내용을 입력해주세요."
+                v-model="fullcourseData.content"
+              ></b-form-textarea>
+            </div>
           </v-card>
-          <v-btn class="basic-btn" color="primary" @click="e1 = 2">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="fullcourseData.subject && fullcourseData.content"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 2"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
+          </div>
         </v-stepper-content>
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px"> </v-card>
-          <v-btn class="basic-btn" color="primary" @click="e1 = 3">다음</v-btn>
+          <h3 class="text-center m-4">질문을 선택해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <v-list flat>
+              <v-list-item-group color="primary">
+                <v-list-item
+                  v-for="question in questions"
+                  :key="question.id"
+                  @click="checkQ(question)"
+                >
+                  <v-list-item-icon>
+                    <i class="fas fa-check" style="margin-right:15px;"></i>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{
+                      question.content
+                    }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </v-card>
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="isSelected"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 3"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
+          </div>
         </v-stepper-content>
         <v-stepper-content step="3">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
@@ -76,64 +141,89 @@
           <v-btn class="basic-btn" color="primary" @click="e1 = 4">다음</v-btn>
         </v-stepper-content>
         <v-stepper-content step="4">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <!-- 제목 -->
-            <input
-              type="text"
-              placeholder="title"
-              v-model="fullcourseData.title"
-            />
-            <!-- 태그 -->
-            <div>
-              <b-form-tags
-                v-model="fullcourseData.update_tag"
-                no-outer-focus
-                class="mb-2"
-              >
-                <template
-                  v-slot="{
-                    tags,
-                    inputAttrs,
-                    inputHandlers,
-                    tagVariant,
-                    addTag,
-                    removeTag,
-                  }"
+          <h3 class="text-center m-4">정보를 입력해주세요.</h3>
+          <v-card
+            class="mx-auto d-flex flex-column justify-content-center"
+            max-width="700"
+            min-height="300"
+            tile
+          >
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list" class="mt-5">제목</label>
+              <b-form-input
+                class="w-50"
+                list="input-list"
+                id="input-with-list"
+                type="text"
+                placeholder="제목을 입력해주세요."
+                v-model="fullcourseData.title"
+              ></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label class="mt-5">태그</label>
+              <div class="w-50">
+                <b-form-tags
+                  v-model="fullcourseData.update_tag"
+                  no-outer-focus
+                  class="mb-2"
                 >
-                  <b-input-group class="mb-2">
-                    <b-form-input
-                      v-bind="inputAttrs"
-                      v-on="inputHandlers"
-                      placeholder="New tag - Press enter to add"
-                      class="form-control"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-button @click="addTag()" variant="primary"
-                        >Add</b-button
+                  <template
+                    v-slot="{
+                      tags,
+                      inputAttrs,
+                      inputHandlers,
+                      tagVariant,
+                      addTag,
+                      removeTag,
+                    }"
+                  >
+                    <b-input-group class="mb-2">
+                      <b-form-input
+                        v-bind="inputAttrs"
+                        v-on="inputHandlers"
+                        placeholder="태그를 추가해주세요."
+                        class="form-control"
+                      ></b-form-input>
+                      <b-input-group-append>
+                        <b-button @click="addTag()" variant="secondary"
+                          >추가</b-button
+                        >
+                      </b-input-group-append>
+                    </b-input-group>
+                    <div class="d-inline-block" style="font-size: 1.5rem;">
+                      <b-form-tag
+                        v-for="tag in tags"
+                        @remove="removeTag(tag)"
+                        :key="tag"
+                        :title="tag"
+                        :variant="tagVariant"
+                        class="mr-1"
+                        style="font-family: 'Cute Font', cursive;"
+                        >{{ tag }}</b-form-tag
                       >
-                    </b-input-group-append>
-                  </b-input-group>
-                  <div class="d-inline-block" style="font-size: 1.5rem;">
-                    <b-form-tag
-                      v-for="tag in tags"
-                      @remove="removeTag(tag)"
-                      :key="tag"
-                      :title="tag"
-                      :variant="tagVariant"
-                      class="mr-1"
-                      >{{ tag }}</b-form-tag
-                    >
-                  </div>
-                </template>
-              </b-form-tags>
+                    </div>
+                  </template>
+                </b-form-tags>
+              </div>
             </div>
           </v-card>
-          <v-btn
-            class="basic-btn"
-            color="primary"
-            @click="createFullcourseFormData()"
-            >완료</v-btn
-          >
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="fullcourseData.title && fullcourseData.update_tag"
+              class="basic-btn align-self-center m-4 w-25 text-white"
+              color="cyan"
+              @click="createFullcourseFormData()"
+              >완료</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >완료</v-btn
+            >
+          </div>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -141,7 +231,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import RecordRTC from "recordrtc";
 import Dictaphone from "@/components/audios/Dictaphone";
 
@@ -156,10 +246,13 @@ export default {
         title: "",
         subject: "",
         content: "",
+        question: "",
         video_file: "",
         audio_file: "",
         update_tag: [],
       },
+      selectedQ: "",
+      isSelected: false,
       recorder: null,
       result: null,
       blobUrl: null,
@@ -175,6 +268,7 @@ export default {
     msg: String,
   },
   computed: {
+    ...mapState(["questions"]),
     formatedTime() {
       let hour = Math.floor(this.timer.value / 3600);
       let minute = Math.floor((this.timer.value - hour * 3600) / 60);
@@ -183,7 +277,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["createFullcourse"]),
+    ...mapActions(["createFullcourse", "getQuestions"]),
+    checkQ(question) {
+      this.selectedQ = question.content;
+      this.fullcourseData.question = question.id;
+      if (this.fullcourseData.question) {
+        this.isSelected = true;
+      }
+    },
     createFullcourseFormData() {
       const fullcourseFormData = new FormData();
       const video_file_name = Date.now();
@@ -202,6 +303,7 @@ export default {
         audio_file_name
       );
       fullcourseFormData.append("update_tag", this.fullcourseData.update_tag);
+      fullcourseFormData.append("question", this.fullcourseData.question);
       this.createFullcourse(fullcourseFormData);
     },
     _fillzero(value) {
@@ -245,6 +347,9 @@ export default {
         video.volume = 0;
         video.play();
       });
+  },
+  created() {
+    this.getQuestions();
   },
 };
 </script>
