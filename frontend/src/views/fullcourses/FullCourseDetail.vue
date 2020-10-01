@@ -57,6 +57,36 @@
               예상 질문 리스트
             </div>
           </div>
+
+          <!--오디오 분석 결과-->
+          <div
+            class="d-flex justify-content-center ml-5 mt-5"
+            style="width:80%;"
+          >
+            <audio
+              class="mt-5 ml-5 basic-btn"
+              style="width:70%; "
+              controls
+              :src="fullcourseResult.audio_file"
+            ></audio>
+          </div>
+          <div
+            class="mt-5"
+            style="width:90%; height:250px; border:3px solid yellow;"
+          >
+            대본 들어갈 공간
+          </div>
+          <div
+            class="d-flex flex-row justify-content-around mt-4"
+            style="width:90%; height:250px; border:3px solid blue;"
+          >
+            <div style="width:48%; height:250px; border:3px solid green;">
+              워드 클라우드
+            </div>
+            <div style="width:48%; height:250px; border:3px solid orange;">
+              발음 정확도
+            </div>
+          </div>
           <!--질문 뽑아와야 됨-->
           <h5 class="mt-5" style="font-size:x-large;">
             질문: {{ fullcourseResult.question }}
