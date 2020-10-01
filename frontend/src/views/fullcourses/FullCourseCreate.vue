@@ -102,13 +102,23 @@
           </div>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
+          <h4 class="text-center mb-4">질문: {{ selectedQ }}</h4>
+          <h5 class="text-center mt-4">영상을 촬영하세요.</h5>
+
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
             <!-- 비디오 -->
-            <div class="block" v-show="!result">
-              <h4 class="title is-4">
+            <div
+              class="block d-flex flex-column align-items-center"
+              v-show="!result"
+            >
+              <!-- <h4 class="title is-4">
                 {{ timer.interval ? `녹화중 ${formatedTime}` : "준비" }}
-              </h4>
-              <video ref="video"></video>
+              </h4> -->
+              <!-- <video v-if="!this.result" class="mb-4 w-75" ref="video"></video> -->
+              <h6 class="text-center">
+                {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
+              </h6>
+              <video ref="video" class="mb-4 w-75"></video>
             </div>
             <div class="block" v-show="result">
               <h4 class="title is-4">녹화종료</h4>
@@ -116,29 +126,60 @@
             </div>
             <div class="field">
               <button
-                class="button is-danger"
+                class="btn btn-secondary m-3"
                 @click="stop"
                 v-if="recorder && recorder.getState() === 'recording'"
               >
                 영상 분석 완료
               </button>
-              <button class="button is-primary" @click="record" v-else>
+              <button class="btn btn-danger m-2 mt-4" @click="record" v-else>
                 영상 분석 시작
               </button>
             </div>
             <!-- 오디오 -->
             <dictaphone
+              class="mt-5"
               @stop="handleRecording($event)"
               mime-type="audio/wav"
               v-slot="{ isRecording, startRecording, stopRecording }"
             >
-              <button v-if="!isRecording" @click="startRecording">
+              <button
+                class="btn btn-danger m-2 mt-4"
+                v-if="!isRecording"
+                @click="startRecording(selectedQ)"
+              >
                 음성 분석 시작
               </button>
-              <button v-else @click="stopRecording">음성 분석 완료</button>
+              <button
+                class="btn btn-secondary m-3"
+                v-else
+                @click="stopRecording"
+              >
+                음성 분석 완료
+              </button>
             </dictaphone>
+            <vue-dictaphone-spectrum-analyser />
+            <div v-if="audioSource">
+              <audio :src="audioSource" controls></audio>
+            </div>
           </v-card>
-          <v-btn class="basic-btn" color="primary" @click="e1 = 4">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="fullcourseData.video_file && fullcourseData.audio_file"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 4"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
+          </div>
         </v-stepper-content>
         <v-stepper-content step="4">
           <h3 class="text-center m-4">정보를 입력해주세요.</h3>
