@@ -71,11 +71,11 @@
               <b-form-input
                 v-bind="inputAttrs"
                 v-on="inputHandlers"
-                placeholder="New tag - Press enter to add"
+                placeholder="태그를 추가해보세요:)"
                 class="form-control"
               ></b-form-input>
               <b-input-group-append>
-                <b-button @click="addTag()" variant="primary">Add</b-button>
+                <b-button @click="addTag()" variant="secondary">추가</b-button>
               </b-input-group-append>
             </b-input-group>
             <div class="d-inline-block" style="font-size: 1.5rem;">
@@ -86,6 +86,7 @@
                 :title="tag"
                 :variant="tagVariant"
                 class="mr-1"
+                style="font-family: 'Cute Font', cursive;"
                 >{{ tag }}</b-form-tag
               >
             </div>
