@@ -129,10 +129,8 @@
                 hide-footer
                 header-class="modal-header"
                 id="modal-scrollable"
-                class="main-font"
                 scrollable
                 title="질문 리스트"
-                style="font-family: Cafe24Ohsquare, cursive"
               >
                 <div
                   class="my-4 main-font"
@@ -184,7 +182,7 @@
                   </div>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <!-- <div class="d-flex justify-content-end">
                   <b-button
                     class="basic-btn"
                     style="width:15%; color:red;"
@@ -192,7 +190,7 @@
                     @click="$bvModal.hide('modal-scrollable')"
                     >닫기</b-button
                   >
-                </div>
+                </div> -->
               </b-modal>
             </v-row>
             <hr />
@@ -507,7 +505,7 @@ export default {
   color: transparent;
 }
 .modal-header {
-  font-family: "Cafe24Ohsquare", cursive;
+  font-family: "Do Hyeon", sans-serif;
   margin: 10px 0 0 10px;
   color: #2196f3;
 }
