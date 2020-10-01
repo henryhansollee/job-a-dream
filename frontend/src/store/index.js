@@ -4,6 +4,7 @@ import cookies from "vue-cookies";
 import axios from "axios";
 import BACKEND from "@/api/index";
 import router from "@/router";
+import Swal from 'sweetalert2'
 
 Vue.use(Vuex);
 
@@ -95,8 +96,16 @@ export default new Vuex.Store({
           commit("SET_USER", res.data.user);
           dispatch("getUser");
           router.push("/about");
+          Swal.fire({
+            text: '환영합니다.',
+            icon: 'success',
+          })
         })
         .catch((err) => {
+          Swal.fire({
+            text: '입력 정보를 확인하세요.',
+            icon: 'error',
+          })
           console.log(err);
         });
     },
@@ -134,12 +143,15 @@ export default new Vuex.Store({
 
     // 로그아웃
     logout({ commit }) {
+      Swal.fire({
+        text: '로그아웃 성공.',
+        icon: 'success',
+      })
       commit("SET_TOKEN", null);
       commit("SET_AUTH", null);
       cookies.remove("accessToken");
       cookies.remove("authCheck");
       router.push({ name: "Home" });
-      router.go();
     },
 
     // 회원정보수정
@@ -159,7 +171,7 @@ export default new Vuex.Store({
         });
     },
 
-    // ----- 질문 ----- URL을 나중에 question으로 바꾸기
+    // ----- 질문 -----
     // 질문 리스트
     getQuestions({ getters, commit }) {
       axios
