@@ -18,19 +18,48 @@
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
-          <v-card class="mb-12" color="grey lighten-1" height="600px">
-            <input
-              type="text"
-              placeholder="subject"
-              v-model="fullcourseData.subject"
-            />
-            <input
-              type="text"
-              placeholder="content"
-              v-model="fullcourseData.content"
-            />
+          <h3 class="text-center m-4">자기소개서를 입력해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list1" class="mt-5">항목</label>
+              <b-form-input
+                class="w-50"
+                list="input-list1"
+                id="input-with-list"
+                type="text"
+                placeholder="항목을 입력해주세요."
+                v-model="fullcourseData.subject"
+              ></b-form-input>
+            </div>
+            <div class="w-100 d-flex flex-column align-items-center">
+              <label for="input-with-list2" class="mt-5">내용</label>
+              <b-form-textarea
+                class="w-50"
+                list="input-list2"
+                id="input-with-list"
+                type="text"
+                placeholder="내용을 입력해주세요."
+                v-model="fullcourseData.content"
+              ></b-form-textarea>
+            </div>
           </v-card>
-          <v-btn class="basic-btn" color="primary" @click="e1 = 2">다음</v-btn>
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="fullcourseData.subject && fullcourseData.content"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 2"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
+          </div>
         </v-stepper-content>
         <v-stepper-content step="2">
           <h3 class="text-center m-4">질문을 선택해주세요.</h3>
