@@ -61,181 +61,46 @@
     <!-- 리스트 -->
     <v-container>
       <v-row>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
-        </v-col>
-        <v-col cols="3">
-          <!-- 데이터 넣어야함 -->
-          <v-card>
-            <v-img
-              src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
-            >
-              <v-card-title>
-                제목
-              </v-card-title>
-            </v-img>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-card-text>
-                #태그
-              </v-card-text>
-            </v-card-actions>
-          </v-card>
-          <!-- 데이터 넣어야함 -->
+        <v-col cols="3" v-for="fullcourse in fullcourses" :key="fullcourse.id">
+          <router-link
+            class="text-decoration-none"
+            :to="{
+              name: 'FullCourseDetail',
+              params: { id: `${fullcourse.id}` },
+            }"
+          >
+            <v-hover v-slot:default="{ hover }" close-delay="30">
+              <v-card
+                :elevation="hover ? 11 : 8"
+                :class="{ 'on-hover': hover }"
+                style="transition:.3s;"
+              >
+                <v-img
+                  src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
+                  class="white--text align-end"
+                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                  height="200px"
+                >
+                  <v-card-title>
+                    {{ fullcourse.title }}
+                  </v-card-title>
+                </v-img>
+                <div class="mt-1" style="padding:0 0 5px 10px;">
+                  <v-card-actions
+                    v-for="tag in cutTag(fullcourse.tag)"
+                    :key="tag"
+                    class="mt-1"
+                    style="padding:0; display:inline;"
+                  >
+                    {{ tag }} </v-card-actions
+                  ><br />
+                  <div class="mt-1 mb-1" style="color:gray;">
+                    {{ cutDate(fullcourse.created_at) }}
+                  </div>
+                </div>
+              </v-card>
+            </v-hover>
+          </router-link>
         </v-col>
       </v-row>
     </v-container>
@@ -244,6 +109,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -251,13 +118,38 @@ export default {
       sliding: null,
     };
   },
+  computed: {
+    ...mapState(["fullcourses"]),
+  },
   methods: {
+    ...mapActions(["getFullcourses"]),
+
     onSlideStart() {
       this.sliding = true;
     },
     onSlideEnd() {
       this.sliding = false;
     },
+    cutDate(date) {
+      let CD = date + "";
+      const year = CD.substring(0, 4) + ".";
+      const month = CD.substring(5, 7) + ".";
+      const day = CD.substring(8, 10) + "  ";
+      const res = year + month + day;
+      return res;
+    },
+    cutTag(tags) {
+      let result = [];
+      let arr = tags[0].split(",");
+      for (let tag of arr) {
+        let res = "#" + tag;
+        result.push(res);
+      }
+      return result;
+    },
+  },
+  created() {
+    this.getFullcourses();
   },
 };
 </script>
