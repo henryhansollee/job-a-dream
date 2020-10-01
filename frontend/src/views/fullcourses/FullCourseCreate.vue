@@ -33,8 +33,44 @@
           <v-btn class="basic-btn" color="primary" @click="e1 = 2">다음</v-btn>
         </v-stepper-content>
         <v-stepper-content step="2">
-          <v-card class="mb-12" color="grey lighten-1" height="600px"> </v-card>
-          <v-btn class="basic-btn" color="primary" @click="e1 = 3">다음</v-btn>
+          <h3 class="text-center m-4">질문을 선택해주세요.</h3>
+          <v-card class="mx-auto" max-width="700" min-height="300" tile>
+            <v-list flat>
+              <v-list-item-group color="primary">
+                <v-list-item
+                  v-for="question in questions"
+                  :key="question.id"
+                  @click="checkQ(question)"
+                >
+                  <v-list-item-icon>
+                    <i class="fas fa-check" style="margin-right:15px;"></i>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{
+                      question.content
+                    }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </v-card>
+          <div class="w-100 d-flex flex-column">
+            <v-btn
+              v-if="isSelected"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 3"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
+          </div>
         </v-stepper-content>
         <v-stepper-content step="3">
           <v-card class="mb-12" color="grey lighten-1" height="600px">
@@ -141,7 +177,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import RecordRTC from "recordrtc";
 import Dictaphone from "@/components/audios/Dictaphone";
 
@@ -156,10 +192,13 @@ export default {
         title: "",
         subject: "",
         content: "",
+        question: "",
         video_file: "",
         audio_file: "",
         update_tag: [],
       },
+      selectedQ: "",
+      isSelected: false,
       recorder: null,
       result: null,
       blobUrl: null,
@@ -175,6 +214,7 @@ export default {
     msg: String,
   },
   computed: {
+    ...mapState(["questions"]),
     formatedTime() {
       let hour = Math.floor(this.timer.value / 3600);
       let minute = Math.floor((this.timer.value - hour * 3600) / 60);
@@ -183,7 +223,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["createFullcourse"]),
+    ...mapActions(["createFullcourse", "getQuestions"]),
+    checkQ(question) {
+      this.selectedQ = question.content;
+      this.fullcourseData.question = question.id;
+      if (this.fullcourseData.question) {
+        this.isSelected = true;
+      }
+    },
     createFullcourseFormData() {
       const fullcourseFormData = new FormData();
       const video_file_name = Date.now();
@@ -245,6 +292,9 @@ export default {
         video.volume = 0;
         video.play();
       });
+  },
+  created() {
+    this.getQuestions();
   },
 };
 </script>
