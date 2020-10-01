@@ -470,7 +470,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          router.push(`/fullcourse/list/`);
+          router.push(`/fullcourses/list/`);
           router.go();
         })
         .catch((err) => {
