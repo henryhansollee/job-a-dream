@@ -70,7 +70,12 @@
             />
             <!-- 프로필 수정 모달 -->
             <v-row justify="center" class="align-self-end">
-              <v-btn class="mr-5 " icon color="indigo" v-b-modal.modal-1>
+              <v-btn
+                class="mr-5 basic-btn"
+                icon
+                color="indigo"
+                v-b-modal.modal-1
+              >
                 <small>EDIT</small>
               </v-btn>
               <b-modal hide-footer id="modal-1" title="내 정보 수정">
@@ -88,7 +93,7 @@
                 <hr />
                 <v-btn
                   style="width: 100%; background-color: black;"
-                  class="text-white"
+                  class="text-white basic-btn"
                   @click="createFormData()"
                   >저장</v-btn
                 >
@@ -112,6 +117,7 @@
             <hr style="margin:5px 0 15px 0;" />
             <v-row justify="center">
               <v-btn
+                class="basic-btn"
                 color="primary"
                 dark
                 v-b-modal.modal-scrollable
@@ -123,10 +129,8 @@
                 hide-footer
                 header-class="modal-header"
                 id="modal-scrollable"
-                class="main-font"
                 scrollable
                 title="질문 리스트"
-                style="font-family: Cafe24Ohsquare, cursive"
               >
                 <div
                   class="my-4 main-font"
@@ -155,6 +159,7 @@
                   </div>
                 </div>
                 <hr />
+
                 <div class="q-write main-font">
                   <div class="q-text">
                     <input
@@ -176,7 +181,16 @@
                     </button>
                   </div>
                 </div>
-                <div class="d-flex justify-content-end"></div>
+
+                <!-- <div class="d-flex justify-content-end">
+                  <b-button
+                    class="basic-btn"
+                    style="width:15%; color:red;"
+                    block
+                    @click="$bvModal.hide('modal-scrollable')"
+                    >닫기</b-button
+                  >
+                </div> -->
               </b-modal>
             </v-row>
             <hr />
@@ -491,7 +505,7 @@ export default {
   color: transparent;
 }
 .modal-header {
-  font-family: "Cafe24Ohsquare", cursive;
+  font-family: "Do Hyeon", sans-serif;
   margin: 10px 0 0 10px;
   color: #2196f3;
 }

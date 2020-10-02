@@ -2,9 +2,13 @@
   <div class="m-5">
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">STEP 1. 질문 선택</v-stepper-step>
+        <v-stepper-step :complete="e1 > 1" step="1"
+          >STEP 1. 질문 선택</v-stepper-step
+        >
         <v-divider></v-divider>
-        <v-stepper-step :complete="e1 > 2" step="2">STEP 2. 영상 촬영</v-stepper-step>
+        <v-stepper-step :complete="e1 > 2" step="2"
+          >STEP 2. 영상 촬영</v-stepper-step
+        >
         <v-divider></v-divider>
         <v-stepper-step step="3">STEP 3. 정보 입력</v-stepper-step>
       </v-stepper-header>
@@ -14,7 +18,7 @@
           <v-card class="mx-auto" max-width="700" min-height="300" tile>
             <v-list flat>
               <v-list-item-group color="primary">
-                <v-list-item 
+                <v-list-item
                   v-for="question in questions"
                   :key="question.id"
                   @click="checkQ(question)"
@@ -23,96 +27,162 @@
                     <i class="fas fa-check" style="margin-right:15px;"></i>
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title>{{ question.content }}</v-list-item-title>
+                    <v-list-item-title>{{
+                      question.content
+                    }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn v-if="isSelected" class="align-self-center m-4 w-25" color="primary" @click="e1 = 2">다음</v-btn> 
-            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
+            <v-btn
+              v-if="isSelected"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 2"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
           </div>
         </v-stepper-content>
         <v-stepper-content step="2">
           <h3 class="text-center mt-4">영상을 촬영하세요.</h3>
           <h6 class="text-center mb-4">질문: {{ selectedQ }}</h6>
           <v-card class="mx-auto" max-width="700" min-height="300" tile>
-            <div class="block d-flex flex-column align-items-center" v-show="!result">
+            <div
+              class="block d-flex flex-column align-items-center"
+              v-show="!result"
+            >
               <div class="field">
-              <button class="btn btn-secondary m-3" @click="stop" v-if="recorder && recorder.getState() === 'recording'">녹화종료</button>
-              <button class="btn btn-danger m-2 mt-4" @click="record" v-else>녹화시작</button>
-            </div>
+                <button
+                  class="btn btn-secondary m-3"
+                  @click="stop"
+                  v-if="recorder && recorder.getState() === 'recording'"
+                >
+                  녹화종료
+                </button>
+                <button class="btn btn-danger m-2 mt-4" @click="record" v-else>
+                  녹화시작
+                </button>
+              </div>
               <h6 class="text-center">
                 {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
               </h6>
-              <video v-if="(!this.result)" class="mb-4 w-75" ref="video"></video>
+              <video v-if="!this.result" class="mb-4 w-75" ref="video"></video>
             </div>
             <div class="block pb-4" v-show="result">
-              <video class="w-75"  controls :src="blobUrl"></video>
+              <video class="w-75" controls :src="blobUrl"></video>
             </div>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn v-if="videoData.video_file" class="align-self-center m-4 w-25" color="primary" @click="e1 = 3">다음</v-btn> 
-            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>다음</v-btn>
+            <v-btn
+              v-if="videoData.video_file"
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              @click="e1 = 3"
+              >다음</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >다음</v-btn
+            >
           </div>
         </v-stepper-content>
         <v-stepper-content step="3">
           <h3 class="text-center m-4">정보를 입력해주세요.</h3>
-          <v-card class="mx-auto d-flex flex-column justify-content-center" max-width="700" min-height="300" tile>
+          <v-card
+            class="mx-auto d-flex flex-column justify-content-center"
+            max-width="700"
+            min-height="300"
+            tile
+          >
             <div class="w-100 d-flex flex-column align-items-center">
               <label for="input-with-list" class="mt-5">제목</label>
-              <b-form-input class="w-50" list="input-list" id="input-with-list" type="text" placeholder="제목을 입력해주세요." v-model="videoData.title"></b-form-input>
+              <b-form-input
+                class="w-50"
+                list="input-list"
+                id="input-with-list"
+                type="text"
+                placeholder="제목을 입력해주세요."
+                v-model="videoData.title"
+              ></b-form-input>
             </div>
             <div class="w-100 d-flex flex-column align-items-center">
-            <label class="mt-5">태그</label>
-            <div class="w-50">
-              <b-form-tags
-                v-model="videoData.update_tag"
-                no-outer-focus
-                class="mb-2"
-              >
-                <template
-                  v-slot="{
-                    tags,
-                    inputAttrs,
-                    inputHandlers,
-                    tagVariant,
-                    addTag,
-                    removeTag,
-                  }"
+              <label class="mt-5">태그</label>
+              <div class="w-50">
+                <b-form-tags
+                  v-model="videoData.update_tag"
+                  no-outer-focus
+                  class="mb-2"
                 >
-                  <b-input-group class="mb-2">
-                    <b-form-input
-                      v-bind="inputAttrs"
-                      v-on="inputHandlers"
-                      placeholder="태그를 추가해주세요."
-                      class="form-control"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-button @click="addTag()" variant="secondary">추가</b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                  <div class="d-inline-block" style="font-size: 1.5rem;">
-                    <b-form-tag
-                      v-for="tag in tags"
-                      @remove="removeTag(tag)"
-                      :key="tag"
-                      :title="tag"
-                      :variant="tagVariant"
-                      class="mr-1"
-                      style="font-family: 'Cute Font', cursive;"
-                      >{{ tag }}</b-form-tag
-                    >
-                  </div>
-                </template>
-              </b-form-tags>
-            </div>
+                  <template
+                    v-slot="{
+                      tags,
+                      inputAttrs,
+                      inputHandlers,
+                      tagVariant,
+                      addTag,
+                      removeTag,
+                    }"
+                  >
+                    <b-input-group class="mb-2">
+                      <b-form-input
+                        v-bind="inputAttrs"
+                        v-on="inputHandlers"
+                        placeholder="태그를 추가해주세요."
+                        class="form-control"
+                      ></b-form-input>
+                      <b-input-group-append>
+                        <b-button @click="addTag()" variant="secondary"
+                          >추가</b-button
+                        >
+                      </b-input-group-append>
+                    </b-input-group>
+                    <div class="d-inline-block" style="font-size: 1.5rem;">
+                      <b-form-tag
+                        v-for="tag in tags"
+                        @remove="removeTag(tag)"
+                        :key="tag"
+                        :title="tag"
+                        :variant="tagVariant"
+                        class="mr-1"
+                        style="font-family: 'Cute Font', cursive;"
+                        >{{ tag }}</b-form-tag
+                      >
+                    </div>
+                  </template>
+                </b-form-tags>
+              </div>
             </div>
           </v-card>
           <div class="w-100 d-flex flex-column">
-            <v-btn v-if="videoData.title && videoData.update_tag" class="align-self-center m-4 w-25 text-white" color="cyan" @click="createVideoFormData()">완료</v-btn> 
-            <v-btn v-else class="align-self-center m-4 w-25" color="primary" depressed disabled>완료</v-btn>
+            <v-btn
+              v-if="videoData.title && videoData.update_tag"
+              class="basic-btn align-self-center m-4 w-25 text-white"
+              color="cyan"
+              @click="createVideoFormData()"
+              >완료</v-btn
+            >
+            <v-btn
+              v-else
+              class="basic-btn align-self-center m-4 w-25"
+              color="primary"
+              depressed
+              disabled
+              >완료</v-btn
+            >
           </div>
         </v-stepper-content>
       </v-stepper-items>
@@ -189,7 +259,7 @@ export default {
       this.blobUrl && URL.revokeObjectURL(this.blobUrl);
       this.blobUrl = null;
       this.timer.interval = setInterval(() => ++this.timer.value, 1000);
-      this.onSpeak(this.selectedQ)
+      this.onSpeak(this.selectedQ);
     },
     stop() {
       this.recorder.stopRecording(() => {
