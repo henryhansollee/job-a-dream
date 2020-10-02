@@ -32,5 +32,5 @@ class AudioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Audio
         exclude = []
-        read_only_fields = ['writer']
+        read_only_fields = ['writer', 'result']
 

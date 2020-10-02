@@ -22,4 +22,4 @@ class Audio(TimeStampModel):
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    audio_result = models.ForeignKey(AudioResult, on_delete=models.CASCADE)
+    result = models.ForeignKey(AudioResult, on_delete=models.CASCADE, null=True, blank=True)
