@@ -12,9 +12,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # command line argument
-ap = argparse.ArgumentParser()
-ap.add_argument("--mode",help="train/display")
-mode = ap.parse_args().mode
+# ap = argparse.ArgumentParser()
+# ap.add_argument("--mode",help="train/display")
+# mode = ap.parse_args().mode
 
 # Define data generators
 # train_dir = 'data/train'
@@ -63,12 +63,13 @@ model.add(Dense(7, activation='softmax'))
 
 
 def get_emotion(File_Name):
-    model.load_weights('model.h5')
+    # model.load_weights('model.h5')
 
     cv2.ocl.setUseOpenCL(False)
 
     emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful", 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
     emotion_dict_result = {"Angry": 0, "Disgusted": 0, "Fearful": 0, "Happy": 0, "Neutral": 0, "Sad": 0, "Surprised": 0}
+    os.chdir('C:/Users/multicampus/Desktop/Sub-3/s03p23b107/frontend/src/assets/videos')
     cap = cv2.VideoCapture(File_Name)
     
     while True:
@@ -77,7 +78,7 @@ def get_emotion(File_Name):
         if not ret or type(frame) == type(None):            
             break
 
-        facecasc = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        facecasc = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = facecasc.detectMultiScale(gray,scaleFactor=1.3, minNeighbors=5)
 

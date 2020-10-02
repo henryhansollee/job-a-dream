@@ -7,10 +7,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Video, Result
+from .models import Video, Gaze, Emotion, HeadPosition, VideoResult
 from .serializers import VideoSerializer, ResultSerializer
 
-# from .AI.vision.GazeTracking.example import analyze_eye_tracking
+from .vision.GazeTracking.example import analyze_eye_tracking
+from .vision.Emotion_detection_prev.src import check_emotion
+from .vision.Proctoring_AI.head_pose_estimation import get_head_position
 from django.http.request import QueryDict
 
 
@@ -22,21 +24,32 @@ class VideoListAPI(APIView):
     
     def post(self, request):
         serializer = VideoSerializer(data=request.data)
-        print(serializer.is_valid())
-        print(serializer.errors)
+
         if serializer.is_valid():
             serializer.save(writer=request.user)
-            # result_data = request.data.dict()
-            # result_data['sight_analysis'] = str(analyze_eye_tracking(str(result_data['video_file'])))
-            # result_querydict = QueryDict('', mutable=True)
-            # result_querydict.update(result_data)
-            # result_serializer = ResultSerializer(data=result_querydict)
 
-            # if result_serializer.is_valid():
-            #     result_serializer.save()
-            # else:
-            #     return Response(result_serializer.errors, status=400)
+            result_data = request.data.dict()
+            
+            gaze = analyze_eye_tracking(str(result_data['video_file']))
+            gaze_queryset = Gaze.objects.create(blinking=gaze[0], left=gaze[1], right=gaze[2], center=gaze[3])
+            emotion = check_emotion.get_emotion(str(result_data['video_file']))
+            emotion_queryset = Emotion.objects.create(
+                angry=emotion['Angry'], 
+                disgusted=emotion['Disgusted'], 
+                fearful=emotion['Fearful'], 
+                happy=emotion['Happy'], 
+                neutral=emotion['Neutral'], 
+                sad=emotion['Sad'], 
+                surprised=emotion['Surprised']
+            )
+            head = get_head_position(str(result_data['video_file']))
+            head_queryset = HeadPosition.objects.create(bottom=head[0], top=head[1], right=head[2], left=head[3])
+            
+            video_result_queryset = VideoResult.objects.create(gaze=gaze_queryset, emotions=emotion_queryset, head=head_queryset)
+            serializer.save(result=video_result_queryset)
+            
             return Response(serializer.data, status=201)
+        print(serializer.errors)
         return Response(serializer.errors, status=400)
 
 @permission_classes([IsAuthenticated])
@@ -48,5 +61,5 @@ class VideoDetailAPI(RetrieveUpdateDestroyAPIView):
 class ResultAPI(APIView):
 
     def get(self, request):
-        serializer = ResultSerializer(Result.objects.all(), many=True)
+        serializer = ResultSerializer(VideoResult.objects.all(), many=True)
         return Response(serializer.data, status=200)

@@ -1,7 +1,7 @@
 import os
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import Video, Tag, Question, Result
+from .models import Video, Tag, Gaze, VideoResult
 from .captures import get_thumbnail
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -35,10 +35,11 @@ class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
         exclude = []
-        read_only_fields = ['writer']
+        read_only_fields = ['writer', 'result']
 
 class ResultSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Result
+        model = VideoResult
         exclude = []
+        read_only_fields = ['emotions']

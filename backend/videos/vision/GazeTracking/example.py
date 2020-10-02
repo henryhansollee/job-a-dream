@@ -9,7 +9,7 @@ from .gaze_tracking.gaze_tracking import GazeTracking
 def analyze_eye_tracking(File_Name):
     gaze = GazeTracking()
     # webcam = cv2.VideoCapture('hohoho.mkv')
-    os.chdir('C:/Users/multicampus/Desktop/new/s03p23b107/frontend/src/assets/videos')
+    os.chdir('C:/Users/multicampus/Desktop/Sub-3/s03p23b107/frontend/src/assets/videos')
     webcam = cv2.VideoCapture(File_Name)
     # webcam = cv2.VideoCapture('blob')
     # webcam = cv2.VideoCapture(0)
@@ -59,11 +59,11 @@ def analyze_eye_tracking(File_Name):
         cv2.putText(frame, "Left pupil:  " + str(left_pupil), (90, 130), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
         cv2.putText(frame, "Right pupil: " + str(right_pupil), (90, 165), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
 
-        cv2.imshow("Demo", frame)
+        # cv2.imshow("Demo", frame)
         # # 동영상 보여주는 부분
 
         if cv2.waitKey(1) == 27:
             break
 
-    print(time_gaze_directions)
+    # print(time_gaze_directions)
     return time_gaze_directions

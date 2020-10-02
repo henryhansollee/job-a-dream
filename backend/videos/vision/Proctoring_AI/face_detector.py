@@ -7,6 +7,7 @@ Created on Wed Jul 29 17:52:00 2020
 
 import cv2
 import numpy as np
+from os.path import dirname, join
 
 def get_face_detector(modelFile = "models/res10_300x300_ssd_iter_140000.caffemodel",
                       configFile = "models/deploy.prototxt"):
@@ -25,8 +26,8 @@ def get_face_detector(modelFile = "models/res10_300x300_ssd_iter_140000.caffemod
     model : dnn_Net
 
     """
-    modelFile = "models/res10_300x300_ssd_iter_140000.caffemodel"
-    configFile = "models/deploy.prototxt"
+    modelFile = join(dirname(__file__), "models/res10_300x300_ssd_iter_140000.caffemodel")
+    configFile = join(dirname(__file__), "models/deploy.prototxt")
     model = cv2.dnn.readNetFromCaffe(configFile, modelFile)
     return model
 
