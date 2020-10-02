@@ -196,6 +196,6 @@ AUTHENTICATION_BACKENDS = (
  "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-MEDIA_URL =  '/assets/videos/'
+MEDIA_URL =  '/assets/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets/videos")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets/")

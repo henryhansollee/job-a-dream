@@ -10,7 +10,7 @@ class TimeStampModel(models.Model):
         abstract = True
 
 class Tag(TimeStampModel):
-    name = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name

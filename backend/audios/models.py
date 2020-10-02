@@ -11,14 +11,15 @@ class TimeStampModel(models.Model):
         abstract = True
 
 class Tag(TimeStampModel):
-    name = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=100, unique=True)
+
+class AudioResult(TimeStampModel):
+    script = models.TextField(blank=True)
 
 class Audio(TimeStampModel):
     title = models.CharField(max_length=30)
-    thumbnail = models.ImageField(upload_to='audio_thumbnail', blank=True)
-    audio_file = models.FileField(blank=True)
+    audio_file = models.FileField(upload_to='audios', blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-
-# result는 audio에 넣을지 따로 테이블을 뺄지 다시 생각하기!
+    result = models.ForeignKey(AudioResult, on_delete=models.CASCADE, null=True, blank=True)
