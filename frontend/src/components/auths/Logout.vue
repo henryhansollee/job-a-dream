@@ -1,6 +1,11 @@
 <template>
   <div class="mr-5">
-    <v-btn icon @click="logout()" style="width: 70px; font-size:medium">
+    <v-btn
+      icon
+      class="basic-btn"
+      @click="logout()"
+      style="width: 70px; font-size:medium"
+    >
       로그아웃
     </v-btn>
   </div>

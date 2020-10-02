@@ -9,8 +9,12 @@
         <div style="">
           <div class="d-flex justify-content-between">
             <h4>{{ videoResult.title }}</h4>
-            <div class="dropdown dropleft mr-5">
-              <button type="button" class="comment-btn" data-toggle="dropdown">
+            <div class="dropdown dropleft mr-5 pr-5">
+              <button
+                type="button"
+                class="mr-5 pr-5 basic-btn"
+                data-toggle="dropdown"
+              >
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu">
@@ -42,7 +46,9 @@
         <div class="mr-5" style="">
           <div class="d-flex justify-content-end">
             <router-link class="text-decoration-none" to="/videos/list">
-              <v-btn medium color="warning" dark>목록으로</v-btn>
+              <v-btn class="basic-btn" medium color="warning" dark
+                >목록으로</v-btn
+              >
             </router-link>
           </div>
         </div>

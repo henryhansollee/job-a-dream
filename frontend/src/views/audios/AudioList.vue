@@ -54,7 +54,9 @@
       class="text-decoration-none align-self-center"
       to="/audios/create"
     >
-      <v-btn x-large color="primary" dark>음성 분석 시작</v-btn>
+      <v-btn class="basic-btn" x-large color="primary" dark
+        >음성 분석 시작</v-btn
+      >
     </router-link>
     <!-- 리스트 -->
     <v-container>

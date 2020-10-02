@@ -8,7 +8,11 @@
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
           <div class="dropdown dropleft mr-5 pr-5">
-            <button type="button" class="comment-btn" data-toggle="dropdown">
+            <button
+              type="button"
+              class="mr-5 pr-5 basic-btn"
+              data-toggle="dropdown"
+            >
               <i class="fas fa-ellipsis-v"></i>
             </button>
             <div class="dropdown-menu">
@@ -35,12 +39,14 @@
         >
           {{ tag }}
         </div>
-        <p />
-        <audio
-          style="border:3px solid yellow; width:70%; margin-left:100px; "
-          controls
-          :src="audioResult.audio_file"
-        ></audio>
+        <div class="d-flex justify-content-center ml-5" style="width:80%;">
+          <audio
+            class="mt-5 ml-5 basic-btn"
+            style="width:70%; "
+            controls
+            :src="audioResult.audio_file"
+          ></audio>
+        </div>
       </div>
       <div class="mt-5" style="width:90%; height:250px; border:3px solid red;">
         대본 들어갈 공간
@@ -58,7 +64,9 @@
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none mr-5" to="/audios/list">
-          <v-btn class="mr-5" medium color="warning" dark>목록으로</v-btn>
+          <v-btn class="mr-5 basic-btn" medium color="warning" dark
+            >목록으로</v-btn
+          >
         </router-link>
       </div>
     </div>

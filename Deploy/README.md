@@ -6,3 +6,6 @@
 5. `python manage.py makemigrations`, `python manage.py migrate`실행
 
 ## 아직 자동화는 못함.
+
+## https 적용.
+  1. issue: nginx에 upstream을 통해 server를 적용해야 함.!! 
