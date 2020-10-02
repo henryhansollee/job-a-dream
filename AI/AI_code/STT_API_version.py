@@ -1,4 +1,5 @@
 from google.cloud import speech
+from google.cloud.speech import enums
 import io
 
 def transcribe_file(speech_file):
@@ -10,15 +11,17 @@ def transcribe_file(speech_file):
 
     audio = {"content":content}
     config = {
-        # "encoding":enums.RecognitionConfig.AudioEncoding.LINEAR16,
-        # "model":"command_and_search"
+        "encoding":enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED,
+        "model":"command_and_search",
         "enable_separate_recognition_per_channel":True,
         "audio_channel_count":2,
         "language_code":'ko-KR',
+        "sample_rate_hertz": 44100
     }
 
     response = client.recognize(config, audio)
-    print(response.results[0].alternatives[0].transcript)
-    print(response.results[0].alternatives[0].confidence)
+    # print(response.results[0].alternatives[0].transcript)
+    # print(response.results[0].alternatives[0].confidence)
+    print(response)
 
-transcribe_file("./audio_files/녹음.wav")
+transcribe_file("1601643553055")
