@@ -335,12 +335,14 @@
       >
         <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <v-toolbar-title style="width: 300px" class="m-0 p-0">
+          <a href="/about">
           <img
-            style="width: 55px;"
+            class="ml-5"
+            style="width: 150px;"
             src="@/assets/logos/logo-sub.jpg"
             alt="logo-sub"
-          />
-          <span class="hidden-sm-and-down ml-2">잡아드림</span>
+          /></a>
+          <!-- <span class="hidden-sm-and-down ml-4">JOB A DREAM</span> -->
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <Logout />
