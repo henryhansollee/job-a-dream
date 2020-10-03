@@ -3,13 +3,18 @@
     <div v-if="!isLoggedIn">
       <full-page ref="fullpage" :options="options">
         <div class="section home-section1">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          
+          </div>
+          <HomeSection1 />
           <button
             class="next next-button1"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
             <i class="fas fa-chevron-down"></i>
           </button>
-          <HomeSection1 />
+          
         </div>
         <div class="section home-section2">
           <button
