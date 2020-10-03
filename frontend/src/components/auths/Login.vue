@@ -1,6 +1,6 @@
 <template>
   <div class="main-font login-block">
-    <h3 class="text-center mt-5 mb-4" style="margin-top: 36px; color: #00264b;">로그인</h3>
+    <h3 class="text-center mt-5 mb-4" style="margin-top: 36px;">로그인</h3>
     <div class="login-inner-block">
       <div class="d-flex flex-column">
         <b-form-input

@@ -8,10 +8,10 @@
           </div>
           <HomeSection1 />
           <button
-            class="next next-button1"
+            class="next next-button1 d-flex flex-column"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
         </div>
         <div class="section home-section2">
@@ -23,7 +23,7 @@
             class="next next-button2"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
          
         </div>
@@ -36,7 +36,7 @@
             class="next next-button3"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
         </div>
         <div class="section home-section4">
@@ -48,7 +48,7 @@
             class="next next-button4"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
         </div>
         <div class="section home-section5">

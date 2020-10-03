@@ -1,7 +1,7 @@
 <template>
   <a @click="scrollTop" v-show="visible" class="bottom-right">
     <button class="basic-btn totheTop d-flex justify-content-center align-items-center" style="border-radius:4px;">
-      <i class="fas fa-arrow-up"></i>
+      <i class="fas fa-arrow-up text-white"></i>
     </button>
   </a>
 </template>
@@ -48,10 +48,10 @@ export default {
   width: 35px;
   height: 35px;
   background-color: transparent;
-  border: 0.5px solid #2196F3;
+  border: 0.5px solid white;
   border-radius: 20px;
-  color: #1d1c1c;
-  box-shadow: 0 10px 20px -8px #2196F3;
+  color: #00264b;
+  box-shadow: 0 10px 20px -8px white;
   font-weight: 100;
   transition: all 0.3s ease;
 }
