@@ -5,7 +5,6 @@
         <div class="section home-section1">
           <div class="container">
             <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
-          
           </div>
           <HomeSection1 />
           <button
@@ -14,16 +13,19 @@
           >
             <i class="fas fa-chevron-down"></i>
           </button>
-          
         </div>
         <div class="section home-section2">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection2 />
           <button
             class="next next-button2"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
             <i class="fas fa-chevron-down"></i>
           </button>
-          <HomeSection2 />
+         
         </div>
         <div class="section home-section3">
           <button
