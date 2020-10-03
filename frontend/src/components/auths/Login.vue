@@ -80,6 +80,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Swal from 'sweetalert2'
 
 export default {
   name: "Login",
@@ -114,6 +115,15 @@ export default {
       if (this.passwordData.password1 === this.passwordData.password2) {
         this.signupData.password = this.passwordData.password1;
         this.signup(this.signupData)
+        Swal.fire({
+          text: '회원가입이 되었습니다.',
+          icon: 'success',
+        })
+      } else {
+        Swal.fire({
+          text: '비밀번호가 일치하지 않습니다.',
+          icon: 'error',
+        })
       }
     }
   },
