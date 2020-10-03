@@ -34,7 +34,7 @@
       <b-modal id="modal-1" title="BootstrapVue" hide-header hide-footer>
         <div class="signup-block main-font">
           <div class="signup-inner-block d-flex flex-column">
-            <h3 class="text-center main-font mb-3 mt-4">회원가입</h3>
+            <h3 class="text-center main-font mb-4 mt-4">회원가입</h3>
             <div class="d-flex flex-column">
               <b-form-input
                 type="text"
@@ -67,9 +67,13 @@
               <b-button
                 variant="dark"
                 @click="signupCheck()"
-                class="mb-1 mt-3"
+                class="mb-1 mt-1"
                 >회원가입</b-button
               >
+              <div class="d-flex justify-content-between mt-1">
+                <small class="mt-1">이미 회원이신가요?</small>
+                <a class="text-dark text-decoration-none" href="/">로그인</a>
+              </div>
             </div>
           </div>
         </div>
@@ -156,13 +160,13 @@ export default {
 .signup-block {
   margin: 0;
   width: 100%;
-  height: 20rem;
+  height: 23rem;
   background-color: white;
 }
 .signup-inner-block {
   margin-left: 25%;
   width: 50%;
-  height: 12rem;
+  height: 15rem;
   background-color: white;
 }
 .cta {
