@@ -1,6 +1,6 @@
 <template>
   <div class="main-font login-block">
-    <h3 class="text-center mt-5 mb-4" style="margin-top: 36px">로그인</h3>
+    <h3 class="text-center mt-5 mb-4" style="margin-top: 36px; color: #00264b;">로그인</h3>
     <div class="login-inner-block">
       <div class="d-flex flex-column">
         <b-form-input
@@ -20,17 +20,14 @@
         <b-button
           variant="dark"
           @click="login(loginData)"
-          class="mb-1 mt-4"
+          class="mb-1 mt-1"
           style="height: 45px"
           >로그인</b-button
         >
-        <b-button
-          v-b-modal.modal-1
-          variant="light"
-          class="mb-1"
-          style="height: 45px; margin-top: 2px"
-          >회원가입</b-button
-        >
+        <div class="d-flex justify-content-between mt-1">
+          <small class="mt-1">아직 회원이 아니신가요?</small>
+          <a v-b-modal.modal-1>회원가입</a>
+        </div>
       </div>
     </div>
     <div class="main-font">
@@ -107,9 +104,9 @@ export default {
 
 <style>
 .login-block {
-  width: 45%;
-  height: 25rem;
-  background-color: #e3f2fd;
+  width: 35%;
+  height: 23rem;
+  background-color: white;
   max-width: 500px;
   border-radius: 4px;
 }
@@ -117,8 +114,8 @@ export default {
   margin-top: 30px;
   margin-left: 13.5%;
   width: 75%;
-  height: 10rem;
-  background-color: #e3f2fd;
+  height: 7rem;
+  background-color: white;
 }
 .text-none {
   text-decoration: none;
