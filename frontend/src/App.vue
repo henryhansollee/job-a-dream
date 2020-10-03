@@ -3,42 +3,58 @@
     <div v-if="!isLoggedIn">
       <full-page ref="fullpage" :options="options">
         <div class="section home-section1">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection1 />
           <button
-            class="next next-button1"
+            class="next next-button1 d-flex flex-column"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
-          <HomeSection1 />
         </div>
         <div class="section home-section2">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection2 />
           <button
             class="next next-button2"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
-          <HomeSection2 />
+         
         </div>
         <div class="section home-section3">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection3 />
           <button
             class="next next-button3"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
-          <HomeSection3 />
         </div>
         <div class="section home-section4">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection4 />
           <button
             class="next next-button4"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-angle-double-down text-white"></i>
           </button>
-          <HomeSection4 />
         </div>
         <div class="section home-section5">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
           <HomeSection5 />
         </div>
       </full-page>
@@ -431,19 +447,19 @@ export default {
   border-radius: 50%;
 }
 .home-section1 {
-  background-color: #2196f3;
+  background-color: #00264b;
 }
 .home-section2 {
-  background-color: #e3f2fd;
+  background-color: #00264b;
 }
 .home-section3 {
-  background-color: #bbdefb;
+  background-color: #00264b;
 }
 .home-section4 {
-  background-color: #90caf9;
+  background-color: #00264b;
 }
 .home-section5 {
-  background-color: #64b5f6;
+  background-color: #00264b;
 }
 .next {
   border: none;

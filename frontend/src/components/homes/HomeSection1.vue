@@ -1,6 +1,12 @@
 <template>
-  <div class="d-flex justify-content-between align-items-center inner-box">
-    <img src="@/assets/logos/logo-main.jpg" alt="home-logo" class="home-logo mr-5" />
+  <div class="d-flex justify-content-between inner-box">
+    <div class="d-flex flex-column">
+      <h1 class="text-white" style="font-size: 80px">잡아드림으로!</h1>
+      <h1 class="text-white" style="font-size: 80px">꽉, 잡아!</h1>
+      <h1 class="text-white" style="font-size: 80px">너의 DREAM!</h1>
+      <h5 class="text-white"># 취업 뽀개기!</h5>
+      <h5 class="text-white"># 잡아드림에서 연습하자!</h5>
+    </div>
     <Login class="ml-5" />
   </div>
 </template>
