@@ -12,7 +12,7 @@
         />
         <b-form-input
           type="password"
-          :placeholder="password"
+          :placeholder="password1"
           v-model="loginData.password"
           class="mb-1 main-font"
           style="height: 45px; margin-top: 1px; font-family: fontawesome, 'Do Hyeon', sans-serif;"
@@ -52,14 +52,21 @@
               />
               <b-form-input
                 type="password"
-                :placeholder="password"
-                v-model="signupData.password"
+                :placeholder="password1"
+                v-model="passwordData.password1"
+                class="mb-1"
+                style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
+              />
+              <b-form-input
+                type="password"
+                :placeholder="password2"
+                v-model="passwordData.password2"
                 class="mb-1"
                 style="font-family: fontawesome, 'Do Hyeon', sans-serif;"
               />
               <b-button
                 variant="dark"
-                @click="signup(signupData)"
+                @click="signupCheck()"
                 class="mb-1 mt-3"
                 >회원가입</b-button
               >
@@ -73,6 +80,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Swal from 'sweetalert2'
 
 export default {
   name: "Login",
@@ -80,7 +88,12 @@ export default {
     return {
       username: "\uf007" + "  이름",
       email: "\uf0e0" + "  이메일",
-      password: "\uf084" + "  패스워드",
+      password1: "\uf084" + "  비밀번호",
+      password2: "\uf084" + "  비밀번호 확인",
+      passwordData: {
+        password1: '',
+        password2: '',
+      },
       loginData: {
         email: "",
         password: "",
@@ -98,6 +111,21 @@ export default {
   },
   methods: {
     ...mapActions(["login", "signup", "getUser"]),
+    signupCheck() {
+      if (this.passwordData.password1 === this.passwordData.password2) {
+        this.signupData.password = this.passwordData.password1;
+        this.signup(this.signupData)
+        Swal.fire({
+          text: '회원가입이 되었습니다.',
+          icon: 'success',
+        })
+      } else {
+        Swal.fire({
+          text: '비밀번호가 일치하지 않습니다.',
+          icon: 'error',
+        })
+      }
+    }
   },
 };
 </script>
@@ -128,14 +156,14 @@ export default {
 .signup-block {
   margin: 0;
   width: 100%;
-  height: 17rem;
-  background-color: #e3f2fd;
+  height: 20rem;
+  background-color: white;
 }
 .signup-inner-block {
   margin-left: 25%;
   width: 50%;
-  height: 10rem;
-  background-color: #e3f2fd;
+  height: 12rem;
+  background-color: white;
 }
 .cta {
   position: relative;
