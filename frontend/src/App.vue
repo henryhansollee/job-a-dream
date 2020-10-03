@@ -431,19 +431,19 @@ export default {
   border-radius: 50%;
 }
 .home-section1 {
-  background-color: #2196f3;
+  background-color: #00264b;
 }
 .home-section2 {
-  background-color: #e3f2fd;
+  background-color: #00264b;
 }
 .home-section3 {
-  background-color: #bbdefb;
+  background-color: #00264b;
 }
 .home-section4 {
-  background-color: #90caf9;
+  background-color: #00264b;
 }
 .home-section5 {
-  background-color: #64b5f6;
+  background-color: #00264b;
 }
 .next {
   border: none;
