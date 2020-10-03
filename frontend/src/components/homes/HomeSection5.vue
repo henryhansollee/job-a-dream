@@ -8,8 +8,8 @@
       <h5 class="text-white"># 이 모든 걸 한번에!</h5>
       <h5 class="text-white"># 풀코스로 잡아줄게!</h5>
     </div>
-    <div>
-      <img src="@/assets/homes/home1.jpg" alt class="graph1 mr-5" />
+    <div class="d-flex mt-5 pt-5 flex-column align-items-end">
+      <img src="@/assets/homes/home4.jpg" class="w-75" />
     </div>
   </div>
 </template>
