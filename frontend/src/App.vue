@@ -28,24 +28,33 @@
          
         </div>
         <div class="section home-section3">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection3 />
           <button
             class="next next-button3"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
             <i class="fas fa-chevron-down"></i>
           </button>
-          <HomeSection3 />
         </div>
         <div class="section home-section4">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
+          <HomeSection4 />
           <button
             class="next next-button4"
             @click="$refs.fullpage.api.moveSectionDown()"
           >
             <i class="fas fa-chevron-down"></i>
           </button>
-          <HomeSection4 />
         </div>
         <div class="section home-section5">
+          <div class="container">
+            <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
+          </div>
           <HomeSection5 />
         </div>
       </full-page>
