@@ -74,7 +74,7 @@
       >
         <v-list dense class="mt-1" style="padding-bottom:0;">
           <!-- 프로필 -->
-          <div class="d-flex flex-column align-items-center">
+          <div class="d-flex flex-column align-items-center mt-3">
             <img
               v-if="!userInfo.image"
               class="profile-img"
@@ -124,11 +124,11 @@
               </h6>
               <small>{{ userInfo.email }}</small>
               <!-- <hr class="mb-0" /> -->
-              <div style="margin:5px 0 10px 0;">
-                <h6 v-if="!userInfo.comment" style="margin:0;">
-                  잡아드림이 {{ userInfo.username }}님을 응원합니다!
+              <div style="margin:5px 0 10px 0;" class="ml-3 mr-3">
+                <h6 class="text-center" v-if="!userInfo.comment" style="margin:0; font-size: 14px">
+                  잡아드림이 {{ userInfo.username }}님을<br/> 응원합니다!
                 </h6>
-                <h6 v-else>{{ userInfo.comment }}</h6>
+                <h6 class="text-center" v-else>{{ userInfo.comment }}</h6>
               </div>
             </div>
           </div>
@@ -216,13 +216,13 @@
           </div>
           <!-- 영상 분석 -->
           <v-list-item link href="/videos/list" class="text-decoration-none">
-            <v-list-item-action class="d-flex justify-content-center m-0">
+            <v-list-item-action class="d-flex justify-content-center m-0 ml-1">
               <img src="@/assets/menus/video.png" alt="" style="width: 30px;" />
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 영상 분석
               </v-list-item-title>
@@ -236,7 +236,7 @@
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 음성 분석
               </v-list-item-title>
@@ -258,7 +258,7 @@
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 자소서 분석
               </v-list-item-title>
@@ -280,7 +280,7 @@
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 풀코스 분석
               </v-list-item-title>
@@ -298,7 +298,7 @@
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 통계 및 분석
               </v-list-item-title>
@@ -316,7 +316,7 @@
             <v-list-item-content>
               <v-list-item-title
                 class="d-flex justify-content-center"
-                style="font-size:15px;"
+                style="font-size:14px;"
               >
                 면접 참고 영상
               </v-list-item-title>
