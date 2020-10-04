@@ -1,57 +1,7 @@
 <template>
   <div class="d-flex flex-column">
-    <!-- 캐러셀 -->
-    <b-carousel
-      class="mr-5 ml-5 mt-5"
-      id="carousel-1"
-      v-model="slide"
-      :interval="4000"
-      controls
-      indicators
-      background="#ababab"
-      img-width="900"
-      img-height="300"
-      style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="900"
-            height="300"
-            src="@/assets/carousels/coverletter-carousel.jpg"
-            alt="image slot"
-          />
-        </template>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="900"
-            height="300"
-            src="@/assets/carousels/coverletter-carousel.jpg"
-            alt="image slot"
-          />
-        </template>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="900"
-            height="300"
-            src="@/assets/carousels/coverletter-carousel.jpg"
-            alt="image slot"
-          />
-        </template>
-      </b-carousel-slide>
-    </b-carousel>
-    <!-- 캐러셀 -->
     <router-link
-      class="text-decoration-none align-self-center"
+      class="text-decoration-none align-self-center mt-5"
       to="/coverletters/create"
     >
       <v-btn class="basic-btn" x-large color="primary" dark
