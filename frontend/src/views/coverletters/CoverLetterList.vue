@@ -3,7 +3,7 @@
     <div class="align-self-center d-flex flex-column align-items-center mt-5">
       <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/coverletter.png" alt="">
       <h1>자소서 분석</h1>
-      <h6>맞춤법 검사부터 자기소개서에 기반한 맞춤 질문 추출까지 잡아줄게!</h6>
+      <h6>맞춤법 검사부터 자기소개서에 기반한 맞춤 질문 추출까지 모두 잡아줄게!</h6>
     </div>
     <router-link
       class="text-decoration-none align-self-center mt-1"

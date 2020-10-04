@@ -1,11 +1,16 @@
 <template>
   <div class="d-flex flex-column">
+    <div class="align-self-center d-flex flex-column align-items-center mt-5">
+      <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/audio.png" alt="">
+      <h1>음성 분석</h1>
+      <h6>발음의 정확도부터 나만의 대본까지 모두 잡아줄게!</h6>
+    </div>
     <router-link
       class="text-decoration-none align-self-center"
       to="/audios/create"
     >
       <v-btn class="basic-btn" x-large color="primary" dark
-        >음성 분석 시작</v-btn
+        >시작하기</v-btn
       >
     </router-link>
     <!-- 리스트 -->
