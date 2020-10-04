@@ -6,7 +6,7 @@
       <h6>발음의 정확도부터 나만의 대본까지 모두 잡아줄게!</h6>
     </div>
     <router-link
-      class="text-decoration-none align-self-center"
+      class="text-decoration-none align-self-center mt-1"
       to="/audios/create"
     >
       <v-btn class="basic-btn" x-large color="primary" dark
