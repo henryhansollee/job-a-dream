@@ -56,6 +56,9 @@
             <img class="w-25" src="@/assets/logos/logo-main.jpg" alt="home-logo"/>
           </div>
           <HomeSection5 />
+          <small class="text-white next-button5">
+            <i class="fas fa-genderless"></i>
+          </small>
         </div>
       </full-page>
       <TopScrollButton />
@@ -492,6 +495,11 @@ export default {
 .next-button4 {
   position: absolute;
   top: 77%;
+  left: 50%;
+}
+.next-button5 {
+  position: absolute;
+  top: 97%;
   left: 50%;
 }
 .q-write {

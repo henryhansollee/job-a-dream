@@ -7,7 +7,7 @@
       <h5 class="text-white"># 취업 뽀개기!</h5>
       <h5 class="text-white"># 잡아드림에서 연습하자!</h5>
     </div>
-    <Login class="ml-5" />
+    <Login style="margin-top: 9%" />
   </div>
 </template>
 
