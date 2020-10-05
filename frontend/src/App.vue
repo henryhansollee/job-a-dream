@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>z
     <div v-if="!isLoggedIn">
       <full-page ref="fullpage" :options="options">
         <div class="section home-section1">
