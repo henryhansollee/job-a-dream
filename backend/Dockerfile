@@ -7,10 +7,11 @@ RUN apt-get update \
     && python -m pip install --upgrade pip \
     && apt-get install -y libgl1-mesa-glx
 
-RUN pwd && ls
-# COPY boards/AI_code
-COPY . /code/
+RUN pwd
+COPY boards/AI_code boards/AI_code
+RUN pwd
 WORKDIR /code/boards/AI_code/pyhanspell
+RUN pwd
 RUN python setup.py install 
 
 
