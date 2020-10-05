@@ -1,7 +1,12 @@
 <template>
   <div class="d-flex flex-column">
     <div class="align-self-center d-flex flex-column align-items-center mt-5">
-      <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/audio.png" alt="">
+      <img
+        class="mb-3 mt-5"
+        style="width: 20%"
+        src="@/assets/menus/audio.png"
+        alt=""
+      />
       <h1>음성 분석</h1>
       <h6>발음의 정확도부터 나만의 대본까지 모두 잡아줄게!</h6>
     </div>
@@ -9,9 +14,7 @@
       class="text-decoration-none align-self-center mt-1"
       to="/audios/create"
     >
-      <v-btn class="basic-btn" x-large color="primary" dark
-        >시작하기</v-btn
-      >
+      <v-btn class="basic-btn" x-large color="primary" dark>시작하기</v-btn>
     </router-link>
     <!-- 리스트 -->
     <v-container class="mt-5">
@@ -32,7 +35,7 @@
                 style="transition:.3s;"
               >
                 <v-img
-                  src="@/assets/thumbnails/audio-thumbnail.jpg"
+                  src="@/assets/thumbnails/audio-thumbnail.png"
                   class="white--text align-end"
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                   height="200px"
