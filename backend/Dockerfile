@@ -10,9 +10,12 @@ RUN apt-get update \
 RUN pwd
 COPY boards/AI_code boards/AI_code
 RUN pwd && ls
-RUN cd /code/boards/AI_code/pyhanspell
+RUN cd boards/AI_code/pyhanspell
 RUN pwd
 RUN python setup.py install 
+WORKDIR /code
+RUN pwd
+
 
 
 # COPY requirements.txt /code/
