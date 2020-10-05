@@ -1,17 +1,12 @@
 <template>
   <div class="d-flex flex-column">
     <div class="align-self-center d-flex flex-column align-items-center mt-5">
-      <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/video.png" alt="">
+      <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/video.png" alt />
       <h1>영상 분석</h1>
       <h6>감정, 시선, 고개 움직임까지 모두 잡아줄게!</h6>
     </div>
-    <router-link
-      class="text-decoration-none align-self-center mt-1"
-      to="/videos/create"
-    >
-      <v-btn class="basic-btn" x-large color="primary" dark
-        >시작하기</v-btn
-      >
+    <router-link class="text-decoration-none align-self-center mt-1" to="/videos/create">
+      <v-btn class="basic-btn" x-large color="primary" dark>시작하기</v-btn>
     </router-link>
     <!-- 리스트 -->
     <v-container class="mt-5">
@@ -31,14 +26,12 @@
                 style="transition:.3s;"
               >
                 <v-img
-                  src="@/assets/thumbnails/video-thumbnail.jpg"
+                  src="@/assets/thumbnails/video-thumbnail.png"
                   class="white--text align-end"
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                   height="200px"
                 >
-                  <v-card-title>
-                    {{ video.title }}
-                  </v-card-title>
+                  <v-card-title>{{ video.title }}</v-card-title>
                 </v-img>
                 <div class="mt-1" style="padding:0 0 5px 10px;">
                   <v-card-actions
@@ -46,12 +39,9 @@
                     :key="tag"
                     class="mt-1"
                     style="padding:0; display:inline;"
-                  >
-                    {{ tag }} </v-card-actions
-                  ><br />
-                  <div class="mt-1 mb-1" style="color:gray;">
-                    {{ cutDate(video.created_at) }}
-                  </div>
+                  >{{ tag }}</v-card-actions>
+                  <br />
+                  <div class="mt-1 mb-1" style="color:gray;">{{ cutDate(video.created_at) }}</div>
                 </div>
               </v-card>
             </v-hover>
