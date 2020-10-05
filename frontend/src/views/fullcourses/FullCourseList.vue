@@ -1,17 +1,22 @@
 <template>
   <div class="d-flex flex-column">
     <div class="align-self-center d-flex flex-column align-items-center mt-5">
-      <img class="mb-3 mt-5" style="width: 20%" src="@/assets/menus/fullcourse.png" alt="">
+      <img
+        class="mb-3 mt-5"
+        style="width: 20%"
+        src="@/assets/menus/fullcourse.png"
+        alt=""
+      />
       <h1>풀코스 분석</h1>
-      <h6>뭘 좋아할지 몰라서, 다 준비했어 이 모든 걸 한번에 풀코스로 잡아줄게!</h6>
+      <h6>
+        뭘 좋아할지 몰라서, 다 준비했어 이 모든 걸 한번에 풀코스로 잡아줄게!
+      </h6>
     </div>
     <router-link
       class="text-decoration-none align-self-center mt-1"
       to="/fullcourses/create"
     >
-      <v-btn class="basic-btn" x-large color="primary" dark
-        >시작하기</v-btn
-      >
+      <v-btn class="basic-btn" x-large color="primary" dark>시작하기</v-btn>
     </router-link>
     <!-- 리스트 -->
     <v-container class="mt-5">

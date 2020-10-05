@@ -355,6 +355,7 @@ export default {
       );
       fullcourseFormData.append("update_tag", this.fullcourseData.update_tag);
       fullcourseFormData.append("question", this.fullcourseData.question);
+      this.isLoaded = true;
       this.createFullcourse(fullcourseFormData);
     },
     _fillzero(value) {
