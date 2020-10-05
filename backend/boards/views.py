@@ -7,18 +7,21 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import Board
 from .serializers import BoardSerializer
+from .AI_code.main import main
 
 class BoardListAPI(APIView):
 
     def get(self, request):
         serializer = BoardSerializer(Board.objects.filter(writer=request.user), many=True)
-        print('요청옴?????')
         return Response(serializer.data, status=200)
     
     def post(self, request):
         serializer = BoardSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(writer=request.user)
+
+            questions = main(request.data['content'])
+            print(questions)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
