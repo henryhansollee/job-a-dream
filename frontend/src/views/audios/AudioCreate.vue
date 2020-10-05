@@ -66,7 +66,6 @@
               class="mt-5"
               @stop="handleRecording($event)"
               mime-type="audio/wav"
-              samplerate=44100
               v-slot="{ isRecording, startRecording, stopRecording }"
             >
               <button
