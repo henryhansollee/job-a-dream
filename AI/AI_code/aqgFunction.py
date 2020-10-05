@@ -8,7 +8,6 @@ from nlpNER import nerTagger
 class AutomaticQuestionGenerator():
     # AQG Parsing & Generate a question
     def aqgParse(self, sentence):
-
         nlp = spacy.load('en_core_web_md')
         singleSentences = sentence.split(".")
         questionsList = []
@@ -117,7 +116,6 @@ class AutomaticQuestionGenerator():
 
                 # questionsList.append('\n')
         return questionsList
-
 
     # AQG Display the Generated Question
     def display(self, str):

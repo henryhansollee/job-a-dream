@@ -1,6 +1,5 @@
 import spacy
 
-
 def nerTagger(nlp, tokenize):
     doc = nlp(tokenize)
 
