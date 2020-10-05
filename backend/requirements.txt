@@ -58,7 +58,7 @@ scipy==1.4.1
 six==1.15.0
 sqlparse==0.3.1
 tensorboard==2.1.1
-tensorflow==2.1.0
+tensorflow==2.3.1
 tensorflow-estimator==2.1.0
 termcolor==1.1.0
 typing-extensions==3.7.4.3
@@ -67,3 +67,6 @@ urllib3==1.25.10
 Werkzeug==1.0.1
 wrapt==1.12.1
 zipp==3.2.0
+psycopg2
+google-cloud-translate
+spacy
