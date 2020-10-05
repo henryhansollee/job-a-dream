@@ -1,5 +1,7 @@
 import os
 
+from django.conf import settings
+
 from rest_framework.decorators import permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -29,10 +31,11 @@ class VideoListAPI(APIView):
             serializer.save(writer=request.user)
 
             result_data = request.data.dict()
+            video = str(result_data['video_file'])
             
-            gaze = analyze_eye_tracking(str(result_data['video_file']))
+            gaze = analyze_eye_tracking(video)
             gaze_queryset = Gaze.objects.create(blinking=gaze[0], left=gaze[1], right=gaze[2], center=gaze[3])
-            emotion = check_emotion.get_emotion(str(result_data['video_file']))
+            emotion = check_emotion.get_emotion(video)
             emotion_queryset = Emotion.objects.create(
                 angry=emotion['Angry'], 
                 disgusted=emotion['Disgusted'], 
@@ -42,21 +45,30 @@ class VideoListAPI(APIView):
                 sad=emotion['Sad'], 
                 surprised=emotion['Surprised']
             )
-            head = get_head_position(str(result_data['video_file']))
+            head = get_head_position(video)
             head_queryset = HeadPosition.objects.create(bottom=head[0], top=head[1], right=head[2], left=head[3])
             
             video_result_queryset = VideoResult.objects.create(gaze=gaze_queryset, emotions=emotion_queryset, head=head_queryset)
+            
+            os.remove(os.path.join(settings.MEDIA_ROOT+'videos/'+str(request.data['video_file'])))
+
             serializer.save(result=video_result_queryset)
             
             return Response(serializer.data, status=201)
         print(serializer.errors)
         return Response(serializer.errors, status=400)
 
-@permission_classes([IsAuthenticated])
-@authentication_classes([JSONWebTokenAuthentication])
 class VideoDetailAPI(RetrieveUpdateDestroyAPIView):
-    queryset = Video.objects.all()
-    serializer_class = VideoSerializer
+    
+    def get(self, request, pk):
+        serializer = VideoSerializer(Video.objects.get(pk=pk))
+        # print(serializer.data['title'])
+        return Response(serializer.data, status=200)
+
+    def delete(self, request, pk):
+        video = Video.objects.get(pk=pk)
+        video.delete()
+        return Response('삭제되었습니다.', status=204)
 
 class ResultAPI(APIView):
 

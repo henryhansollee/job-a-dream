@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
+from questions.models import Question
 from .models import Board
 from .serializers import BoardSerializer
 from .AI_code.main import main

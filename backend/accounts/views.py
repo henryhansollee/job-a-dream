@@ -21,6 +21,7 @@ class UserProfile(APIView):
 
     def put(self, request, pk):
         serializer = UserProfileSerializer(CustomUser.objects.get(pk=pk), data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
