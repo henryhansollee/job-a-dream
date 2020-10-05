@@ -104,7 +104,7 @@
                   label="사진 업로드"
                   ref="file"
                 />
-                <h6>한줄 각오</h6>
+                <h6 class="mt-3">한줄 각오</h6>
                 <b-form-input
                   type="text"
                   v-model="updatedUserData.comment"
@@ -429,6 +429,9 @@ export default {
       window.speechSynthesis.speak(msg);
     },
     createFormData() {
+      if (!this.updatedUserData.comment) {
+        this.updatedUserData.comment = this.userInfo.comment
+      }
       this.file = this.$refs.file.files[0];
       console.log(this.file)
       const userFormData = new FormData();
