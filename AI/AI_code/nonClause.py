@@ -1,7 +1,6 @@
 import nltk
 import identification
 
-
 def get_chunk(chunked):
     str1 = ""
     for j in range(len(chunked)):

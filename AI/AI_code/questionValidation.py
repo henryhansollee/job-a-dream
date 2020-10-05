@@ -1,6 +1,5 @@
 # Question Validation
 
-
 def hNvalidation(sentence):
     flag = 1
 
@@ -10,7 +9,6 @@ def hNvalidation(sentence):
             if (i+4 < Length):
                 if (sentence[i]==' ' and sentence[i+1]=='h' and sentence[i+2]==' ' and sentence[i+3]=='N' and sentence[i+4]==' '):
                     flag = 0
-
 
     return flag
 

@@ -2,7 +2,6 @@ import nltk
 import identification
 import nonClause
 
-
 def whom_1(segment_set, num, ner):
     tok = nltk.word_tokenize(segment_set[num])
     tag = nltk.pos_tag(tok)
