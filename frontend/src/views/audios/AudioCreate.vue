@@ -252,7 +252,7 @@ export default {
       );
       audioFormData.append("update_tag", this.audioData.update_tag);
       audioFormData.append("question", this.audioData.question);
-
+      this.isLoaded = true;
       this.createAudio(audioFormData);
     },
   },
