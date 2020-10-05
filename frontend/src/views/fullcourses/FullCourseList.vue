@@ -14,7 +14,7 @@
       >
     </router-link>
     <!-- 리스트 -->
-    <v-container>
+    <v-container class="mt-5">
       <v-row>
         <v-col cols="3" v-for="fullcourse in fullcourses" :key="fullcourse.id">
           <router-link
