@@ -8,10 +8,10 @@ RUN apt-get update \
     && apt-get install -y libgl1-mesa-glx
 
 RUN pwd
-COPY boards/AI_code boards/AI_code
+COPY boards/AI_code /code/boards/AI_code
 RUN pwd && ls
-RUN cd boards/AI_code/pyhanspell
-RUN pwd
+# RUN cd boards/AI_code/pyhanspell
+# RUN pwd
 RUN python setup.py install 
 WORKDIR /code
 RUN pwd
