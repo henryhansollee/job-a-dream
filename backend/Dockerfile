@@ -10,9 +10,9 @@ RUN apt-get update \
 RUN pwd && ls
 # COPY boards/AI_code
 COPY . /code/
-RUN cd /code/boards/AI_code/pyhanspell 
+WORKDIR /code/boards/AI_code/pyhanspell
 RUN python setup.py install 
-RUN cd -
+
 
 # COPY requirements.txt /code/
 RUN pip install cmake==3.18.2.post1
