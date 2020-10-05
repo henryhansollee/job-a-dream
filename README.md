@@ -6,7 +6,7 @@
 
 
 
-#### :computer: ​[DEMO](http://j3b106.p.ssafy.io/)
+#### :computer: [DEMO](https://j3b107.p.ssafy.io/)
 
 #### OVERVIEW
 
