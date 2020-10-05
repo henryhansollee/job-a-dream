@@ -10,7 +10,7 @@ RUN apt-get update \
 RUN pwd
 COPY boards/AI_code /code/boards/AI_code
 RUN pwd && ls
-WORKDIR /code/boards/AI_code
+WORKDIR /code/boards/AI_code/py-hanspell
 
 # RUN cd boards/AI_code/pyhanspell
 # RUN pwd
