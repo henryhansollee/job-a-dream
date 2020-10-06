@@ -1,6 +1,11 @@
 from google.cloud import speech
 import ffmpeg
 import os
+from konlpy.tag import Okt
+from collections import defaultdict
+okt = Okt()
+Nouns = defaultdict(int)
+
 def transcribe_file(speech_file):
     client = speech.SpeechClient()
 
@@ -21,9 +26,15 @@ def transcribe_file(speech_file):
     response = client.recognize(config, audio)
     os.remove('output.wav')
     try:
-        print(response.results[0].alternatives[0].transcript)
-        print(response.results[0].alternatives[0].confidence)
-        return [response.results[0].alternatives[0].transcript, response.results[0].alternatives[0].confidence]
+        result = response.results[0].alternatives[0]
+        sentence, confidence =  result.transcript, result.confidence
+
+        print(sentence); print(confidence)
+        N = okt.nouns(sentence)
+        for n in N: Nouns[n] += 1
+        print(Nouns)
+
+        return [sentence, confidence, Nouns]
     except:
         print('실패!')
 
