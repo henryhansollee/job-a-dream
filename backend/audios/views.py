@@ -1,14 +1,15 @@
 import os
 
 from django.conf import settings
+from django.http import QueryDict
 
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from .models import Audio, AudioResult
-from .serializers import AudioSerializer
+from .models import Audio, Result, Dictionary
+from .serializers import AudioSerializer, ResultSerializer, DictionarySerializer
 from .STT_API_version import transcribe_file
 
 # Create your views here.
@@ -25,12 +26,17 @@ class AudioListAPI(APIView):
             serializer.save(writer=request.user)
 
             result_data = request.data.dict()
-            result = transcribe_file(str(result_data['audio_file']))
+            data = transcribe_file(str(result_data['audio_file']))
+            
+            result = Result.objects.create(script=data[0], confidence=data[1])
 
-            audio_queryset = AudioResult.objects.create(script=result[0], confidence=result[1])
+            for key, value in data[2].items():
+                Dictionary.objects.create(key=key, value=value, result=result)
 
             os.remove(os.path.join(settings.MEDIA_ROOT+'audios/'+str(request.data['audio_file'])))
-            serializer.save(result=audio_queryset)
+
+            serializer.save(result=result)
+
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
