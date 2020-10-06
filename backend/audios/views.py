@@ -1,5 +1,7 @@
 import os
 
+from django.conf import settings
+
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -23,10 +25,11 @@ class AudioListAPI(APIView):
             serializer.save(writer=request.user)
 
             result_data = request.data.dict()
-            script = transcribe_file(str(result_data['audio_file']))
-            print('여기 보세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-            print(script)
-            audio_queryset = AudioResult.objects.create(script=script)
+            result = transcribe_file(str(result_data['audio_file']))
+
+            audio_queryset = AudioResult.objects.create(script=result[0], confidence=result[1])
+
+            os.remove(os.path.join(settings.MEDIA_ROOT+'audios/'+str(request.data['audio_file'])))
             serializer.save(result=audio_queryset)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)

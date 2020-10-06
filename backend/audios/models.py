@@ -15,6 +15,7 @@ class Tag(TimeStampModel):
 
 class AudioResult(TimeStampModel):
     script = models.TextField(blank=True)
+    confidence = models.FloatField(blank=True)
 
 class Audio(TimeStampModel):
     title = models.CharField(max_length=30)
