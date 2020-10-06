@@ -188,4 +188,47 @@ export default {
 </script>
 
 <style>
+.circle {
+  min-width: 200px;
+  display: inline-block;
+}
+
+.pie-chart {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  transition: 0.3s;
+  border: 3px solid #043566;
+}
+span.center {
+  background: #fff;
+  border: 3px solid #043566;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 200px;
+  font-size: 30px;
+  color: #043566;
+  transform: translate(-50%, -50%);
+}
+.second {
+  position: relative;
+  padding: 20px;
+  width: 400px;
+  border: 3px solid red;
+}
+.second > strong {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -50px 0 0 -55px;
+  font-size: 4rem;
+}
 </style>
