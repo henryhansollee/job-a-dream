@@ -63,9 +63,7 @@
       <div class="d-flex flex-column align-items-center" style>
         <div class="align-self-start" style="font-size:30px;">면접을 보고 후회한 이유 (복수 응답)</div>
         <div class="align-self-start" style="font-size:23px;">구직자 302명 응답</div>
-        <!-- <div class="mt-4">
-          <img src="@/assets/aboutUs/7.png" alt="" style="width:450px;" />
-        </div>-->
+
         <div class="mt-4">
           <div
             class="d-flex justify-content-between"
@@ -109,6 +107,16 @@
         </div>
         <div class="align-self-end mr-3 mt-2" style="font-size:x-large;">자료 제공: 사람인</div>
       </div>
+    </div>
+
+    <div class="mt-5 p-5" style="height:300px;">
+      <div style="font-size:xx-large;">영상 분석</div>
+      <div style="font-size:x-large;">면접 연습 연상을 올리면 비언어적인 요소들을 분석해드려요!</div>
+      <ul class="mt-4" style="font-size:x-large;">
+        <li>움직임 포착</li>
+        <li>시선 추적</li>
+        <li>감정 분석</li>
+      </ul>
     </div>
   </div>
 </template>
