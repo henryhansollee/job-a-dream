@@ -1,5 +1,24 @@
 from rest_framework import serializers
-from .models import FullCourse, Tag
+
+from videos.serializers import GazeSerializer, EmotionSerializer, HeadPositionSerializer
+from .models import FullCourse, FullCourseResult, Dictionary, Tag
+
+
+class DictionarySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Dictionary
+        exclude = ['id']
+
+class ResultSerializer(serializers.ModelSerializer):
+    gaze = GazeSerializer()
+    emotions = EmotionSerializer()
+    head = HeadPositionSerializer()
+    nouns = DictionarySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = FullCourseResult
+        exclude = ['id', 'created_at', 'updated_at']
 
 class FullCourseSerializer(serializers.ModelSerializer):
     
@@ -7,6 +26,7 @@ class FullCourseSerializer(serializers.ModelSerializer):
     update_tag = serializers.ListField(
         child=serializers.CharField(max_length=100), write_only=True
     )
+    result = ResultSerializer(required=False)
 
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')
@@ -32,4 +52,4 @@ class FullCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = FullCourse
         exclude = []
-        read_only_fields = ['writer']
+        read_only_fields = ['writer', 'result']

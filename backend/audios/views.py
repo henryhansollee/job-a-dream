@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
+from questions.models import Question
+
 from .models import Audio, Result, Dictionary
 from .serializers import AudioSerializer, ResultSerializer, DictionarySerializer
 from .STT_API_version import transcribe_file
@@ -35,7 +37,7 @@ class AudioListAPI(APIView):
 
             os.remove(os.path.join(settings.MEDIA_ROOT+'audios/'+str(request.data['audio_file'])))
 
-            serializer.save(result=result)
+            serializer.save(result=result, question=Question.objects.get(pk=request.data['question']))
 
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)

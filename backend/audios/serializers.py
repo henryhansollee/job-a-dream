@@ -1,4 +1,7 @@
 from rest_framework import serializers
+
+from questions.serializers import QuestionSerializer
+
 from .models import Audio, Result, Dictionary, Tag
 
 
@@ -22,6 +25,7 @@ class AudioSerializer(serializers.ModelSerializer):
         child=serializers.CharField(max_length=100), write_only=True
     )
     result = ResultSerializer(required=False)
+    question = QuestionSerializer(required=False, read_only=True)
 
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')

@@ -27,5 +27,5 @@ class Audio(TimeStampModel):
     audio_file = models.FileField(upload_to='audios', blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
     result = models.ForeignKey(Result, on_delete=models.CASCADE, null=True)
