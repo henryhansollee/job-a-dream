@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Audio, Tag
+from .models import Audio, AudioResult, Tag
+
+class AudioResultSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AudioResult
+        exclude = ['id', 'created_at', 'updated_at']
 
 class AudioSerializer(serializers.ModelSerializer):
     
@@ -7,6 +13,7 @@ class AudioSerializer(serializers.ModelSerializer):
     update_tag = serializers.ListField(
         child=serializers.CharField(max_length=100), write_only=True
     )
+    result = AudioResultSerializer(required=False)
 
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')

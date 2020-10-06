@@ -1,7 +1,9 @@
 .DS_Store
 node_modules
 /dist
-
+src/assets/audios
+src/assets/videos
+src/assets/profile_image
 
 # local env files
 .env.local

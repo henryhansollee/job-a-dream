@@ -34,6 +34,9 @@
 * {
   font-family: "Cafe24Ohsquare", cursive;
 }
+li {
+  list-style: none;
+}
 .main-font {
   font-family: "Cafe24Ohsquare", cursive;
   /* font-family: "Do Hyeon", sans-serif; */
