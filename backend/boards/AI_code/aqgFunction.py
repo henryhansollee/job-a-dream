@@ -2,13 +2,9 @@ import spacy
 from . import clause
 from . import nonClause
 from . import identification
-from . import questionValidation
-from .nlpNER import nerTagger
 
 class AutomaticQuestionGenerator():
-    # AQG Parsing & Generate a question
     def aqgParse(self, sentence):
-
         nlp = spacy.load('en_core_web_md')
         singleSentences = sentence.split(".")
         questionsList = []
@@ -94,6 +90,7 @@ class AutomaticQuestionGenerator():
                                         pass
 
                                     else:
+                                        print(segmentSets)
                                         try:
                                             questionsList += nonClause.what_whom1(segmentSets, j, ner)
                                         except Exception:
@@ -114,38 +111,19 @@ class AutomaticQuestionGenerator():
                                             questionsList += nonClause.howmuch_1(segmentSets, j, ner)
                                         except Exception:
                                             pass
-
-                # questionsList.append('\n')
         return questionsList
 
 
-    # AQG Display the Generated Question
-    def display(self, str):
-        count = 0
-        out = ""
-        for i in range(len(str)):
-            if (len(str[i]) >= 3):
-                if (questionValidation.hNvalidation(str[i]) == 1):
-                    if ((str[i][0] == 'W' and str[i][1] == 'h') or (str[i][0] == 'H' and str[i][1] == 'o') or (
-                            str[i][0] == 'H' and str[i][1] == 'a')):
-                        WH = str[i].split(',')
-                        if (len(WH) == 1):
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i] + "?"
-                            count = count + 1
-
-                            if (count < 10):
-                                print("Q-0%d: %s" % (count, str[i]))
-                                out += "Q-0" + count.__str__() + ": " + str[i] + "\n"
-
-                            else:
-                                print("Q-%d: %s" % (count, str[i]))
-                                out += "Q-" + count.__str__() + ": " + str[i] + "\n"
-
-        output = "./DB/output.txt"
-        w = open(output, 'w+', encoding="utf8")
-        w.write(out)
-        w.close()
-        return 0
+def nerTagger(nlp, tokenize):
+    doc = nlp(tokenize)
+    finalList = []
+    array = [[]]
+    for word in doc:
+        array[0] = 0
+        for ner in doc.ents:
+            if ner.text == word.text:
+                finalList.append((word.text, ner.label_))
+                array[0] = 1
+        if not array[0]:
+            finalList.append((word.text, 'O'))
+    return finalList
