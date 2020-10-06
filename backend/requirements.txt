@@ -73,3 +73,4 @@ psycopg2
 google-cloud-translate
 spacy
 ffmpeg-python
+nltk
