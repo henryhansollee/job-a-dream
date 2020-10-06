@@ -4,7 +4,7 @@ import cookies from "vue-cookies";
 import axios from "axios";
 import BACKEND from "@/api/index";
 import router from "@/router";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 Vue.use(Vuex);
 
@@ -97,15 +97,16 @@ export default new Vuex.Store({
           dispatch("getUser");
           router.push("/about");
           Swal.fire({
-            text: '환영합니다.',
-            icon: 'success',
-          })
+            text: "환영합니다.",
+            icon: "success",
+          });
+          router.go();
         })
         .catch((err) => {
           Swal.fire({
-            text: '입력 정보를 확인하세요.',
-            icon: 'error',
-          })
+            text: "입력 정보를 확인하세요.",
+            icon: "error",
+          });
           console.log(err);
         });
     },
@@ -144,9 +145,9 @@ export default new Vuex.Store({
     // 로그아웃
     logout({ commit }) {
       Swal.fire({
-        text: '로그아웃 성공.',
-        icon: 'success',
-      })
+        text: "로그아웃 성공.",
+        icon: "success",
+      });
       commit("SET_TOKEN", null);
       commit("SET_AUTH", null);
       cookies.remove("accessToken");
