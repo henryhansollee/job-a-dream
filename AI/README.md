@@ -1,0 +1,4 @@
+- ## 프로젝트의 각 기능들에 대한 환경설정법과 디렉토리입니다.
+  - `Grammar_Check` : 한국어 맞춤법 Source (py-hanspell 설치 필요)
+  - `Question_Generator`: 텍스트 기반의 질문 생성 (한글 --> 영어 --> 한글)
+  - `Speech_2_Text`: 음성기반 텍스트 추출 ( Google API  key필요 )
