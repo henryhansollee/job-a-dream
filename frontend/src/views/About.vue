@@ -118,6 +118,15 @@
         <li>감정 분석</li>
       </ul>
     </div>
+    <div class="mt-5 p-5" style="height:300px;">
+      <div style="font-size:xx-large;">음성 분석</div>
+      <div style="font-size:x-large;">면접 답변을 녹음하면 언어적 요소를 분석해드려요!</div>
+      <ul class="mt-4" style="font-size:x-large;">
+        <li>대본 추출</li>
+        <li>워드 클라우드</li>
+        <li>발음 정확성</li>
+      </ul>
+    </div>
   </div>
 </template>
 
