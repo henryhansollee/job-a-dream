@@ -8,12 +8,15 @@ services:
       - "443:443"
     volumes: 
       - /etc/letsencrypt/:/etc/letsencrypt/
+      
     
   back:
     build: ./backend/
-    # ports:
-    #   - "8080:8080"
+    volumes: 
+      - ../env_params/:/env_params/
+      - /root/nltk_data/:/root/nltk_data/
     expose:
       - "8000"
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=/env_params/private_key.json
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn interview.wsgi:application --bind 0.0.0.0:8000"
-      
