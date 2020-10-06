@@ -11,6 +11,8 @@ from videos.vision.Emotion_detection_prev.src import check_emotion
 from videos.vision.Proctoring_AI.head_pose_estimation import get_head_position
 from audios.STT_API_version import transcribe_file
 
+from questions.models import Question
+
 from .models import FullCourse, FullCourseResult, Dictionary
 from .serializers import FullCourseSerializer, ResultSerializer
 from .main import question_generator
@@ -55,7 +57,7 @@ class FullCourseListAPI(APIView):
             os.remove(os.path.join(settings.MEDIA_ROOT+'videos/'+str(request.data['video_file'])))
             os.remove(os.path.join(settings.MEDIA_ROOT+'audios/'+str(request.data['audio_file'])))
 
-            serializer.save(result=fullcourse_result_queryset)
+            serializer.save(result=fullcourse_result_queryset, question=Question.objects.get(pk=request.data['question']))
 
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)

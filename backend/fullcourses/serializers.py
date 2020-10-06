@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
 from videos.serializers import GazeSerializer, EmotionSerializer, HeadPositionSerializer
+from questions.serializers import QuestionSerializer
+
 from .models import FullCourse, FullCourseResult, Dictionary, Tag
 
 
@@ -27,6 +29,7 @@ class FullCourseSerializer(serializers.ModelSerializer):
         child=serializers.CharField(max_length=100), write_only=True
     )
     result = ResultSerializer(required=False)
+    question = QuestionSerializer(required=False)
 
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')
@@ -52,4 +55,4 @@ class FullCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = FullCourse
         exclude = []
-        read_only_fields = ['writer', 'result']
+        read_only_fields = ['writer', 'result', 'question']
