@@ -127,6 +127,17 @@
         <li>발음 정확성</li>
       </ul>
     </div>
+    <div class="mt-5 p-5" style="height:300px;">
+      <div style="font-size:xx-large;">자소서 분석</div>
+      <div style="font-size:x-large;">
+        자소서 항목과 내용을 등록하면 맞춤법 검사는 물론, 면접에서 나올만한
+        질문을 볼 수 있어요!
+      </div>
+      <ul class="mt-4" style="font-size:x-large;">
+        <li>맞춤법 검사</li>
+        <li>AI 기반 질문 추출</li>
+      </ul>
+    </div>
   </div>
 </template>
 
