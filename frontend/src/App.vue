@@ -1,5 +1,5 @@
 <template>
-  <div>z
+  <div>
     <div v-if="!isLoggedIn">
       <full-page ref="fullpage" :options="options">
         <div class="section home-section1">
@@ -84,7 +84,7 @@
             <img
               v-if="userInfo.image"
               class="profile-img"
-              :src="userInfo.image"
+              :src="'http://localhost:8080'+userInfo.image"
               alt="profile"
             />
             <!-- 프로필 수정 모달 -->
@@ -99,12 +99,12 @@
               </v-btn>
               <b-modal hide-footer id="modal-1" title="내 정보 수정">
                 <h6>프로필 사진</h6>
-                <v-file-input
-                  multiple
+                <input
+                  type="file"
                   label="사진 업로드"
-                  ref="updatedUserData.image"
-                ></v-file-input>
-                <h6>한줄 각오</h6>
+                  ref="file"
+                />
+                <h6 class="mt-3">한줄 각오</h6>
                 <b-form-input
                   type="text"
                   v-model="updatedUserData.comment"
@@ -396,6 +396,7 @@ export default {
         image: "",
         comment: "",
       },
+      file: '',
     };
   },
   computed: {
@@ -428,9 +429,14 @@ export default {
       window.speechSynthesis.speak(msg);
     },
     createFormData() {
+      if (!this.updatedUserData.comment) {
+        this.updatedUserData.comment = this.userInfo.comment
+      }
+      this.file = this.$refs.file.files[0];
+      console.log(this.file)
       const userFormData = new FormData();
       userFormData.append("id", this.updatedUserData.id);
-      userFormData.append("image", this.updatedUserData.image);
+      userFormData.append("image", this.file);
       userFormData.append("comment", this.updatedUserData.comment);
       this.updateUser(userFormData);
     },
