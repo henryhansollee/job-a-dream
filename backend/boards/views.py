@@ -8,7 +8,7 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from questions.models import Question
 from .models import Board, BoardResult
 from .serializers import BoardSerializer
-from .AI_code.main import main
+from .main import question_generator
 
 class BoardListAPI(APIView):
 
@@ -21,7 +21,7 @@ class BoardListAPI(APIView):
         if serializer.is_valid():
             serializer.save(writer=request.user)
 
-            result = main(request.data['content'])
+            result = question_generator(request.data['content'])
             print(result)
             
             if len(result) == 1:
