@@ -6,7 +6,7 @@ def chunk_search(segment, chunked):
     for j in range(m):
         if len(chunked[j]) > 2 or len(chunked[j]) == 1:
             list1.append(j)
-        if len(chunked[j]) == 2:
+        elif len(chunked[j]) == 2:
             try:
                 str1 = chunked[j][0][0] + " " + chunked[j][1][0]
             except Exception:

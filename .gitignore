@@ -16,3 +16,4 @@ node_modules
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 __pycache__
+private_key.json
