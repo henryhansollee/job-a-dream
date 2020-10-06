@@ -2,6 +2,8 @@
 FROM node as build-stage
 WORKDIR /app
 ADD . .
+RUN npm install easy-circular-progress
+RUN npm install jquery
 RUN yarn install
 RUN yarn run build
 
