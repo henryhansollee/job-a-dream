@@ -44,23 +44,28 @@
             class="mt-5 ml-5 basic-btn"
             style="width:70%; "
             controls
-            :src="audioResult.audio_file"
+            :src="'http://localhost:8080'+audioResult.audio_file"
           ></audio>
         </div>
       </div>
-      <div class="mt-5" style="width:90%; height:250px; border:3px solid red;">
-        대본 들어갈 공간
-      </div>
-      <div
-        class="d-flex flex-row justify-content-around mt-4"
-        style="width:90%; height:250px; border:3px solid blue;"
-      >
-        <div style="width:48%; height:250px; border:3px solid green;">
+      <div class="d-flex">
+        <v-sheet
+            class="d-flex flex-column mt-5 w-25 text-center"
+            color="grey lighten-3"
+            height="400"
+          >
+          <h1 class="mt-5">추출된 대본</h1>
+          <h3>정확도: {{ Math.floor(audioResult.result.confidence * 100) }}%</h3>
+          <p>{{ audioResult.result.script }}</p>
+        </v-sheet>
+        
+        <v-sheet
+          class="d-flex flex-column w-75 text-center mt-5"
+          color="yellow lighten-3"
+          height="400"
+        >
           워드 클라우드
-        </div>
-        <div style="width:48%; height:250px; border:3px solid orange;">
-          발음 정확도
-        </div>
+        </v-sheet>
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none mr-5" to="/audios/list">
