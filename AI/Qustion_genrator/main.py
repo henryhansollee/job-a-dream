@@ -1,54 +1,21 @@
-from google.cloud import translate_v2
-import aqgFunction
-from hanspell import spell_checker
+# coding=utf-8
+from konlpy.tag import Komoran
+from random import sample
+# No_nouns = ['을', '를', '에', '의', '로', '고', '은', '는']
 
-def Check(string):
-    tmp = []
-    for i in range(len(string)):
-        if len(string[i]) > 2:
-            if hNvalidation(string[i]) == 1:
-                if ((string[i][0] == 'W' and string[i][1] == 'h') or (string[i][0] == 'H' and string[i][1] == 'o') or
-                        (string[i][0] == 'H' and string[i][1] == 'a')):
-                    WH = string[i].split(',')
-                    if len(WH) == 1:
-                        string[i] = string[i][:-1]
-                        string[i] = string[i][:-1]
-                        string[i] = string[i][:-1]
-                        string[i] = string[i] + "?"
-                        tmp.append(string[i])
-    return tmp
+def question_generator():
+    komo = Komoran()
 
-
-def hNvalidation(sentence):
-    flag = 1
-
-    Length = len(sentence)
-    if Length > 4:
-        for i in range(Length):
-            if i + 4 < Length:
-                if sentence[i] == ' ' and sentence[i + 1] == 'h' and sentence[i + 2] == ' ' and sentence[
-                    i + 3] == 'N' and sentence[i + 4] == ' ':
-                    flag = 0
-    return flag
-
-
-def main():
-    translate_client = translate_v2.Client()
-    aqg = aqgFunction.AutomaticQuestionGenerator()
-    kor_text = "안녕하세요 이번 삼성전자에 지원한 편재호입니다."
-    eng_text = translate_client.translate(kor_text, target_language='en')['translatedText']
-    # eng_text = "Hello, I am Jaeho Pyun who applied to Samsung Electronics this time. "
-
-    kor_question = []
-    questionList = aqg.aqgParse(eng_text)
-    result_question = Check(questionList)
-    for q in result_question:
-        string = translate_client.translate(q, target_language='ko')['translatedText']
-        result_Q = spell_checker.check(string).checked
-        kor_question.append(result_Q)
-        # kor_question.append(q)
-    print(kor_question)
-    return kor_question
-
-main()
-
+    Text = r'''
+    제가 삼성SDS에 지원한 이유는 충분한 성장가능성 때문입니다. 
+    삼성SDS는 매년 매출규모를 상승시키고 있습니다. 그러나
+    아이폰은 매우 좋은 아이템이기에 갤럭시는 비교가 안됩니다.'''
+    question = []
+    for value, tag in set(komo.pos(Text)):
+        if tag == 'NNP' and value != '제가':
+            question.append(['왜 '+ value+ '인가요?'])
+            question.append([value + '에 대해서 자신이 아는대로 설명해주세요.'])
+            question.append([value + '의 장단점이 무엇이라고 생각하시나요?'])
+    print(sample(question, 3))
+    return sample(question, 3)
+question_generator()
