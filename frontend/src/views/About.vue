@@ -19,6 +19,18 @@
       <div style="font-size:35px">구직자들이 제일 어려워하는 전형</div>
       <div class="mb-5 ml-5" style="font-size:30px; padding-left:150px;">취업준비생 574명 대상</div>
     </div>
+
+    <div class="mt-5 mr-5 pr-5 d-flex justify-content-around" style="height:320px; ">
+      <div class="pie-chart pie-chart1">
+        <span class="center">43.4%</span>
+      </div>
+      <div class="pie-chart pie-chart2">
+        <span class="center">24.4%</span>
+      </div>
+      <div class="pie-chart pie-chart3">
+        <span class="center">19.5%</span>
+      </div>
+    </div>
   </div>
 </template>
 
