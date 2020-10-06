@@ -138,11 +138,53 @@
         <li>AI 기반 질문 추출</li>
       </ul>
     </div>
+    <div class="mt-5 p-5" style="height:300px;">
+      <div style="font-size:xx-large;">풀코스 분석</div>
+      <div style="font-size:x-large;">영상분석 + 음성 분석 + 자소서 분석을 한번에!</div>
+      <div style="font-size:x-large;">이제는 잡아드림으로 면접 합격하세요!</div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import $ from "jquery";
+import Progress from "easy-circular-progress";
+
+$(window).ready(function () {
+  draw(43, ".pie-chart1", "#DCE224");
+  draw(24, ".pie-chart2", "#8CDDC6");
+  draw(19, ".pie-chart3", "#81CED6");
+});
+
+function draw(max, classname, colorname) {
+  var i = 1;
+  var func1 = setInterval(function () {
+    if (i < max) {
+      color1(i, classname, colorname);
+      i++;
+    } else {
+      clearInterval(func1);
+    }
+  }, 35);
+}
+function color1(i, classname, colorname) {
+  $(classname).css({
+    background:
+      "conic-gradient(" +
+      colorname +
+      " 0% " +
+      i +
+      "%, #ffffff " +
+      i +
+      "% 100%)",
+  });
+}
+
+export default {
+  components: {
+    Progress,
+  },
+};
 </script>
 
 <style>
