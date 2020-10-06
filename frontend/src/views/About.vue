@@ -40,6 +40,76 @@
     <div class="d-flex justify-content-end mr-5" style="font-size:x-large;">
       <div class="mr-5 mb-5" style="padding-right:50px;">조사 기관: 취업포털 커리어</div>
     </div>
+
+    <div class="d-flex justify-content-around" style="height:400px;margin-top:50px;">
+      <!-- <div class="second circle">
+        <strong></strong>
+      </div>-->
+      <!-- <div class="progress_circle circle"></div> -->
+      <div class="d-flex flex-column justify-center align-items-center">
+        <Progress
+          class="circle-progress"
+          :transitionDuration="3000"
+          :radius="125"
+          :strokeWidth="15"
+          strokeColor="#043566"
+          value="77"
+        >
+          <div class="content pl-2" style="font-size:xx-large;color: #043566;">77%</div>
+          <template v-slot:footer></template>
+        </Progress>
+        <div class="mt-2" style="font-size:xx-large;">구직자의 약 80%, 면접 보고 후회</div>
+      </div>
+      <div class="d-flex flex-column align-items-center" style>
+        <div class="align-self-start" style="font-size:30px;">면접을 보고 후회한 이유 (복수 응답)</div>
+        <div class="align-self-start" style="font-size:23px;">구직자 302명 응답</div>
+        <!-- <div class="mt-4">
+          <img src="@/assets/aboutUs/7.png" alt="" style="width:450px;" />
+        </div>-->
+        <div class="mt-4">
+          <div
+            class="d-flex justify-content-between"
+            style="font-size:28px;border:2px solid grey;border-radius:5px;"
+          >
+            <div class="p-2">준비한 답변을 제대로 하지 못해서</div>
+            <div
+              style="width:100px;padding-top:6px;padding-left:4px;font-size:28px;background-color:#DCE224;border:2px solid #DCE224;border-radius:0 5px 5px 0;"
+            >44.2%</div>
+          </div>
+
+          <div
+            class="d-flex mt-2 justify-content-between"
+            style="border:2px solid grey;border-radius:5px;"
+          >
+            <div class="p-2" style="font-size:28px;">긴장으로 말을 더듬어서</div>
+            <div
+              style="width:90px;padding-top:6px;padding-left:13px;font-size:28px;background-color:#DCE224;border:2px solid #DCE224;border-radius:0 5px 5px 0;"
+            >39%</div>
+          </div>
+
+          <div
+            class="d-flex mt-2 justify-content-between"
+            style="border:2px solid grey;border-radius:5px;"
+          >
+            <div class="p-2" style="font-size:27px;">사전 준비를 철저하게 하지 못해서</div>
+            <div
+              style="padding-top:6px;font-size:27px;background-color:#DCE224;border:2px solid #DCE224;border-radius:0 5px 5px 0;"
+            >31.2%</div>
+          </div>
+
+          <div
+            class="d-flex mt-2 justify-content-between"
+            style="border:2px solid grey;border-radius:5px;"
+          >
+            <div class="p-2" style="font-size:26px;">끝난 후에야 질문에 대한 답이 생각나서</div>
+            <div
+              style="width:68px;padding-top:6px;padding-left:4px;font-size:26px;background-color:#DCE224;border:2px solid #DCE224;border-radius:0 5px 5px 0;"
+            >29%</div>
+          </div>
+        </div>
+        <div class="align-self-end mr-3 mt-2" style="font-size:x-large;">자료 제공: 사람인</div>
+      </div>
+    </div>
   </div>
 </template>
 
