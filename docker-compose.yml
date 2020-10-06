@@ -14,7 +14,7 @@ services:
     build: ./backend/
     volumes: 
       - ../env_params/:/env_params/
-      - /home/ubuntu/nltk_data/:/nltk_data/
+      - /home/ubuntu/nltk_data/:/root/nltk_data/
     expose:
       - "8000"
     environment: 
