@@ -12,7 +12,7 @@ def whom_1(segment_set, num, ner):
     list1 = identification.chunk_search(segment_set[num], chunked)
     list3 = []
 
-    if len(list1) != 0:
+    if len(list1):
         for j in range(len(chunked)):
             str1 = ""
             str2 = ""
@@ -183,7 +183,7 @@ def whom_3(segment_set, num, ner):
     list1 = identification.chunk_search(segment_set[num], chunked)
     list3 = []
 
-    if len(list1) != 0:
+    if len(list1):
         for j in range(len(chunked)):
             str1 = ""
             str2 = ""

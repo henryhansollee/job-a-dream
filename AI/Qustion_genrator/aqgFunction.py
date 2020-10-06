@@ -6,7 +6,6 @@ import questionValidation
 from nlpNER import nerTagger
 
 class AutomaticQuestionGenerator():
-    # AQG Parsing & Generate a question
     def aqgParse(self, sentence):
         nlp = spacy.load('en_core_web_md')
         singleSentences = sentence.split(".")
@@ -118,19 +117,18 @@ class AutomaticQuestionGenerator():
         return questionsList
 
     # AQG Display the Generated Question
-    def Check(self, str):
+    def Check(self, string):
         tmp = []
-        for i in range(len(str)):
-            if len(str[i]) >= 3:
-                if questionValidation.hNvalidation(str[i]) == 1:
-                    if ((str[i][0] == 'W' and str[i][1] == 'h') or (str[i][0] == 'H' and str[i][1] == 'o') or (
-                            str[i][0] == 'H' and str[i][1] == 'a')):
-                        WH = str[i].split(',')
+        for i in range(len(string)):
+            if len(string[i]) > 2:
+                if questionValidation.hNvalidation(string[i]) == 1:
+                    if ((string[i][0] == 'W' and string[i][1] == 'h') or (string[i][0] == 'H' and string[i][1] == 'o') or
+                            (string[i][0] == 'H' and string[i][1] == 'a')):
+                        WH = string[i].split(',')
                         if len(WH) == 1:
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i] + "?"
-                            tmp.append(str[i])
-
+                            string[i] = string[i][:-1]
+                            string[i] = string[i][:-1]
+                            string[i] = string[i][:-1]
+                            string[i] = string[i] + "?"
+                            tmp.append(string[i])
         return tmp
