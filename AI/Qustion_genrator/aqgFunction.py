@@ -2,11 +2,8 @@ import spacy
 import clause
 import nonClause
 import identification
-import questionValidation
-from nlpNER import nerTagger
 
 class AutomaticQuestionGenerator():
-    # AQG Parsing & Generate a question
     def aqgParse(self, sentence):
         nlp = spacy.load('en_core_web_md')
         singleSentences = sentence.split(".")
@@ -93,6 +90,7 @@ class AutomaticQuestionGenerator():
                                         pass
 
                                     else:
+                                        print(segmentSets)
                                         try:
                                             questionsList += nonClause.what_whom1(segmentSets, j, ner)
                                         except Exception:
@@ -113,24 +111,19 @@ class AutomaticQuestionGenerator():
                                             questionsList += nonClause.howmuch_1(segmentSets, j, ner)
                                         except Exception:
                                             pass
-
-                # questionsList.append('\n')
         return questionsList
 
-    # AQG Display the Generated Question
-    def Check(self, str):
-        tmp = []
-        for i in range(len(str)):
-            if len(str[i]) >= 3:
-                if questionValidation.hNvalidation(str[i]) == 1:
-                    if ((str[i][0] == 'W' and str[i][1] == 'h') or (str[i][0] == 'H' and str[i][1] == 'o') or (
-                            str[i][0] == 'H' and str[i][1] == 'a')):
-                        WH = str[i].split(',')
-                        if len(WH) == 1:
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i][:-1]
-                            str[i] = str[i] + "?"
-                            tmp.append(str[i])
 
-        return tmp
+def nerTagger(nlp, tokenize):
+    doc = nlp(tokenize)
+    finalList = []
+    array = [[]]
+    for word in doc:
+        array[0] = 0
+        for ner in doc.ents:
+            if ner.text == word.text:
+                finalList.append((word.text, ner.label_))
+                array[0] = 1
+        if not array[0]:
+            finalList.append((word.text, 'O'))
+    return finalList
