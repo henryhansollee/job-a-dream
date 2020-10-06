@@ -7,7 +7,7 @@
       <div style="">
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
-          <div class="dropdown dropleft mr-5 pr-5">
+          <div class="dropdown dropleft">
             <button
               type="button"
               class="mr-5 pr-5 basic-btn"
@@ -39,10 +39,10 @@
         >
           {{ tag }}
         </div>
-        <div class="d-flex justify-content-center ml-5" style="width:80%;">
+        <div class="d-flex justify-content-center" style="width:100%;">
           <audio
-            class="mt-5 ml-5 basic-btn"
-            style="width:70%; "
+            class="mt-5 basic-btn"
+            style="width:50%; "
             controls
             :src="'http://localhost:8080'+audioResult.audio_file"
           ></audio>
@@ -50,17 +50,17 @@
       </div>
       <div class="d-flex">
         <v-sheet
-            class="d-flex flex-column mt-5 w-25 text-center"
+            class="d-flex flex-column mt-5 mr-3 w-25 text-center"
             color="grey lighten-3"
             height="400"
           >
-          <h1 class="mt-5">추출된 대본</h1>
-          <h3>정확도: {{ Math.floor(audioResult.result.confidence * 100) }}%</h3>
+          <h2 class="mt-5">추출된 대본</h2>
+          <h4>정확도: {{ Math.floor(audioResult.result.confidence * 100) }}%</h4>
           <p>{{ audioResult.result.script }}</p>
         </v-sheet>
         
         <v-sheet
-          class="d-flex flex-column w-75 text-center mt-5"
+          class="d-flex flex-column w-75 text-center mt-5 mr-5 pr-5"
           color="yellow lighten-3"
           height="400"
         >
@@ -68,8 +68,8 @@
         </v-sheet>
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
-        <router-link class="text-decoration-none mr-5" to="/audios/list">
-          <v-btn class="mr-5 basic-btn" medium color="warning" dark
+        <router-link class="text-decoration-none" to="/audios/list">
+          <v-btn class="basic-btn" medium color="warning" dark
             >목록으로</v-btn
           >
         </router-link>
