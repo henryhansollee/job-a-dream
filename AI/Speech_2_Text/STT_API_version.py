@@ -1,4 +1,5 @@
 from google.cloud import speech
+import ffmpeg
 import os
 def transcribe_file(speech_file):
     client = speech.SpeechClient()
