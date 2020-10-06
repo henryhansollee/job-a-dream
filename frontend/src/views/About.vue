@@ -31,6 +31,15 @@
         <span class="center">19.5%</span>
       </div>
     </div>
+
+    <div class="d-flex justify-content-around mr-5 ml-4" style="font-size:x-large">
+      <div class="pl-5">면접</div>
+      <div class>인적성 및 필기시험</div>
+      <div>서류전형</div>
+    </div>
+    <div class="d-flex justify-content-end mr-5" style="font-size:x-large;">
+      <div class="mr-5 mb-5" style="padding-right:50px;">조사 기관: 취업포털 커리어</div>
+    </div>
   </div>
 </template>
 
