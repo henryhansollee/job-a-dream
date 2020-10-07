@@ -9,9 +9,10 @@ def question_generator(text):
     Text = text
     question = []
     for value, tag in set(komo.pos(Text)):
-        if tag == 'NNP' and value != '제가':
+        if tag == 'NNP' and value != '제가' and '!' not in value:
             question.append('왜 '+ value+ '인가요?')
-            question.append(value + '에 대해서 자신이 아는대로 설명해주세요.')
+            question.append(value + '에 대해서 설명해주세요.')
             question.append(value + '의 장단점이 무엇이라고 생각하시나요?')
-    print(sample(question, 3))
-    return sample(question, 3) if len(question) >= 3 else 0
+            question.append(value + '에 대해 영어로 묘사해주세요.')
+    # print(sample(question, 3))
+    return sample(question, 3) if len(question) >= 3 else []
