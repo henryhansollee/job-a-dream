@@ -1,9 +1,6 @@
 <template>
   <div class="p-5" style="">
-    <div
-      class="ml-5 d-flex flex-column justify-content-between"
-      style="padding-top:3px;width:100%;"
-    >
+    <div class="ml-5 d-flex flex-column justify-content-between" style="padding-top:3px;width:100%;">
       <div style="">
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
@@ -28,9 +25,8 @@
         <h6 style="color:gray;font-size:14.5px;">
           {{ cutDate(audioResult.created_at) }}
         </h6>
-        <!--질문 뽑아와야 됨-->
         <h5 class="mt-5" style="font-size:x-large;">
-          질문: {{ audioResult.question }}
+          질문: {{ audioResult.question.content }}
         </h5>
         <div
           v-for="tag in cutTag(audioResult.tag)"
@@ -69,9 +65,7 @@
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none" to="/audios/list">
-          <v-btn class="basic-btn" medium color="warning" dark
-            >목록으로</v-btn
-          >
+          <v-btn class="basic-btn" medium color="warning" dark>목록으로</v-btn>
         </router-link>
       </div>
     </div>
