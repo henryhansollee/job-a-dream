@@ -53,7 +53,6 @@ Markdown==3.2.2
 matplotlib==3.3.2
 murmurhash==1.0.2
 mypy-extensions==0.4.3
-nltk==3.5
 numpy==1.19.2
 oauthlib==3.1.0
 opencv-python==3.4.8.29
@@ -64,7 +63,6 @@ preshed==3.0.2
 proto-plus==1.10.0
 protobuf==3.13.0
 psycopg2==2.8.6
-py-hanspell==1.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
