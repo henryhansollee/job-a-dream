@@ -114,7 +114,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_USER", response.data);
         })
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     signup({ dispatch }, signupData) {
@@ -139,7 +141,7 @@ export default new Vuex.Store({
       commit("SET_AUTH", null);
       cookies.remove("accessToken");
       cookies.remove("authCheck");
-      router.push('/');
+      router.push("/");
       router.go();
     },
 
@@ -154,7 +156,9 @@ export default new Vuex.Store({
         .then(() => {
           router.go();
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getQuestions({ getters, commit }) {
@@ -163,7 +167,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_QUESTIONS", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     createQuestion({ getters }, questionData) {
@@ -189,9 +195,13 @@ export default new Vuex.Store({
             .then((response) => {
               commit("GET_QUESTIONS", response.data);
             })
-            .catch((error) => {console.log(error)});
+            .catch((error) => {
+              console.log(error);
+            });
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getVideos({ getters, commit }) {
@@ -211,7 +221,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/videos/list/");
         })
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getVideoResult({ getters, commit }, video_id) {
@@ -223,7 +235,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_VIDEO_RESULT", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     deleteVideo({ getters }, video_id) {
@@ -236,7 +250,9 @@ export default new Vuex.Store({
           router.push(`/videos/list/`);
           router.go();
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getAudios({ getters, commit }) {
@@ -245,7 +261,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_AUDIOS", response.data);
         })
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     createAudio({ getters }, audioData) {
@@ -254,7 +272,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/audios/list/");
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getAudioResult({ getters, commit }, audio_id) {
@@ -266,7 +286,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_AUDIO_RESULT", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     deleteAudio({ getters }, audio_id) {
@@ -279,7 +301,9 @@ export default new Vuex.Store({
           router.push(`/audios/list/`);
           router.go();
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getCoverletters({ getters, commit }) {
@@ -288,7 +312,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_COVERLETTERS", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     createCoverletter({ getters }, coverletterData) {
@@ -301,7 +327,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/coverletters/list/");
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     createCoverletter2({ dispatch, getters }, coverletterData) {
@@ -312,10 +340,11 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {
-          dispatch('getQuestions')
-
+          dispatch("getQuestions");
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getCoverletterResult({ getters, commit }, coverletter_id) {
@@ -327,7 +356,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_COVERLETTER_RESULT", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     updateCoverletter({ getters }, updatedCoverletterData) {
@@ -342,7 +373,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push(`/coverletters/detail/${updatedCoverletterData.id}`);
         })
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     deleteCoverletter({ getters }, coverletter_id) {
@@ -355,7 +388,9 @@ export default new Vuex.Store({
           router.push(`/coverletters/list/`);
           router.go();
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getFullcourses({ getters, commit }) {
@@ -379,7 +414,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/fullcourses/list/");
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getFullcourseResult({ getters, commit }, fullcourse_id) {
@@ -389,10 +426,12 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response,'ddd')
+          console.log(response, "ddd");
           commit("GET_FULLCOURSE_RESULT", response.data);
         })
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     deleteFullcourse({ getters }, fullcourse_id) {
@@ -405,7 +444,9 @@ export default new Vuex.Store({
           router.push(`/fullcourses/list/`);
           router.go();
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getResults({ getters, commit }) {
@@ -414,7 +455,9 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_RESULTS", response.data);
         })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 });
