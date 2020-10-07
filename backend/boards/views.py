@@ -24,7 +24,9 @@ class BoardListAPI(APIView):
             result = question_generator(request.data['content'])
             print(result)
             
-            if len(result) == 1:
+            if len(result) == 0:
+                return Response('질문 추출 불가')
+            elif len(result) == 1:
                 board_result_queryset = BoardResult.objects.create(q1=result[0])
                 Question.objects.create(content=result[0], writer=request.user)
             elif len(result) == 2:
