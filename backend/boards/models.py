@@ -15,6 +15,11 @@ class Tag(TimeStampModel):
     def __str__(self):
         return self.name
 
+class BoardResult(models.Model):
+    q1 = models.TextField(blank=True)
+    q2 = models.TextField(blank=True)
+    q3 = models.TextField(blank=True)
+
 class Board(TimeStampModel):
     title = models.CharField(max_length=30)
     subject = models.CharField(max_length=100)
@@ -22,6 +27,7 @@ class Board(TimeStampModel):
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
+    questions = models.ForeignKey(BoardResult, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.content

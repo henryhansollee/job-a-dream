@@ -24,7 +24,6 @@ export default new Vuex.Store({
     audioResult: "",
     coverletterResult: "",
     fullcourseResult: "",
-    tags: "",
   },
 
   getters: {
@@ -42,6 +41,10 @@ export default new Vuex.Store({
     SET_AUTH(state, id) {
       state.authCheck = id;
       cookies.set("authCheck", id);
+      // Swal.fire({
+      //   text: "환영합니다.",
+      //   icon: "success",
+      // });
     },
     SET_USER(state, user) {
       state.user = user;
@@ -85,8 +88,6 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // ----- 유저 -----
-    // 유저
     getAuth({ commit, dispatch }, info) {
       axios
         .post(BACKEND.URL + info.location, info.data)
@@ -96,10 +97,6 @@ export default new Vuex.Store({
           commit("SET_USER", res.data.user);
           dispatch("getUser");
           router.push("/about");
-          Swal.fire({
-            text: "환영합니다.",
-            icon: "success",
-          });
           router.go();
         })
         .catch((err) => {
@@ -111,19 +108,15 @@ export default new Vuex.Store({
         });
     },
 
-    //유저 정보 받아오기
     getUser({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.user, getters.config)
         .then((response) => {
           commit("GET_USER", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error);});
     },
 
-    // 회원가입
     signup({ dispatch }, signupData) {
       const info = {
         data: signupData,
@@ -133,7 +126,6 @@ export default new Vuex.Store({
       router.go();
     },
 
-    // 로그인
     login({ dispatch }, loginData) {
       const info = {
         data: loginData,
@@ -142,20 +134,15 @@ export default new Vuex.Store({
       dispatch("getAuth", info);
     },
 
-    // 로그아웃
     logout({ commit }) {
-      Swal.fire({
-        text: "로그아웃 성공.",
-        icon: "success",
-      });
       commit("SET_TOKEN", null);
       commit("SET_AUTH", null);
       cookies.remove("accessToken");
       cookies.remove("authCheck");
-      router.push({ name: "Home" });
+      router.push('/');
+      router.go();
     },
 
-    // 회원정보수정
     updateUser({ getters }, updatedUserData) {
       console.log(updatedUserData);
       axios
@@ -167,25 +154,18 @@ export default new Vuex.Store({
         .then(() => {
           router.go();
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 질문 -----
-    // 질문 리스트
     getQuestions({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.questions, getters.config)
         .then((response) => {
           commit("GET_QUESTIONS", response.data);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 질문 추가
     createQuestion({ getters }, questionData) {
       axios
         .post(
@@ -194,10 +174,9 @@ export default new Vuex.Store({
           getters.config
         )
         .then(() => {})
-        .catch((err) => console.log(err));
+        .catch((error) => console.log(error));
     },
 
-    // 질문 삭제
     deleteQuestion({ getters, commit }, question_id) {
       axios
         .delete(
@@ -210,22 +189,15 @@ export default new Vuex.Store({
             .then((response) => {
               commit("GET_QUESTIONS", response.data);
             })
-            .catch((err) => {
-              console.log(err);
-            });
+            .catch((error) => {console.log(error)});
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 영상 분석 -----
-    // 영상 리스트
     getVideos({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.videos, getters.config)
         .then((response) => {
-          console.log(response, "영상 리스트");
           commit("GET_VIDEOS", response.data);
         })
         .catch((error) => {
@@ -233,23 +205,15 @@ export default new Vuex.Store({
         });
     },
 
-    // 영상 분석 시작
     createVideo({ getters }, videoData) {
-      console.log(videoData, "영상 분석 Inputs");
-      for (var pair of videoData.entries()) {
-        console.log(pair[0] + "," + pair[1], "영상 분석 FormData 내용들");
-      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.videos, videoData, getters.config)
         .then(() => {
           router.push("/videos/list/");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error);});
     },
 
-    // 영상 분석 결과
     getVideoResult({ getters, commit }, video_id) {
       axios
         .get(
@@ -257,15 +221,11 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response, "영상 분석 결과");
           commit("GET_VIDEO_RESULT", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 영상 분석 삭제
     deleteVideo({ getters }, video_id) {
       axios
         .delete(
@@ -276,42 +236,27 @@ export default new Vuex.Store({
           router.push(`/videos/list/`);
           router.go();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 음성 분석 -----
-    // 음성 리스트
     getAudios({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.audios, getters.config)
         .then((response) => {
-          console.log(response, "음성 리스트");
           commit("GET_AUDIOS", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error);});
     },
 
-    // 음성 분석 시작
     createAudio({ getters }, audioData) {
-      console.log(audioData, "음성 분석 Inputs");
-      for (var pair of audioData.entries()) {
-        console.log(pair[0] + "," + pair[1], "음성 분석 FormData 내용들");
-      }
       axios
         .post(BACKEND.URL + BACKEND.ROUTES.audios, audioData, getters.config)
         .then(() => {
           router.push("/audios/list/");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 음성 분석 결과
     getAudioResult({ getters, commit }, audio_id) {
       axios
         .get(
@@ -319,15 +264,11 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response, "음성 분석 결과");
           commit("GET_AUDIO_RESULT", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 음성 분석 삭제
     deleteAudio({ getters }, audio_id) {
       axios
         .delete(
@@ -338,28 +279,19 @@ export default new Vuex.Store({
           router.push(`/audios/list/`);
           router.go();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 자소서 분석 -----
-    // 자소서 분석 리스트
     getCoverletters({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.coverletters, getters.config)
         .then((response) => {
-          console.log(response, "자소서 리스트");
           commit("GET_COVERLETTERS", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 자소서 분석 시작
     createCoverletter({ getters }, coverletterData) {
-      console.log(coverletterData, "자소서 분석 Inputs");
       axios
         .post(
           BACKEND.URL + BACKEND.ROUTES.coverletters,
@@ -369,12 +301,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/coverletters/list/");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 자소서 분석 결과
     getCoverletterResult({ getters, commit }, coverletter_id) {
       axios
         .get(
@@ -382,17 +311,12 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response, "자소서 분석 결과");
           commit("GET_COVERLETTER_RESULT", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 자소서 분석 수정
     updateCoverletter({ getters }, updatedCoverletterData) {
-      console.log(updatedCoverletterData, "1111111111111111111");
       axios
         .put(
           BACKEND.URL +
@@ -404,12 +328,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push(`/coverletters/detail/${updatedCoverletterData.id}`);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error);});
     },
 
-    // 자소서 분석 삭제
     deleteCoverletter({ getters }, coverletter_id) {
       axios
         .delete(
@@ -420,18 +341,13 @@ export default new Vuex.Store({
           router.push(`/coverletters/list/`);
           router.go();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 풀코스 분석 -----
-    // 풀코스 리스트
     getFullcourses({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.fullcourses, getters.config)
         .then((response) => {
-          console.log(response, "풀코스 리스트");
           commit("GET_FULLCOURSES", response.data);
         })
         .catch((error) => {
@@ -439,12 +355,7 @@ export default new Vuex.Store({
         });
     },
 
-    // 풀코스 시작
     createFullcourse({ getters }, fullcourseData) {
-      console.log(fullcourseData, "풀코스 분석 Inputs");
-      for (var pair of fullcourseData.entries()) {
-        console.log(pair[0] + "," + pair[1], "풀코스 분석 FormData 내용들");
-      }
       axios
         .post(
           BACKEND.URL + BACKEND.ROUTES.fullcourses,
@@ -454,12 +365,9 @@ export default new Vuex.Store({
         .then(() => {
           router.push("/fullcourses/list/");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // 풀코스 결과
     getFullcourseResult({ getters, commit }, fullcourse_id) {
       axios
         .get(
@@ -467,15 +375,11 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response, "풀코스 분석 결과");
           commit("GET_FULLCOURSE_RESULT", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error);});
     },
 
-    // 풀코스 삭제
     deleteFullcourse({ getters }, fullcourse_id) {
       axios
         .delete(
@@ -486,36 +390,16 @@ export default new Vuex.Store({
           router.push(`/fullcourses/list/`);
           router.go();
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((error) => {console.log(error)});
     },
 
-    // ----- 통계 및 결과 -----
     getResults({ getters, commit }) {
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.results, getters.config)
         .then((response) => {
-          console.log(response, "결과");
           commit("SET_RESULTS", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
-    // 태그 분리 및 # 추가 작업
-    EditTag({ commit }, tags) {
-      console.log(tags, "태그목록");
-      let result = [];
-      let arr = tags[0].split(",");
-      for (let tag of arr) {
-        let res = "#" + tag;
-        result.push(res);
-      }
-      commit("EDIT_TAGS", result);
+        .catch((error) => {console.log(error)});
     },
   },
-
-  modules: {},
 });

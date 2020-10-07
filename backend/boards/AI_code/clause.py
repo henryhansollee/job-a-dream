@@ -2,7 +2,6 @@ import nltk
 from . import identification
 from . import nonClause
 
-
 def whom_1(segment_set, num, ner):
     tok = nltk.word_tokenize(segment_set[num])
     tag = nltk.pos_tag(tok)
@@ -13,7 +12,7 @@ def whom_1(segment_set, num, ner):
     list1 = identification.chunk_search(segment_set[num], chunked)
     list3 = []
 
-    if len(list1) != 0:
+    if len(list1):
         for j in range(len(chunked)):
             str1 = ""
             str2 = ""
@@ -184,7 +183,7 @@ def whom_3(segment_set, num, ner):
     list1 = identification.chunk_search(segment_set[num], chunked)
     list3 = []
 
-    if len(list1) != 0:
+    if len(list1):
         for j in range(len(chunked)):
             str1 = ""
             str2 = ""
@@ -211,7 +210,7 @@ def whom_3(segment_set, num, ner):
                             break
 
                     for x1 in range(len(ner)):
-                        if ner[x1][0] == chunked[j][x][0]:
+                        if ner[x1][0] == chunked[j][x1][0]:
                             if ner[x1][1] == "PERSON":
                                 str2 = " whom "
                             elif ner[x1][1] == "LOC" or ner[x1][1] == "ORG" or ner[x1][1] == "GPE":

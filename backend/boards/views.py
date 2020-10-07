@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from questions.models import Question
-from .models import Board
+from .models import Board, BoardResult
 from .serializers import BoardSerializer
-from .AI_code.main import main
+from .main import question_generator
 
 class BoardListAPI(APIView):
 
@@ -21,8 +21,24 @@ class BoardListAPI(APIView):
         if serializer.is_valid():
             serializer.save(writer=request.user)
 
-            questions = main(request.data['content'])
-            print(questions)
+            result = question_generator(request.data['content'])
+            print(result)
+            
+            if len(result) == 1:
+                board_result_queryset = BoardResult.objects.create(q1=result[0])
+                Question.objects.create(content=result[0], writer=request.user)
+            elif len(result) == 2:
+                board_result_queryset = BoardResult.objects.create(q1=result[0], q2=result[1])
+                Question.objects.create(content=result[0], writer=request.user)
+                Question.objects.create(content=result[1], writer=request.user)
+            elif len(result) == 3:
+                board_result_queryset = BoardResult.objects.create(q1=result[0], q2=result[1], q3=result[2])
+                Question.objects.create(content=result[0], writer=request.user)
+                Question.objects.create(content=result[1], writer=request.user)
+                Question.objects.create(content=result[2], writer=request.user)
+
+            serializer.save(questions=board_result_queryset)
+
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 

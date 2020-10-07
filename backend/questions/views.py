@@ -9,7 +9,7 @@ from .serializers import QuestionSerializer
 class QuestionListAPI(APIView):
 
     def get(self, request):
-        serializer = QuestionSerializer(Question.objects.all(), many=True)
+        serializer = QuestionSerializer(Question.objects.filter(writer=request.user), many=True)
         return Response(serializer.data, status=200)
     
     def post(self, request):

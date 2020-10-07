@@ -4,15 +4,15 @@ def chunk_search(segment, chunked):
     m = len(chunked)
     list1 = []
     for j in range(m):
-        if (len(chunked[j]) > 2 or len(chunked[j]) == 1):
+        if len(chunked[j]) > 2 or len(chunked[j]) == 1:
             list1.append(j)
-        if (len(chunked[j]) == 2):
+        elif len(chunked[j]) == 2:
             try:
                 str1 = chunked[j][0][0] + " " + chunked[j][1][0]
             except Exception:
                 pass
             else:
-                if (str1 in segment) == True:
+                if str1 in segment:
                     list1.append(j)
     return list1
 
@@ -30,15 +30,15 @@ def clause_identify(segment):
 
     flag = 0
     for j in range(len(chunked)):
-        if (len(chunked[j]) > 2):
+        if len(chunked[j]) > 2:
             flag = 1
-        if (len(chunked[j]) == 2):
+        if len(chunked[j]) == 2:
             try:
                 str1 = chunked[j][0][0] + " " + chunked[j][1][0]
             except Exception:
                 pass
             else:
-                if (str1 in segment) == True:
+                if str1 in segment:
                     flag = 1
         if flag == 1:
             break
@@ -110,7 +110,7 @@ def verbphrase_identify(clause):
             if tag1[0][1] == 'VBZ':
                 X = 'does'
             str4 = X + " " + str2 + str3
-        if (tag1[0][0] == 'are' or tag1[0][0] == 'were' or tag1[0][0] == 'is' or tag1[0][0] == 'am'):
+        if tag1[0][0] == 'are' or tag1[0][0] == 'were' or tag1[0][0] == 'is' or tag1[0][0] == 'am':
             str4 = tag1[0][0] + " " + str2
 
     return str4

@@ -1,11 +1,22 @@
 from rest_framework import serializers
-from .models import Audio, AudioResult, Tag
 
-class AudioResultSerializer(serializers.ModelSerializer):
+from questions.serializers import QuestionSerializer
+
+from .models import Audio, Result, Dictionary, Tag
+
+
+class DictionarySerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = AudioResult
-        exclude = ['id', 'created_at', 'updated_at']
+        model = Dictionary
+        exclude = ['id']
+
+class ResultSerializer(serializers.ModelSerializer):
+    nouns = DictionarySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Result
+        exclude = ['id']
 
 class AudioSerializer(serializers.ModelSerializer):
     
@@ -13,7 +24,8 @@ class AudioSerializer(serializers.ModelSerializer):
     update_tag = serializers.ListField(
         child=serializers.CharField(max_length=100), write_only=True
     )
-    result = AudioResultSerializer(required=False)
+    result = ResultSerializer(required=False)
+    question = QuestionSerializer(required=False, read_only=True)
 
     def create(self, validated_data):
         tag_name = validated_data.pop('update_tag')
@@ -40,4 +52,3 @@ class AudioSerializer(serializers.ModelSerializer):
         model = Audio
         exclude = []
         read_only_fields = ['writer', 'result']
-

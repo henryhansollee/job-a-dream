@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
+from questions.models import Question
+
 from .models import Video, Gaze, Emotion, HeadPosition, VideoResult
 from .serializers import VideoSerializer, ResultSerializer
 
@@ -52,7 +54,7 @@ class VideoListAPI(APIView):
             
             os.remove(os.path.join(settings.MEDIA_ROOT+'videos/'+str(request.data['video_file'])))
 
-            serializer.save(result=video_result_queryset)
+            serializer.save(result=video_result_queryset, question=Question.objects.get(pk=request.data['question']))
             
             return Response(serializer.data, status=201)
         print(serializer.errors)

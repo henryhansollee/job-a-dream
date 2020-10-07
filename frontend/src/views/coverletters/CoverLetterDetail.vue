@@ -49,25 +49,25 @@
         <p />
       </div>
 
-      <div
-        class="d-flex flex-row justify-content-around mt-4"
-        style="width:90%; height:250px; border:3px solid blue;"
-      >
-        <div style="width:48%; height:100%; border:3px solid green;">
-          <h5>{{ coverletterResult.subject }}</h5>
-          <h5>{{ coverletterResult.content }}</h5>
-        </div>
-        <div style="width:48%; height:100%; border:3px solid orange;">
-          맞춤법 검사 결과
-        </div>
-      </div>
-      <p />
-      <div>
-        <h5>예상질문</h5>
-        <div style="width:90%; height:200px; border:3px solid red;">
-          예상 질문 리스트
-        </div>
-      </div>
+      <v-sheet
+          class="d-flex flex-column mb-3"
+          color="grey lighten-3"
+          height="300"
+        >
+        <h3 class="text-center mt-3">자기소개서</h3>
+        <h5 class="ml-3 mr-3">항목: {{ coverletterResult.subject }}</h5>
+        <h5 class="ml-3 mr-3">{{ coverletterResult.content }}</h5>
+      </v-sheet>
+      <h3>추천 질문</h3>
+      <v-sheet
+          v-for="question in coverletterResult.questions"
+          :key="question.id"
+          class="d-flex mb-3"
+          color="yellow lighten-4"
+          height="50"
+        >
+        <h5>Q. {{ question }}</h5>
+      </v-sheet>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none mr-5" to="/coverletters/list">
           <v-btn class="mr-5 basic-btn" medium color="warning" dark
