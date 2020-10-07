@@ -8,7 +8,7 @@ export default {
         labels: ["왼쪽", "오른쪽", "위쪽", "아래쪽"],
         datasets: [
           {
-            label: "움직임 추이",
+            label: "움직임 통계",
             backgroundColor: "#fcbe32",
             pointBackgroundColor: "white",
             borderWidth: 1,
