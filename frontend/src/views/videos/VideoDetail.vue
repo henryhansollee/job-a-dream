@@ -30,7 +30,6 @@
           <h6 style="color:gray;font-size:14.5px;">
             {{ cutDate(videoResult.created_at) }}
           </h6>
-          <!--질문 뽑아와야 됨-->
           <h5 class="mt-5" style="font-size:x-large;">
             질문: {{ videoResult.question.content }}
           </h5>
@@ -80,8 +79,6 @@
       </div>
     </div>
   </div>
-
-    <!--감정-->
     <div
       v-if="videoResult.result"
       class="pt-5 d-flex justify-content-around"
@@ -230,7 +227,6 @@
             </div>
           </div>
           <div class="flip-card-back">
-            <!-- <h4 class="pt-2">두려움</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 눈썹이 올라가고, 가운데로 당겨진다.</small><br />
               <small>- 눈꺼풀 위가 올라간다.</small><br />
@@ -244,62 +240,9 @@
 </template>
 
 <script>
-import $ from "jquery";
 import { mapState, mapActions } from "vuex";
 
-$(window).ready(function() {
-  blinkNlook();
-});
-
-function blinkNlook() {
-  $(".lidT")
-    .animate(
-      {
-        top: "-40",
-      },
-      500
-    )
-    .delay(200)
-    .animate({
-      top: "-80",
-    });
-  $(".lidB")
-    .animate(
-      {
-        bottom: "-40",
-      },
-      500
-    )
-    .delay(200)
-    .animate({
-      bottom: "-80",
-    });
-  $(".pup")
-    .delay(900)
-    .animate(
-      {
-        left: "80",
-      },
-      500
-    )
-    .delay(200)
-    .animate(
-      {
-        left: "0",
-      },
-      700
-    )
-    .delay(200)
-    .animate({
-      left: 40,
-    });
-}
-
 export default {
-  data() {
-    return {
-    };
-  },
   computed: {
     ...mapState(["videoResult", "tags"]),
   },
@@ -325,9 +268,6 @@ export default {
         }
         return result;
       }
-    },
-    blink() {
-      this.$refs.blinkkk;
     },
   },
   created() {
@@ -358,8 +298,7 @@ export default {
   transform: rotateY(180deg);
 }
 
-.flip-card-front,
-.flip-card-back {
+.flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -375,168 +314,5 @@ export default {
   background-color: #fcbe32;
   color: #043566;
   transform: rotateY(180deg);
-}
-
-.catHolder {
-  width: 300px;
-  top: 10em;
-}
-.head {
-  display: block;
-  position: relative;
-  background: #821067;
-  border-radius: 100px 100px 0 0;
-  height: 200px;
-  width: 300px;
-}
-.head:after,
-.head:before {
-  content: "";
-  display: block;
-  border-bottom: 130px solid #821067;
-  position: absolute;
-  top: -20px;
-}
-.head:before {
-  left: 0;
-  border-left: 0 solid transparent;
-  border-right: 120px solid transparent;
-}
-.head:after {
-  right: 0;
-  border-right: 0 solid transparent;
-  border-left: 120px solid transparent;
-}
-.face {
-  width: 210px;
-  margin: 0 auto;
-  display: block;
-}
-.socket {
-  border-radius: 50%;
-  height: 102px;
-  width: 102px;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-  top: -1px;
-  left: -1px;
-  display: inline-block;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
-  z-index: 100;
-}
-.eye {
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  background: #fad73f;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  position: relative;
-  top: 1px;
-  left: 1px;
-  display: inline-block;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
-  z-index: 100;
-}
-.pup {
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  background: #2b2b2b;
-  display: block;
-  position: absolute;
-  top: 40px;
-  left: 40px;
-}
-.lidT {
-  display: block;
-  width: 101px;
-  height: 101px;
-  background: #821067;
-  position: absolute;
-  top: -80px;
-  z-index: 20;
-}
-.lidB {
-  display: block;
-  width: 100px;
-  height: 100px;
-  background: #821067;
-  position: absolute;
-  bottom: -80px;
-  z-index: 20;
-}
-.smile {
-  width: 200px;
-  height: 80px;
-  overflow: hidden;
-  position: relative;
-  border-top: 2px solid brown;
-  top: 50px;
-  left: 2px;
-  display: block;
-}
-.hC {
-  display: block;
-  height: 200px;
-  width: 200px;
-  background: #f7f7f7;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 5px;
-  box-shadow: 0 5px 0 brown;
-  overflow: hidden;
-}
-.teethLine {
-  height: 1px;
-  width: 200px;
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  bottom: 40px;
-  display: block;
-}
-.tL {
-  width: 1px;
-  height: 200px;
-  background: rgba(0, 0, 0, 0.6);
-  float: left;
-  bottom: 45px;
-  display: block;
-  margin-left: 40px;
-}
-.controls {
-  float: right;
-  width: 300px;
-}
-.face-control {
-  display: block;
-  text-align: center;
-  width: auto;
-  background: brown;
-  padding: 15px;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  font-size: 22px;
-  color: #fff;
-  font-family: "century gothic";
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
-  border-radius: 30px 0 0 30px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
-}
-#loop {
-  float: right;
-}
-.rotate {
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
 }
 </style>
