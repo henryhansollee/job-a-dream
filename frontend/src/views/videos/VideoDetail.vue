@@ -32,7 +32,7 @@
           </h6>
           <!--질문 뽑아와야 됨-->
           <h5 class="mt-5" style="font-size:x-large;">
-            질문: {{ videoResult.question }}
+            질문: {{ videoResult.question.content }}
           </h5>
           <div
             v-for="tag in cutTag(videoResult.tag)"
@@ -54,6 +54,33 @@
         </div>
       </div>
     </div>
+    <div class="d-flex mt-5 ml-5">
+      <div>
+        <h1 class="mt-5">시선분석</h1>
+        <div class="d-flex">
+          <img style="width: 30%;" src="@/assets/videoresult/eyes.png" alt="">
+          <ul>
+            <h5>- 눈 깜빡임: {{ videoResult.result.gaze.blinking }}</h5>
+            <h5>- 정면 응시:{{ videoResult.result.gaze.center }}</h5>
+            <h5>- 왼쪽 응시:{{ videoResult.result.gaze.left }}</h5>
+            <h5>- 오른쪽 응시:{{ videoResult.result.gaze.right }}</h5>
+          </ul>
+        </div>
+      </div>
+      <div>
+      <h1 class="mt-5">고개분석</h1>
+      <div class="d-flex">
+        <img style="width: 30%;" src="@/assets/videoresult/face.png" alt="">
+        <ul>
+          <h5>- 눈 깜빡임: {{ videoResult.result.head.top }}</h5>
+          <h5>- 정면 응시:{{ videoResult.result.head.bottom }}</h5>
+          <h5>- 왼쪽 응시:{{ videoResult.result.head.left }}</h5>
+          <h5>- 오른쪽 응시:{{ videoResult.result.head.right }}</h5>
+        </ul>
+      </div>
+    </div>
+  </div>
+
     <!--감정-->
     <div
       v-if="videoResult.result"
@@ -66,14 +93,14 @@
             <img
               src="@/assets/aboutUs/angry.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               분노: {{ videoResult.result.emotions.angry }}
             </div>
           </div>
           <div class="flip-card-back ">
-            <!-- <h4 class="pt-2">분노</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 양 눈썹이 함께 내려간다.</small><br />
               <small>- 노려보는 눈이 된다.</small><br />
@@ -88,7 +115,8 @@
             <img
               src="@/assets/aboutUs/happy.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               행복: {{ videoResult.result.emotions.happy }}
@@ -109,7 +137,8 @@
             <img
               src="@/assets/aboutUs/neutral.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               무표정: {{ videoResult.result.emotions.neutral }}
@@ -128,7 +157,8 @@
             <img
               src="@/assets/aboutUs/sad.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               슬픔: {{ videoResult.result.emotions.sad }}
@@ -149,7 +179,8 @@
             <img
               src="@/assets/aboutUs/disgusted.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               역겨움: {{ videoResult.result.emotions.disgusted }}
@@ -169,7 +200,8 @@
             <img
               src="@/assets/aboutUs/surprised.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               놀람: {{ videoResult.result.emotions.surprised }}
@@ -190,7 +222,8 @@
             <img
               src="@/assets/aboutUs/fearful.png"
               alt="Avatar"
-              style="width:130px;height:120px;"
+              style="width:100px;height:100px;"
+              class="mt-4"
             />
             <div class="pt-2" style="font-size:x-large;">
               두려움: {{ videoResult.result.emotions.fearful }}
@@ -206,66 +239,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!--시선-->
-    <h1 class="text-center mt-5">시선분석</h1>
-    <div
-      class="d-flex justify-content-center mb-1"
-      style="font-size:x-large;"
-    >
-      
-      <div>눈 깜빡임: {{ videoResult.result.gaze.blinking }}</div>
-    </div>
-    <div class="d-flex justify-content-around" style="margin-top:50px;">
-      <div class="" style="margin-top:80px;font-size:x-large;">
-        왼쪽:{{ videoResult.result.gaze.left }}
-      </div>
-      <div class="catHolder" style="">
-        <span class="head">
-          <span class="face">
-            <span class="socket">
-              <span class="eye">
-                <span class="lidT"></span>
-                <span class="pup"></span>
-                <span class="lidB"></span>
-              </span>
-            </span>
-            <span class="socket">
-              <span class="eye">
-                <span class="lidT"></span>
-                <span class="pup"></span>
-                <span class="lidB"></span>
-              </span>
-            </span>
-            <span class="smile">
-              <span class="hC"
-                ><span class="teethLine"></span><span class="tL"></span
-                ><span class="tL"></span> <span class="tL"></span
-                ><span class="tL"></span><span class="tL"></span
-              ></span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <div style="margin-top:80px;font-size:x-large;">
-        오른쪽:{{ videoResult.result.gaze.right }}
-      </div>
-    </div>
-    <div
-      class="d-flex justify-content-center"
-      style="font-size:x-large;margin-top:80px;"
-    >
-      <div class="mr-5">가운데: {{ videoResult.result.gaze.center }}</div>
-    </div>
-
-    <h1 class="text-center mt-5">고개 움직임 분석</h1>
-    <div
-      class=""
-      style="border:3px solid red; width:100%; height:200px;"
-    >
-      {{ videoResult.result.head }}
-
     </div>
   </div>
 </template>
@@ -360,136 +333,6 @@ export default {
   created() {
     this.getVideoResult(this.$route.params.id);
   },
-  mounted() {
-    $(".catHolder").hover(function() {
-      $(".lidT")
-        .animate(
-          {
-            top: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          top: "-80",
-        });
-      $(".lidB")
-        .animate(
-          {
-            bottom: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          bottom: "-80",
-        });
-      $(".pup")
-        .delay(900)
-        .animate(
-          {
-            left: "80",
-          },
-          500
-        )
-        .delay(200)
-        .animate(
-          {
-            left: "0",
-          },
-          700
-        )
-        .delay(200)
-        .animate({
-          left: 40,
-        });
-    });
-
-    $(".blink").on("click", function() {
-      $(".lidT")
-        .animate(
-          {
-            top: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          top: "-80",
-        });
-      $(".lidB")
-        .animate(
-          {
-            bottom: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          bottom: "-80",
-        });
-    });
-
-    $(".look").on("click", function() {
-      $(".pup")
-        .animate(
-          {
-            left: "80",
-          },
-          500
-        )
-        .delay(200)
-        .animate(
-          {
-            left: "0",
-          },
-          700
-        )
-        .delay(200)
-        .animate({
-          left: 40,
-        });
-    });
-
-    $(".both").on("click", function() {
-      $(".lidT")
-        .animate(
-          {
-            top: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          top: "-80",
-        });
-      $(".lidB")
-        .animate(
-          {
-            bottom: "-40",
-          },
-          500
-        )
-        .delay(200)
-        .animate({
-          bottom: "-80",
-        });
-      $(".pup")
-        .delay(900)
-        .animate({ left: "80" }, 500)
-        .delay(200)
-        .animate(
-          {
-            left: "0",
-          },
-          700
-        )
-        .delay(200)
-        .animate({
-          left: 40,
-        });
-    });
-  },
 };
 </script>
 
@@ -525,11 +368,11 @@ export default {
 }
 
 .flip-card-front {
-  background-color: #043566;
-  color: #ffffff;
+  background-color: #E8EAF6;
+  color: black;
 }
 .flip-card-back {
-  background-color: #dce224;
+  background-color: #FFE0B2;
   color: #043566;
   transform: rotateY(180deg);
 }
