@@ -57,10 +57,16 @@
         
         <v-sheet
           class="d-flex flex-column w-75 text-center mt-5 mr-5 pr-5"
-          color="yellow lighten-3"
+          color="blue lighten-5"
           height="400"
         >
-          워드 클라우드
+        <h3 class="mt-5">워드 클라우드</h3>
+          <wordcloud
+            :data="audioResult.result.nouns"
+            nameKey="key"
+            valueKey="value"
+            color="Accent">
+          </wordcloud>
         </v-sheet>
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
@@ -74,10 +80,17 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import wordcloud from 'vue-wordcloud'
 
 export default {
+  name: "AudioDetail",
   data() {
-    return {};
+    return {
+      myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+    }
+  },
+  components: {
+    wordcloud
   },
   computed: {
     ...mapState(["audioResult"]),
@@ -105,6 +118,9 @@ export default {
         return result;
       }
     },
+    wordClickHandler(name, value, vm) {
+      console.log('wordClickHandler', name, value, vm);
+    }
   },
   created() {
     this.getAudioResult(this.$route.params.id);
