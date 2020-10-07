@@ -9,7 +9,7 @@ Nouns = defaultdict(int)
 def transcribe_file(speech_file):
     client = speech.SpeechClient()
 
-    os.chdir('C:/Users/multicampus/Desktop/Sub-3/s03p23b107/frontend/src/assets/audios')
+    os.chdir('/data/audios')
     os.system('ffmpeg -i '+speech_file+' -vn -acodec pcm_s16le -ar 44100 -ac 2 output.wav')
 
     with open('output.wav', 'rb') as audio_file:
