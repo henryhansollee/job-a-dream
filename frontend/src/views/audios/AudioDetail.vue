@@ -1,9 +1,6 @@
 <template>
   <div class="p-5" style="">
-    <div
-      class="ml-5 d-flex flex-column justify-content-between"
-      style="padding-top:3px;width:100%;"
-    >
+    <div class="ml-5 d-flex flex-column justify-content-between" style="padding-top:3px;width:100%;">
       <div style="">
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
@@ -28,9 +25,8 @@
         <h6 style="color:gray;font-size:14.5px;">
           {{ cutDate(audioResult.created_at) }}
         </h6>
-        <!--질문 뽑아와야 됨-->
         <h5 class="mt-5" style="font-size:x-large;">
-          질문: {{ audioResult.question }}
+          질문: {{ audioResult.question.content }}
         </h5>
         <div
           v-for="tag in cutTag(audioResult.tag)"
@@ -61,17 +57,21 @@
         
         <v-sheet
           class="d-flex flex-column w-75 text-center mt-5 mr-5 pr-5"
-          color="yellow lighten-3"
+          color="blue lighten-5"
           height="400"
         >
-          워드 클라우드
+        <h3 class="mt-5">워드 클라우드</h3>
+          <wordcloud
+            :data="audioResult.result.nouns"
+            nameKey="key"
+            valueKey="value"
+            color="Accent">
+          </wordcloud>
         </v-sheet>
       </div>
       <div class="d-flex justify-content-end mr-5 mt-5">
         <router-link class="text-decoration-none" to="/audios/list">
-          <v-btn class="basic-btn" medium color="warning" dark
-            >목록으로</v-btn
-          >
+          <v-btn class="basic-btn" medium color="warning" dark>목록으로</v-btn>
         </router-link>
       </div>
     </div>
@@ -80,10 +80,17 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import wordcloud from 'vue-wordcloud'
 
 export default {
+  name: "AudioDetail",
   data() {
-    return {};
+    return {
+      myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+    }
+  },
+  components: {
+    wordcloud
   },
   computed: {
     ...mapState(["audioResult"]),
@@ -111,6 +118,9 @@ export default {
         return result;
       }
     },
+    wordClickHandler(name, value, vm) {
+      console.log('wordClickHandler', name, value, vm);
+    }
   },
   created() {
     this.getAudioResult(this.$route.params.id);
