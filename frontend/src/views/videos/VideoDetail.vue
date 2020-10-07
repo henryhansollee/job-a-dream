@@ -54,125 +54,12 @@
         </div>
       </div>
     </div>
+    <!--감정-->
     <div
-      class="mt-5 pt-5 d-flex justify-content-around"
-      style="width:100%; height:220px;"
+      v-if="videoResult.result"
+      class="pt-5 d-flex justify-content-around"
+      style="margin-top:65px;width:100%; height:220px;"
     >
-      <!-- {{ videoResult.result.emotions }} -->
-      <!-- <div class="row flip-boxes">
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              angry<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              disgusted<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              fearful<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              happy<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              newtral<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              sad<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-8 flip-box">
-          <div
-            class="front"
-            style="background-image: url(https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?auto=compress&cs=tinysrgb&h=350);"
-          >
-            <div class="content text-center">
-              surprised<br />
-              <span class="click-for-more"> </span>
-            </div>
-          </div>
-          <div class="back">
-            <div class="content">
-              First Back
-            </div>
-          </div>
-        </div>
-      </div> -->
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
@@ -326,15 +213,69 @@
       </div>
     </div>
 
+    <!--시선-->
     <div
-      class="mt-5 pt-5"
-      style="border:3px solid blue; width:100%; height:200px;"
+      class="d-flex justify-content-center"
+      style="font-size:x-large;margin-top:50px;"
     >
-      {{ videoResult.result.gaze }}
+      <div>눈 깜빡임: {{ videoResult.result.gaze.blinking }}</div>
+    </div>
+    <div class="d-flex justify-content-around" style="margin-top:50px;">
+      <div class="" style="margin-top:80px;font-size:x-large;">
+        왼쪽:{{ videoResult.result.gaze.left }}
+      </div>
+      <div class="catHolder" style="">
+        <span class="head">
+          <span class="face">
+            <span class="socket">
+              <span class="eye">
+                <span class="lidT"></span>
+                <span class="pup"></span>
+                <span class="lidB"></span>
+              </span>
+            </span>
+            <span class="socket">
+              <span class="eye">
+                <span class="lidT"></span>
+                <span class="pup"></span>
+                <span class="lidB"></span>
+              </span>
+            </span>
+            <span class="smile">
+              <span class="hC"
+                ><span class="teethLine"></span><span class="tL"></span
+                ><span class="tL"></span> <span class="tL"></span
+                ><span class="tL"></span><span class="tL"></span
+              ></span>
+            </span>
+          </span>
+        </span>
+        <!-- <div class="controls clearfix">
+        <div ref="blinkkk" class="blink face-control" @click="blink">
+          Click to blink
+        </div>
+        <span class="clearfix"></span>
+
+        <div class="look face-control">Click to Look</div>
+        <div class="both face-control">Click for Both</div>
+        <input type="radio" id="loop" />
+      </div> -->
+      </div>
+      <div style="margin-top:80px;font-size:x-large;">
+        오른쪽:{{ videoResult.result.gaze.right }}
+      </div>
     </div>
     <div
-      class="mt-5 pt-5"
-      style="border:3px solid red; width:100%; height:200px;"
+      class="d-flex justify-content-center"
+      style="font-size:x-large;margin-top:80px;"
+    >
+      <div class="mr-5">가운데: {{ videoResult.result.gaze.center }}</div>
+    </div>
+
+    <!--움직임-->
+    <div
+      class=""
+      style="border:3px solid red;margin-top:90px; width:100%; height:200px;"
     >
       {{ videoResult.result.head }}
     </div>
@@ -342,8 +283,99 @@
 </template>
 
 <script>
+import $ from "jquery";
 import { mapState, mapActions } from "vuex";
-// import { TagList } from "../../plugins/editTag";
+
+$(window).ready(function() {
+  blinkNlook();
+  // $(".catHolder").on("click", function() {
+  //   $(".lidT")
+  //     .animate(
+  //       {
+  //         top: "-40",
+  //       },
+  //       500
+  //     )
+  //     .delay(200)
+  //     .animate({
+  //       top: "-80",
+  //     });
+  //   $(".lidB")
+  //     .animate(
+  //       {
+  //         bottom: "-40",
+  //       },
+  //       500
+  //     )
+  //     .delay(200)
+  //     .animate({
+  //       bottom: "-80",
+  //     });
+  //   $(".pup")
+  //     .delay(900)
+  //     .animate(
+  //       {
+  //         left: "80",
+  //       },
+  //       500
+  //     )
+  //     .delay(200)
+  //     .animate(
+  //       {
+  //         left: "0",
+  //       },
+  //       700
+  //     )
+  //     .delay(200)
+  //     .animate({
+  //       left: 40,
+  //     });
+  // });
+});
+
+function blinkNlook() {
+  $(".lidT")
+    .animate(
+      {
+        top: "-40",
+      },
+      500
+    )
+    .delay(200)
+    .animate({
+      top: "-80",
+    });
+  $(".lidB")
+    .animate(
+      {
+        bottom: "-40",
+      },
+      500
+    )
+    .delay(200)
+    .animate({
+      bottom: "-80",
+    });
+  $(".pup")
+    .delay(900)
+    .animate(
+      {
+        left: "80",
+      },
+      500
+    )
+    .delay(200)
+    .animate(
+      {
+        left: "0",
+      },
+      700
+    )
+    .delay(200)
+    .animate({
+      left: 40,
+    });
+}
 
 export default {
   data() {
@@ -375,10 +407,148 @@ export default {
         return result;
       }
     },
+    blink() {
+      this.$refs.blinkkk;
+    },
   },
   created() {
     this.getVideoResult(this.$route.params.id);
     // this.EditTag(this.videoResult.tag);
+  },
+  mounted() {
+    $(".catHolder").hover(function() {
+      $(".lidT")
+        .animate(
+          {
+            top: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          top: "-80",
+        });
+      $(".lidB")
+        .animate(
+          {
+            bottom: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          bottom: "-80",
+        });
+      $(".pup")
+        .delay(900)
+        .animate(
+          {
+            left: "80",
+          },
+          500
+        )
+        .delay(200)
+        .animate(
+          {
+            left: "0",
+          },
+          700
+        )
+        .delay(200)
+        .animate({
+          left: 40,
+        });
+    });
+
+    $(".blink").on("click", function() {
+      $(".lidT")
+        .animate(
+          {
+            top: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          top: "-80",
+        });
+      $(".lidB")
+        .animate(
+          {
+            bottom: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          bottom: "-80",
+        });
+    });
+
+    $(".look").on("click", function() {
+      $(".pup")
+        .animate(
+          {
+            left: "80",
+          },
+          500
+        )
+        .delay(200)
+        .animate(
+          {
+            left: "0",
+          },
+          700
+        )
+        .delay(200)
+        .animate({
+          left: 40,
+        });
+    });
+
+    $(".both").on("click", function() {
+      $(".lidT")
+        .animate(
+          {
+            top: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          top: "-80",
+        });
+      $(".lidB")
+        .animate(
+          {
+            bottom: "-40",
+          },
+          500
+        )
+        .delay(200)
+        .animate({
+          bottom: "-80",
+        });
+      $(".pup")
+        .delay(900)
+        .animate(
+          {
+            left: "80",
+          },
+          500
+        )
+        .delay(200)
+        .animate(
+          {
+            left: "0",
+          },
+          700
+        )
+        .delay(200)
+        .animate({
+          left: 40,
+        });
+    });
   },
 };
 </script>
@@ -513,10 +683,174 @@ export default {
   background-color: #043566;
   color: #ffffff;
 }
-
 .flip-card-back {
   background-color: #dce224;
   color: #043566;
   transform: rotateY(180deg);
+}
+
+.catHolder {
+  width: 300px;
+  /* margin: 0 auto; */
+  /* position: relative; */
+  top: 10em;
+}
+.head {
+  display: block;
+  position: relative;
+  background: #821067;
+  border-radius: 100px 100px 0 0;
+  height: 200px;
+  width: 300px;
+}
+.head:after,
+.head:before {
+  content: "";
+  display: block;
+  border-bottom: 130px solid #821067;
+  position: absolute;
+  top: -20px;
+}
+.head:before {
+  left: 0;
+  border-left: 0 solid transparent;
+  border-right: 120px solid transparent;
+}
+.head:after {
+  right: 0;
+  border-right: 0 solid transparent;
+  border-left: 120px solid transparent;
+}
+.face {
+  width: 210px;
+  margin: 0 auto;
+  display: block;
+}
+.socket {
+  border-radius: 50%;
+  height: 102px;
+  width: 102px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: inline-block;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+.eye {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  background: #fad73f;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: relative;
+  top: 1px;
+  left: 1px;
+  display: inline-block;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+.pup {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background: #2b2b2b;
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+.lidT {
+  display: block;
+  width: 101px;
+  height: 101px;
+  background: #821067;
+  position: absolute;
+  top: -80px;
+  z-index: 20;
+}
+.lidB {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #821067;
+  position: absolute;
+  bottom: -80px;
+  z-index: 20;
+}
+.smile {
+  width: 200px;
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  border-top: 2px solid brown;
+  top: 50px;
+  left: 2px;
+  display: block;
+}
+.hC {
+  display: block;
+  height: 200px;
+  width: 200px;
+  background: #f7f7f7;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  box-shadow: 0 5px 0 brown;
+  overflow: hidden;
+}
+.teethLine {
+  height: 1px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 40px;
+  display: block;
+}
+.tL {
+  width: 1px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.6);
+  float: left;
+  bottom: 45px;
+  display: block;
+  margin-left: 40px;
+}
+.controls {
+  float: right;
+  width: 300px;
+}
+.face-control {
+  display: block;
+  text-align: center;
+  width: auto;
+  background: brown;
+  padding: 15px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 22px;
+  color: #fff;
+  font-family: "century gothic";
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 30px 0 0 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+#loop {
+  float: right;
+}
+.rotate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 </style>
