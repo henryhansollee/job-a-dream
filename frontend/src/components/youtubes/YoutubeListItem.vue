@@ -46,7 +46,7 @@ export default {
   computed: {
     // ...mapState(["videos"]),
     iframeUrl() {
-      return `http://youtube.com/embed/${this.video.id.videoId}`;
+      return `https://youtube.com/embed/${this.video.id.videoId}`;
     },
     videoTitle() {
       if (this.video) {
