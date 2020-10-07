@@ -27,7 +27,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    isLoggedIn: (state) => !!state.accessToken && !!state.authCheck,
+    isLoggedIn: (state) => !!state.accessToken || !!state.authCheck,
     config: () => ({
       headers: { Authorization: `JWT ${cookies.get("accessToken")}` },
     }),
@@ -41,10 +41,10 @@ export default new Vuex.Store({
     SET_AUTH(state, id) {
       state.authCheck = id;
       cookies.set("authCheck", id);
-      Swal.fire({
-        text: "환영합니다.",
-        icon: "success",
-      });
+      // Swal.fire({
+      //   text: "환영합니다.",
+      //   icon: "success",
+      // });
     },
     SET_USER(state, user) {
       state.user = user;
@@ -97,6 +97,7 @@ export default new Vuex.Store({
           commit("SET_USER", res.data.user);
           dispatch("getUser");
           router.push("/about");
+          router.go();
         })
         .catch((err) => {
           Swal.fire({
