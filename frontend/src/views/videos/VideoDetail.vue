@@ -56,10 +56,10 @@
     </div>
     <div class="d-flex mt-5 ml-5">
       <div>
-        <h1 class="mt-5">시선분석</h1>
+        <h1 class="mt-5 mb-5">시선분석</h1>
         <div class="d-flex">
           <img style="width: 30%;" src="@/assets/videoresult/eyes.png" alt="">
-          <ul>
+          <ul class="ml-5">
             <h5>- 눈 깜빡임: {{ videoResult.result.gaze.blinking }}</h5>
             <h5>- 정면 응시:{{ videoResult.result.gaze.center }}</h5>
             <h5>- 왼쪽 응시:{{ videoResult.result.gaze.left }}</h5>
@@ -68,10 +68,10 @@
         </div>
       </div>
       <div>
-      <h1 class="mt-5">고개분석</h1>
+      <h1 class="mt-5 mb-5">고개분석</h1>
       <div class="d-flex">
         <img style="width: 30%;" src="@/assets/videoresult/face.png" alt="">
-        <ul>
+        <ul class="ml-5">
           <h5>- 눈 깜빡임: {{ videoResult.result.head.top }}</h5>
           <h5>- 정면 응시:{{ videoResult.result.head.bottom }}</h5>
           <h5>- 왼쪽 응시:{{ videoResult.result.head.left }}</h5>
@@ -372,7 +372,7 @@ export default {
   color: black;
 }
 .flip-card-back {
-  background-color: #FFE0B2;
+  background-color: #fcbe32;
   color: #043566;
   transform: rotateY(180deg);
 }
