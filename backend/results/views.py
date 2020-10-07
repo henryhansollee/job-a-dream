@@ -10,7 +10,7 @@ from fullcourses.models import FullCourse
 class ResultAPI(APIView):
 
     def get(self, request):
-        
+
         angry = disgusted = fearful = happy = neutral = sad = surprised = 0
         gaze_blinking = gaze_left = gaze_right = gaze_center = 0
         head_bottom = head_top = head_right = head_left = 0
@@ -79,7 +79,8 @@ class ResultAPI(APIView):
                 'top': head_top / count,
                 'right': head_right / count,
                 'left': head_left / count,
-            }
+            },
+            'confidence': [audio_result.result.confidence for audio_result in Audio.objects.prefetch_related('result').filter(writer=request.user)[:10]]
         }
 
         return Response(context, status=200)
