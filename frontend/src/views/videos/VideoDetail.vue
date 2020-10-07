@@ -1,7 +1,7 @@
 <template>
   <div class="p-5" style>
     <div class="d-flex flex-row">
-      <video controls :src="'http://localhost:8080' + videoResult.video_file"></video>
+      <video controls :src="'https://j3b107.p.ssafy.io' + videoResult.video_file"></video>
       <div
         class="ml-5 d-flex flex-column justify-content-between"
         style="padding-top:3px;width:100%;"

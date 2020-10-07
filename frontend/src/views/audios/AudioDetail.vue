@@ -40,7 +40,7 @@
             class="mt-5 basic-btn"
             style="width:50%; "
             controls
-            :src="'http://localhost:8080'+audioResult.audio_file"
+            :src="'https://j3b107.p.ssafy.io'+audioResult.audio_file"
           ></audio>
         </div>
       </div>
