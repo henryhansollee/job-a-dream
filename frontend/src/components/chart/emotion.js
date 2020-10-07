@@ -10,16 +10,6 @@ export default {
       datacollection: {
         labels: ["분노", "행복", "놀람", "슬픔", "중립", "두려움", "불편함"],
         datasets: [
-          // {
-          //   label: "My First Dataset",
-          //   backgroundColor: "rgba(179,181,198,0.2)",
-          //   borderColor: "rgba(179,181,198,1)",
-          //   pointBackgroundColor: "rgba(179,181,198,1)",
-          //   pointBorderColor: "#fff",
-          //   pointHoverBackgroundColor: "#fff",
-          //   pointHoverBorderColor: "rgba(179,181,198,1)",
-          //   data: [65, 59, 90, 81, 56, 55, 40],
-          // },
           {
             label: "",
             backgroundColor: "#fcbe32",
@@ -28,7 +18,6 @@ export default {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",
-            //분노", "행복", "놀람", "슬픔", "중립", "두려움", "불편한
             data: [
               this.results.emotions.angry,
               this.results.emotions.happy,

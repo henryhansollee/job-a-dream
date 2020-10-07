@@ -5,8 +5,7 @@ export default {
   data() {
     return {
       datacollection: {
-        //Data to be represented on x-axis
-        labels: ["왼쪽", "오른쪽", "가운데"],
+        labels: ["왼쪽", "오른쪽", "가운데", "깜빡임"],
         datasets: [
           {
             label: "시선 분석",
@@ -14,17 +13,15 @@ export default {
             pointBackgroundColor: "white",
             borderWidth: 1,
             pointBorderColor: "#249EBF",
-            //Data to be represented on y-axis
-            // data: [
-            //   this.results.gaze.left,
-            //   this.results.gaze.right,
-            //   this.results.gaze.center,
-            // ],
-            data: [2, 3, 1],
+            data: [
+              this.results.gaze.left,
+              this.results.gaze.right,
+              this.results.gaze.center,
+              this.results.gaze.blinking,
+            ],
           },
         ],
       },
-      //Chart.js options that controls the appearance of the chart
       options: {
         scales: {
           yAxes: [
@@ -57,7 +54,6 @@ export default {
     results: Object,
   },
   mounted() {
-    //renderChart function renders the chart with the datacollection and options object.
     this.renderChart(this.datacollection, this.options);
   },
 };
