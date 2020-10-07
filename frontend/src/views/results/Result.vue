@@ -1,6 +1,9 @@
 <template>
-  <div mt-5>
-    <div class="mt-5 pt-5 pl-5 container" style="font-size:xx-large;">
+  <div m-5>
+    <div
+      class="mt-5 pt-5 container"
+      style="padding-left:55px;font-size:xx-large;"
+    >
       {{ userInfo.username }}님이 그동안 연습하신 영상들의 통계입니다.
     </div>
     <div
@@ -9,14 +12,14 @@
       style
     >
       <!--정확도-->
-      <div class="mt-2 shadow p-3 bg-white rounded" style="width:450px;">
+      <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">정확도 통계</div>
         </div>
         <accuracy :results="results" />
       </div>
       <!--감정-->
-      <div class="mt-2 shadow p-3 bg-white rounded" style="width:450px;">
+      <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">감정 통계</div>
         </div>
@@ -26,48 +29,23 @@
     <div
       v-if="results.emotions"
       class="mt-5 container d-flex justify-content-around"
-      style
+      style="margin-bottom:100px;"
     >
       <!--시선-->
-      <div class="mt-2 shadow p-4 bg-white rounded" style="width:450px;">
+      <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">시선 통계</div>
         </div>
         <bar-chart :results="results" />
       </div>
       <!--움직임-->
-      <div class="mt-2 shadow p-4 bg-white rounded" style="width:450px;">
+      <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">움직임 통계</div>
         </div>
         <line-chart :results="results" />
       </div>
     </div>
-
-    <!--
-<script>
-import LineChart from './Chart.vue'
-
-export default {
-  name: 'LineChartContainer',
-  components: { LineChart },
-  data: () => ({
-    loaded: false,
-    chartdata: null
-  }),
-  async mounted () {
-    this.loaded = false
-    try {
-      const { userlist } = await fetch('/api/userlist')
-      this.chartdata = userlist
-      this.loaded = true
-    } catch (e) {
-      console.error(e)
-    }
-  }
-}
-</script>
-    -->
   </div>
 </template>
 

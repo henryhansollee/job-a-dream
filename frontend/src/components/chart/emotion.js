@@ -24,7 +24,7 @@ export default {
             label: "",
             backgroundColor: "#fcbe32",
             borderColor: "rgba(255,99,132,1)",
-            pointBackgroundColor: "#fcbe32",
+            pointBackgroundColor: "#5699D5",
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",

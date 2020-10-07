@@ -9,7 +9,7 @@ export default {
         datasets: [
           {
             label: "움직임 통계",
-            backgroundColor: "#fcbe32",
+            backgroundColor: "#D9A9C8",
             pointBackgroundColor: "white",
             borderWidth: 1,
             pointBorderColor: "#249EBF",

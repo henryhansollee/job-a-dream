@@ -11,7 +11,7 @@ export default {
         datasets: [
           {
             label: "음성 정확도",
-            backgroundColor: "#fcbe32",
+            backgroundColor: "#F2AABD",
             pointBackgroundColor: "white",
             borderWidth: 1,
             pointBorderColor: "#043566",

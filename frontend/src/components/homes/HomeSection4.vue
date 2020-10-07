@@ -3,9 +3,8 @@
     <div class="ml-5">
       <h1 class="text-white" style="font-size: 80px">자소서로,</h1>
       <h1 class="text-white" style="font-size: 80px">잡아드림!</h1>
-      <h5 class="text-white"># 맞춤법 검사부터</h5>
       <h5 class="text-white"># 너의 자기소개서에 기반한</h5>
-      <h5 class="text-white"># 맞춤 면접 질문까지</h5>
+      <h5 class="text-white"># 맞춤 면접 질문</h5>
       <h5 class="text-white"># 모두 잡아줄게!</h5>
     </div>
     <div class="d-flex mt-5 pt-5 flex-column align-items-end">
