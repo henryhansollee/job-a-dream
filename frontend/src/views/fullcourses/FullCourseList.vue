@@ -36,7 +36,7 @@
                 style="transition:.3s;"
               >
                 <v-img
-                  src="@/assets/thumbnails/fullcourse-thumbnail.jpg"
+                  src="@/assets/thumbnails/fullcourse-thumbnail.png"
                   class="white--text align-end"
                   gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                   height="200px"

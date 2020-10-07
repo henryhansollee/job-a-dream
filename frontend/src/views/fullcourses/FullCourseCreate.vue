@@ -29,7 +29,7 @@
                   id="input-with-list"
                   type="text"
                   placeholder="항목을 입력해주세요."
-                  v-model="fullcourseData.subject"
+                  v-model="fullcourseData1.subject"
                 ></b-form-input>
               </div>
               <div class="w-100 d-flex flex-column align-items-center">
@@ -40,16 +40,16 @@
                   id="input-with-list"
                   type="text"
                   placeholder="내용을 입력해주세요."
-                  v-model="fullcourseData.content"
+                  v-model="fullcourseData1.content"
                 ></b-form-textarea>
               </div>
             </v-card>
             <div class="w-100 d-flex flex-column">
               <v-btn
-                v-if="fullcourseData.subject && fullcourseData.content"
+                v-if="fullcourseData1.subject && fullcourseData1.content"
                 class="basic-btn align-self-center m-4 w-25"
                 color="primary"
-                @click="e1 = 2"
+                @click="goNextStep()"
                 >다음</v-btn
               >
               <v-btn
@@ -89,7 +89,7 @@
                 v-if="isSelected"
                 class="basic-btn align-self-center m-4 w-25"
                 color="primary"
-                @click="e1 = 3"
+                @click="goVideoStep()"
                 >다음</v-btn
               >
               <v-btn
@@ -107,39 +107,15 @@
             <h5 class="text-center mt-4">영상을 촬영하세요.</h5>
 
             <v-card class="mx-auto" max-width="700" min-height="300" tile>
-              <!-- 비디오 -->
               <div
                 class="block d-flex flex-column align-items-center"
                 v-show="!result"
               >
-                <!-- <h4 class="title is-4">
-                {{ timer.interval ? `녹화중 ${formatedTime}` : "준비" }}
-              </h4> -->
-                <!-- <video v-if="!this.result" class="mb-4 w-75" ref="video"></video> -->
-                <h6 class="text-center">
-                  {{ timer.interval ? `녹화중 ${formatedTime}` : "" }}
-                </h6>
                 <video ref="video" class="mb-4 w-75"></video>
-              </div>
-              <div class="block" v-show="result">
-                <h4 class="title is-4">녹화종료</h4>
-                <video controls :src="blobUrl"></video>
-              </div>
-              <div class="field">
-                <button
-                  class="btn btn-secondary m-3"
-                  @click="stop"
-                  v-if="recorder && recorder.getState() === 'recording'"
-                >
-                  영상 분석 완료
-                </button>
-                <button class="btn btn-danger m-2 mt-4" @click="record" v-else>
-                  영상 분석 시작
-                </button>
               </div>
               <!-- 오디오 -->
               <dictaphone
-                class="mt-5"
+                class="mt-5 d-flex justify-content-center"
                 @stop="handleRecording($event)"
                 mime-type="audio/wav"
                 v-slot="{ isRecording, startRecording, stopRecording }"
@@ -149,27 +125,23 @@
                   v-if="!isRecording"
                   @click="startRecording(selectedQ)"
                 >
-                  음성 분석 시작
+                  풀코스 분석 시작
                 </button>
                 <button
                   class="btn btn-secondary m-3"
                   v-else
                   @click="stopRecording"
                 >
-                  음성 분석 완료
+                  풀코스 분석 완료
                 </button>
               </dictaphone>
-              <vue-dictaphone-spectrum-analyser />
-              <div v-if="audioSource">
-                <audio :src="audioSource" controls></audio>
-              </div>
             </v-card>
             <div class="w-100 d-flex flex-column">
               <v-btn
-                v-if="fullcourseData.video_file && fullcourseData.audio_file"
+                v-if="fullcourseData.audio_file"
                 class="basic-btn align-self-center m-4 w-25"
                 color="primary"
-                @click="e1 = 4"
+                @click="goLastStep()"
                 >다음</v-btn
               >
               <v-btn
@@ -292,10 +264,16 @@ export default {
   },
   data() {
     return {
-      fullcourseData: {
-        title: "",
+      fullcourseData1: {
         subject: "",
         content: "",
+        title: 'a',
+        update_tag: ['a'],
+      },
+      fullcourseData: {
+        subject: "",
+        content: "",
+        title: "",
         question: "",
         video_file: "",
         audio_file: "",
@@ -328,7 +306,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["createFullcourse", "getQuestions"]),
+    ...mapActions(["createFullcourse", "getQuestions", "createCoverletter2"]),
     checkQ(question) {
       this.selectedQ = question.content;
       this.fullcourseData.question = question.id;
@@ -336,13 +314,26 @@ export default {
         this.isSelected = true;
       }
     },
+    goLastStep() {
+      this.stop();
+      this.e1 = 4
+    },
+    goVideoStep() {
+      this.record();
+      this.e1 = 3
+    },
+    goNextStep() { 
+      this.createCoverletter2(this.fullcourseData1)
+      this.e1 = 2
+      this.$awn.info('잠시만 기다려주세요 :)', {durations: {info: 0}})
+    },
     createFullcourseFormData() {
       const fullcourseFormData = new FormData();
       const video_file_name = Date.now();
       const audio_file_name = Date.now();
       fullcourseFormData.append("title", this.fullcourseData.title);
-      fullcourseFormData.append("subject", this.fullcourseData.subject);
-      fullcourseFormData.append("content", this.fullcourseData.content);
+      fullcourseFormData.append("subject", this.fullcourseData1.subject);
+      fullcourseFormData.append("content", this.fullcourseData1.content);
       fullcourseFormData.append(
         "video_file",
         this.fullcourseData.video_file,

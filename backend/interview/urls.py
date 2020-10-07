@@ -22,4 +22,5 @@ urlpatterns = [
     path('api/audios/', include('audios.urls')),
     path('api/questions/', include('questions.urls')),
     path('api/fullcourses/', include('fullcourses.urls')),
+    path('api/results', include('results.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

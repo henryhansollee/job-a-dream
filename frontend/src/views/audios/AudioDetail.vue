@@ -1,6 +1,9 @@
 <template>
   <div class="p-5" style="">
-    <div class="ml-5 d-flex flex-column justify-content-between" style="padding-top:3px;width:100%;">
+    <div
+      class="ml-5 d-flex flex-column justify-content-between"
+      style="padding-top:3px;width:100%;"
+    >
       <div style="">
         <div class="d-flex justify-content-between">
           <h4>{{ audioResult.title }}</h4>
@@ -25,7 +28,7 @@
         <h6 style="color:gray;font-size:14.5px;">
           {{ cutDate(audioResult.created_at) }}
         </h6>
-        <h5 class="mt-5" style="font-size:x-large;">
+        <h5 v-if="audioResult" class="mt-5" style="font-size:x-large;">
           질문: {{ audioResult.question.content }}
         </h5>
         <div
@@ -44,28 +47,31 @@
           ></audio>
         </div>
       </div>
-      <div class="d-flex">
+      <div v-if="audioResult.result" class="d-flex">
         <v-sheet
-            class="d-flex flex-column mt-5 mr-3 w-25 text-center"
-            color="grey lighten-3"
-            height="400"
-          >
+          class="d-flex flex-column mt-5 mr-3 w-25 text-center"
+          color="grey lighten-3"
+          height="400"
+        >
           <h2 class="mt-5">추출된 대본</h2>
-          <h4>정확도: {{ Math.floor(audioResult.result.confidence * 100) }}%</h4>
+          <h4>
+            정확도: {{ Math.floor(audioResult.result.confidence * 100) }}%
+          </h4>
           <p>{{ audioResult.result.script }}</p>
         </v-sheet>
-        
+
         <v-sheet
           class="d-flex flex-column w-75 text-center mt-5 mr-5 pr-5"
           color="blue lighten-5"
           height="400"
         >
-        <h3 class="mt-5">워드 클라우드</h3>
+          <h3 class="mt-5">워드 클라우드</h3>
           <wordcloud
             :data="audioResult.result.nouns"
             nameKey="key"
             valueKey="value"
-            color="Accent">
+            color="Accent"
+          >
           </wordcloud>
         </v-sheet>
       </div>
@@ -80,17 +86,17 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import wordcloud from 'vue-wordcloud'
+import wordcloud from "vue-wordcloud";
 
 export default {
   name: "AudioDetail",
   data() {
     return {
-      myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
-    }
+      myColors: ["#1f77b4", "#629fc9", "#94bedb", "#c9e0ef"],
+    };
   },
   components: {
-    wordcloud
+    wordcloud,
   },
   computed: {
     ...mapState(["audioResult"]),
@@ -119,8 +125,8 @@ export default {
       }
     },
     wordClickHandler(name, value, vm) {
-      console.log('wordClickHandler', name, value, vm);
-    }
+      console.log("wordClickHandler", name, value, vm);
+    },
   },
   created() {
     this.getAudioResult(this.$route.params.id);

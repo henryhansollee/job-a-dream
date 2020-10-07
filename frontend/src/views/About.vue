@@ -5,7 +5,7 @@
     </div>
     <div
       class="d-flex flex-column justify-content-center align-items-center"
-      style="margin-top:70px;font-size:xx-large;width100%; height: 400px; background-color:#043566;color:#fff;"
+      style="margin-top:70px;font-size:xx-large;width100%; height: 300px; background-color:#043566;color:#fff;"
     >
       <h1>여러분들을 힘들게 하는 면접 전형,</h1>
     </div>
@@ -14,7 +14,7 @@
     </div>
     <div
       class="d-flex flex-column justify-content-center align-items-center"
-      style="margin-top:70px;font-size:xx-large;width100%; height: 400px; background-color:#043566;color:#fff;"
+      style="margin-top:70px;font-size:xx-large;width100%; height: 300px; background-color:#043566;color:#fff;"
     >
       <h1>면접에 자신이 없으신가요?</h1>
     </div>
@@ -23,7 +23,7 @@
     </div>
     <div
       class="d-flex flex-column justify-content-center align-items-center"
-      style="margin-top:70px;font-size:xx-large;width100%; height: 400px; background-color:#043566;color:#fff;"
+      style="margin-top:70px;font-size:xx-large;width100%; height: 300px; background-color:#043566;color:#fff;"
     >
       <h1>이제는 잡아드림이 잡아드릴게요!</h1>
     </div>

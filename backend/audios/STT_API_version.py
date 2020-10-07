@@ -36,7 +36,7 @@ def transcribe_file(speech_file):
 
         return [sentence, confidence, Nouns]
     except:
-        print('실패!')
+        return 0
 
 # blob_filename = './Audio/1601643553055'  #
 # os.system('ffmpeg -i '+blob_filename+' -vn -acodec pcm_s16le -ar 44100 -ac 2 output.wav') # blob --> wav 생성
