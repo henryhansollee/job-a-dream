@@ -304,6 +304,24 @@ export default new Vuex.Store({
         .catch((error) => {console.log(error)});
     },
 
+    createCoverletter2({ dispatch, getters }, coverletterData) {
+      Swal.fire({
+        text: "잠시만 기다려주세요.",
+        icon: "info",
+      });
+      axios
+        .post(
+          BACKEND.URL + BACKEND.ROUTES.coverletters,
+          coverletterData,
+          getters.config
+        )
+        .then(() => {
+          dispatch('getQuestions')
+
+        })
+        .catch((error) => {console.log(error)});
+    },
+
     getCoverletterResult({ getters, commit }, coverletter_id) {
       axios
         .get(
@@ -375,6 +393,7 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
+          console.log(response,'ddd')
           commit("GET_FULLCOURSE_RESULT", response.data);
         })
         .catch((error) => {console.log(error);});

@@ -29,11 +29,11 @@ export default {
       this.isRecording = true;
       this.onSpeak(text)
       this.mediaRecorder.start();
-      this.$awn.tip('50초 동안 답변을 말해주세요 :)', {durations: {tip: 50000}})
+      this.$awn.tip('30초 동안 답변을 말해주세요 :)', {durations: {tip: 30000}})
       setTimeout(() => {
         this.stopRecording();
         this.$awn.info('시간이 종료되었습니다.', {durations: {info: 3000}})
-      }, 50000);
+      }, 30000);
     },
     stopRecording() {
       this.isRecording = false;
