@@ -11,10 +11,10 @@ export default {
         datasets: [
           {
             label: "음성 정확도",
-            backgroundColor: "#f87979",
+            backgroundColor: "#fcbe32",
             pointBackgroundColor: "white",
             borderWidth: 1,
-            pointBorderColor: "#249EBF",
+            pointBorderColor: "#043566",
             data: [
               Math.floor(this.results[0] * 100),
               Math.floor(this.results[1] * 100),
@@ -35,7 +35,7 @@ export default {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
+                beginAtZero: false,
               },
               gridLines: {
                 display: true,
