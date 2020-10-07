@@ -29,6 +29,9 @@ class AudioListAPI(APIView):
 
             result_data = request.data.dict()
             data = transcribe_file(str(result_data['audio_file']))
+
+            if not data:
+                return Response('답변 부족', status=400)
             
             result = Result.objects.create(script=data[0], confidence=data[1])
 
