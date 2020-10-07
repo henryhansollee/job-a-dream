@@ -9,7 +9,7 @@ export default {
         labels: ["왼쪽", "오른쪽", "가운데"],
         datasets: [
           {
-            label: "시선 위치",
+            label: "시선 분석",
             backgroundColor: "#fcbe32",
             pointBackgroundColor: "white",
             borderWidth: 1,
