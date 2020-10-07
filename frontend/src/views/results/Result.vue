@@ -1,6 +1,5 @@
 <template>
   <div mt-5>
-    {{ results.confidence }}
     <div class="mt-5 pt-5 pl-5 container" style="font-size:xx-large;">
       {{ userInfo.username }}님이 그동안 연습하신 영상들의 통계입니다.
     </div>
