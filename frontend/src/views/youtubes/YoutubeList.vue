@@ -86,7 +86,7 @@ export default {
       return res;
     },
     iframeUrl(video) {
-      return `http://youtube.com/embed/${video.id.videoId}`;
+      return `https://youtube.com/embed/${video.id.videoId}`;
     },
     // ...mapActions([""]),
     // nextPage() {
