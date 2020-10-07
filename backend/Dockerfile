@@ -13,4 +13,5 @@ COPY requirements.txt /code/
 RUN pip install cmake==3.18.2.post1
 RUN pip install -r requirements.txt
 
+ENV PATH /code/AI/ffmpeg-4.3.1-2020-10-01-essentials_build/bin/:$PATH
 COPY . /code/
