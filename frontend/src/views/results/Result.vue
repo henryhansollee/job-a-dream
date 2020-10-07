@@ -71,30 +71,6 @@ export default {
   },
   methods: {
     ...mapActions(["getResults", "getUser"]),
-    cutDate(date) {
-      let CD = date + "";
-      const year = CD.substring(0, 4) + ".";
-      const month = CD.substring(5, 7) + ".";
-      const day = CD.substring(8, 10) + "  ";
-      const hour = CD.substring(11, 13) + ":";
-      const minute = CD.substring(14, 16) + "";
-      const res = year + month + day + hour + minute;
-      return res;
-    },
-    cutTag(tags) {
-      if (this.fullcourseResult.tag) {
-        let result = [];
-        let arr = tags[0].split(",");
-        for (let tag of arr) {
-          let res = "#" + tag;
-          result.push(res);
-        }
-        return result;
-      }
-    },
-    wordClickHandler(name, value, vm) {
-      console.log("wordClickHandler", name, value, vm);
-    },
   },
   created() {
     this.getResults();
@@ -106,5 +82,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
