@@ -278,13 +278,25 @@
       style="border:3px solid red;margin-top:90px; width:100%; height:200px;"
     >
       {{ videoResult.result.head }}
+      <apexcharts
+        type="bar"
+        width="500"
+        :options="options"
+        :series="series"
+      ></apexcharts>
     </div>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
+import apexcharts from "apexcharts";
+import VueApexCharts from "vue-apexcharts";
 import { mapState, mapActions } from "vuex";
+import Vue from "vue";
+
+Vue.use(VueApexCharts);
+Vue.component("apexchart", VueApexCharts);
 
 $(window).ready(function() {
   blinkNlook();
@@ -379,7 +391,25 @@ function blinkNlook() {
 
 export default {
   data() {
-    return {};
+    return {
+      options: {
+        chart: {
+          id: "vuechart-example",
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        },
+      },
+      series: [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91],
+        },
+      ],
+    };
+  },
+  components: {
+    apexcharts,
   },
   computed: {
     ...mapState(["videoResult", "tags"]),
