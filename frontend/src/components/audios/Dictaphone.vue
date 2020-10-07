@@ -32,7 +32,7 @@ export default {
       this.$awn.tip('30초 동안 답변을 말해주세요 :)', {durations: {tip: 30000}})
       setTimeout(() => {
         this.stopRecording();
-        this.$awn.info('시간이 종료되었습니다.', {durations: {info: 3000}})
+        this.$awn.info('시간이 종료되었습니다.', {durations: {info: 0}})
       }, 30000);
     },
     stopRecording() {
