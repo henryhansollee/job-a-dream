@@ -6,14 +6,12 @@ from .models import Audio, Result, Dictionary, Tag
 
 
 class DictionarySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Dictionary
         exclude = ['id']
 
 class ResultSerializer(serializers.ModelSerializer):
     nouns = DictionarySerializer(many=True, read_only=True)
-
     class Meta:
         model = Result
         exclude = ['id']

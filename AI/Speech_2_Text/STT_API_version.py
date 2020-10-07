@@ -29,8 +29,7 @@ def transcribe_file(speech_file):
         for n in N: Nouns[n] += 1
         print(Nouns)
 
-    except:
-        print('실패!')
+    except: print('실패!')
 
 blob_filename = './Audio/1601643553055'  #
 os.system('ffmpeg -i '+blob_filename+' -vn -acodec pcm_s16le -ar 44100 -ac 2 output.wav') # blob --> wav 생성
