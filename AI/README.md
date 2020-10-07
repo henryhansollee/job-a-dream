@@ -22,16 +22,26 @@
 - 태깅 후, NNP(고유 명사)를 set으로 관리하여 중복을 제거한다.
 - 중복없는 고유명사를 이용하여 질문 String을 생성하고 랜덤으로 3개를 선택하여 질문 list로 response 한다.
 
-#### # Konlpy는 JAVA JDK를 설치하고 환경변수 등록을 해야만 한다!
+#####  ### Konlpy는 JAVA JDK를 설치하고 환경변수 등록을 해야만 한다!
 
 ![12](/uploads/da9d1bb4a208647197785f775c03ccc4/12.png)
 
-1. Emotion-detection
-   1. Data기반 model 학습 필요.
-   2. 면접할 때 표정을 측정.
-2. GazeTracking
-   1. 눈동자의 위치를 통해 시선의 방향 측정
-3. Proctoring-AI
-   1. [head_post_estimation](Proctoring-AI/head_post_estimation.py)
-      1. 얼굴의 방향을 측정.
-      2. 면접할 때 자세를 측정
+
+
+### Emotion-detection
+
+- Data기반 model 학습 필요.
+
+- 면접할 때 표정을 측정.
+
+### GazeTracking
+
+- 눈동자의 위치를 통해 시선의 방향 측정
+
+- Proctoring-AI
+
+### head_post_estimation](Proctoring-AI/head_post_estimation.py)
+
+- 얼굴의 방향을 측정.
+
+- 면접할 때 자세를 측정

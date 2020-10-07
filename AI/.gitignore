@@ -18,4 +18,5 @@ node_modules
 
 ### Ignore Files  ###
 .idea
+.vscode
 __pycache__
