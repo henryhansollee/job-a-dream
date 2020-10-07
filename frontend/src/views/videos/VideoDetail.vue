@@ -1,7 +1,7 @@
 <template>
   <div class="p-5" style>
-    <div class="d-flex flex-row" style="border:3px solid blue;">
-      <video controls :src="videoResult.video_file"></video>
+    <div class="d-flex flex-row">
+      <video controls :src="'http://localhost:8080' + videoResult.video_file"></video>
       <div
         class="ml-5 d-flex flex-column justify-content-between"
         style="padding-top:3px;width:100%;"
@@ -32,7 +32,7 @@
           </h6>
           <!--질문 뽑아와야 됨-->
           <h5 class="mt-5" style="font-size:x-large;">
-            질문: {{ videoResult.question.content }}
+            질문: {{ videoResult.question }}
           </h5>
           <div
             v-for="tag in cutTag(videoResult.tag)"
@@ -95,7 +95,6 @@
             </div>
           </div>
           <div class="flip-card-back ">
-            <!-- <h4 class="pt-2">행복</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 눈가에 주름이 생긴다.</small><br />
               <small>- 두 뺨이 올라간다.</small><br />
@@ -117,7 +116,6 @@
             </div>
           </div>
           <div class="flip-card-back ">
-            <!-- <h4 class="pt-2">무표정</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 입술의 끝이 당겨지고 한쪽 얼굴만 올라간다.</small>
             </div>
@@ -137,7 +135,6 @@
             </div>
           </div>
           <div class="flip-card-back ">
-            <!-- <h4 class="pt-2">슬픔</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 눈꺼풀 위가 내려간다.</small><br />
               <small>- 눈이 초점을 잃는다.</small><br />
@@ -159,7 +156,6 @@
             </div>
           </div>
           <div class="flip-card-back ">
-            <!-- <h4 class="pt-2">역겨움</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 코를 찡긋거린다.</small><br />
               <small>- 윗입술이 올라간다.</small>
@@ -180,7 +176,6 @@
             </div>
           </div>
           <div class="flip-card-back">
-            <!-- <h4 class="pt-2">놀람</h4> -->
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 양 눈썹이 올라간다.</small><br />
               <small>- 눈을 크게 뜬다.</small><br />
@@ -214,10 +209,12 @@
     </div>
 
     <!--시선-->
+    <h1 class="text-center mt-5">시선분석</h1>
     <div
-      class="d-flex justify-content-center"
-      style="font-size:x-large;margin-top:50px;"
+      class="d-flex justify-content-center mb-1"
+      style="font-size:x-large;"
     >
+      
       <div>눈 깜빡임: {{ videoResult.result.gaze.blinking }}</div>
     </div>
     <div class="d-flex justify-content-around" style="margin-top:50px;">
@@ -250,16 +247,6 @@
             </span>
           </span>
         </span>
-        <!-- <div class="controls clearfix">
-        <div ref="blinkkk" class="blink face-control" @click="blink">
-          Click to blink
-        </div>
-        <span class="clearfix"></span>
-
-        <div class="look face-control">Click to Look</div>
-        <div class="both face-control">Click for Both</div>
-        <input type="radio" id="loop" />
-      </div> -->
       </div>
       <div style="margin-top:80px;font-size:x-large;">
         오른쪽:{{ videoResult.result.gaze.right }}
@@ -272,10 +259,10 @@
       <div class="mr-5">가운데: {{ videoResult.result.gaze.center }}</div>
     </div>
 
-    <!--움직임-->
+    <h1 class="text-center mt-5">고개 움직임 분석</h1>
     <div
       class=""
-      style="border:3px solid red;margin-top:90px; width:100%; height:200px;"
+      style="border:3px solid red; width:100%; height:200px;"
     >
       {{ videoResult.result.head }}
 
@@ -289,49 +276,6 @@ import { mapState, mapActions } from "vuex";
 
 $(window).ready(function() {
   blinkNlook();
-  // $(".catHolder").on("click", function() {
-  //   $(".lidT")
-  //     .animate(
-  //       {
-  //         top: "-40",
-  //       },
-  //       500
-  //     )
-  //     .delay(200)
-  //     .animate({
-  //       top: "-80",
-  //     });
-  //   $(".lidB")
-  //     .animate(
-  //       {
-  //         bottom: "-40",
-  //       },
-  //       500
-  //     )
-  //     .delay(200)
-  //     .animate({
-  //       bottom: "-80",
-  //     });
-  //   $(".pup")
-  //     .delay(900)
-  //     .animate(
-  //       {
-  //         left: "80",
-  //       },
-  //       500
-  //     )
-  //     .delay(200)
-  //     .animate(
-  //       {
-  //         left: "0",
-  //       },
-  //       700
-  //     )
-  //     .delay(200)
-  //     .animate({
-  //       left: 40,
-  //     });
-  // });
 });
 
 function blinkNlook() {
@@ -381,7 +325,7 @@ function blinkNlook() {
 export default {
   data() {
     return {
-    }
+    };
   },
   computed: {
     ...mapState(["videoResult", "tags"]),
@@ -415,7 +359,6 @@ export default {
   },
   created() {
     this.getVideoResult(this.$route.params.id);
-    // this.EditTag(this.videoResult.tag);
   },
   mounted() {
     $(".catHolder").hover(function() {
@@ -533,12 +476,7 @@ export default {
         });
       $(".pup")
         .delay(900)
-        .animate(
-          {
-            left: "80",
-          },
-          500
-        )
+        .animate({ left: "80" }, 500)
         .delay(200)
         .animate(
           {
@@ -556,101 +494,6 @@ export default {
 </script>
 
 <style>
-/* // .flip-box {
-//   display: flex;
-//   align-content: stretch;
-//   min-height: 250px;
-//   min-width: 200px;
-//   flex-wrap: wrap;
-//   position: relative;
-//   border: 10px solid transparent;
-//   padding: 0;
-//   border-top: 0;
-//   -webkit-perspective: 1000;
-//   perspective: 1000;
-
-//   &:hover {
-//     .back {
-//       transform: rotateY(0deg);
-//       z-index: 10;
-//     }
-
-//     .front {
-//       transform: rotateY(180deg);
-//       z-index: -1;
-//     }
-//   }
-
-//   .back,
-//   .front {
-//     position: relative;
-//     background-color: #1b2d61;
-//     color: white;
-//     display: flex;
-//     justify-content: center;
-//     align-content: center;
-//     flex: 0 0 100%;
-//     -webkit-transition: all 1s cubic-bezier(0.5, 1, 0.5, 1);
-//     transition: all 1s cubic-bezier(0.5, 1.3, 0.5, 1.3);
-//     transform-style: preserve-3d;
-//     background-size: cover;
-//     background-position: center;
-//   }
-
-//   .back {
-//     background-color: #cecece;
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     bottom: 0;
-//     width: 100%;
-//     z-index: -1;
-//     transform: rotateY(-180deg);
-
-//     &:after {
-//       content: "";
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       width: 30px;
-//       height: 30px;
-//       border: 15px solid transparent;
-//       border-bottom-color: white;
-//       border-left-color: white;
-//     }
-//   }
-
-//   .front {
-//     z-index: 10;
-
-//     .content {
-//       font-size: 2rem;
-//     }
-
-//     &:after {
-//       content: "";
-//       position: absolute;
-//       bottom: 0;
-//       right: 0;
-//       width: 20px;
-//       height: 20px;
-//       border: 15px solid #cecece;
-//       border-bottom-color: white;
-//       border-right-color: white;
-//     }
-//   }
-
-//   .content {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-//     -webkit-transform: translateZ(50px);
-//     transform: translateZ(50px);
-//     text-shadow: 0px 0px 2px black;
-//   }
-// }
-// */
 .flip-card {
   background-color: transparent;
   width: 140px;
@@ -693,8 +536,6 @@ export default {
 
 .catHolder {
   width: 300px;
-  /* margin: 0 auto; */
-  /* position: relative; */
   top: 10em;
 }
 .head {
