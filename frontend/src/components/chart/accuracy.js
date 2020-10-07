@@ -1,6 +1,9 @@
 import { Line } from "vue-chartjs";
 export default {
   extends: Line,
+  props: {
+    results: Array,
+  },
   data() {
     return {
       datacollection: {
@@ -12,7 +15,18 @@ export default {
             pointBackgroundColor: "white",
             borderWidth: 1,
             pointBorderColor: "#249EBF",
-            data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70],
+            data: [
+              Math.floor(this.results[0] * 100),
+              Math.floor(this.results[1] * 100),
+              Math.floor(this.results[2] * 100),
+              Math.floor(this.results[3] * 100),
+              Math.floor(this.results[4] * 100),
+              Math.floor(this.results[5] * 100),
+              Math.floor(this.results[6] * 100),
+              Math.floor(this.results[7] * 100),
+              Math.floor(this.results[8] * 100),
+              Math.floor(this.results[9] * 100),
+            ],
           },
         ],
       },

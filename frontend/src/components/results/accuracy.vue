@@ -1,6 +1,6 @@
 <template>
-  <div style="border:3px solid blue;">
-    <line-chart :results="results" />
+  <div>
+    <line-chart :results="results.confidence" />
   </div>
 </template>
 
