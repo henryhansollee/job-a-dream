@@ -84,7 +84,7 @@
             <img
               v-if="userInfo.image"
               class="profile-img"
-              :src="'http://localhost:8080'+userInfo.image"
+              :src="'https://j3b107.p.ssafy.io:443/api'+userInfo.image"
               alt="profile"
             />
             <!-- 프로필 수정 모달 -->
