@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4">
     <line-chart :results="results.confidence" />
   </div>
 </template>
