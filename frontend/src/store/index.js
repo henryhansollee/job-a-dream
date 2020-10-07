@@ -305,10 +305,6 @@ export default new Vuex.Store({
     },
 
     createCoverletter2({ dispatch, getters }, coverletterData) {
-      Swal.fire({
-        text: "잠시만 기다려주세요.",
-        icon: "info",
-      });
       axios
         .post(
           BACKEND.URL + BACKEND.ROUTES.coverletters,
@@ -416,7 +412,7 @@ export default new Vuex.Store({
       axios
         .get(BACKEND.URL + BACKEND.ROUTES.results, getters.config)
         .then((response) => {
-          commit("SET_RESULTS", response.data);
+          commit("GET_RESULTS", response.data);
         })
         .catch((error) => {console.log(error)});
     },

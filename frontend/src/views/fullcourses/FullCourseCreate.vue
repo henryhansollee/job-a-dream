@@ -325,6 +325,7 @@ export default {
     goNextStep() { 
       this.createCoverletter2(this.fullcourseData1)
       this.e1 = 2
+      this.$awn.info('잠시만 기다려주세요 :)', {durations: {info: 0}})
     },
     createFullcourseFormData() {
       const fullcourseFormData = new FormData();
