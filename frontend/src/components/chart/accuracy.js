@@ -1,23 +1,31 @@
-import { Bar } from "vue-chartjs";
-
+import { Line } from "vue-chartjs";
 export default {
-  extends: Bar,
+  extends: Line,
+  props: {
+    results: Array,
+  },
   data() {
     return {
       datacollection: {
-        labels: ["왼쪽", "오른쪽", "위쪽", "아래쪽"],
+        labels: ["", "", "", "", "", "", "", "", "", ""],
         datasets: [
           {
-            label: "움직임 통계",
-            backgroundColor: "#D9A9C8",
+            label: "음성 정확도",
+            backgroundColor: "#F2AABD",
             pointBackgroundColor: "white",
             borderWidth: 1,
-            pointBorderColor: "#249EBF",
+            pointBorderColor: "#043566",
             data: [
-              this.results.head.left,
-              this.results.head.right,
-              this.results.head.top,
-              this.results.head.bottom,
+              Math.floor(this.results[0] * 100),
+              Math.floor(this.results[1] * 100),
+              Math.floor(this.results[2] * 100),
+              Math.floor(this.results[3] * 100),
+              Math.floor(this.results[4] * 100),
+              Math.floor(this.results[5] * 100),
+              Math.floor(this.results[6] * 100),
+              Math.floor(this.results[7] * 100),
+              Math.floor(this.results[8] * 100),
+              Math.floor(this.results[9] * 100),
             ],
           },
         ],
@@ -27,7 +35,7 @@ export default {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
+                beginAtZero: false,
               },
               gridLines: {
                 display: true,
@@ -49,9 +57,6 @@ export default {
         maintainAspectRatio: false,
       },
     };
-  },
-  props: {
-    results: Object,
   },
   mounted() {
     this.renderChart(this.datacollection, this.options);

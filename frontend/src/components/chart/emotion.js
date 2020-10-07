@@ -22,9 +22,9 @@ export default {
           // },
           {
             label: "",
-            backgroundColor: "rgba(255,99,132,0.2)",
+            backgroundColor: "#fcbe32",
             borderColor: "rgba(255,99,132,1)",
-            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "#5699D5",
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",
@@ -44,12 +44,15 @@ export default {
       options: {
         scale: {
           angleLines: {
-            display: false,
+            display: true,
           },
           ticks: {
             suggestedMin: 50,
             suggestedMax: 100,
           },
+        },
+        legend: {
+          display: false,
         },
       },
     };

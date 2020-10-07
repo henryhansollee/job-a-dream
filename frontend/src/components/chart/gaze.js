@@ -10,7 +10,7 @@ export default {
         datasets: [
           {
             label: "시선 분석",
-            backgroundColor: "#fcbe32",
+            backgroundColor: "#F2CA50",
             pointBackgroundColor: "white",
             borderWidth: 1,
             pointBorderColor: "#249EBF",

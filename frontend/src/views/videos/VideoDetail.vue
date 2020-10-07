@@ -10,11 +10,7 @@
           <div class="d-flex justify-content-between">
             <h4>{{ videoResult.title }}</h4>
             <div class="dropdown dropleft mr-5 pr-5">
-              <button
-                type="button"
-                class="mr-5 pr-5 basic-btn"
-                data-toggle="dropdown"
-              >
+              <button type="button" class="mr-5 pr-5 basic-btn" data-toggle="dropdown">
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu">
@@ -22,32 +18,23 @@
                   class="dropdown-item"
                   style="color:black;"
                   @click="deleteVideo(videoResult.id)"
-                  >삭제</a
-                >
+                >삭제</a>
               </div>
             </div>
           </div>
-          <h6 style="color:gray;font-size:14.5px;">
-            {{ cutDate(videoResult.created_at) }}
-          </h6>
-          <h5 class="mt-5" style="font-size:x-large;">
-            질문: {{ videoResult.question.content }}
-          </h5>
+          <h6 style="color:gray;font-size:14.5px;">{{ cutDate(videoResult.created_at) }}</h6>
+          <h5 class="mt-5" style="font-size:x-large;">질문: {{ videoResult.question.content }}</h5>
           <div
             v-for="tag in cutTag(videoResult.tag)"
             :key="tag"
             style="display:inline; font-size:large;"
-          >
-            {{ tag }}
-          </div>
+          >{{ tag }}</div>
           <br />
         </div>
         <div class="mr-5" style>
           <div class="d-flex justify-content-end">
             <router-link class="text-decoration-none" to="/videos/list">
-              <v-btn class="basic-btn" medium color="warning" dark
-                >목록으로</v-btn
-              >
+              <v-btn class="basic-btn" medium color="warning" dark>목록으로</v-btn>
             </router-link>
           </div>
         </div>
@@ -57,7 +44,7 @@
       <div>
         <h1 class="mt-5 mb-5">시선분석</h1>
         <div class="d-flex">
-          <img style="width: 30%;" src="@/assets/videoresult/eyes.png" alt="">
+          <img style="width: 30%;" src="@/assets/videoresult/eyes.png" alt />
           <ul class="ml-5">
             <h5>- 눈 깜빡임: {{ videoResult.result.gaze.blinking }}</h5>
             <h5>- 정면 응시:{{ videoResult.result.gaze.center }}</h5>
@@ -67,18 +54,18 @@
         </div>
       </div>
       <div>
-      <h1 class="mt-5 mb-5">고개분석</h1>
-      <div class="d-flex">
-        <img style="width: 30%;" src="@/assets/videoresult/face.png" alt="">
-        <ul class="ml-5">
-          <h5>- 눈 깜빡임: {{ videoResult.result.head.top }}</h5>
-          <h5>- 정면 응시:{{ videoResult.result.head.bottom }}</h5>
-          <h5>- 왼쪽 응시:{{ videoResult.result.head.left }}</h5>
-          <h5>- 오른쪽 응시:{{ videoResult.result.head.right }}</h5>
-        </ul>
+        <h1 class="mt-5 mb-5">고개분석</h1>
+        <div class="d-flex">
+          <img style="width: 30%;" src="@/assets/videoresult/face.png" alt />
+          <ul class="ml-5">
+            <h5>- 눈 깜빡임: {{ videoResult.result.head.top }}</h5>
+            <h5>- 정면 응시:{{ videoResult.result.head.bottom }}</h5>
+            <h5>- 왼쪽 응시:{{ videoResult.result.head.left }}</h5>
+            <h5>- 오른쪽 응시:{{ videoResult.result.head.right }}</h5>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
     <div
       v-if="videoResult.result"
       class="pt-5 d-flex justify-content-around"
@@ -93,14 +80,14 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              분노: {{ videoResult.result.emotions.angry }}
-            </div>
+            <div class="pt-2" style="font-size:x-large;">분노: {{ videoResult.result.emotions.angry }}</div>
           </div>
-          <div class="flip-card-back ">
+          <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 양 눈썹이 함께 내려간다.</small><br />
-              <small>- 노려보는 눈이 된다.</small><br />
+              <small>- 양 눈썹이 함께 내려간다.</small>
+              <br />
+              <small>- 노려보는 눈이 된다.</small>
+              <br />
               <small>- 입술이 얇아진다.</small>
             </div>
           </div>
@@ -115,14 +102,14 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              행복: {{ videoResult.result.emotions.happy }}
-            </div>
+            <div class="pt-2" style="font-size:x-large;">행복: {{ videoResult.result.emotions.happy }}</div>
           </div>
-          <div class="flip-card-back ">
+          <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 눈가에 주름이 생긴다.</small><br />
-              <small>- 두 뺨이 올라간다.</small><br />
+              <small>- 눈가에 주름이 생긴다.</small>
+              <br />
+              <small>- 두 뺨이 올라간다.</small>
+              <br />
               <small>- 눈 주위를 돌고 있는 근육의 움직임이 생긴다.</small>
             </div>
           </div>
@@ -137,11 +124,12 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              무표정: {{ videoResult.result.emotions.neutral }}
-            </div>
+            <div
+              class="pt-2"
+              style="font-size:x-large;"
+            >무표정: {{ videoResult.result.emotions.neutral }}</div>
           </div>
-          <div class="flip-card-back ">
+          <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
               <small>- 입술의 끝이 당겨지고 한쪽 얼굴만 올라간다.</small>
             </div>
@@ -157,14 +145,14 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              슬픔: {{ videoResult.result.emotions.sad }}
-            </div>
+            <div class="pt-2" style="font-size:x-large;">슬픔: {{ videoResult.result.emotions.sad }}</div>
           </div>
-          <div class="flip-card-back ">
+          <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 눈꺼풀 위가 내려간다.</small><br />
-              <small>- 눈이 초점을 잃는다.</small><br />
+              <small>- 눈꺼풀 위가 내려간다.</small>
+              <br />
+              <small>- 눈이 초점을 잃는다.</small>
+              <br />
               <small>- 입 주위가 살짝 아래로 당겨진다.</small>
             </div>
           </div>
@@ -179,19 +167,21 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              역겨움: {{ videoResult.result.emotions.disgusted }}
-            </div>
+            <div
+              class="pt-2"
+              style="font-size:x-large;"
+            >역겨움: {{ videoResult.result.emotions.disgusted }}</div>
           </div>
-          <div class="flip-card-back ">
+          <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 코를 찡긋거린다.</small><br />
+              <small>- 코를 찡긋거린다.</small>
+              <br />
               <small>- 윗입술이 올라간다.</small>
             </div>
           </div>
         </div>
       </div>
-      <div class="flip-card ">
+      <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img
@@ -200,14 +190,17 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              놀람: {{ videoResult.result.emotions.surprised }}
-            </div>
+            <div
+              class="pt-2"
+              style="font-size:x-large;"
+            >놀람: {{ videoResult.result.emotions.surprised }}</div>
           </div>
           <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 양 눈썹이 올라간다.</small><br />
-              <small>- 눈을 크게 뜬다.</small><br />
+              <small>- 양 눈썹이 올라간다.</small>
+              <br />
+              <small>- 눈을 크게 뜬다.</small>
+              <br />
               <small>- 입이 벌어진다.</small>
             </div>
           </div>
@@ -222,14 +215,17 @@
               style="width:100px;height:100px;"
               class="mt-4"
             />
-            <div class="pt-2" style="font-size:x-large;">
-              두려움: {{ videoResult.result.emotions.fearful }}
-            </div>
+            <div
+              class="pt-2"
+              style="font-size:x-large;"
+            >두려움: {{ videoResult.result.emotions.fearful }}</div>
           </div>
           <div class="flip-card-back">
             <div class="mt-3" style="font-size:18.5px;">
-              <small>- 눈썹이 올라가고, 가운데로 당겨진다.</small><br />
-              <small>- 눈꺼풀 위가 올라간다.</small><br />
+              <small>- 눈썹이 올라가고, 가운데로 당겨진다.</small>
+              <br />
+              <small>- 눈꺼풀 위가 올라간다.</small>
+              <br />
               <small>- 눈꺼풀 아래가 긴장한다.</small>
             </div>
           </div>
@@ -298,7 +294,8 @@ export default {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -307,7 +304,7 @@ export default {
 }
 
 .flip-card-front {
-  background-color: #E8EAF6;
+  background-color: #e8eaf6;
   color: black;
 }
 .flip-card-back {

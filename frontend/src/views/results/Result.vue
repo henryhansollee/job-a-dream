@@ -1,54 +1,51 @@
 <template>
-  <div mt-5>
+  <div m-5>
     <div
-      class="mt-5 pt-5 pl-5 container"
-      style="font-size:xx-large;"
-    >{{ userInfo.username }}님이 그동안 연습하신 영상들의 통계입니다.</div>
-    <div v-if="results.emotions" class="container" style>
-      <div class="mt-2 shadow p-3 bg-white rounded">
-        <div class="mt-2 d-flex justify-content-start">
-          <div style="font-size:xxx-large;">감정 통계</div>
+      class="mt-5 pt-5 container"
+      style="padding-left:55px;font-size:xx-large;"
+    >
+      {{ userInfo.username }}님이 그동안 연습하신 영상들의 통계입니다.
+    </div>
+    <div
+      v-if="results.emotions"
+      class="container d-flex justify-content-around"
+      style
+    >
+      <!--정확도-->
+      <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
+        <div class="mt-1 d-flex justify-content-start">
+          <div style="font-size:xx-large;">정확도 통계</div>
         </div>
-        <bubble-chart :results="results" />
+        <accuracy :results="results" />
       </div>
-      <div class="mt-5 shadow p-3 bg-white rounded">
-        <div class="mt-2 d-flex justify-content-start">
-          <div style="font-size:xxx-large;">시선 통계</div>
+      <!--감정-->
+      <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
+        <div class="mt-1 d-flex justify-content-start">
+          <div style="font-size:xx-large;">감정 통계</div>
+        </div>
+        <bubble-chart :results="results" style />
+      </div>
+    </div>
+    <div
+      v-if="results.emotions"
+      class="mt-5 container d-flex justify-content-around"
+      style="margin-bottom:100px;"
+    >
+      <!--시선-->
+      <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
+        <div class="mt-1 d-flex justify-content-start">
+          <div style="font-size:xx-large;">시선 통계</div>
         </div>
         <bar-chart :results="results" />
       </div>
-      <div class="mt-5 shadow p-3 bg-white rounded">
-        <div class="mt-2 d-flex justify-content-start">
-          <div style="font-size:xxx-large;">움직임 통계</div>
+      <!--움직임-->
+      <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
+        <div class="mt-1 d-flex justify-content-start">
+          <div style="font-size:xx-large;">움직임 통계</div>
         </div>
         <line-chart :results="results" />
       </div>
     </div>
-
-    <!--
-<script>
-import LineChart from './Chart.vue'
-
-export default {
-  name: 'LineChartContainer',
-  components: { LineChart },
-  data: () => ({
-    loaded: false,
-    chartdata: null
-  }),
-  async mounted () {
-    this.loaded = false
-    try {
-      const { userlist } = await fetch('/api/userlist')
-      this.chartdata = userlist
-      this.loaded = true
-    } catch (e) {
-      console.error(e)
-    }
-  }
-}
-</script>
-    -->
   </div>
 </template>
 
@@ -58,10 +55,11 @@ import cookies from "vue-cookies";
 import BubbleChart from "../../components/chart/emotion";
 import BarChart from "../../components/chart/gaze";
 import LineChart from "../../components/chart/head";
+import accuracy from "../../components/results/accuracy";
 
 export default {
   name: "Result",
-  components: { BubbleChart, BarChart, LineChart },
+  components: { BubbleChart, BarChart, LineChart, accuracy },
   data() {
     return {};
   },
