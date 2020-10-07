@@ -7,7 +7,7 @@ RUN apt-get update \
     && python -m pip install --upgrade pip \
     && apt-get install -y libgl1-mesa-glx
 
-RUN apt install default-jdk
+RUN apt-get install default-jdk
 
 COPY requirements.txt /code/
 RUN pip install cmake==3.18.2.post1
