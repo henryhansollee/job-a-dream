@@ -64,7 +64,6 @@ preshed==3.0.2
 proto-plus==1.10.0
 protobuf==3.13.0
 psycopg2==2.8.6
-py-hanspell==1.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
