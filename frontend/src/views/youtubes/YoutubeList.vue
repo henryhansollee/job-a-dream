@@ -1,23 +1,9 @@
 <template>
   <div class="mt-5">
-    <!-- <input
-      type="text"
-      placeholder="search"
-      v-model="keyword"
-      @keypress.enter="searchVideo"
-    />
-    <button @click="nextPage">more</button> -->
     <div>
-      <!-- <h4 style="margin-left:70px;">면접 참고 영상</h4> -->
       <v-container>
         <v-row>
           <v-col cols="4" v-for="video in youtube_videos" :key="video.etag">
-            <!-- <YoutubeListItem
-              v-for="video in videos"
-              :key="video.etag"
-              :video="video"
-            /> -->
-
             <v-card style="height:330px;">
               <iframe
                 width="350"
@@ -48,10 +34,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from "axios";
-// import YoutubeListItem from "@/components/youtubes/YoutubeListItem.vue";
-// import { mapState, mapActions } from "vuex";
 import InfiniteLoading from "vue-infinite-loading";
 
 const API_KEY = "AIzaSyDHeze5bvwX8HGupYKKOYiGVqUczUUek8c";
@@ -61,20 +44,13 @@ export default {
   name: "YoutubeList",
   components: {
     InfiniteLoading,
-    // YoutubeListItem,
   },
-  // computed: {
-  //   ...mapState(["videos"]),
-  // },
   data() {
     return {
       keyword: "",
       page_token: "",
       youtube_videos: [],
     };
-  },
-  created() {
-    // this.searchVideo("면접");
   },
   methods: {
     cutDate(date) {
@@ -88,55 +64,6 @@ export default {
     iframeUrl(video) {
       return `https://youtube.com/embed/${video.id.videoId}`;
     },
-    // ...mapActions([""]),
-    // nextPage() {
-    //   axios
-    //     .get(API_URL, {
-    //       params: {
-    //         key: API_KEY,
-    //         type: "video",
-    //         part: "snippet",
-    //         q: this.keyword,
-    //         maxResults: 1,
-    //         pageToken: this.page_token,
-    //       },
-    //     })
-    //     .then((response) => {
-    //       this.videos = this.videos.concat(response.data.items);
-    //       this.page_token = response.data.nextPageToken;
-    //       console.log(this.page_token, "그다음");
-    //       console.log(this.videos, "목록");
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    // },
-    // searchVideo() {
-    //   if (!this.keyword) {
-    //     alert("검색어를 입력하세요!");
-    //   } else {
-    //     axios
-    //       .get(API_URL, {
-    //         params: {
-    //           key: API_KEY,
-    //           type: "video",
-    //           part: "snippet",
-    //           q: this.keyword,
-    //           maxResults: 1,
-    //           pageToken: this.page_token,
-    //         },
-    //       })
-    //       .then((response) => {
-    //         this.videos = response.data.items;
-    //         this.page_token = response.data.nextPageToken;
-    //         console.log(this.page_token, "???");
-    //         console.log(response);
-    //       })
-    //       .catch((error) => {
-    //         console.error(error);
-    //       });
-    //   }
-    // },
     infiniteHandler($state) {
       axios
         .get(API_URL, {
@@ -152,7 +79,6 @@ export default {
         .then((response) => {
           setTimeout(() => {
             if (response.data.items.length) {
-              console.log(response.data.items);
               this.youtube_videos = this.youtube_videos.concat(
                 response.data.items
               );

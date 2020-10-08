@@ -1,42 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
-
-// Audio
 import AudioList from '../views/audios/AudioList'
 import AudioCreate from '../views/audios/AudioCreate'
 import AudioDetail from '../views/audios/AudioDetail'
-
-// CoverLetter
 import CoverLetterList from '../views/coverletters/CoverLetterList'
 import CoverLetterCreate from '../views/coverletters/CoverLetterCreate'
 import CoverLetterDetail from '../views/coverletters/CoverLetterDetail'
 import CoverLetterUpdate from '../views/coverletters/CoverLetterUpdate'
-
-// FullCourse
 import FullCourseList from '../views/fullcourses/FullCourseList'
 import FullCourseCreate from '../views/fullcourses/FullCourseCreate'
 import FullCourseDetail from '../views/fullcourses/FullCourseDetail'
-
-// Video
 import VideoList from '../views/videos/VideoList'
 import VideoCreate from '../views/videos/VideoCreate'
 import VideoDetail from '../views/videos/VideoDetail'
-
-// Youtube
 import YoutubeList from '../views/youtubes/YoutubeList'
 import YoutubeDetail from '../views/youtubes/YoutubeDetail'
-
-// Result
 import Result from '../views/results/Result'
-
-// About
 import About from '../views/About'
 
 Vue.use(VueRouter)
 
 const routes = [
-  // Audio
   {
     path: '/audios/list',
     name: 'AudioList',
@@ -61,8 +46,6 @@ const routes = [
       title: '잡아드림 | 음성분석 결과'
     }
   },
-
-  // CoverLetter
   {
     path: '/coverletters/list',
     name: 'CoverLetterList',
@@ -95,8 +78,6 @@ const routes = [
       title: '잡아드림 | 자소서분석 수정'
     }
   },
-
-  // FullCourse
   {
     path: '/fullcourses/list',
     name: 'FullCourseList',
@@ -121,8 +102,6 @@ const routes = [
       title: '잡아드림 | 풀코스분석 결과'
     }
   },
-
-  // Video
   {
     path: '/videos/list',
     name: 'VideoList',
@@ -147,8 +126,6 @@ const routes = [
       title: '잡아드림 | 영상분석 결과'
     }
   },
-
-  // Youtube
   {
     path: '/youtubes/list',
     name: 'YoutubeList',
@@ -165,8 +142,6 @@ const routes = [
       title: '잡아드림 | 면접 참고 영상 보기'
     }
   },
-
-  // Result
   {
     path: '/results',
     name: 'Result',
@@ -175,8 +150,6 @@ const routes = [
       title: '잡아드림 | 통계 및 분석'
     }
   },
-
-  // About
   {
     path: '/about',
     name: 'About',

@@ -1,6 +1,5 @@
 <template>
   <div class="p-5" style="">
-    <!-- {{ coverletterResult }} -->
     <label
       for="cvletter-title"
       class="ml-5 pl-1"
@@ -49,7 +48,6 @@
         ></textarea>
       </div>
     </div>
-    <!-- 태그 -->
     <div class="d-flex justify-content-center" style="">
       <div style="width:60%" class="mr-5">
         <b-form-tags
@@ -103,13 +101,6 @@
         @click="updateCV()"
         >수정완료</v-btn
       >
-      <!-- <router-link
-      :to="{
-        name: 'CoverLetterDetail',
-        params: { id: `${coverletterResult.id}` },
-      }"
-      ><v-btn medium color="primary" dark>취소</v-btn></router-link
-    > -->
       <router-link class="text-decoration-none ml-1" to="/coverletters/list">
         <v-btn class="basic-btn" medium color="warning" dark>목록으로</v-btn>
       </router-link>
@@ -121,12 +112,6 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      // updatedCoverletterData: {
-      // },
-    };
-  },
   computed: {
     ...mapState(["coverletterResult"]),
   },
@@ -146,7 +131,6 @@ export default {
   },
   created() {
     this.getCoverletterResult(this.$route.params.id);
-    // this.updatedCoverletterData = this.coverletterResult;
   },
 };
 </script>

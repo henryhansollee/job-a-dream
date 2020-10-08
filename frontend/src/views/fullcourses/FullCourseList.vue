@@ -18,7 +18,6 @@
     >
       <v-btn class="basic-btn" x-large color="primary" dark>시작하기</v-btn>
     </router-link>
-    <!-- 리스트 -->
     <v-container class="mt-5">
       <v-row>
         <v-col cols="3" v-for="fullcourse in fullcourses" :key="fullcourse.id">
@@ -64,7 +63,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <!-- 리스트 -->
   </div>
 </template>
 
