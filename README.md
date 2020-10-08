@@ -1,4 +1,4 @@
-# JOB A DREAM, 잡아드림!
+# :movie_camera: JOB A DREAM, 잡아드림! :microphone:
 
 ![image-20201005115530485](README.assets/image-20201005115530485.png)
 
@@ -8,7 +8,33 @@
 
 #### :computer: [DEMO](https://j3b107.p.ssafy.io/)
 
-#### OVERVIEW
+
+
+## :family: AUTHORS
+
+![image-20201008103925380](README.assets/image-20201008103925380.png)
+
+#### :smile: 이한솔 - 팀장, Frontend, UCC
+
+#### :blush: 임기람 - Frontend, PPT 및 발표
+
+#### :kissing_heart: 최보근 - Backend, Database
+
+#### :wink: 이태환 - AI(영상분석), 배포
+
+#### :stuck_out_tongue_closed_eyes: 편재호 - AI(음성분석, 자소서분석), 배포
+
+
+
+## :open_hands: OVERVIEW
+
+#### 와이어프레임
+
+![image-20201008105235643](README.assets/image-20201008105235643.png)
+
+#### API 설계
+
+![image-20201008105318226](README.assets/image-20201008105318226.png)
 
 - 영상분석을 통해 감정, 고개 움직임, 시선처리 DATA를 받을 수 있습니다.
 - 음성분석을 통해 발음의 정확도, 대본 DATA를 받을 수 있습니다.
@@ -17,30 +43,55 @@
 
 
 
-#### TECH STACK
+## :dango: STEPS TO RUN
 
-- Backend
-- Frontend
+#### Backend/
+
+```bash
+$ source venv/Sciprts/activate
+$ pip install -r requirements.txt
+$ python manage.py migrate
+$ python manage.py runserver 8080
+```
+
+#### Frontend/
+
+```bash
+$ yarn install or $ npm i
+$ yarn serve or $ npm run serve
+```
 
 
 
-#### ERD
+## :stars: ERD
+
+![image-20201008104609014](README.assets/image-20201008104609014.png)
 
 
 
-#### STEPS TO RUN
+## :four_leaf_clover: TECH STACK
 
-- AI
-- Backend
-- Frontend
+![image-20201008103840121](README.assets/image-20201008103840121.png)
+
+#### Backend
+
+- Django
+
+#### Frontend
+
+- Vue
+
+#### DataBase
+
+- SQLite3
+
+#### 형상관리
+
+- GitLab
 
 
 
-#### AUTHORS
+## 📝 License
 
-- 이한솔
-- 임기람
-- 최보근
-- 이태환
-- 편재호
-
+Copyright © 2020 I 인싸들
+This project is [MIT](https://github.com/chloe-codes1/FutSalah/blob/master/LICENSE) licensed.
