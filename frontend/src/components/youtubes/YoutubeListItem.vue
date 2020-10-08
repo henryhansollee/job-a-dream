@@ -9,34 +9,14 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
-
       <h5>{{ video.snippet.title }}</h5>
       <h6>{{ video.snippet.channelTitle }}</h6>
       <h6>{{ cutDate(video.snippet.publishedAt) }}</h6>
     </v-card>
-
-    <!-- <div class="row">
-      <div class="col-6">
-        <iframe
-          width="300"
-          height="200"
-          :src="iframeUrl"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <div>
-          <h5>{{ video.snippet.title }}</h5>
-          <h6>{{ video.snippet.channelTitle }}</h6>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
-// import { mapState } from "vuex";
-
 export default {
   name: "YoutubeListItem",
 
@@ -44,7 +24,6 @@ export default {
     video: Object,
   },
   computed: {
-    // ...mapState(["videos"]),
     iframeUrl() {
       return `https://youtube.com/embed/${this.video.id.videoId}`;
     },
@@ -64,11 +43,6 @@ export default {
       const res = year + month + day;
       return res;
     },
-    // goDetail() {
-    //   console.log(this.video.id.videoId, "줄거");
-    //   this.$emit("giveVideo", this.video.id.videoId);
-    //   this.$router.push({ path: `/detail` });
-    // },
   },
 };
 </script>
@@ -93,7 +67,6 @@ export default {
 .play-video:hover .videoImg {
   opacity: 0.3;
 }
-
 .play-video:hover .play {
   opacity: 1;
   cursor: pointer;

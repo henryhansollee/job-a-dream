@@ -65,7 +65,6 @@
     </div>
 
     <v-app v-else id="inspire">
-      <!-- 사이드바 -->
       <v-navigation-drawer
         v-model="drawer"
         :clipped="$vuetify.breakpoint.lgAndUp"
@@ -73,7 +72,6 @@
         permanent
       >
         <v-list dense class="mt-1" style="padding-bottom:0;">
-          <!-- 프로필 -->
           <div class="d-flex flex-column align-items-center mt-3">
             <img
               v-if="!userInfo.image"
@@ -87,7 +85,6 @@
               :src="'https://j3b107.p.ssafy.io:443/api'+userInfo.image"
               alt="profile"
             />
-            <!-- 프로필 수정 모달 -->
             <v-row justify="center" class="align-self-end">
               <v-btn
                 class="mr-5 basic-btn"
@@ -123,7 +120,6 @@
                 {{ userInfo.username }}
               </h6>
               <small>{{ userInfo.email }}</small>
-              <!-- <hr class="mb-0" /> -->
               <div style="margin:5px 0 10px 0;" class="ml-3 mr-3">
                 <h6 class="text-center" v-if="!userInfo.comment" style="margin:0; font-size: 14px">
                   잡아드림이 {{ userInfo.username }}님을<br/> 응원합니다!
@@ -200,21 +196,10 @@
                     </button>
                   </div>
                 </div>
-
-                <!-- <div class="d-flex justify-content-end">
-                  <b-button
-                    class="basic-btn"
-                    style="width:15%; color:red;"
-                    block
-                    @click="$bvModal.hide('modal-scrollable')"
-                    >닫기</b-button
-                  >
-                </div> -->
               </b-modal>
             </v-row>
             <hr />
           </div>
-          <!-- 영상 분석 -->
           <v-list-item link href="/videos/list" class="text-decoration-none">
             <v-list-item-action class="d-flex justify-content-center m-0 ml-1">
               <img src="@/assets/menus/video.png" alt="" style="width: 30px;" />
@@ -228,7 +213,6 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- 음성분석 -->
           <v-list-item link href="/audios/list" class="text-decoration-none">
             <v-list-item-action class="d-flex justify-content-center m-0">
               <img src="@/assets/menus/audio.png" alt="" style="width: 30px;" />
@@ -242,7 +226,6 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- 자소서분석 -->
           <v-list-item
             link
             href="/coverletters/list"
@@ -264,7 +247,6 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- 풀코스 분석 -->
           <v-list-item
             link
             href="/fullcourses/list"
@@ -286,7 +268,6 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- 통계 및 분석 -->
           <v-list-item link href="/results" class="text-decoration-none">
             <v-list-item-action class="d-flex justify-content-center m-0">
               <img
@@ -304,7 +285,6 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <!-- 면접 참고 영상 -->
           <v-list-item link href="/youtubes/list" class="text-decoration-none">
             <v-list-item-action class="d-flex justify-content-center m-0">
               <img
@@ -329,14 +309,12 @@
           ><i class="far fa-copyright"></i> Job A Dream, 잡아드림</small
         >
       </v-navigation-drawer>
-      <!-- 네브바 -->
       <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
         color="#00264b"
         dark
       >
-        <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
         <v-toolbar-title style="width: 300px" class="m-0 p-0">
           <a href="/about">
           <img
@@ -345,7 +323,6 @@
             src="@/assets/logos/logo-sub.jpg"
             alt="logo-sub"
           /></a>
-          <!-- <span class="hidden-sm-and-down ml-4">JOB A DREAM</span> -->
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <Logout />
@@ -433,7 +410,6 @@ export default {
         this.updatedUserData.comment = this.userInfo.comment
       }
       this.file = this.$refs.file.files[0];
-      console.log(this.file)
       const userFormData = new FormData();
       userFormData.append("id", this.updatedUserData.id);
       userFormData.append("image", this.file);

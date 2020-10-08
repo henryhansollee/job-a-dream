@@ -241,7 +241,6 @@ export default {
       this.audioSource = src;
     },
     createAudioFormData() {
-      console.log(this.audioData, "보낼거ㅓㅓ");
       const audioFormData = new FormData();
       const audio_file_name = Date.now();
       audioFormData.append("title", this.audioData.title);

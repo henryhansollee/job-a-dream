@@ -11,14 +11,12 @@
       class="container d-flex justify-content-around"
       style
     >
-      <!--정확도-->
       <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">정확도 통계</div>
         </div>
         <accuracy :results="results" />
       </div>
-      <!--감정-->
       <div class="mt-2 shadow p-3 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">감정 통계</div>
@@ -31,14 +29,12 @@
       class="mt-5 container d-flex justify-content-around"
       style="margin-bottom:100px;"
     >
-      <!--시선-->
       <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">시선 통계</div>
         </div>
         <bar-chart :results="results" />
       </div>
-      <!--움직임-->
       <div class="mt-2 shadow p-4 bg-white rounded" style="width:500px;">
         <div class="mt-1 d-flex justify-content-start">
           <div style="font-size:xx-large;">움직임 통계</div>

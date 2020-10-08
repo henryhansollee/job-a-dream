@@ -113,7 +113,6 @@
               >
                 <video ref="video" class="mb-4 w-75"></video>
               </div>
-              <!-- 오디오 -->
               <dictaphone
                 class="mt-5 d-flex justify-content-center"
                 @stop="handleRecording($event)"

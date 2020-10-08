@@ -64,7 +64,6 @@ export default {
       },
     },
   },
-  // eslint-disable-next-line consistent-return
   async mounted() {
     let stream;
     try {

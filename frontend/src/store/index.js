@@ -41,10 +41,6 @@ export default new Vuex.Store({
     SET_AUTH(state, id) {
       state.authCheck = id;
       cookies.set("authCheck", id);
-      // Swal.fire({
-      //   text: "환영합니다.",
-      //   icon: "success",
-      // });
     },
     SET_USER(state, user) {
       state.user = user;
@@ -146,7 +142,6 @@ export default new Vuex.Store({
     },
 
     updateUser({ getters }, updatedUserData) {
-      console.log(updatedUserData);
       axios
         .put(
           BACKEND.URL + BACKEND.ROUTES.user + `${cookies.get("authCheck")}`,
@@ -156,9 +151,7 @@ export default new Vuex.Store({
         .then(() => {
           router.go();
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
     getQuestions({ getters, commit }) {
@@ -167,9 +160,7 @@ export default new Vuex.Store({
         .then((response) => {
           commit("GET_QUESTIONS", response.data);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
     createQuestion({ getters }, questionData) {
@@ -199,9 +190,7 @@ export default new Vuex.Store({
               console.log(error);
             });
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {console.log(error)});
     },
 
     getVideos({ getters, commit }) {
@@ -426,7 +415,6 @@ export default new Vuex.Store({
           getters.config
         )
         .then((response) => {
-          console.log(response, "ddd");
           commit("GET_FULLCOURSE_RESULT", response.data);
         })
         .catch((error) => {

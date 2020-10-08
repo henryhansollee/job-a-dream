@@ -16,7 +16,6 @@
     >
       <v-btn class="basic-btn" x-large color="primary" dark>시작하기</v-btn>
     </router-link>
-    <!-- 리스트 -->
     <v-container class="mt-5">
       <v-row>
         <v-col
@@ -24,7 +23,6 @@
           v-for="coverletter in coverletters"
           :key="coverletter.id"
         >
-          <!-- 데이터 넣음 -->
           <router-link
             class="text-decoration-none align-self-center"
             :to="{
@@ -67,7 +65,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <!-- 리스트 -->
   </div>
 </template>
 
