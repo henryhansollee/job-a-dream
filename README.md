@@ -1,4 +1,4 @@
-# JOB A DREAM, 잡아드림!
+# :movie_camera: JOB A DREAM, 잡아드림! :microphone:
 
 ![image-20201005115530485](README.assets/image-20201005115530485.png)
 
@@ -8,7 +8,9 @@
 
 #### :computer: [DEMO](https://j3b107.p.ssafy.io/)
 
-#### OVERVIEW
+
+
+#### :open_hands: OVERVIEW
 
 - 영상분석을 통해 감정, 고개 움직임, 시선처리 DATA를 받을 수 있습니다.
 - 음성분석을 통해 발음의 정확도, 대본 DATA를 받을 수 있습니다.
@@ -17,18 +19,15 @@
 
 
 
-#### TECH STACK
-
-- Backend
-- Frontend
+#### :four_leaf_clover: TECH STACK
 
 
 
-#### ERD
+#### :stars: ERD
 
 
 
-#### STEPS TO RUN
+#### :dango: STEPS TO RUN
 
 - AI
 - Backend
@@ -36,7 +35,7 @@
 
 
 
-#### AUTHORS
+#### :family: AUTHORS
 
 - 이한솔
 - 임기람
