@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,venv
 
 media/
+.vscode/
+.idea/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
