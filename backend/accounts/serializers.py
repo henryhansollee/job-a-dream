@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext as _
 
+from .models import CustomUser
+
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -14,8 +16,14 @@ jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
-        fields = ('id', 'username', 'email')
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'image', 'comment']
+           
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'image', 'comment']
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -40,7 +48,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('token', 'username', 'email', 'password')
 
 class CustomJWTSerializer(JSONWebTokenSerializer):
@@ -49,7 +57,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
     def validate(self, attrs):
 
         password = attrs.get("password")
-        user_obj = User.objects.filter(email=attrs.get("email")).first()
+        user_obj = CustomUser.objects.filter(email=attrs.get("email")).first()
         if user_obj is not None:
             credentials = {
                 'username':user_obj.email,

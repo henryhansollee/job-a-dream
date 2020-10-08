@@ -1,147 +1,162 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-// home
-import Home from '../views/Home.vue'
-
-// interview
-import InterviewListView from '../views/interview/InterviewListView'
-import InterviewAboutView from '../views/interview/InterviewAboutView'
-import InterviewStarView from '../views/interview/InterviewStarView'
-import InterviewResultView from '../views/interview/InterviewResultView'
-import InterviewCreateView from '../views/interview/InterviewCreateView'
-import InterviewDetailView from '../views/interview/InterviewDetailView'
-import InterviewUpdateView from '../views/interview/InterviewUpdateView'
-import InterviewSearchView from '../views/interview/InterviewSearchView'
-
-// community
-import CommunityListView from '../views/community/CommunityListView'
-import CommunityCreateView from '../views/community/CommunityCreateView'
-import CommunityDetailView from '../views/community/CommunityDetailView'
-import CommunityUpdateView from '../views/community/CommunityUpdateView'
-
-// resume
-import ResumeCreateView from '../views/resume/ResumeCreateView'
-import ResumeDetailView from '../views/resume/ResumeDetailView'
-import ResumeUpdateView from '../views/resume/ResumeUpdateView'
-
-// coverletter
-import CoverletterListView from '../views/coverletter/CoverletterListView'
-import CoverletterCreateView from '../views/coverletter/CoverletterCreateView'
-import CoverletterUpdateView from '../views/coverletter/CoverletterUpdateView'
-import CoverletterDetailView from '../views/coverletter/CoverletterDetailView'
+import store from '../store'
+import AudioList from '../views/audios/AudioList'
+import AudioCreate from '../views/audios/AudioCreate'
+import AudioDetail from '../views/audios/AudioDetail'
+import CoverLetterList from '../views/coverletters/CoverLetterList'
+import CoverLetterCreate from '../views/coverletters/CoverLetterCreate'
+import CoverLetterDetail from '../views/coverletters/CoverLetterDetail'
+import CoverLetterUpdate from '../views/coverletters/CoverLetterUpdate'
+import FullCourseList from '../views/fullcourses/FullCourseList'
+import FullCourseCreate from '../views/fullcourses/FullCourseCreate'
+import FullCourseDetail from '../views/fullcourses/FullCourseDetail'
+import VideoList from '../views/videos/VideoList'
+import VideoCreate from '../views/videos/VideoCreate'
+import VideoDetail from '../views/videos/VideoDetail'
+import YoutubeList from '../views/youtubes/YoutubeList'
+import YoutubeDetail from '../views/youtubes/YoutubeDetail'
+import Result from '../views/results/Result'
+import About from '../views/About'
 
 Vue.use(VueRouter)
 
 const routes = [
-  // home
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-
-  // interview
-  {
-    path: '/interview/list/',
-    name: 'InterviewListView',
-    component: InterviewListView
+    path: '/audios/list',
+    name: 'AudioList',
+    component: AudioList,
+    meta: {
+      title: '잡아드림 | 음성분석'
+    }
   },
   {
-    path: '/interview/about/',
-    name: 'InterviewAboutView',
-    component: InterviewAboutView
+    path: '/audios/create',
+    name: 'AudioCreate',
+    component: AudioCreate,
+    meta: {
+      title: '잡아드림 | 음성분석 시작'
+    }
   },
   {
-    path: '/interview/star/',
-    name: 'InterviewStarView',
-    component: InterviewStarView
+    path: '/audios/detail/:id',
+    name: 'AudioDetail',
+    component: AudioDetail,
+    meta: {
+      title: '잡아드림 | 음성분석 결과'
+    }
   },
   {
-    path: '/interview/result/',
-    name: 'InterviewResultView',
-    component: InterviewResultView
+    path: '/coverletters/list',
+    name: 'CoverLetterList',
+    component: CoverLetterList,
+    meta: {
+      title: '잡아드림 | 자소서분석'
+    }
   },
   {
-    path: '/interview/create/',
-    name: 'InterviewCreateView',
-    component: InterviewCreateView
+    path: '/coverletters/create',
+    name: 'CoverLetterCreate',
+    component: CoverLetterCreate,
+    meta: {
+      title: '잡아드림 | 자소서분석 시작'
+    }
   },
   {
-    path: '/interview/detail/:id',
-    name: 'InterviewDetailView',
-    component: InterviewDetailView
+    path: '/coverletters/detail/:id',
+    name: 'CoverLetterDetail',
+    component: CoverLetterDetail,
+    meta: {
+      title: '잡아드림 | 자소서분석 결과'
+    }
   },
   {
-    path: '/interview/detail/:id/update',
-    name: 'InterviewUdateView',
-    component: InterviewUpdateView
+    path: '/coverletters/detail/:id/update',
+    name: 'CoverLetterUpdate',
+    component: CoverLetterUpdate,
+    meta: {
+      title: '잡아드림 | 자소서분석 수정'
+    }
   },
   {
-    path: '/interview/search',
-    name: 'InterviewSearchView',
-    component: InterviewSearchView
-  },
-
-  // community
-  {
-    path: '/community/list',
-    name: 'CommunityListView',
-    component: CommunityListView
+    path: '/fullcourses/list',
+    name: 'FullCourseList',
+    component: FullCourseList,
+    meta: {
+      title: '잡아드림 | 풀코스분석'
+    }
   },
   {
-    path: '/community/create',
-    name: 'CommunityCreateView',
-    component: CommunityCreateView
+    path: '/fullcourses/create',
+    name: 'FullCourseCreate',
+    component: FullCourseCreate,
+    meta: {
+      title: '잡아드림 | 풀코스분석 시작'
+    }
   },
   {
-    path: '/community/detail/:id',
-    name: 'CommunityDetailView',
-    component: CommunityDetailView
+    path: '/fullcourses/detail/:id',
+    name: 'FullCourseDetail',
+    component: FullCourseDetail,
+    meta: {
+      title: '잡아드림 | 풀코스분석 결과'
+    }
   },
   {
-    path: '/community/detail/:id/update',
-    name: 'CommunityUpdateView',
-    component: CommunityUpdateView
-  },
-
-  // resume
-  {
-    path: '/resume/create',
-    name: 'ResumeCreateView',
-    component: ResumeCreateView
+    path: '/videos/list',
+    name: 'VideoList',
+    component: VideoList,
+    meta: {
+      title: '잡아드림 | 영상분석'
+    }
   },
   {
-    path: '/resume/',
-    name: 'ResumeDetailView',
-    component: ResumeDetailView
+    path: '/videos/create',
+    name: 'VideoCreate',
+    component: VideoCreate,
+    meta: {
+      title: '잡아드림 | 영상분석 시작'
+    }
   },
   {
-    path: '/resume/update',
-    name: 'ResumeUpdateView',
-    component: ResumeUpdateView
-  },
-
-  // coverletter
-  {
-    path: '/coverletter/list',
-    name: 'CoverletterListView',
-    component: CoverletterListView
+    path: '/videos/detail/:id',
+    name: 'VideoDetail',
+    component: VideoDetail,
+    meta: {
+      title: '잡아드림 | 영상분석 결과'
+    }
   },
   {
-    path: '/coverletter/create',
-    name: 'CoverletterCreateView',
-    component: CoverletterCreateView
+    path: '/youtubes/list',
+    name: 'YoutubeList',
+    component: YoutubeList,
+    meta: {
+      title: '잡아드림 | 면접 참고 영상'
+    }
   },
   {
-    path: '/coverletter/detail/:id',
-    name: 'CoverletterDetailView',
-    component: CoverletterDetailView
+    path: '/youtubes/detail/:id',
+    name: 'YoutubeDetail',
+    component: YoutubeDetail,
+    meta: {
+      title: '잡아드림 | 면접 참고 영상 보기'
+    }
   },
   {
-    path: '/coverletter/detail/:id/update',
-    name: 'CoverletterUpdateView',
-    component: CoverletterUpdateView
+    path: '/results',
+    name: 'Result',
+    component: Result,
+    meta: {
+      title: '잡아드림 | 통계 및 분석'
+    }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+    meta: {
+      title: '잡아드림'
+    }
   },
 ]
 
@@ -150,5 +165,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || '잡아드림';
+  const isAuthenticated = store.getters.isLoggedIn;
+  if (isAuthenticated) {
+    next()
+  } else if (to.name === 'LoginView' || to.name === 'SignupView') {
+    next()
+  } else {
+    next({name: 'LoginView'})
+  }
+});
 
 export default router

@@ -1,43 +1,26 @@
-# version: "3" 
-# services: 
-#   frontend: 
-#     container_name: front 
-#     build: 
-#       context: frontend 
-#       dockerfile: front.dev.Dockerfile 
-#     expose: 
-#       - 8000 
-#     ports: 
-#       - 8000:8000
-#     volumes: 
-#       - ./frontend:/app 
-      
-#   backend: 
-#     container_name: back 
-#     build: 
-#       context: backend 
-#       dockerfile: back.dev.Dockerfile 
-#     expose: 
-#       - 3000
-#     ports: 
-#       - 3000:3000 
-#     volumes: 
-#       - ./backend:/code
-
-
 version: '3'
     
 services:  
   front:
     build: ./frontend/
-    expose:
-      - 8080
     ports:
-      - "8080:8080"
-
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - /etc/letsencrypt/:/etc/letsencrypt/
+      - ./data/:/data/
+      
+    
   back:
     build: ./backend/
-    command: python manage.py runserver 0.0.0.0:8000
-    
-    ports:
-      - "8000:8000"
+    volumes: 
+      - ../env_params/:/env_params/
+      - /home/ubuntu/nltk_data/:/root/nltk_data/
+      - ./data/:/data/
+    expose:
+      - "8000"
+    environment: 
+      - GOOGLE_APPLICATION_CREDENTIALS=/env_params/private_key.json
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+      # - PATH=/code/AI/ffmpeg-4.3.1-2020-10-01-essentials_build/bin/
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn interview.wsgi:application --bind 0.0.0.0:8000"

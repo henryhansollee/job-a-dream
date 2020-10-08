@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     'accounts',
     'boards',
     'videos',
+    'audios',
+    'questions',
+    'fullcourses',
+    'results',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +139,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -144,6 +148,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SITE_ID = 1
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -191,6 +197,6 @@ AUTHENTICATION_BACKENDS = (
  "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-MEDIA_URL =  '/assets/'
+MEDIA_URL =  '/data-api/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "../frontend/src/assets")
+MEDIA_ROOT = os.path.join(BASE_DIR, "/data/")

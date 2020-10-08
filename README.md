@@ -1,108 +1,97 @@
-![image-20200918112052735](README.assets/image-20200918112052735.png)
+# :movie_camera: JOB A DREAM, 잡아드림! :microphone:
+
+![image-20201005115530485](README.assets/image-20201005115530485.png)
+
+>시공간 제약을 극복하고 면접을 간접 경험할 수 있습니다. AI로 분석된 데이터를 통해 언어적, 비언어적 습관을 개선할 수 있고, 나만의 면접 데이터를 확보할 수 있습니다.
 
 
 
-### :family: TEAM
-
-> 팀명 '인싸들'의 의미는 '인터뷰를 도와주는 싸피 교육생들'입니다. 프로젝트 주제와 어울리는 팀명으로 변경했습니다.
-
-![image-20200918112006596](README.assets/image-20200918112006596.png)
+#### :computer: [DEMO](https://j3b107.p.ssafy.io/)
 
 
 
-### :computer: PROJECT
+## :family: AUTHORS
 
-> 언어적, 비언어적 습관을 AI 기술들을 활용해 분석함으로써 면접을 보는 중 나도 모르게 나오는 버릇, 습관을 캐치합니다. 이로써 취업 준비 과정에 도움을 주겠습니다.
+![image-20201008103925380](README.assets/image-20201008103925380.png)
 
-#### 1. 서비스명
+#### :smile: 이한솔 - 팀장, Frontend, UCC
 
-- 잡아, 드림!(Job, A Dream!)
+#### :blush: 임기람 - Frontend, PPT 및 발표
 
-#### 2. 주요기능
+#### :kissing_heart: 최보근 - Backend, Database
 
-- STT (Speech to Text) 기술을 통해 면접 답변을 대본으로 볼 수 있습니다.
-- Eye Tracker, Emotion Detection 기술을 통해 시선처리, 표정변화 등에 대한 데이터를 볼 수 있습니다.
+#### :wink: 이태환 - AI(영상분석), 배포
 
-#### 3. 기대효과
+#### :stuck_out_tongue_closed_eyes: 편재호 - AI(음성분석, 자소서분석), 배포
 
-- 시공간 제약을 극복하고 면접을 간접경험하며 면접에 익숙해질 수 있습니다.
-- AI로 분석된 데이터를 통해 언어적, 비언어적 습관을 개선할 수 있습니다.
-- 나의 면접 데이터를 확보할 수 있습니다.
-- 커뮤니티 기능으로 객관적인 피드백을 받을 수 있습니다.
 
-#### 4. 기술스택
 
-- Frontend: React, Redex -> Vue, Vuex
-- Backend: Spring -> Django
-- AI: Python (기술에 대한 자세한 내용은 하단 참조)
-- 버전관리: GitLab
+## :open_hands: OVERVIEW
 
-#### 5. 설치
+#### 와이어프레임
 
-- Backend
+![image-20201008105235643](README.assets/image-20201008105235643.png)
+
+#### API 설계
+
+![image-20201008105318226](README.assets/image-20201008105318226.png)
+
+- 영상분석을 통해 감정, 고개 움직임, 시선처리 DATA를 받을 수 있습니다.
+- 음성분석을 통해 발음의 정확도, 대본 DATA를 받을 수 있습니다.
+- 자소서 분석을 통해 맞춤법 검사와 본인에게 적절한 면접 질문을 추출 받을 수 있습니다.
+- 풀코스 분석을 통해 이 모든 분석을 한번에 진행할 수 있습니다.
+
+
+
+## :dango: STEPS TO RUN
+
+#### Backend/
 
 ```bash
-$ python -m venv venv
-$ source venv/Scripts/activate
-
+$ source venv/Sciprts/activate
 $ pip install -r requirements.txt
+$ python manage.py migrate
 $ python manage.py runserver 8080
 ```
 
-- React-Frontend
+#### Frontend/
 
 ```bash
-$ yarn install
-$ yarn start
+$ yarn install or $ npm i
+$ yarn serve or $ npm run serve
 ```
 
-- Vue-Frontend
 
-```bash
-$ yarn install
-$ yarn serve
-```
 
-#### 6. ERD 설계
+## :stars: ERD
 
-> https://www.erdcloud.com/d/8EaoSiWMtbK9Dqi6E
+![image-20201008104609014](README.assets/image-20201008104609014.png)
 
-![image-20200918112225740](README.assets/image-20200918112225740.png)
 
-#### 6. API 설계
 
-> https://docs.google.com/spreadsheets/d/1rtpMDVltVEq-tSIKOwCbgSPeq6TJ0BY-QFQIUvwKgtg/edit#gid=2126308176
+## :four_leaf_clover: TECH STACK
 
-![image-20200918112308618](README.assets/image-20200918112308618.png)
+![image-20201008103840121](README.assets/image-20201008103840121.png)
 
-#### 7. 와이어 프레임 설계
+#### Backend
 
->https://ovenapp.io/view/q5WmjIhc2wktn4Z5QXGxO0OkYnKncBsF/htYl3
+- Django
 
-![image-20200918112355209](README.assets/image-20200918112355209.png)
+#### Frontend
 
-#### 8. AI 기술
+- Vue
 
-1. __STT__ Speech to Text (= __ASR__ Automatic Speech Recognition)
+#### DataBase
 
-- Google Cloud API에서 제공하는 Speech-To-Text를 사용하였다.
+- SQLite3
 
-  - FLOW (비동기 방식)
+#### 형상관리
 
-    ```
-    # 1. 영상이 저장된 Path를 담은 요청을 Google Cloud Storage로 보내어 클라우드에 영상을 저장한다.
-    # 2. Google Cloud Storage에서는 STT 과정을 수행하여 transcript 및 confidence를 담은 정보를 응답한다.
-    # 3. 응답받은 내용을 분석하여 자연어처리를 수행하고 명사를 추출하여 시각화 자료로 응용한다.
-    ```
+- GitLab
 
-- ESPnet을 이용한 음성인식 (진행중)
 
-  - FLOW(Traning & Test)
 
-    ```
-    # 1. AI server에 Kaldi와 espnet의 환경을 구축한다.
-    # 2. 한국어 Model인 zeroth_korean을 이용하여 음성데이터를 학습한다.
-    # 3. ...
-    ```
+## 📝 License
 
-    
+Copyright © 2020 I 인싸들
+This project is [MIT](https://github.com/chloe-codes1/FutSalah/blob/master/LICENSE) licensed.

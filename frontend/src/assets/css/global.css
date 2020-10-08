@@ -34,6 +34,9 @@
 * {
   font-family: "Cafe24Ohsquare", cursive;
 }
+li {
+  list-style: none;
+}
 .main-font {
   font-family: "Cafe24Ohsquare", cursive;
   /* font-family: "Do Hyeon", sans-serif; */
@@ -69,4 +72,22 @@
 .vue-boot-input:focus ::placeholder {
   border: none;
   outline: none;
+}
+.not-selected {
+  border: none;
+  outline: none;
+}
+.not-selected:focus {
+  border: none;
+  outline: none;
+}
+.selected-question {
+  border: none;
+  outline: none;
+  color: orange;
+}
+.selected-question:focus {
+  border: none;
+  outline: none;
+  color: orange;
 }
